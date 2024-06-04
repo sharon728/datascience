@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 購物車資料：行銷專案發展 | First Report</title>
+  <meta name="description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 購物車資料：行銷專案發展 | First Report" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 購物車資料：行銷專案發展 | First Report" />
+  
+  <meta name="twitter:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  
+
+<meta name="author" content="管研碩一 呂珣瑄" />
+
+
+<meta name="date" content="2024-06-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="資料初心者-1.html"/>
+<link rel="next" href="文字資料-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">First report</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#資料初心者"><i class="fa fa-check"></i><b>1.1</b> 資料初心者</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#購物車資料行銷專案發展"><i class="fa fa-check"></i><b>1.2</b> 購物車資料：行銷專案發展</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#文字資料"><i class="fa fa-check"></i><b>1.3</b> 文字資料</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#地圖資料"><i class="fa fa-check"></i><b>1.4</b> 地圖資料</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#評分資料"><i class="fa fa-check"></i><b>1.5</b> 評分資料</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料初心者-1.html"><a href="資料初心者-1.html"><i class="fa fa-check"></i><b>2</b> 資料初心者</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料初心者-1.html"><a href="資料初心者-1.html#安装-r-和-rstudio"><i class="fa fa-check"></i><b>2.1</b> 安装 R 和 RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="資料初心者-1.html"><a href="資料初心者-1.html#建立新專案"><i class="fa fa-check"></i><b>2.2</b> 建立新專案</a></li>
+<li class="chapter" data-level="2.3" data-path="資料初心者-1.html"><a href="資料初心者-1.html#r-markdown"><i class="fa fa-check"></i><b>2.3</b> R markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html"><i class="fa fa-check"></i><b>3</b> 購物車資料：行銷專案發展</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與資料統整"><i class="fa fa-check"></i><b>3.1</b> 輸入資料與資料統整</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與合併"><i class="fa fa-check"></i><b>3.1.1</b> 輸入資料與合併</a></li>
+<li class="chapter" data-level="3.1.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料欄位說明"><i class="fa fa-check"></i><b>3.1.2</b> 資料欄位說明</a></li>
+<li class="chapter" data-level="3.1.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料初步彙整"><i class="fa fa-check"></i><b>3.1.3</b> 資料初步彙整</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料集群大小"><i class="fa fa-check"></i><b>3.2</b> 資料集群大小</a></li>
+<li class="chapter" data-level="3.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#發展問題"><i class="fa fa-check"></i><b>3.3</b> 發展問題</a></li>
+<li class="chapter" data-level="3.4" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#探索性資料分析"><i class="fa fa-check"></i><b>3.4</b> 探索性資料分析</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#銷售趨勢分析"><i class="fa fa-check"></i><b>3.4.1</b> 銷售趨勢分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#顧客行為分析"><i class="fa fa-check"></i><b>3.4.2</b> 顧客行為分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="文字資料-1.html"><a href="文字資料-1.html"><i class="fa fa-check"></i><b>4</b> 文字資料</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="文字資料-1.html"><a href="文字資料-1.html#文字雲"><i class="fa fa-check"></i><b>4.1</b> 文字雲</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="文字資料-1.html"><a href="文字資料-1.html#導入範例文章"><i class="fa fa-check"></i><b>4.1.1</b> 導入範例文章</a></li>
+<li class="chapter" data-level="4.1.2" data-path="文字資料-1.html"><a href="文字資料-1.html#定義斷詞器"><i class="fa fa-check"></i><b>4.1.2</b> 定義斷詞器</a></li>
+<li class="chapter" data-level="4.1.3" data-path="文字資料-1.html"><a href="文字資料-1.html#建立新詞"><i class="fa fa-check"></i><b>4.1.3</b> 建立新詞</a></li>
+<li class="chapter" data-level="4.1.4" data-path="文字資料-1.html"><a href="文字資料-1.html#匯出新詞"><i class="fa fa-check"></i><b>4.1.4</b> 匯出新詞</a></li>
+<li class="chapter" data-level="4.1.5" data-path="文字資料-1.html"><a href="文字資料-1.html#設定停止詞"><i class="fa fa-check"></i><b>4.1.5</b> 設定停止詞</a></li>
+<li class="chapter" data-level="4.1.6" data-path="文字資料-1.html"><a href="文字資料-1.html#重新定義斷詞器匯入停止詞"><i class="fa fa-check"></i><b>4.1.6</b> 重新定義斷詞器，匯入停止詞</a></li>
+<li class="chapter" data-level="4.1.7" data-path="文字資料-1.html"><a href="文字資料-1.html#計算詞彙頻率"><i class="fa fa-check"></i><b>4.1.7</b> 計算詞彙頻率</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="文字資料-1.html"><a href="文字資料-1.html#繪製文字雲"><i class="fa fa-check"></i><b>4.2</b> 繪製文字雲</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="地圖資料-1.html"><a href="地圖資料-1.html"><i class="fa fa-check"></i><b>5</b> 地圖資料</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣行政區模擬颱風降雨量"><i class="fa fa-check"></i><b>5.1</b> 台灣行政區模擬颱風降雨量</a></li>
+<li class="chapter" data-level="5.2" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣新生兒數量"><i class="fa fa-check"></i><b>5.2</b> 2022台灣新生兒數量</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="評分資料-1.html"><a href="評分資料-1.html"><i class="fa fa-check"></i><b>6</b> 評分資料</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="評分資料-1.html"><a href="評分資料-1.html#資料概況"><i class="fa fa-check"></i><b>6.1</b> 資料概況</a></li>
+<li class="chapter" data-level="6.2" data-path="評分資料-1.html"><a href="評分資料-1.html#評分分佈"><i class="fa fa-check"></i><b>6.2</b> 評分分佈</a></li>
+<li class="chapter" data-level="6.3" data-path="評分資料-1.html"><a href="評分資料-1.html#國家分析"><i class="fa fa-check"></i><b>6.3</b> 國家分析</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="迴歸模型.html"><a href="迴歸模型.html"><i class="fa fa-check"></i><b>7</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="迴歸模型.html"><a href="迴歸模型.html#資料敘述"><i class="fa fa-check"></i><b>7.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="迴歸模型.html"><a href="迴歸模型.html#概要"><i class="fa fa-check"></i><b>7.1.1</b> 概要</a></li>
+<li class="chapter" data-level="7.1.2" data-path="迴歸模型.html"><a href="迴歸模型.html#轉換"><i class="fa fa-check"></i><b>7.1.2</b> 轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈"><i class="fa fa-check"></i><b>7.2</b> 資料分佈</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="迴歸模型.html"><a href="迴歸模型.html#查看異常值"><i class="fa fa-check"></i><b>7.2.1</b> 查看異常值</a></li>
+<li class="chapter" data-level="7.2.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈-1"><i class="fa fa-check"></i><b>7.2.2</b> 資料分佈</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="迴歸模型.html"><a href="迴歸模型.html#迴歸模型-1"><i class="fa fa-check"></i><b>7.3</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="迴歸模型.html"><a href="迴歸模型.html#one-variable-regression"><i class="fa fa-check"></i><b>7.3.1</b> One-variable regression</a></li>
+<li class="chapter" data-level="7.3.2" data-path="迴歸模型.html"><a href="迴歸模型.html#multiple-regressors"><i class="fa fa-check"></i><b>7.3.2</b> Multiple regressors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="迴歸模型.html"><a href="迴歸模型.html#one-categorical-variable-ls-estimation"><i class="fa fa-check"></i><b>7.3.3</b> One categorical variable LS Estimation</a></li>
+<li class="chapter" data-level="7.3.4" data-path="迴歸模型.html"><a href="迴歸模型.html#interaction-effect"><i class="fa fa-check"></i><b>7.3.4</b> Interaction effect</a></li>
+<li class="chapter" data-level="7.3.5" data-path="迴歸模型.html"><a href="迴歸模型.html#complete-model"><i class="fa fa-check"></i><b>7.3.5</b> Complete model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html"><i class="fa fa-check"></i><b>8</b> 廣義線性迴歸模型 GLM model</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料敘述-1"><i class="fa fa-check"></i><b>8.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#故事背景"><i class="fa fa-check"></i><b>8.1.1</b> 故事背景</a></li>
+<li class="chapter" data-level="8.1.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料概要"><i class="fa fa-check"></i><b>8.1.2</b> 資料概要</a></li>
+<li class="chapter" data-level="8.1.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料前處理與轉換"><i class="fa fa-check"></i><b>8.1.3</b> 資料前處理與轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#視覺化消費者活動接受情況"><i class="fa fa-check"></i><b>8.2</b> 視覺化消費者活動接受情況</a></li>
+<li class="chapter" data-level="8.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#二元變數之probitlogit-glm"><i class="fa fa-check"></i><b>8.3</b> 二元變數之Probit/Logit GLM</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model1-考量消費金額的logit-glm"><i class="fa fa-check"></i><b>8.3.1</b> Model1 考量「消費金額」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model2-考量消費者型態的logit-glm"><i class="fa fa-check"></i><b>8.3.2</b> Model2 考量「消費者型態」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model3-考量消費者前期活動參與的logit-glm"><i class="fa fa-check"></i><b>8.3.3</b> Model3 考量「消費者前期活動參與」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.4" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model-4-考量所有變數的logit-glm"><i class="fa fa-check"></i><b>8.3.4</b> Model 4 考量「所有變數」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.5" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#每個模型的roc曲線"><i class="fa fa-check"></i><b>8.3.5</b> 每個模型的ROC曲線</a></li>
+<li class="chapter" data-level="8.3.6" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#總結影響因素"><i class="fa fa-check"></i><b>8.3.6</b> 總結影響因素</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">First Report</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="購物車資料行銷專案發展-1" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> 購物車資料：行銷專案發展<a href="購物車資料行銷專案發展-1.html#購物車資料行銷專案發展-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>在Kaggle上搜尋到的資料集，資料標題名稱為Instacart Market Basket Analysis，內容為超市顧客的訂單數據。
+<a href="https://www.kaggle.com/datasets/psparks/instacart-market-basket-analysis" class="uri">https://www.kaggle.com/datasets/psparks/instacart-market-basket-analysis</a></p>
+<div id="輸入資料與資料統整" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> 輸入資料與資料統整<a href="購物車資料行銷專案發展-1.html#輸入資料與資料統整" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="輸入資料與合併" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> 輸入資料與合併<a href="購物車資料行銷專案發展-1.html#輸入資料與合併" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在資料包中總共有六個檔案，分別是：</p>
+<ol style="list-style-type: decimal">
+<li><p>aisles.csv</p></li>
+<li><p>departments.csv</p></li>
+<li><p>order_products__prior.csv</p></li>
+<li><p>order_products__train.csv</p></li>
+<li><p>orders.csv</p></li>
+<li><p>products.csv</p></li>
+</ol>
+<p>依序將檔案輸入到R studio 中</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="購物車資料行銷專案發展-1.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="購物車資料行銷專案發展-1.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="購物車資料行銷專案發展-1.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb1-4"><a href="購物車資料行銷專案發展-1.html#cb1-4" tabindex="-1"></a>aisles <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/Desktop/data science/Instacart Market Basket Analysis/aisles.csv&quot;</span>)</span>
+<span id="cb1-5"><a href="購物車資料行銷專案發展-1.html#cb1-5" tabindex="-1"></a>departments <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/Desktop/data science/Instacart Market Basket Analysis/departments.csv&quot;</span>)</span>
+<span id="cb1-6"><a href="購物車資料行銷專案發展-1.html#cb1-6" tabindex="-1"></a>order_products_prior <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/Desktop/data science/Instacart Market Basket Analysis/order_products__prior.csv&quot;</span>)</span>
+<span id="cb1-7"><a href="購物車資料行銷專案發展-1.html#cb1-7" tabindex="-1"></a>order_products_train <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/Desktop/data science/Instacart Market Basket Analysis/order_products__train.csv&quot;</span>)</span>
+<span id="cb1-8"><a href="購物車資料行銷專案發展-1.html#cb1-8" tabindex="-1"></a>orders <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/Desktop/data science/Instacart Market Basket Analysis/orders.csv&quot;</span>)</span>
+<span id="cb1-9"><a href="購物車資料行銷專案發展-1.html#cb1-9" tabindex="-1"></a>products <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/Desktop/data science/Instacart Market Basket Analysis/products.csv&quot;</span>)</span></code></pre></div>
+<p>因資料群眾多，使用merge( )函數合併data frames，命名為complete_df</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="購物車資料行銷專案發展-1.html#cb2-1" tabindex="-1"></a>complete_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(order_products_prior, products, <span class="at">by =</span> <span class="st">&quot;product_id&quot;</span>, <span class="at">all =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-2"><a href="購物車資料行銷專案發展-1.html#cb2-2" tabindex="-1"></a>complete_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(complete_df, departments, <span class="at">by =</span> <span class="st">&quot;department_id&quot;</span>, <span class="at">all =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="購物車資料行銷專案發展-1.html#cb2-3" tabindex="-1"></a>complete_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(complete_df, aisles, <span class="at">by =</span> <span class="st">&quot;aisle_id&quot;</span>, <span class="at">all =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-4"><a href="購物車資料行銷專案發展-1.html#cb2-4" tabindex="-1"></a>complete_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(complete_df, orders, <span class="at">by =</span> <span class="st">&quot;order_id&quot;</span>, <span class="at">all =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+檢查合併後的data frame的前五行，總共有15個欄位
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+order_id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+aisle_id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+department_id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+product_id
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+add_to_cart_order
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+reordered
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+product_name
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+department
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+aisle
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+user_id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+eval_set
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+order_number
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+order_dow
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+order_hour_of_day
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+days_since_prior_order
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+105
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+40141
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Original Unflavored Gelatine Mix
+</td>
+<td style="text-align:left;">
+pantry
+</td>
+<td style="text-align:left;">
+doughs gelatins bake mixes
+</td>
+<td style="text-align:right;">
+202279
+</td>
+<td style="text-align:left;">
+prior
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+09
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+30035
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Natural Sweetener
+</td>
+<td style="text-align:left;">
+pantry
+</td>
+<td style="text-align:left;">
+baking ingredients
+</td>
+<td style="text-align:right;">
+202279
+</td>
+<td style="text-align:left;">
+prior
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+09
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+17794
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Carrots
+</td>
+<td style="text-align:left;">
+produce
+</td>
+<td style="text-align:left;">
+fresh vegetables
+</td>
+<td style="text-align:right;">
+202279
+</td>
+<td style="text-align:left;">
+prior
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+09
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+123
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+43668
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Classic Blend Cole Slaw
+</td>
+<td style="text-align:left;">
+produce
+</td>
+<td style="text-align:left;">
+packaged vegetables fruits
+</td>
+<td style="text-align:right;">
+202279
+</td>
+<td style="text-align:left;">
+prior
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+09
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+104
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+9327
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+Garlic Powder
+</td>
+<td style="text-align:left;">
+pantry
+</td>
+<td style="text-align:left;">
+spices seasonings
+</td>
+<td style="text-align:right;">
+202279
+</td>
+<td style="text-align:left;">
+prior
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+09
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="資料欄位說明" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> 資料欄位說明<a href="購物車資料行銷專案發展-1.html#資料欄位說明" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">字段名稱</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">user_id</td>
+<td align="left">顧客編號</td>
+</tr>
+<tr class="even">
+<td align="left">order_id</td>
+<td align="left">訂單編號</td>
+</tr>
+<tr class="odd">
+<td align="left">aisle_id</td>
+<td align="left">商品所屬走道編號</td>
+</tr>
+<tr class="even">
+<td align="left">aisle</td>
+<td align="left">商品所屬走道</td>
+</tr>
+<tr class="odd">
+<td align="left">department_id</td>
+<td align="left">商品所屬部門編號</td>
+</tr>
+<tr class="even">
+<td align="left">department</td>
+<td align="left">商品所屬部門</td>
+</tr>
+<tr class="odd">
+<td align="left">product_id</td>
+<td align="left">商品編號</td>
+</tr>
+<tr class="even">
+<td align="left">product_name</td>
+<td align="left">商品名稱</td>
+</tr>
+<tr class="odd">
+<td align="left">add_to_cart_order</td>
+<td align="left">表示商品在訂單過程中被加到購物車的順序，可以識別哪些商品在訂單過程中較早或較晚被加入購物車。</td>
+</tr>
+<tr class="even">
+<td align="left">reordered</td>
+<td align="left">表示顧客是否在過去訂購過該商品。如果值是 0，表示商品是第一次被訂購。如果值是 1，表示商品在過去已被顧客購買過。</td>
+</tr>
+<tr class="odd">
+<td align="left">eval_set</td>
+<td align="left">表示訂單屬於哪個評估集合。有三種值：「prior」代表測試集之前的訂單，「train」代表訓練集的訂單，以及「test」代表測試集的訂單。</td>
+</tr>
+<tr class="even">
+<td align="left">order_number</td>
+<td align="left">表示顧客的訂單編號。例如，如果這是顧客的第一個訂單，這個值將是 1。如果這是顧客的第二個訂單，這個值將是 2，依此類推。</td>
+</tr>
+<tr class="odd">
+<td align="left">order_dow</td>
+<td align="left">表示訂單是在一週的哪一天下的。值的範圍從 0 到 6，0 代表星期六，6 代表星期五。</td>
+</tr>
+<tr class="even">
+<td align="left">order_hour_of_day</td>
+<td align="left">表示訂單是在一天中的哪個小時下的。值的範圍從 0 到 23，0 代表半夜12:00，23 代表晚上 11:00。</td>
+</tr>
+<tr class="odd">
+<td align="left">days_since_prior_order</td>
+<td align="left">表示從顧客上次訂單至此次訂單之間經過的天數。例如，如果這是顧客的第一個訂單，這個值將是 NaN（非數字）。如果這是顧客的第二個訂單，而且是在第一個訂單之後的第 7 天下的，這個值將是 7。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="資料初步彙整" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> 資料初步彙整<a href="購物車資料行銷專案發展-1.html#資料初步彙整" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="購物車資料行銷專案發展-1.html#cb3-1" tabindex="-1"></a><span class="fu">summary</span>(complete_df)</span></code></pre></div>
+<pre><code>##     order_id          aisle_id      department_id      product_id   
+##  Min.   :      2   Min.   :  1.00   Min.   : 1.000   Min.   :    1  
+##  1st Qu.: 855943   1st Qu.: 31.00   1st Qu.: 4.000   1st Qu.:13530  
+##  Median :1711048   Median : 83.00   Median : 9.000   Median :25256  
+##  Mean   :1710749   Mean   : 71.21   Mean   : 9.922   Mean   :25576  
+##  3rd Qu.:2565514   3rd Qu.:107.00   3rd Qu.:16.000   3rd Qu.:37935  
+##  Max.   :3421083   Max.   :134.00   Max.   :21.000   Max.   :49688  
+##                                                                     
+##  add_to_cart_order   reordered      product_name        department       
+##  Min.   :  1.000   Min.   :0.0000   Length:32434489    Length:32434489   
+##  1st Qu.:  3.000   1st Qu.:0.0000   Class :character   Class :character  
+##  Median :  6.000   Median :1.0000   Mode  :character   Mode  :character  
+##  Mean   :  8.351   Mean   :0.5897                                        
+##  3rd Qu.: 11.000   3rd Qu.:1.0000                                        
+##  Max.   :145.000   Max.   :1.0000                                        
+##                                                                          
+##     aisle              user_id         eval_set          order_number  
+##  Length:32434489    Min.   :     1   Length:32434489    Min.   : 1.00  
+##  Class :character   1st Qu.: 51421   Class :character   1st Qu.: 5.00  
+##  Mode  :character   Median :102611   Mode  :character   Median :11.00  
+##                     Mean   :102937                      Mean   :17.14  
+##                     3rd Qu.:154391                      3rd Qu.:24.00  
+##                     Max.   :206209                      Max.   :99.00  
+##                                                                        
+##    order_dow     order_hour_of_day  days_since_prior_order
+##  Min.   :0.000   Length:32434489    Min.   : 0.0          
+##  1st Qu.:1.000   Class :character   1st Qu.: 5.0          
+##  Median :3.000   Mode  :character   Median : 8.0          
+##  Mean   :2.739                      Mean   :11.1          
+##  3rd Qu.:5.000                      3rd Qu.:15.0          
+##  Max.   :6.000                      Max.   :30.0          
+##                                     NA&#39;s   :2078068</code></pre>
+<p>可以知道資料集中，訂單總數共有3,421,083筆資料，產品總類496,885種，顧客總數206,209人。</p>
+</div>
+</div>
+<div id="資料集群大小" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> 資料集群大小<a href="購物車資料行銷專案發展-1.html#資料集群大小" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在資料集中，訂單總數3,421,083筆資料中，包含prior, test, train</p>
+<ol style="list-style-type: decimal">
+<li>prior（之前）：包含用戶之前的訂單數據。通常是最大的數據集，用於了解用戶的購買歷史和行為模式，也可以用來訓練機器學習模型，以預測用戶未來的購買行為或對商品的偏好。</li>
+<li>train（訓練）：訓練集用於建立或訓練機器學習模型。數據包含了用戶的訂單信息及其相應的輸出（例如，用戶是否再次購買某個商品）。模型在這個數據集上學習，調整其內部參數，以最佳方式對比輸入數據到預期輸出。</li>
+<li>test（測試）：測試集用來評估已經訓練好的機器學習模型的性能。這部分數據在模型訓練過程中是不可見的，以確保評估結果能公正地反映模型在處理未見過數據時的實際表現。使用測試集可以檢查模型是否過擬合訓練數據，以及它對新數據的泛化能力。</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="購物車資料行銷專案發展-1.html#cb5-1" tabindex="-1"></a>eval_set_counts <span class="ot">&lt;-</span> orders <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="購物車資料行銷專案發展-1.html#cb5-2" tabindex="-1"></a>  <span class="fu">count</span>(eval_set) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="購物車資料行銷專案發展-1.html#cb5-3" tabindex="-1"></a>  <span class="fu">rename</span>(評估集合 <span class="ot">=</span> eval_set, 訂單數量 <span class="ot">=</span> n)</span>
+<span id="cb5-4"><a href="購物車資料行銷專案發展-1.html#cb5-4" tabindex="-1"></a>eval_set_counts <span class="ot">&lt;-</span> eval_set_counts <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="購物車資料行銷專案發展-1.html#cb5-5" tabindex="-1"></a>  <span class="fu">mutate</span>(比例 <span class="ot">=</span> 訂單數量 <span class="sc">/</span> <span class="fu">sum</span>(訂單數量))</span>
+<span id="cb5-6"><a href="購物車資料行銷專案發展-1.html#cb5-6" tabindex="-1"></a><span class="fu">kable</span>(eval_set_counts, <span class="at">align =</span> <span class="fu">c</span>(<span class="st">&#39;l&#39;</span>, <span class="st">&#39;r&#39;</span>, <span class="st">&#39;r&#39;</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">評估集合</th>
+<th align="right">訂單數量</th>
+<th align="right">比例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">prior</td>
+<td align="right">3214874</td>
+<td align="right">0.94</td>
+</tr>
+<tr class="even">
+<td align="left">test</td>
+<td align="right">75000</td>
+<td align="right">0.02</td>
+</tr>
+<tr class="odd">
+<td align="left">train</td>
+<td align="right">131209</td>
+<td align="right">0.04</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="發展問題" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> 發展問題<a href="購物車資料行銷專案發展-1.html#發展問題" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>電商能夠透過資料分析預測<strong>消費者行為</strong>，購買Ａ商品後下一個可能想買的東西為何？</p>
+<ol style="list-style-type: decimal">
+<li>提升銷售和轉化率：通過向顧客推薦他們可能感興趣的商品，從而提升總體的銷售量和轉化率。</li>
+<li>增強顧客體驗：精準的推薦可以提升顧客的購物體驗，提升顧客滿意度和忠誠度。</li>
+<li>優化庫存管理：透過預測分析，商家可以更好地理解顧客的購買趨勢和偏好，減少過剩或缺貨的情況。</li>
+<li>提高行銷效率：幫助了解最有可能對特定產品感興趣的顧客群體，使行銷更加精準</li>
+<li>減少退貨率：如果顧客購買的商品更符合需求和偏好，退貨的可能性也會降低。</li>
+</ol>
+</div>
+<div id="探索性資料分析" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> 探索性資料分析<a href="購物車資料行銷專案發展-1.html#探索性資料分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="銷售趨勢分析" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> 銷售趨勢分析<a href="購物車資料行銷專案發展-1.html#銷售趨勢分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>（一）每日訂單數量概況</strong></p>
+<p>建立 “daily_orders” data frame整理每日訂單數量概況</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="購物車資料行銷專案發展-1.html#cb6-1" tabindex="-1"></a>daily_orders <span class="ot">&lt;-</span> orders <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="購物車資料行銷專案發展-1.html#cb6-2" tabindex="-1"></a>  <span class="fu">group_by</span>(order_dow) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="購物車資料行銷專案發展-1.html#cb6-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">order_count =</span> <span class="fu">n</span>())</span></code></pre></div>
+<p>以表格呈現</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="購物車資料行銷專案發展-1.html#cb7-1" tabindex="-1"></a><span class="fu">kable</span>(daily_orders)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">order_dow</th>
+<th align="right">order_count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">600905</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">587478</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">467260</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">436972</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">426339</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">453368</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">448761</td>
+</tr>
+</tbody>
+</table>
+<p>以直方圖呈現</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="購物車資料行銷專案發展-1.html#cb8-1" tabindex="-1"></a><span class="fu">ggplot</span>(daily_orders, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(order_dow), <span class="at">y =</span> order_count)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="購物車資料行銷專案發展-1.html#cb8-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;light blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="購物車資料行銷專案發展-1.html#cb8-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Day of Week&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of Orders&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Orders by Day of Week&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="購物車資料行銷專案發展-1.html#cb8-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb8-5"><a href="購物車資料行銷專案發展-1.html#cb8-5" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Sat&quot;</span>,<span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>)) </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label1"></span>
+<img src="_main_files/figure-html/label1-1.png" alt="一週訂單數量分佈" width="672" />
+<p class="caption">
+Figure 3.1: 一週訂單數量分佈
+</p>
+</div>
+<p>從上述表格和圖片可以得知訂單量在一星期中的分佈情況，其中星期六、日最多，星期三最少。可知消費者偏好在週末的時候採購日用品，平日忙碌相較之下沒時間採購。而超市中食品類食物具有時效性，了解消費者採購的時間分佈可以更好的管理庫存，或是能夠在週三時多推出促銷活動增加消費者購物誘因。</p>
+<p><strong>(二）單日購買時間分佈</strong></p>
+<p>利用分布圖不分日期看訂單集中在哪一個時間
+使用ggplot2繪製一天中各小時訂單量的分布圖，發現訂單集中在上午10:00到下午16:00的區間段，而中午12:00訂單相對較少</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="購物車資料行銷專案發展-1.html#cb9-1" tabindex="-1"></a>hourly_orders <span class="ot">&lt;-</span> orders <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="購物車資料行銷專案發展-1.html#cb9-2" tabindex="-1"></a>  <span class="fu">group_by</span>(order_hour_of_day) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="購物車資料行銷專案發展-1.html#cb9-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">order_count =</span> <span class="fu">n</span>())</span>
+<span id="cb9-4"><a href="購物車資料行銷專案發展-1.html#cb9-4" tabindex="-1"></a><span class="fu">ggplot</span>(hourly_orders, <span class="fu">aes</span>(<span class="at">x =</span> order_hour_of_day, <span class="at">y =</span> order_count)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="購物車資料行銷專案發展-1.html#cb9-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">group=</span><span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb9-6"><a href="購物車資料行銷專案發展-1.html#cb9-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;light blue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb9-7"><a href="購物車資料行銷專案發展-1.html#cb9-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Hour of Day&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of Orders&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Distribution of Orders Throughout the Day&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="購物車資料行銷專案發展-1.html#cb9-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label2"></span>
+<img src="_main_files/figure-html/label2-1.png" alt="單日購買時間分佈圖" width="672" />
+<p class="caption">
+Figure 3.2: 單日購買時間分佈圖
+</p>
+</div>
+<p>近一步分析不同日間訂單每小時購買情況
+依照不同日期，按小時分組，計算每小时的訂單數量
+使用氣泡圖繪製，視覺化看出購買時間分佈
+可以發現在禮拜六訂單集中在下午時段，禮拜日則上午時段較多，平日則無明顯差異。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="購物車資料行銷專案發展-1.html#cb10-1" tabindex="-1"></a>hourly_orders_by_dow <span class="ot">&lt;-</span> orders <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="購物車資料行銷專案發展-1.html#cb10-2" tabindex="-1"></a>  <span class="fu">group_by</span>(order_dow, order_hour_of_day) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="購物車資料行銷專案發展-1.html#cb10-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">order_count =</span> <span class="fu">n</span>())</span>
+<span id="cb10-4"><a href="購物車資料行銷專案發展-1.html#cb10-4" tabindex="-1"></a>hourly_orders_by_dow <span class="ot">&lt;-</span> hourly_orders_by_dow <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="購物車資料行銷專案發展-1.html#cb10-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">order_dow =</span> <span class="fu">factor</span>(order_dow, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)))</span>
+<span id="cb10-6"><a href="購物車資料行銷專案發展-1.html#cb10-6" tabindex="-1"></a><span class="fu">ggplot</span>(hourly_orders_by_dow, <span class="fu">aes</span>(<span class="at">x =</span> order_hour_of_day, <span class="at">y =</span> order_dow, <span class="at">size =</span> order_count)) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="購物車資料行銷專案發展-1.html#cb10-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> order_count), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb10-8"><a href="購物車資料行銷專案發展-1.html#cb10-8" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)) <span class="sc">+</span> </span>
+<span id="cb10-9"><a href="購物車資料行銷專案發展-1.html#cb10-9" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">&quot;red&quot;</span>, <span class="at">high =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb10-10"><a href="購物車資料行銷專案發展-1.html#cb10-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Hour of Day&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Day of Week&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Order Distribution by Hour and Day of Week&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="購物車資料行銷專案發展-1.html#cb10-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb10-12"><a href="購物車資料行銷專案發展-1.html#cb10-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>)) </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label3"></span>
+<img src="_main_files/figure-html/label3-1.png" alt="單日購買時間分佈氣泡圖" width="672" />
+<p class="caption">
+Figure 3.3: 單日購買時間分佈氣泡圖
+</p>
+</div>
+<p><strong>(三）顧客購買週期</strong></p>
+<p>分析顧客間隔多久再下訂單購買商品
+過濾掉days_since_prior_order中的缺失值，排除首次購買的顧客
+將dataframe命名為 orders_df_filtered</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="購物車資料行銷專案發展-1.html#cb11-1" tabindex="-1"></a>orders_df_filtered <span class="ot">&lt;-</span> orders[<span class="sc">!</span><span class="fu">is.na</span>(orders<span class="sc">$</span>days_since_prior_order), ]</span></code></pre></div>
+<p>以ggplot畫直方圖，視覺化趨勢。
+發現其中購買頻以7天為最高，多數顧客以一週作為購買週期
+而發現30天的訂單量多，推測資料將30天以上的資料都歸納在30天。
+因此，超市可以一週為單位，在網站或是 App 提醒顧客再回來購買商品。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="購物車資料行銷專案發展-1.html#cb12-1" tabindex="-1"></a><span class="fu">ggplot</span>(orders_df_filtered, <span class="fu">aes</span>(<span class="at">x =</span> days_since_prior_order)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="購物車資料行銷專案發展-1.html#cb12-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;light blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="購物車資料行銷專案發展-1.html#cb12-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Days Since Prior Order&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Distribution of Days Since Prior Order&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="購物車資料行銷專案發展-1.html#cb12-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label4"></span>
+<img src="_main_files/figure-html/label4-1.png" alt="顧客購買週期" width="672" />
+<p class="caption">
+Figure 3.4: 顧客購買週期
+</p>
+</div>
+<p><strong>（四）顧客忠誠度</strong></p>
+<p>根據顧客購買週期進一步看顧客的忠誠度
+依照購買週期頻率將顧客分群成高忠誠、中忠誠、低忠誠</p>
+<p>7天以內：高忠誠</p>
+<p>7-20天內：中忠誠</p>
+<p>21-29天以上：低忠誠</p>
+<p>30天（以上）:零星顧客</p>
+<p>首先計算每個顧客的平均回購週期</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="購物車資料行銷專案發展-1.html#cb13-1" tabindex="-1"></a>average_repurchase <span class="ot">&lt;-</span> orders <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="購物車資料行銷專案發展-1.html#cb13-2" tabindex="-1"></a>  <span class="fu">group_by</span>(user_id) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="購物車資料行銷專案發展-1.html#cb13-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">average_days_between_orders =</span> <span class="fu">mean</span>(days_since_prior_order, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<p>根據平均回購週期將顧客分類</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="購物車資料行銷專案發展-1.html#cb14-1" tabindex="-1"></a>customer_loyalty <span class="ot">&lt;-</span> average_repurchase <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="購物車資料行銷專案發展-1.html#cb14-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">loyalty_category =</span> <span class="fu">case_when</span>(</span>
+<span id="cb14-3"><a href="購物車資料行銷專案發展-1.html#cb14-3" tabindex="-1"></a>    average_days_between_orders <span class="sc">&lt;=</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">&quot;High Loyalty&quot;</span>,</span>
+<span id="cb14-4"><a href="購物車資料行銷專案發展-1.html#cb14-4" tabindex="-1"></a>    average_days_between_orders <span class="sc">&gt;</span> <span class="dv">7</span> <span class="sc">&amp;</span> average_days_between_orders <span class="sc">&lt;=</span> <span class="dv">20</span> <span class="sc">~</span> <span class="st">&quot;Medium Loyalty&quot;</span>,</span>
+<span id="cb14-5"><a href="購物車資料行銷專案發展-1.html#cb14-5" tabindex="-1"></a>    average_days_between_orders <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> average_days_between_orders <span class="sc">&lt;=</span> <span class="dv">29</span> <span class="sc">~</span> <span class="st">&quot;Low Loyalty&quot;</span>,</span>
+<span id="cb14-6"><a href="購物車資料行銷專案發展-1.html#cb14-6" tabindex="-1"></a>    average_days_between_orders <span class="sc">&gt;</span> <span class="dv">29</span> <span class="sc">~</span> <span class="st">&quot;Occasional Customer&quot;</span>,</span>
+<span id="cb14-7"><a href="購物車資料行銷專案發展-1.html#cb14-7" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span> <span class="co"># 为安全起见，包含一个其它类别</span></span>
+<span id="cb14-8"><a href="購物車資料行銷專案發展-1.html#cb14-8" tabindex="-1"></a>  ))</span></code></pre></div>
+<p>統計各個忠誠度的顧客總數及百分比</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="購物車資料行銷專案發展-1.html#cb15-1" tabindex="-1"></a>loyalty_counts <span class="ot">&lt;-</span> customer_loyalty <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="購物車資料行銷專案發展-1.html#cb15-2" tabindex="-1"></a>  <span class="fu">group_by</span>(loyalty_category) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="購物車資料行銷專案發展-1.html#cb15-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>())</span>
+<span id="cb15-4"><a href="購物車資料行銷專案發展-1.html#cb15-4" tabindex="-1"></a>total_customers <span class="ot">&lt;-</span> <span class="fu">sum</span>(loyalty_counts<span class="sc">$</span>count)</span>
+<span id="cb15-5"><a href="購物車資料行銷專案發展-1.html#cb15-5" tabindex="-1"></a>loyalty_counts <span class="ot">&lt;-</span> loyalty_counts <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="購物車資料行銷專案發展-1.html#cb15-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentage =</span> count <span class="sc">/</span> total_customers)</span>
+<span id="cb15-7"><a href="購物車資料行銷專案發展-1.html#cb15-7" tabindex="-1"></a><span class="fu">kable</span>(loyalty_counts)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">loyalty_category</th>
+<th align="right">count</th>
+<th align="right">percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">High Loyalty</td>
+<td align="right">24471</td>
+<td align="right">0.1186709</td>
+</tr>
+<tr class="even">
+<td align="left">Low Loyalty</td>
+<td align="right">48725</td>
+<td align="right">0.2362894</td>
+</tr>
+<tr class="odd">
+<td align="left">Medium Loyalty</td>
+<td align="right">125779</td>
+<td align="right">0.6099588</td>
+</tr>
+<tr class="even">
+<td align="left">Occasional Customer</td>
+<td align="right">7234</td>
+<td align="right">0.0350809</td>
+</tr>
+</tbody>
+</table>
+<p>利用ggplot繪製圓餅圖
+發現顧客以中忠誠度為大宗，占了61％，而高忠誠度的客戶只有約12％，超市能夠思考如何再提升顧客的購買週期</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="購物車資料行銷專案發展-1.html#cb16-1" tabindex="-1"></a><span class="fu">ggplot</span>(loyalty_counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> count, <span class="at">fill =</span> loyalty_category)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="購物車資料行銷專案發展-1.html#cb16-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="購物車資料行銷專案發展-1.html#cb16-3" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb16-4"><a href="購物車資料行銷專案發展-1.html#cb16-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(percentage)), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="購物車資料行銷專案發展-1.html#cb16-5" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href="購物車資料行銷專案發展-1.html#cb16-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Customer Loyalty Categories&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="購物車資料行銷專案發展-1.html#cb16-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="購物車資料行銷專案發展-1.html#cb16-8" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Pastel1&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label5"></span>
+<img src="_main_files/figure-html/label5-1.png" alt="顧客忠誠度圓餅圖" width="672" />
+<p class="caption">
+Figure 3.5: 顧客忠誠度圓餅圖
+</p>
+</div>
+</div>
+<div id="顧客行為分析" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> 顧客行為分析<a href="購物車資料行銷專案發展-1.html#顧客行為分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>(一）購買頻率最高的前10名商品</strong></p>
+<p>找出超市中購買次數頻率最高的品項</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="購物車資料行銷專案發展-1.html#cb17-1" tabindex="-1"></a>top10_products <span class="ot">&lt;-</span> complete_df <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="購物車資料行銷專案發展-1.html#cb17-2" tabindex="-1"></a>  <span class="fu">group_by</span>(product_name) <span class="sc">%&gt;%</span>         <span class="co"># 按商品名稱分組</span></span>
+<span id="cb17-3"><a href="購物車資料行銷專案發展-1.html#cb17-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>         <span class="co"># 計算每個商品的購買次數</span></span>
+<span id="cb17-4"><a href="購物車資料行銷專案發展-1.html#cb17-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span>           <span class="co"># 按購買次數降序排列</span></span>
+<span id="cb17-5"><a href="購物車資料行銷專案發展-1.html#cb17-5" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, count)                   <span class="co"># 選擇前10名</span></span>
+<span id="cb17-6"><a href="購物車資料行銷專案發展-1.html#cb17-6" tabindex="-1"></a><span class="fu">kable</span>(top10_products)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">product_name</th>
+<th align="right">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Banana</td>
+<td align="right">472565</td>
+</tr>
+<tr class="even">
+<td align="left">Bag of Organic Bananas</td>
+<td align="right">379450</td>
+</tr>
+<tr class="odd">
+<td align="left">Organic Strawberries</td>
+<td align="right">264683</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Baby Spinach</td>
+<td align="right">241921</td>
+</tr>
+<tr class="odd">
+<td align="left">Organic Hass Avocado</td>
+<td align="right">213584</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Avocado</td>
+<td align="right">176815</td>
+</tr>
+<tr class="odd">
+<td align="left">Large Lemon</td>
+<td align="right">152657</td>
+</tr>
+<tr class="even">
+<td align="left">Strawberries</td>
+<td align="right">142951</td>
+</tr>
+<tr class="odd">
+<td align="left">Limes</td>
+<td align="right">140627</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Whole Milk</td>
+<td align="right">137905</td>
+</tr>
+</tbody>
+</table>
+<p>發現第一名是香蕉，而第二名也是香蕉（有機香蕉）
+其他品項熱門品項也大多是有機水果，推測超市深耕於有機水果的市場
+也能夠進一步推出綜合水果禮盒等商品刺激銷量</p>
+<p>分析購買頻率最高的商品及其所屬部門，多是屬於produce部門</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="購物車資料行銷專案發展-1.html#cb18-1" tabindex="-1"></a>top_product_in_department <span class="ot">&lt;-</span> complete_df <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="購物車資料行銷專案發展-1.html#cb18-2" tabindex="-1"></a>  <span class="fu">group_by</span>(product_name, department) <span class="sc">%&gt;%</span>  <span class="co"># 按商品名稱和部門分組</span></span>
+<span id="cb18-3"><a href="購物車資料行銷專案發展-1.html#cb18-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span>) <span class="sc">%&gt;%</span>  <span class="co"># 計算每個商品的購買次數，移除分組</span></span>
+<span id="cb18-4"><a href="購物車資料行銷專案發展-1.html#cb18-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span>  <span class="co"># 按購買次數降序排列</span></span>
+<span id="cb18-5"><a href="購物車資料行銷專案發展-1.html#cb18-5" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, count)  <span class="co"># 選擇購買次數最多的商品</span></span>
+<span id="cb18-6"><a href="購物車資料行銷專案發展-1.html#cb18-6" tabindex="-1"></a><span class="fu">kable</span>(top_product_in_department)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">product_name</th>
+<th align="left">department</th>
+<th align="right">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Banana</td>
+<td align="left">produce</td>
+<td align="right">472565</td>
+</tr>
+<tr class="even">
+<td align="left">Bag of Organic Bananas</td>
+<td align="left">produce</td>
+<td align="right">379450</td>
+</tr>
+<tr class="odd">
+<td align="left">Organic Strawberries</td>
+<td align="left">produce</td>
+<td align="right">264683</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Baby Spinach</td>
+<td align="left">produce</td>
+<td align="right">241921</td>
+</tr>
+<tr class="odd">
+<td align="left">Organic Hass Avocado</td>
+<td align="left">produce</td>
+<td align="right">213584</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Avocado</td>
+<td align="left">produce</td>
+<td align="right">176815</td>
+</tr>
+<tr class="odd">
+<td align="left">Large Lemon</td>
+<td align="left">produce</td>
+<td align="right">152657</td>
+</tr>
+<tr class="even">
+<td align="left">Strawberries</td>
+<td align="left">produce</td>
+<td align="right">142951</td>
+</tr>
+<tr class="odd">
+<td align="left">Limes</td>
+<td align="left">produce</td>
+<td align="right">140627</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Whole Milk</td>
+<td align="left">dairy eggs</td>
+<td align="right">137905</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(二) 重複購買率最高的前十名商品</strong></p>
+<p>緊接者好奇熱門品項的重複購買率是否也是最高的？
+計算每個產品的訂單總數和重複購買訂單數
+先彙整出產品忠誠度data frame</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="購物車資料行銷專案發展-1.html#cb19-1" tabindex="-1"></a>product_loyalty <span class="ot">&lt;-</span> complete_df <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="購物車資料行銷專案發展-1.html#cb19-2" tabindex="-1"></a>  <span class="fu">group_by</span>(product_id, product_name,department) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="購物車資料行銷專案發展-1.html#cb19-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-4"><a href="購物車資料行銷專案發展-1.html#cb19-4" tabindex="-1"></a>    <span class="at">total_orders =</span> <span class="fu">n</span>(), </span>
+<span id="cb19-5"><a href="購物車資料行銷專案發展-1.html#cb19-5" tabindex="-1"></a>    <span class="at">reordered_count =</span> <span class="fu">sum</span>(reordered),</span>
+<span id="cb19-6"><a href="購物車資料行銷專案發展-1.html#cb19-6" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span> <span class="co">#去除分組</span></span>
+<span id="cb19-7"><a href="購物車資料行銷專案發展-1.html#cb19-7" tabindex="-1"></a>  )</span></code></pre></div>
+<p>計算重複購買率（重複購買訂單數/訂單總數）</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="購物車資料行銷專案發展-1.html#cb20-1" tabindex="-1"></a>product_loyalty <span class="ot">&lt;-</span> product_loyalty <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="購物車資料行銷專案發展-1.html#cb20-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">reorder_rate =</span> reordered_count <span class="sc">/</span> total_orders)</span></code></pre></div>
+<p>列出重複購買率最高的十樣商品
+找到一些比較小眾，雖然訂單量不多，但是重複購買意願很高的商品，超市可以進一步廣告這些商品，增加顧客流量</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="購物車資料行銷專案發展-1.html#cb21-1" tabindex="-1"></a>top_reorder_rate_products <span class="ot">&lt;-</span> product_loyalty <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="購物車資料行銷專案發展-1.html#cb21-2" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(reorder_rate)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="購物車資料行銷專案發展-1.html#cb21-3" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, reorder_rate) </span>
+<span id="cb21-4"><a href="購物車資料行銷專案發展-1.html#cb21-4" tabindex="-1"></a><span class="fu">kable</span>(top_reorder_rate_products)  </span></code></pre></div>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="37%" />
+<col width="12%" />
+<col width="12%" />
+<col width="14%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">product_id</th>
+<th align="left">product_name</th>
+<th align="left">department</th>
+<th align="right">total_orders</th>
+<th align="right">reordered_count</th>
+<th align="right">reorder_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">6433</td>
+<td align="left">Raw Veggie Wrappers</td>
+<td align="left">deli</td>
+<td align="right">68</td>
+<td align="right">64</td>
+<td align="right">0.9411765</td>
+</tr>
+<tr class="even">
+<td align="right">2075</td>
+<td align="left">Serenity Ultimate Extrema Overnight Pads</td>
+<td align="left">personal care</td>
+<td align="right">87</td>
+<td align="right">81</td>
+<td align="right">0.9310345</td>
+</tr>
+<tr class="odd">
+<td align="right">43553</td>
+<td align="left">Orange Energy Shots</td>
+<td align="left">beverages</td>
+<td align="right">13</td>
+<td align="right">12</td>
+<td align="right">0.9230769</td>
+</tr>
+<tr class="even">
+<td align="right">27740</td>
+<td align="left">Chocolate Love Bar</td>
+<td align="left">snacks</td>
+<td align="right">101</td>
+<td align="right">93</td>
+<td align="right">0.9207921</td>
+</tr>
+<tr class="odd">
+<td align="right">14609</td>
+<td align="left">Soy Powder Infant Formula</td>
+<td align="left">babies</td>
+<td align="right">35</td>
+<td align="right">32</td>
+<td align="right">0.9142857</td>
+</tr>
+<tr class="even">
+<td align="right">13875</td>
+<td align="left">Simply Sleep Nighttime Sleep Aid</td>
+<td align="left">other</td>
+<td align="right">45</td>
+<td align="right">41</td>
+<td align="right">0.9111111</td>
+</tr>
+<tr class="odd">
+<td align="right">39992</td>
+<td align="left">Energy Shot, Grape Flavor</td>
+<td align="left">beverages</td>
+<td align="right">22</td>
+<td align="right">20</td>
+<td align="right">0.9090909</td>
+</tr>
+<tr class="even">
+<td align="right">5868</td>
+<td align="left">Russian River Valley Reserve Pinot Noir</td>
+<td align="left">alcohol</td>
+<td align="right">30</td>
+<td align="right">27</td>
+<td align="right">0.9000000</td>
+</tr>
+<tr class="odd">
+<td align="right">31418</td>
+<td align="left">Sparking Water</td>
+<td align="left">beverages</td>
+<td align="right">60</td>
+<td align="right">54</td>
+<td align="right">0.9000000</td>
+</tr>
+<tr class="even">
+<td align="right">35604</td>
+<td align="left">Maca Buttercups</td>
+<td align="left">snacks</td>
+<td align="right">100</td>
+<td align="right">90</td>
+<td align="right">0.9000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="資料初心者-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="文字資料-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-instacart.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

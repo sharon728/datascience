@@ -1,0 +1,2706 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 迴歸模型 | First Report</title>
+  <meta name="description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 迴歸模型 | First Report" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 迴歸模型 | First Report" />
+  
+  <meta name="twitter:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  
+
+<meta name="author" content="管研碩一 呂珣瑄" />
+
+
+<meta name="date" content="2024-06-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="評分資料-1.html"/>
+<link rel="next" href="廣義線性迴歸模型-glm-model.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">First report</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#資料初心者"><i class="fa fa-check"></i><b>1.1</b> 資料初心者</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#購物車資料行銷專案發展"><i class="fa fa-check"></i><b>1.2</b> 購物車資料：行銷專案發展</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#文字資料"><i class="fa fa-check"></i><b>1.3</b> 文字資料</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#地圖資料"><i class="fa fa-check"></i><b>1.4</b> 地圖資料</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#評分資料"><i class="fa fa-check"></i><b>1.5</b> 評分資料</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料初心者-1.html"><a href="資料初心者-1.html"><i class="fa fa-check"></i><b>2</b> 資料初心者</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料初心者-1.html"><a href="資料初心者-1.html#安装-r-和-rstudio"><i class="fa fa-check"></i><b>2.1</b> 安装 R 和 RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="資料初心者-1.html"><a href="資料初心者-1.html#建立新專案"><i class="fa fa-check"></i><b>2.2</b> 建立新專案</a></li>
+<li class="chapter" data-level="2.3" data-path="資料初心者-1.html"><a href="資料初心者-1.html#r-markdown"><i class="fa fa-check"></i><b>2.3</b> R markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html"><i class="fa fa-check"></i><b>3</b> 購物車資料：行銷專案發展</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與資料統整"><i class="fa fa-check"></i><b>3.1</b> 輸入資料與資料統整</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與合併"><i class="fa fa-check"></i><b>3.1.1</b> 輸入資料與合併</a></li>
+<li class="chapter" data-level="3.1.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料欄位說明"><i class="fa fa-check"></i><b>3.1.2</b> 資料欄位說明</a></li>
+<li class="chapter" data-level="3.1.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料初步彙整"><i class="fa fa-check"></i><b>3.1.3</b> 資料初步彙整</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料集群大小"><i class="fa fa-check"></i><b>3.2</b> 資料集群大小</a></li>
+<li class="chapter" data-level="3.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#發展問題"><i class="fa fa-check"></i><b>3.3</b> 發展問題</a></li>
+<li class="chapter" data-level="3.4" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#探索性資料分析"><i class="fa fa-check"></i><b>3.4</b> 探索性資料分析</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#銷售趨勢分析"><i class="fa fa-check"></i><b>3.4.1</b> 銷售趨勢分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#顧客行為分析"><i class="fa fa-check"></i><b>3.4.2</b> 顧客行為分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="文字資料-1.html"><a href="文字資料-1.html"><i class="fa fa-check"></i><b>4</b> 文字資料</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="文字資料-1.html"><a href="文字資料-1.html#文字雲"><i class="fa fa-check"></i><b>4.1</b> 文字雲</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="文字資料-1.html"><a href="文字資料-1.html#導入範例文章"><i class="fa fa-check"></i><b>4.1.1</b> 導入範例文章</a></li>
+<li class="chapter" data-level="4.1.2" data-path="文字資料-1.html"><a href="文字資料-1.html#定義斷詞器"><i class="fa fa-check"></i><b>4.1.2</b> 定義斷詞器</a></li>
+<li class="chapter" data-level="4.1.3" data-path="文字資料-1.html"><a href="文字資料-1.html#建立新詞"><i class="fa fa-check"></i><b>4.1.3</b> 建立新詞</a></li>
+<li class="chapter" data-level="4.1.4" data-path="文字資料-1.html"><a href="文字資料-1.html#匯出新詞"><i class="fa fa-check"></i><b>4.1.4</b> 匯出新詞</a></li>
+<li class="chapter" data-level="4.1.5" data-path="文字資料-1.html"><a href="文字資料-1.html#設定停止詞"><i class="fa fa-check"></i><b>4.1.5</b> 設定停止詞</a></li>
+<li class="chapter" data-level="4.1.6" data-path="文字資料-1.html"><a href="文字資料-1.html#重新定義斷詞器匯入停止詞"><i class="fa fa-check"></i><b>4.1.6</b> 重新定義斷詞器，匯入停止詞</a></li>
+<li class="chapter" data-level="4.1.7" data-path="文字資料-1.html"><a href="文字資料-1.html#計算詞彙頻率"><i class="fa fa-check"></i><b>4.1.7</b> 計算詞彙頻率</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="文字資料-1.html"><a href="文字資料-1.html#繪製文字雲"><i class="fa fa-check"></i><b>4.2</b> 繪製文字雲</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="地圖資料-1.html"><a href="地圖資料-1.html"><i class="fa fa-check"></i><b>5</b> 地圖資料</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣行政區模擬颱風降雨量"><i class="fa fa-check"></i><b>5.1</b> 台灣行政區模擬颱風降雨量</a></li>
+<li class="chapter" data-level="5.2" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣新生兒數量"><i class="fa fa-check"></i><b>5.2</b> 2022台灣新生兒數量</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="評分資料-1.html"><a href="評分資料-1.html"><i class="fa fa-check"></i><b>6</b> 評分資料</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="評分資料-1.html"><a href="評分資料-1.html#資料概況"><i class="fa fa-check"></i><b>6.1</b> 資料概況</a></li>
+<li class="chapter" data-level="6.2" data-path="評分資料-1.html"><a href="評分資料-1.html#評分分佈"><i class="fa fa-check"></i><b>6.2</b> 評分分佈</a></li>
+<li class="chapter" data-level="6.3" data-path="評分資料-1.html"><a href="評分資料-1.html#國家分析"><i class="fa fa-check"></i><b>6.3</b> 國家分析</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="迴歸模型.html"><a href="迴歸模型.html"><i class="fa fa-check"></i><b>7</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="迴歸模型.html"><a href="迴歸模型.html#資料敘述"><i class="fa fa-check"></i><b>7.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="迴歸模型.html"><a href="迴歸模型.html#概要"><i class="fa fa-check"></i><b>7.1.1</b> 概要</a></li>
+<li class="chapter" data-level="7.1.2" data-path="迴歸模型.html"><a href="迴歸模型.html#轉換"><i class="fa fa-check"></i><b>7.1.2</b> 轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈"><i class="fa fa-check"></i><b>7.2</b> 資料分佈</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="迴歸模型.html"><a href="迴歸模型.html#查看異常值"><i class="fa fa-check"></i><b>7.2.1</b> 查看異常值</a></li>
+<li class="chapter" data-level="7.2.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈-1"><i class="fa fa-check"></i><b>7.2.2</b> 資料分佈</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="迴歸模型.html"><a href="迴歸模型.html#迴歸模型-1"><i class="fa fa-check"></i><b>7.3</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="迴歸模型.html"><a href="迴歸模型.html#one-variable-regression"><i class="fa fa-check"></i><b>7.3.1</b> One-variable regression</a></li>
+<li class="chapter" data-level="7.3.2" data-path="迴歸模型.html"><a href="迴歸模型.html#multiple-regressors"><i class="fa fa-check"></i><b>7.3.2</b> Multiple regressors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="迴歸模型.html"><a href="迴歸模型.html#one-categorical-variable-ls-estimation"><i class="fa fa-check"></i><b>7.3.3</b> One categorical variable LS Estimation</a></li>
+<li class="chapter" data-level="7.3.4" data-path="迴歸模型.html"><a href="迴歸模型.html#interaction-effect"><i class="fa fa-check"></i><b>7.3.4</b> Interaction effect</a></li>
+<li class="chapter" data-level="7.3.5" data-path="迴歸模型.html"><a href="迴歸模型.html#complete-model"><i class="fa fa-check"></i><b>7.3.5</b> Complete model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html"><i class="fa fa-check"></i><b>8</b> 廣義線性迴歸模型 GLM model</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料敘述-1"><i class="fa fa-check"></i><b>8.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#故事背景"><i class="fa fa-check"></i><b>8.1.1</b> 故事背景</a></li>
+<li class="chapter" data-level="8.1.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料概要"><i class="fa fa-check"></i><b>8.1.2</b> 資料概要</a></li>
+<li class="chapter" data-level="8.1.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料前處理與轉換"><i class="fa fa-check"></i><b>8.1.3</b> 資料前處理與轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#視覺化消費者活動接受情況"><i class="fa fa-check"></i><b>8.2</b> 視覺化消費者活動接受情況</a></li>
+<li class="chapter" data-level="8.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#二元變數之probitlogit-glm"><i class="fa fa-check"></i><b>8.3</b> 二元變數之Probit/Logit GLM</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model1-考量消費金額的logit-glm"><i class="fa fa-check"></i><b>8.3.1</b> Model1 考量「消費金額」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model2-考量消費者型態的logit-glm"><i class="fa fa-check"></i><b>8.3.2</b> Model2 考量「消費者型態」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model3-考量消費者前期活動參與的logit-glm"><i class="fa fa-check"></i><b>8.3.3</b> Model3 考量「消費者前期活動參與」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.4" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model-4-考量所有變數的logit-glm"><i class="fa fa-check"></i><b>8.3.4</b> Model 4 考量「所有變數」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.5" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#每個模型的roc曲線"><i class="fa fa-check"></i><b>8.3.5</b> 每個模型的ROC曲線</a></li>
+<li class="chapter" data-level="8.3.6" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#總結影響因素"><i class="fa fa-check"></i><b>8.3.6</b> 總結影響因素</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">First Report</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="迴歸模型" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> 迴歸模型<a href="迴歸模型.html#迴歸模型" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>資料取自於Kaggle，資料名稱為Marketing Campaign
+<a href="https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign" class="uri">https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign</a></p>
+<div id="資料敘述" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> 資料敘述<a href="迴歸模型.html#資料敘述" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="概要" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> 概要<a href="迴歸模型.html#概要" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>首先將資料導入R studio</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="迴歸模型.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="迴歸模型.html#cb1-2" tabindex="-1"></a>marketing_campaign <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;~/Desktop/data science/marketing campaign data/marketing_campaign.xlsx&quot;</span>)</span></code></pre></div>
+<p>資料欄位說明</p>
+<p>如表<a href="迴歸模型.html#tab:table-1">7.1</a>所示總共有2240筆資料，總共有29個變數欄位，有3個類別變數和26個數值變數，Income存在缺失值。</p>
+<table>
+<caption>
+<span id="tab:table-1">Table 7.1: </span>資料欄位說明
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+字段名稱
+</th>
+<th style="text-align:left;">
+描述
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp1
+</td>
+<td style="text-align:left;">
+如果客戶在第一次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp2
+</td>
+<td style="text-align:left;">
+如果客戶在第二次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp3
+</td>
+<td style="text-align:left;">
+如果客戶在第三次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp4
+</td>
+<td style="text-align:left;">
+如果客戶在第四次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp5
+</td>
+<td style="text-align:left;">
+如果客戶在第五次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Response
+</td>
+<td style="text-align:left;">
+如果客戶在最後一次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Complain
+</td>
+<td style="text-align:left;">
+如果客戶在過去兩年內有投訴，則為1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DtCustomer
+</td>
+<td style="text-align:left;">
+客戶加入公司的日期
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Education
+</td>
+<td style="text-align:left;">
+客戶的教育程度
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Marital
+</td>
+<td style="text-align:left;">
+客戶的婚姻狀況
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kidhome
+</td>
+<td style="text-align:left;">
+客戶家庭中小孩的數量
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Teenhome
+</td>
+<td style="text-align:left;">
+客戶家庭中青少年的數量
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Income
+</td>
+<td style="text-align:left;">
+客戶家庭的年收入
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntFishProducts
+</td>
+<td style="text-align:left;">
+過去兩年內在魚類產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntMeatProducts
+</td>
+<td style="text-align:left;">
+過去兩年內在肉類產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntFruits
+</td>
+<td style="text-align:left;">
+過去兩年內在水果產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntSweetProducts
+</td>
+<td style="text-align:left;">
+過去兩年內在甜品產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntWines
+</td>
+<td style="text-align:left;">
+過去兩年內在葡萄酒產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntGoldProds
+</td>
+<td style="text-align:left;">
+過去兩年內在黃金產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumDealsPurchases
+</td>
+<td style="text-align:left;">
+使用折扣進行的購買次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumCatalogPurchases
+</td>
+<td style="text-align:left;">
+使用目錄進行的購買次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumStorePurchases
+</td>
+<td style="text-align:left;">
+直接在商店進行的購買次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumWebPurchases
+</td>
+<td style="text-align:left;">
+透過公司網站進行的購買次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumWebVisitsMonth
+</td>
+<td style="text-align:left;">
+過去一個月內訪問公司網站的次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Recency
+</td>
+<td style="text-align:left;">
+自上次購買以來的天數
+</td>
+</tr>
+</tbody>
+</table>
+<p>呈現資料集的前十項</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="迴歸模型.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb2-2"><a href="迴歸模型.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb2-3"><a href="迴歸模型.html#cb2-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-4"><a href="迴歸模型.html#cb2-4" tabindex="-1"></a>marketing_campaign <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="迴歸模型.html#cb2-5" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="迴歸模型.html#cb2-6" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="迴歸模型.html#cb2-7" tabindex="-1"></a>  <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="迴歸模型.html#cb2-8" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="at">height =</span> <span class="st">&quot;500px&quot;</span>)</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Year_Birth
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Education
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Marital_Status
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Income
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Kidhome
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Teenhome
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Dt_Customer
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Recency
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntWines
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntFruits
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntMeatProducts
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntFishProducts
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntSweetProducts
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntGoldProds
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumDealsPurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumWebPurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumCatalogPurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumStorePurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumWebVisitsMonth
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp3
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp4
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp5
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp1
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Complain
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Z_CostContact
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Z_Revenue
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Response
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+5524
+</td>
+<td style="text-align:right;">
+1957
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Single
+</td>
+<td style="text-align:right;">
+58138
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2012-09-04
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+635
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+546
+</td>
+<td style="text-align:right;">
+172
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2174
+</td>
+<td style="text-align:right;">
+1954
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Single
+</td>
+<td style="text-align:right;">
+46344
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2014-03-08
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4141
+</td>
+<td style="text-align:right;">
+1965
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Together
+</td>
+<td style="text-align:right;">
+71613
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2013-08-21
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+426
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+127
+</td>
+<td style="text-align:right;">
+111
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6182
+</td>
+<td style="text-align:right;">
+1984
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Together
+</td>
+<td style="text-align:right;">
+26646
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2014-02-10
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5324
+</td>
+<td style="text-align:right;">
+1981
+</td>
+<td style="text-align:left;">
+PhD
+</td>
+<td style="text-align:left;">
+Married
+</td>
+<td style="text-align:right;">
+58293
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2014-01-19
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+173
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+118
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7446
+</td>
+<td style="text-align:right;">
+1967
+</td>
+<td style="text-align:left;">
+Master
+</td>
+<td style="text-align:left;">
+Together
+</td>
+<td style="text-align:right;">
+62513
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2013-09-09
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+520
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+965
+</td>
+<td style="text-align:right;">
+1971
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Divorced
+</td>
+<td style="text-align:right;">
+55635
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2012-11-13
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+235
+</td>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:right;">
+164
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6177
+</td>
+<td style="text-align:right;">
+1985
+</td>
+<td style="text-align:left;">
+PhD
+</td>
+<td style="text-align:left;">
+Married
+</td>
+<td style="text-align:right;">
+33454
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2013-05-08
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4855
+</td>
+<td style="text-align:right;">
+1974
+</td>
+<td style="text-align:left;">
+PhD
+</td>
+<td style="text-align:left;">
+Together
+</td>
+<td style="text-align:right;">
+30351
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2013-06-06
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5899
+</td>
+<td style="text-align:right;">
+1950
+</td>
+<td style="text-align:left;">
+PhD
+</td>
+<td style="text-align:left;">
+Together
+</td>
+<td style="text-align:right;">
+5648
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2014-03-13
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="轉換" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> 轉換<a href="迴歸模型.html#轉換" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>簡化類別變數或是轉換成數值</p>
+<ol style="list-style-type: decimal">
+<li>計算年齡</li>
+<li>計算教育年份</li>
+<li>單身或非單身</li>
+<li>家中小孩數量</li>
+<li>在店家的總支出</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="迴歸模型.html#cb3-1" tabindex="-1"></a>customer_data <span class="ot">&lt;-</span> marketing_campaign <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="迴歸模型.html#cb3-2" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb3-3"><a href="迴歸模型.html#cb3-3" tabindex="-1"></a>    <span class="at">ID =</span> ID,</span>
+<span id="cb3-4"><a href="迴歸模型.html#cb3-4" tabindex="-1"></a>    <span class="at">Age =</span> <span class="dv">2024</span> <span class="sc">-</span> Year_Birth,  <span class="co"># 從2024年減去出生年份以計算年齡</span></span>
+<span id="cb3-5"><a href="迴歸模型.html#cb3-5" tabindex="-1"></a>    <span class="at">Education_Years =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-6"><a href="迴歸模型.html#cb3-6" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;Basic&quot;</span> <span class="sc">~</span> <span class="dv">12</span>,</span>
+<span id="cb3-7"><a href="迴歸模型.html#cb3-7" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;Graduation&quot;</span> <span class="sc">~</span> <span class="dv">16</span>,</span>
+<span id="cb3-8"><a href="迴歸模型.html#cb3-8" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;Master&quot;</span> <span class="sc">~</span> <span class="dv">18</span>,</span>
+<span id="cb3-9"><a href="迴歸模型.html#cb3-9" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;2n Cycle&quot;</span> <span class="sc">~</span> <span class="dv">18</span>,</span>
+<span id="cb3-10"><a href="迴歸模型.html#cb3-10" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;PhD&quot;</span> <span class="sc">~</span> <span class="dv">21</span>,</span>
+<span id="cb3-11"><a href="迴歸模型.html#cb3-11" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>  <span class="co"># 如果有不符合以上條件的Education值，將賦予NA</span></span>
+<span id="cb3-12"><a href="迴歸模型.html#cb3-12" tabindex="-1"></a>    ),</span>
+<span id="cb3-13"><a href="迴歸模型.html#cb3-13" tabindex="-1"></a>    <span class="at">Marital_Status=</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-14"><a href="迴歸模型.html#cb3-14" tabindex="-1"></a>    Marital_Status <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;Single&quot;</span>, <span class="st">&quot;Divorced&quot;</span>, <span class="st">&quot;Widow&quot;</span>, <span class="st">&quot;Absurd&quot;</span>, <span class="st">&quot;YOLO&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Alone&quot;</span>,</span>
+<span id="cb3-15"><a href="迴歸模型.html#cb3-15" tabindex="-1"></a>    Marital_Status <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Married&quot;</span>, <span class="st">&quot;Together&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Couple&quot;</span>,</span>
+<span id="cb3-16"><a href="迴歸模型.html#cb3-16" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span>  <span class="co"># 如果有不符合以上條件的Marital_Status值，將賦予NA</span></span>
+<span id="cb3-17"><a href="迴歸模型.html#cb3-17" tabindex="-1"></a>    ),</span>
+<span id="cb3-18"><a href="迴歸模型.html#cb3-18" tabindex="-1"></a>    <span class="at">Income =</span> Income,</span>
+<span id="cb3-19"><a href="迴歸模型.html#cb3-19" tabindex="-1"></a>    <span class="at">Number_of_child =</span> Kidhome <span class="sc">+</span> Teenhome,</span>
+<span id="cb3-20"><a href="迴歸模型.html#cb3-20" tabindex="-1"></a>    <span class="at">Spending =</span> MntFishProducts<span class="sc">+</span>MntMeatProducts<span class="sc">+</span>MntFruits<span class="sc">+</span>MntSweetProducts<span class="sc">+</span>MntWines<span class="sc">+</span>MntGoldProds</span>
+<span id="cb3-21"><a href="迴歸模型.html#cb3-21" tabindex="-1"></a>  )</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Age
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Education_Years
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Marital_Status
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Income
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Number_of_child
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Spending
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+5524
+</td>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Alone
+</td>
+<td style="text-align:right;">
+58138
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1617
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2174
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Alone
+</td>
+<td style="text-align:right;">
+46344
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4141
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+71613
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+776
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6182
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+26646
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5324
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+58293
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+422
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7446
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+62513
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+716
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+965
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Alone
+</td>
+<td style="text-align:right;">
+55635
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+590
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6177
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+33454
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+169
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4855
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+30351
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+46
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5899
+</td>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+5648
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="資料分佈" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> 資料分佈<a href="迴歸模型.html#資料分佈" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="查看異常值" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> 查看異常值<a href="迴歸模型.html#查看異常值" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>如 Table<a href="迴歸模型.html#tab:table-2">7.2</a> 所示，將資料summary得出的統計結果</p>
+<table>
+<caption><span id="tab:table-2">Table 7.2: </span>消費者資料統計概述</caption>
+<thead>
+<tr class="header">
+<th align="left">統計</th>
+<th align="left">年齡</th>
+<th align="left">教育年數</th>
+<th align="left">收入</th>
+<th align="left">小孩數量</th>
+<th align="left">消費金額</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Min.</td>
+<td align="left">28.00</td>
+<td align="left">12.0</td>
+<td align="left">1730</td>
+<td align="left">0.0000</td>
+<td align="left">5.00</td>
+</tr>
+<tr class="even">
+<td align="left">1st Qu.</td>
+<td align="left">47.00</td>
+<td align="left">16.0</td>
+<td align="left">35303</td>
+<td align="left">0.0000</td>
+<td align="left">68.75</td>
+</tr>
+<tr class="odd">
+<td align="left">Median</td>
+<td align="left">54.00</td>
+<td align="left">16.0</td>
+<td align="left">51382</td>
+<td align="left">1.0000</td>
+<td align="left">396.00</td>
+</tr>
+<tr class="even">
+<td align="left">Mean</td>
+<td align="left">55.19</td>
+<td align="left">17.5</td>
+<td align="left">52247</td>
+<td align="left">0.9504</td>
+<td align="left">605.80</td>
+</tr>
+<tr class="odd">
+<td align="left">3rd Qu.</td>
+<td align="left">65.00</td>
+<td align="left">18.0</td>
+<td align="left">68522</td>
+<td align="left">1.0000</td>
+<td align="left">1045.50</td>
+</tr>
+<tr class="even">
+<td align="left">Max.</td>
+<td align="left">131.00</td>
+<td align="left">21.0</td>
+<td align="left">666666</td>
+<td align="left">3.0000</td>
+<td align="left">2525.00</td>
+</tr>
+<tr class="odd">
+<td align="left">NA’s</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">24</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<p>（一）客戶收入</p>
+<div class="figure"><span style="display:block;" id="fig:label100"></span>
+<img src="_main_files/figure-html/label100-1.png" alt="客戶收入盒鬚圖" width="672" />
+<p class="caption">
+Figure 7.1: 客戶收入盒鬚圖
+</p>
+</div>
+<p>根據 Figure<a href="迴歸模型.html#fig:label100">7.1</a>，有幾個值超過了上限界限 113000。雖然有 150000的收入並非不可能，但我們將移除收入為 666666 的客戶，視為極端異常值。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="迴歸模型.html#cb4-1" tabindex="-1"></a>customer_data <span class="ot">&lt;-</span> customer_data[customer_data<span class="sc">$</span>Income <span class="sc">!=</span> <span class="dv">666666</span>, ]</span></code></pre></div>
+<p>（二）客戶年齡</p>
+<div class="figure"><span style="display:block;" id="fig:label101"></span>
+<img src="_main_files/figure-html/label101-1.png" alt="客戶年紀盒鬚圖" width="672" />
+<p class="caption">
+Figure 7.2: 客戶年紀盒鬚圖
+</p>
+</div>
+<p>根據 Figure<a href="迴歸模型.html#fig:label101">7.2</a>，有部分值異常，剔除年齡超過100的異常值</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="迴歸模型.html#cb5-1" tabindex="-1"></a>customer_data <span class="ot">&lt;-</span> customer_data[customer_data<span class="sc">$</span>Age <span class="sc">&lt;=</span> <span class="dv">100</span>, ]</span></code></pre></div>
+</div>
+<div id="資料分佈-1" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> 資料分佈<a href="迴歸模型.html#資料分佈-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>（一）客戶年齡分佈</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="迴歸模型.html#cb6-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">Age =</span> customer_data<span class="sc">$</span>Age), <span class="fu">aes</span>(<span class="at">x =</span> Age)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="迴歸模型.html#cb6-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;light blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="迴歸模型.html#cb6-3" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;年齡直方圖&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="迴歸模型.html#cb6-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;年齡&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;人數&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="迴歸模型.html#cb6-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label102"></span>
+<img src="_main_files/figure-html/label102-1.png" alt="年齡直方圖" width="672" />
+<p class="caption">
+Figure 7.3: 年齡直方圖
+</p>
+</div>
+<p>（二）客戶收入分佈</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="迴歸模型.html#cb7-1" tabindex="-1"></a>income_data <span class="ot">&lt;-</span> customer_data<span class="sc">$</span>Income[<span class="sc">!</span><span class="fu">is.na</span>(customer_data<span class="sc">$</span>Income)] <span class="co">#移除缺失值</span></span>
+<span id="cb7-2"><a href="迴歸模型.html#cb7-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb7-3"><a href="迴歸模型.html#cb7-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">Income =</span> income_data), <span class="fu">aes</span>(<span class="at">x =</span> Income)) <span class="sc">+</span> <span class="co">#畫出 Income 的直方圖</span></span>
+<span id="cb7-4"><a href="迴歸模型.html#cb7-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">&quot;light blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="迴歸模型.html#cb7-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;收入直方圖&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="迴歸模型.html#cb7-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Income 收入&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;人數&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="迴歸模型.html#cb7-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label103"></span>
+<img src="_main_files/figure-html/label103-1.png" alt="收入直方圖" width="672" />
+<p class="caption">
+Figure 7.4: 收入直方圖
+</p>
+</div>
+<p>（三）客戶教育年數分佈</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="迴歸模型.html#cb8-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">Education =</span> customer_data<span class="sc">$</span>Education_Years), <span class="fu">aes</span>(<span class="at">x =</span> Education)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="迴歸模型.html#cb8-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">fill =</span> <span class="st">&quot;light blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="迴歸模型.html#cb8-3" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;教育年數直方圖&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="迴歸模型.html#cb8-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;教育年數&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;人數&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="迴歸模型.html#cb8-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label104"></span>
+<img src="_main_files/figure-html/label104-1.png" alt="教育年數直方圖" width="672" />
+<p class="caption">
+Figure 7.5: 教育年數直方圖
+</p>
+</div>
+<p>（四）客戶於店家消費金額分佈</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="迴歸模型.html#cb9-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">Spending =</span> customer_data<span class="sc">$</span>Spending), <span class="fu">aes</span>(<span class="at">x =</span> Spending)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="迴歸模型.html#cb9-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;light blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="迴歸模型.html#cb9-3" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;消費金額直方圖&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="迴歸模型.html#cb9-4" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;消費金額&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;人數&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="迴歸模型.html#cb9-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label105"></span>
+<img src="_main_files/figure-html/label105-1.png" alt="消費金額直方圖" width="672" />
+<p class="caption">
+Figure 7.6: 消費金額直方圖
+</p>
+</div>
+<p>（五）顧客單身或非單身</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="迴歸模型.html#cb10-1" tabindex="-1"></a>customer_data <span class="ot">&lt;-</span> customer_data <span class="sc">%&gt;%</span> <span class="co"># 剔除缺失值</span></span>
+<span id="cb10-2"><a href="迴歸模型.html#cb10-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Marital_Status))</span>
+<span id="cb10-3"><a href="迴歸模型.html#cb10-3" tabindex="-1"></a>marital_counts <span class="ot">&lt;-</span> customer_data <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="迴歸模型.html#cb10-4" tabindex="-1"></a>  <span class="fu">group_by</span>(Marital_Status) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="迴歸模型.html#cb10-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">Count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="迴歸模型.html#cb10-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Fraction =</span> Count <span class="sc">/</span> <span class="fu">sum</span>(Count),</span>
+<span id="cb10-7"><a href="迴歸模型.html#cb10-7" tabindex="-1"></a>         <span class="at">Label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(Fraction))  <span class="co"># 添加百分比標籤</span></span>
+<span id="cb10-8"><a href="迴歸模型.html#cb10-8" tabindex="-1"></a><span class="fu">ggplot</span>(marital_counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> Fraction, <span class="at">fill =</span> Marital_Status)) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="迴歸模型.html#cb10-9" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="迴歸模型.html#cb10-10" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb10-11"><a href="迴歸模型.html#cb10-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="st">&quot;單身或非單身&quot;</span>, <span class="at">title =</span> <span class="st">&quot;單身狀態圓餅圖&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="迴歸模型.html#cb10-12" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span>  </span>
+<span id="cb10-13"><a href="迴歸模型.html#cb10-13" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Label), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb10-14"><a href="迴歸模型.html#cb10-14" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;STXihei&quot;</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label106"></span>
+<img src="_main_files/figure-html/label106-1.png" alt="單身狀態圓餅圖" width="672" />
+<p class="caption">
+Figure 7.7: 單身狀態圓餅圖
+</p>
+</div>
+</div>
+</div>
+<div id="迴歸模型-1" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> 迴歸模型<a href="迴歸模型.html#迴歸模型-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="one-variable-regression" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> One-variable regression<a href="迴歸模型.html#one-variable-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>探討收入對消費金額的影響
+以Spending 作為因變量，Income 作為自變量的線性回歸模型</p>
+<p>(一) 假設檢定</p>
+<p>H0：收入對消費支出沒有影響，即收入的系數為零。<span class="math inline">\(β收入= 0\)</span></p>
+<p>H1：收入對消費支出有影響，即收入的系數不為零。<span class="math inline">\(β收入≠ 0\)</span></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="迴歸模型.html#cb11-1" tabindex="-1"></a>lm_spending <span class="ot">&lt;-</span> <span class="fu">lm</span>(Spending <span class="sc">~</span> Income, <span class="at">data =</span> customer_data)</span>
+<span id="cb11-2"><a href="迴歸模型.html#cb11-2" tabindex="-1"></a><span class="fu">summary</span>(lm_spending)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Spending ~ Income, data = customer_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2950.61  -225.19   -37.16   206.54  2221.27 
+## 
+## Coefficients:
+##                 Estimate   Std. Error t value            Pr(&gt;|t|)    
+## (Intercept) -545.5675585   20.4099983  -26.73 &lt;0.0000000000000002 ***
+## Income         0.0221875    0.0003629   61.14 &lt;0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 367.4 on 2210 degrees of freedom
+## Multiple R-squared:  0.6284, Adjusted R-squared:  0.6283 
+## F-statistic:  3738 on 1 and 2210 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<p>以表格方式美化呈現結果</p>
+<table>
+<caption><span id="tab:table-3">Table 7.3: </span>Model 1 迴歸結果</caption>
+<colgroup>
+<col width="7%" />
+<col width="17%" />
+<col width="13%" />
+<col width="16%" />
+<col width="11%" />
+<col width="27%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Estimate</th>
+<th align="left">Std. Error</th>
+<th align="left">t value</th>
+<th align="left">Pr(&gt;|t|)</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">截距</td>
+<td align="left">(Intercept)</td>
+<td align="left">-545.6</td>
+<td align="left">20.41</td>
+<td align="left">-26.73</td>
+<td align="left">&lt; 0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">收入</td>
+<td align="left">Income</td>
+<td align="left">0.02219</td>
+<td align="left">0.0003629</td>
+<td align="left">61.14</td>
+<td align="left">&lt; 0.001</td>
+<td align="left">***</td>
+</tr>
+</tbody>
+</table>
+<p>(二) 迴歸方程式和Coefficients</p>
+<p><span class="math inline">\(Spending=-545.6+0.02219×Income\)</span></p>
+<p>每增加一單位的收入（元），消費支出將增加大約0.02219單位。</p>
+<p>根據Table<a href="迴歸模型.html#tab:table-3">7.3</a></p>
+<ol style="list-style-type: decimal">
+<li>估計的系數（Estimate）：0.02219</li>
+<li>標準誤（Std. Error）：0.0003629</li>
+<li>t 值：61.14</li>
+<li>p 值： &lt; 0.00000000000000022</li>
+</ol>
+<p>(三) 殘差（Residuals）</p>
+<p>殘差的範圍從最小的 -2950.61 到最大的 2221.27
+中位數接近於零（-37.16），表明模型在中位數處的預測較為準確。</p>
+<p>(四) 模型適合度</p>
+<p>根據Table<a href="迴歸模型.html#tab:table-3">7.3</a></p>
+<ol style="list-style-type: decimal">
+<li>殘差標準誤差（Residual standard error）：367.4，反映了模型預測值與實際數據之間的平均偏差程度。</li>
+<li><span class="math inline">\(R^2\)</span>（決定係數）：0.6284，表明模型能夠解釋約 62.84% 的變異性。這是一個相對較高的值，顯示模型的解釋能力強。</li>
+<li>Adjusted <span class="math inline">\(R^2\)</span>（調整後的 R 平方）：0.6283，考慮到模型中變量的數量後，模型解釋能力的實際表現。</li>
+<li>F-statistic（F 統計量）：3738，這是對模型整體適合度的測試，其對應的 p 值極低，表明模型中至少一個預測變量在統計上是顯著的。</li>
+</ol>
+<p>(五) 迴歸線</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="迴歸模型.html#cb13-1" tabindex="-1"></a><span class="fu">plot</span>(Spending <span class="sc">~</span> Income, <span class="at">data =</span> customer_data, <span class="at">main =</span> <span class="st">&quot;Relationshio Between Spending and Income&quot;</span>,</span>
+<span id="cb13-2"><a href="迴歸模型.html#cb13-2" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>) </span>
+<span id="cb13-3"><a href="迴歸模型.html#cb13-3" tabindex="-1"></a>     <span class="fu">abline</span>(<span class="fu">lm</span>(Spending <span class="sc">~</span> Income, <span class="at">data =</span> customer_data), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>,<span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label107"></span>
+<img src="_main_files/figure-html/label107-1.png" alt="Model 1散佈圖與迴歸線" width="672" />
+<p class="caption">
+Figure 7.8: Model 1散佈圖與迴歸線
+</p>
+</div>
+<p>(六) 診斷圖</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="迴歸模型.html#cb14-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb14-2"><a href="迴歸模型.html#cb14-2" tabindex="-1"></a><span class="fu">plot</span>(lm_spending)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label108"></span>
+<img src="_main_files/figure-html/label108-1.png" alt="Model 1 診斷圖" width="672" />
+<p class="caption">
+Figure 7.9: Model 1 診斷圖
+</p>
+</div>
+<p>(七) 假設檢定結果</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="迴歸模型.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb15-2"><a href="迴歸模型.html#cb15-2" tabindex="-1"></a><span class="fu">linearHypothesis</span>(lm_spending, <span class="st">&quot;Income = 0.05&quot;</span>)</span></code></pre></div>
+<pre><code>## Linear hypothesis test
+## 
+## Hypothesis:
+## Income = 0.05
+## 
+## Model 1: restricted model
+## Model 2: Spending ~ Income
+## 
+##   Res.Df        RSS Df Sum of Sq      F                Pr(&gt;F)    
+## 1   2211 1090820500                                              
+## 2   2210  298232755  1 792587745 5873.3 &lt; 0.00000000000000022 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>假設（Hypothesis）：測試的假設是“Income”的係數等於0.05。</p>
+<p><strong>模型1：受限模型，即不包含“Income”係數的模型。</strong></p>
+<p><strong>模型2：完整模型，包括“Income”作為自變量的Spending ~ Income模型。</strong></p>
+<ol style="list-style-type: decimal">
+<li>Res.Df：剩餘自由度，模型1有2211，模型2有2210。</li>
+<li>RSS：殘差平方和（Residual Sum of Squares），模型1是1090820500，模型2是298232755。</li>
+<li>Df：自由度的變化，從模型1到模型2減少了1。</li>
+<li>Sum of Sq：由於加入“Income”造成的殘差平方和的減少，即“Income”解釋的變異量，為792587745。</li>
+<li>F：F統計量，用於測試係數是否顯著，值為5873.3。</li>
+<li>Pr(&gt;F)：F統計量對應的p值，如果p值小於您選定的顯著性水平（例如0.05或0.01），則可以拒絕原假設。在這裡，p值極其微小，幾乎為0。</li>
+</ol>
+<p>結果顯示，據F統計量和對應的p值來看，有極強的證據拒絕原假設，即“Income”的回歸係數顯著不等於0.05。這意味著“Income”在統計上對“Spending”有顯著的影響。因此，在數據中，“Income”的影響是顯著的。</p>
+</div>
+<div id="multiple-regressors" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Multiple regressors<a href="迴歸模型.html#multiple-regressors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>查看「收入」和「年紀」對於消費支出的影響</p>
+<p>（一）假設檢定</p>
+<ol style="list-style-type: decimal">
+<li>對於<strong>收入（Income）</strong>的假設檢定：</li>
+</ol>
+<p>H0：收入對消費支出沒有影響，即收入的回歸係數等於零。<span class="math inline">\(β收入= 0\)</span></p>
+<p>H1：收入對消費支出有影響，即收入的回歸係數不等於零。<span class="math inline">\(β收入≠ 0\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>對於<strong>年齡（Age）</strong>的假設檢定：</li>
+</ol>
+<p>H0：年齡對消費支出沒有影響，即年齡的回歸係數等於零。<span class="math inline">\(β年齡= 0\)</span></p>
+<p>H1：年齡對消費支出有影響，即年齡的回歸係數不等於零。<span class="math inline">\(β年齡≠ 0\)</span></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="迴歸模型.html#cb17-1" tabindex="-1"></a>lm_spending_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Spending <span class="sc">~</span> Income <span class="sc">+</span> Age, <span class="at">data =</span> customer_data)</span>
+<span id="cb17-2"><a href="迴歸模型.html#cb17-2" tabindex="-1"></a><span class="fu">summary</span>(lm_spending_2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Spending ~ Income + Age, data = customer_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2994.26  -221.94   -38.02   202.73  2210.52 
+## 
+## Coefficients:
+##                 Estimate   Std. Error t value             Pr(&gt;|t|)    
+## (Intercept) -432.5330381   39.2964097 -11.007 &lt; 0.0000000000000002 ***
+## Income         0.0224360    0.0003695  60.715 &lt; 0.0000000000000002 ***
+## Age           -2.2863733    0.6798192  -3.363             0.000784 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 366.5 on 2209 degrees of freedom
+## Multiple R-squared:  0.6303, Adjusted R-squared:   0.63 
+## F-statistic:  1883 on 2 and 2209 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<p>以表格方式美化呈現結果</p>
+<table>
+<caption><span id="tab:table-4">Table 7.4: </span>Model 2 迴歸結果</caption>
+<colgroup>
+<col width="7%" />
+<col width="17%" />
+<col width="13%" />
+<col width="16%" />
+<col width="11%" />
+<col width="27%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Estimate</th>
+<th align="left">Std. Error</th>
+<th align="left">t value</th>
+<th align="left">Pr(&gt;|t|)</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">截距</td>
+<td align="left">(Intercept)</td>
+<td align="left">-432.5</td>
+<td align="left">39.30</td>
+<td align="left">-11.01</td>
+<td align="left">&lt;0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">收入</td>
+<td align="left">Income</td>
+<td align="left">0.02244</td>
+<td align="left">0.0003695</td>
+<td align="left">60.72</td>
+<td align="left">&lt;0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">年紀</td>
+<td align="left">Age</td>
+<td align="left">-2.286</td>
+<td align="left">0.6798</td>
+<td align="left">-3.363</td>
+<td align="left">0.001</td>
+<td align="left">***</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(Spending=−432.533+0.02244×Income−2.2864×Age\)</span></p>
+<p>當收入（Income）增加1單位時，消費支出預計將增加約0.02244單位。</p>
+<p>當年齡（Age）增加1歲時，消費支出預計將減少約2.2864單位。</p>
+<p>(二) 統計檢定與解釋</p>
+<p>根據Table<a href="迴歸模型.html#tab:table-4">7.4</a>，使用 t 檢定來評估回歸係數是否顯著不同於零。根據模型的摘要輸出：</p>
+<ol style="list-style-type: decimal">
+<li><p>收入的 t 值：60.715，p 值：&lt;0.0001，這非常小，遠小於常用的顯著性水平（如0.05），因此我們拒絕關於收入的零假設，接受對立假設，認為收入對消費支出有顯著的正向影響。</p></li>
+<li><p>年齡的 t 值：-3.363，p 值：0.000784，這同樣遠小於0.05，因此我們也拒絕關於年齡的零假設，接受對立假設，認為年齡對消費支出有顯著的負向影響。</p></li>
+</ol>
+<p>(三) 模型適合度</p>
+<p>根據Table<a href="迴歸模型.html#tab:table-4">7.4</a></p>
+<ol style="list-style-type: decimal">
+<li><p>殘差標準誤差：366.5，反映了模型預測值與實際觀測值之間的平均偏差程度。</p></li>
+<li><p>決定係數（<span class="math inline">\(R^2\)</span>）：0.6303，表明模型能夠解釋約 63.03% 的消費支出變異量，顯示模型的解釋能力相對較強。</p></li>
+<li><p>調整後的決定係數（Adjusted R-squared）：0.63，考慮模型中自變量的數量後，對決定係數進行調整的結果。</p></li>
+<li><p>F 統計量：1883，表明在統計上，整體模型對於解釋消費支出的變化是極其顯著的（p 值 &lt; 0.00000000000000022）。</p></li>
+</ol>
+<p>（四）Model 1與Model 2比較：ANOVA</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="迴歸模型.html#cb19-1" tabindex="-1"></a><span class="fu">anova</span>(lm_spending, lm_spending_2) </span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: Spending ~ Income
+## Model 2: Spending ~ Income + Age
+##   Res.Df       RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1   2210 298232755                                  
+## 2   2209 296713436  1   1519319 11.311 0.0007836 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><strong>模型 1 是 Spending ~ Income，只包含收入作為解釋變數。</strong></p>
+<p><strong>模型 2 是 Spending ~ Income + Age，包含收入和年齡作為解釋變數。</strong></p>
+<p>ANOVA 表解釋</p>
+<ol style="list-style-type: decimal">
+<li>Res.Df (殘差自由度)：</li>
+</ol>
+<p>模型 1 的殘差自由度是 2210。</p>
+<p>模型 2 的殘差自由度是 2209。這是因為模型 2 比模型 1 多了一個變數（年齡），所以自由度減少了 1。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>RSS (殘差平方和)：</li>
+</ol>
+<p>模型 1 的殘差平方和是 298,232,755。</p>
+<p>模型 2 的殘差平方和是 296,713,436。這顯示當加入年齡變數後，殘差平方和減少，表明模型 2 的適合度提高。</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Df (自由度變化)：從模型 1 到模型 2，自由度的變化是 1。</p></li>
+<li><p>Sum of Sq (平方和變化)：從模型 1 到模型 2，由於加入年齡變數，導致平方和減少了 1,519,319。</p></li>
+<li><p>F (F 統計量)：比較這兩個模型，得到的 F 統計量是11.311。這表示加入年齡作為解釋變數在統計上顯著改善了模型。</p></li>
+<li><p>Pr(&gt;F) (F 檢定的 p 值)：p 值是 0.0007836，遠小於 0.05，表示在 5% 的顯著水平上，年齡的加入顯著提高了模型的解釋能力。</p></li>
+</ol>
+<p>結論：ANOVA 分析表示，將年齡加入到模型中，使得模型對消費支出的解釋能力有了顯著的提高，年齡也是影響消費支出的一個重要因素，且在考慮消費行為時應將年齡作為一個重要的變數。</p>
+</div>
+<div id="one-categorical-variable-ls-estimation" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> One categorical variable LS Estimation<a href="迴歸模型.html#one-categorical-variable-ls-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>查看收入以及婚姻狀態（類別變數）對於消費金額之間的關係</p>
+<p>（一）假設檢定概述</p>
+<p><strong>模型整體的假設檢定</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li>H0：模型中的所有自變量（Income和Marital_Status）對Spending沒有影響。</li>
+<li>H1：模型中至少有一個自變量對Spending有影響。</li>
+</ol>
+<p><strong>個別變量的假設檢定</strong></p>
+<ol style="list-style-type: decimal">
+<li>對於Income：</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>H0：Income的係數等於0（Income對Spending沒有影響）。</li>
+<li>H1：Income的係數不等於0（Income對Spending有影響）。</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>對於Marital_StatusCouple：</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>H0：Marital_StatusCouple的係數等於0（處於伴侶關係的婚姻狀態對Spending沒有影響）。</li>
+<li>H1：Marital_StatusCouple的係數不等於0（處於伴侶關係的婚姻狀態對Spending有影響）。</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="迴歸模型.html#cb21-1" tabindex="-1"></a>lm_spending_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Spending <span class="sc">~</span> Income <span class="sc">+</span> Marital_Status, <span class="at">data =</span> customer_data)</span>
+<span id="cb21-2"><a href="迴歸模型.html#cb21-2" tabindex="-1"></a><span class="fu">summary</span>(lm_spending_3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Spending ~ Income + Marital_Status, data = customer_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2942.72  -226.61   -33.52   208.60  2228.80 
+## 
+## Coefficients:
+##                          Estimate   Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)          -531.5280954   23.0093343 -23.101 &lt;0.0000000000000002 ***
+## Income                  0.0221852    0.0003629  61.141 &lt;0.0000000000000002 ***
+## Marital_StatusCouple  -21.5621423   16.3261526  -1.321               0.187    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 367.3 on 2209 degrees of freedom
+## Multiple R-squared:  0.6287, Adjusted R-squared:  0.6284 
+## F-statistic:  1870 on 2 and 2209 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<p>以表格方式美化呈現結果</p>
+<table>
+<caption><span id="tab:table-5">Table 7.5: </span>Model 3 迴歸結果</caption>
+<colgroup>
+<col width="10%" />
+<col width="27%" />
+<col width="10%" />
+<col width="13%" />
+<col width="9%" />
+<col width="22%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Estimate</th>
+<th align="left">Std. Error</th>
+<th align="left">t value</th>
+<th align="left">Pr(&gt;|t|)</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">截距</td>
+<td align="left">(Intercept)</td>
+<td align="left">-531.5</td>
+<td align="left">23.01</td>
+<td align="left">-23.10</td>
+<td align="left">&lt;0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">收入</td>
+<td align="left">Income</td>
+<td align="left">0.02219</td>
+<td align="left">0.0003629</td>
+<td align="left">61.14</td>
+<td align="left">&lt;0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">婚姻狀態</td>
+<td align="left">Marital_Status: Couple</td>
+<td align="left">-21.56</td>
+<td align="left">16.33</td>
+<td align="left">-1.321</td>
+<td align="left">0.187</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>（二）迴歸方程式
+<span class="math inline">\(Spending=−531.528+0.022185×Income−21.562×Marital_StatusCouple+ϵ\)</span></p>
+<p>Income系數：表示每增加一個單位的Income，Spending平均增加约0.022185元。</p>
+<p>Marital_StatusCouple系數：如果客戶的婚姻狀態是“Couple”（相對於Alone），其Spending平均減少21.562元。</p>
+<p>（三）模型總體統計</p>
+<p>根據Table<a href="迴歸模型.html#tab:table-5">7.5</a></p>
+<ol style="list-style-type: decimal">
+<li>殘差標準誤差（Residual standard error）: 367.3</li>
+<li>自由度（degrees of freedom）: 2209</li>
+<li>多重R平方（Multiple <span class="math inline">\(R^2\)</span>）: 0.6287</li>
+<li>調整R平方（Adjusted <span class="math inline">\(R^2\)</span>）: 0.6284</li>
+<li>F統計量（F-statistic）: 1870</li>
+<li>F統計量對應的P值（p-value）: &lt; 0.00000000000000022</li>
+</ol>
+<p>模型解釋能力：Multiple R-squared值為0.6287，表明模型解釋了大約62.87%的Spending變異，是一個相對較高的解釋程度，說明模型適合度不錯。
+F統計量：F統計量非常高，並且相應的p值極小，表明模型中至少有一個預測變量對Spending有顯著影響。根據個別系數的p值，這個顯著的變量是收入。
+綜上所述，收入是影響消費的一個重要因素，而<strong>婚姻狀態對消費的影響則未在統計上表現出顯著性</strong>。</p>
+<p>（四）Wald 檢定</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="迴歸模型.html#cb23-1" tabindex="-1"></a>lmtest<span class="sc">::</span><span class="fu">waldtest</span>(lm_spending_3, .<span class="sc">~</span>. <span class="sc">-</span>Marital_Status)</span></code></pre></div>
+<pre><code>## Wald test
+## 
+## Model 1: Spending ~ Income + Marital_Status
+## Model 2: Spending ~ Income
+##   Res.Df Df      F Pr(&gt;F)
+## 1   2209                 
+## 2   2210 -1 1.7443 0.1867</code></pre>
+<p><strong>Model 1: Spending ~ Income + Marital_Status</strong> 考慮收入和婚姻狀態對消費（Spending）的影響。
+<strong>Model 2: Spending ~ Income</strong> 只考慮了收入對消費的影響，忽略了婚姻狀態。</p>
+<p><strong>檢定統計量</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Res.Df（剩餘自由度）: Model 1有2209個剩餘自由度。Model 2有2210個剩餘自由度，因為去除了一個變量（Marital_Status），自由度增加了1。</p></li>
+<li><p>Df（自由度差）: -1 ，表示Model 1比Model 2多一個自由度，因為Model 1包含了一個額外的變量。</p></li>
+<li><p>F: 1.7443 （F統計量用來比較兩個模型的差異程度）</p></li>
+<li><p>Pr(&gt;F)（F檢定的P值）: 0.1867 這個P值表示在統計上，去除婚姻狀態後模型的變化是否顯著。由於P值為0.1867，高於一般顯著性水平0.05，因此我們無法拒絕零假設，即認為<strong>去除婚姻狀態後的模型與包含婚姻狀態的模型在統計上沒有顯著差異</strong>。</p></li>
+</ol>
+<p><strong>結論</strong></p>
+<p>根據Wald檢定的結果，由於 P 值大於0.05，我們不能拒絕零假設，即假設婚姻狀況在預測消費支出方面沒有顯著的影響。這表明在這個數據集中，「婚姻狀況」對於解釋「消費支出」並不顯著，至少在包含「收入」的情況下是這樣。</p>
+</div>
+<div id="interaction-effect" class="section level3 hasAnchor" number="7.3.4">
+<h3><span class="header-section-number">7.3.4</span> Interaction effect<a href="迴歸模型.html#interaction-effect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>以「收入」和「婚姻狀況」作為解釋變量，還包括「子女數量」，以及「婚姻狀況」與「子女數量」的交互作用。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="迴歸模型.html#cb25-1" tabindex="-1"></a>lm_spending_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Spending <span class="sc">~</span> Income<span class="sc">+</span>Marital_Status<span class="sc">*</span>Number_of_child, <span class="at">data =</span> customer_data)</span>
+<span id="cb25-2"><a href="迴歸模型.html#cb25-2" tabindex="-1"></a><span class="fu">summary</span>(lm_spending_4)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Spending ~ Income + Marital_Status * Number_of_child, 
+##     data = customer_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2857.19  -200.65   -28.84   167.78  2112.07 
+## 
+## Coefficients:
+##                                          Estimate   Std. Error t value
+## (Intercept)                          -208.6847255   28.6760698  -7.277
+## Income                                  0.0197060    0.0003548  55.539
+## Marital_StatusCouple                  -18.4626819   23.7616542  -0.777
+## Number_of_child                      -214.1680780   16.1473036 -13.263
+## Marital_StatusCouple:Number_of_child   11.0200799   19.8308658   0.556
+##                                                  Pr(&gt;|t|)    
+## (Intercept)                             0.000000000000471 ***
+## Income                               &lt; 0.0000000000000002 ***
+## Marital_StatusCouple                                0.437    
+## Number_of_child                      &lt; 0.0000000000000002 ***
+## Marital_StatusCouple:Number_of_child                0.578    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 337.3 on 2207 degrees of freedom
+## Multiple R-squared:  0.6873, Adjusted R-squared:  0.6867 
+## F-statistic:  1212 on 4 and 2207 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<p>以表格方式美化呈現結果</p>
+<table>
+<caption><span id="tab:table-6">Table 7.6: </span>Model 4 迴歸結果</caption>
+<colgroup>
+<col width="9%" />
+<col width="38%" />
+<col width="9%" />
+<col width="11%" />
+<col width="8%" />
+<col width="19%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Estimate</th>
+<th align="left">Std. Error</th>
+<th align="left">t value</th>
+<th align="left">Pr(&gt;|t|)</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">截距</td>
+<td align="left">(Intercept)</td>
+<td align="left">-208.7</td>
+<td align="left">28.68</td>
+<td align="left">-7.277</td>
+<td align="left">&lt;0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">收入</td>
+<td align="left">Income</td>
+<td align="left">0.01971</td>
+<td align="left">0.0003548</td>
+<td align="left">55.54</td>
+<td align="left">&lt;0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">伴侶狀態</td>
+<td align="left">Marital_Status: Couple</td>
+<td align="left">-18.46</td>
+<td align="left">23.76</td>
+<td align="left">-0.7770</td>
+<td align="left">0.437</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">小孩數量</td>
+<td align="left">Number_of_child</td>
+<td align="left">-214.2</td>
+<td align="left">16.15</td>
+<td align="left">-13.26</td>
+<td align="left">&lt;0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">交互作用</td>
+<td align="left">Marital_StatusCouple:Number_of_child</td>
+<td align="left">11.02</td>
+<td align="left">19.83</td>
+<td align="left">0.5557</td>
+<td align="left">0.578</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(Spending=−208.68+0.0197×Income−18.46×Marital Status Couple\)</span>
+<span class="math inline">\(−214.17×Number of child+11.02×Marital Status Couple×Number of child\)</span></p>
+<p>（一）系數（Coefficients）:</p>
+<p>根據Table<a href="迴歸模型.html#tab:table-6">7.6</a></p>
+<ol style="list-style-type: decimal">
+<li>Income：收入的系數為0.01971，表明每增加一個單位的收入，支出將增加約0.01971單位，這個效果非常顯著（p值極小）。</li>
+<li>Marital_StatusCouple：作為伴侶的婚姻狀態相對於單身，支出減少了18.463，但這個效果在統計上不顯著（p=0.437）。</li>
+<li>Number_of_child：每增加一個小孩，支出減少約214.168，這個效果非常顯著（p值極小）。</li>
+<li>Marital_StatusCouple:Number_of_child：婚姻狀態與小孩數量的交互作用系數為11.020，表明對於已婚夫妻，每增加一個小孩，支出的減少幅度會比單身時少11.020單位。然而，這個交互作用在統計上不顯著（p=0.578）。</li>
+</ol>
+<p>（二）模型的統計量:</p>
+<p>根據Table<a href="迴歸模型.html#tab:table-6">7.6</a></p>
+<ol style="list-style-type: decimal">
+<li>Residual standard error：337.3，反映了模型預測值與實際值之間的標準偏差。</li>
+<li>Multiple <span class="math inline">\(R^2\)</span>：0.6873，說明模型能解釋68.73%的支出變異。</li>
+<li>Adjusted <span class="math inline">\(R^2\)</span>：0.6867，調整後的R平方稍低，考慮了變量數量的影響。</li>
+<li>F-statistic：1212，模型整體顯著性的F統計量。</li>
+<li>p-value：&lt;0.00000000000000022，表明模型中至少有一個預測變量對支出有顯著影響。</li>
+</ol>
+<p>（三）結論：</p>
+<ol style="list-style-type: decimal">
+<li>收入的顯著正向影響：收入是影響支出的一個重要正向預測因素。</li>
+<li>小孩數量的顯著負向影響：小孩數量對支出有顯著的負向影響，可能反映了家庭在有更多小孩的情況下，需要在其他方面削減開支。</li>
+<li>婚姻狀態與交互作用的非顯著性：婚姻狀態對支出的影響不顯著，且其與小孩數量的交互作用也未顯示出顯著性。這表明在本數據集中，婚姻狀態並不是一個決定性的支出因素。</li>
+</ol>
+</div>
+<div id="complete-model" class="section level3 hasAnchor" number="7.3.5">
+<h3><span class="header-section-number">7.3.5</span> Complete model<a href="迴歸模型.html#complete-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>探討「消費支出」與「受教育年數」、「婚姻狀況」、「子女數量」、「收入」及「年齡」之間的關係。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="迴歸模型.html#cb27-1" tabindex="-1"></a>lm_spending_5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Spending <span class="sc">~</span> Education_Years <span class="sc">+</span> Marital_Status <span class="sc">+</span> Number_of_child <span class="sc">+</span> Income <span class="sc">+</span> Age, <span class="at">data =</span> customer_data)</span>
+<span id="cb27-2"><a href="迴歸模型.html#cb27-2" tabindex="-1"></a><span class="fu">summary</span>(lm_spending_5)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Spending ~ Education_Years + Marital_Status + Number_of_child + 
+##     Income + Age, data = customer_data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2854.43  -202.72   -28.26   167.36  2110.19 
+## 
+## Coefficients:
+##                          Estimate   Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)          -151.6882568   65.2050488  -2.326              0.0201 *  
+## Education_Years        -3.9834308    3.4263589  -1.163              0.2451    
+## Marital_StatusCouple   -8.2632557   15.0052622  -0.551              0.5819    
+## Number_of_child      -205.9308135   10.4050705 -19.791 &lt;0.0000000000000002 ***
+## Income                  0.0197824    0.0003706  53.380 &lt;0.0000000000000002 ***
+## Age                     0.0226589    0.6389669   0.035              0.9717    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 337.2 on 2206 degrees of freedom
+## Multiple R-squared:  0.6874, Adjusted R-squared:  0.6867 
+## F-statistic: 970.2 on 5 and 2206 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+<p>以表格方式美化呈現結果</p>
+<table>
+<caption><span id="tab:table-7">Table 7.7: </span>Model 5 迴歸結果</caption>
+<colgroup>
+<col width="10%" />
+<col width="27%" />
+<col width="10%" />
+<col width="13%" />
+<col width="9%" />
+<col width="22%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Estimate</th>
+<th align="left">Std. Error</th>
+<th align="left">t value</th>
+<th align="left">Pr(&gt;|t|)</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">截距</td>
+<td align="left">(Intercept)</td>
+<td align="left">-151.7</td>
+<td align="left">65.21</td>
+<td align="left">-2.326</td>
+<td align="left">0.020</td>
+<td align="left">*</td>
+</tr>
+<tr class="even">
+<td align="left">教育年份</td>
+<td align="left">Education_Years</td>
+<td align="left">-3.983</td>
+<td align="left">3.426</td>
+<td align="left">-1.163</td>
+<td align="left">0.245</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">伴侶狀態</td>
+<td align="left">Marital_Status: Couple</td>
+<td align="left">-8.263</td>
+<td align="left">15.01</td>
+<td align="left">-0.5507</td>
+<td align="left">0.582</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">小孩數量</td>
+<td align="left">Number_of_child</td>
+<td align="left">-205.9</td>
+<td align="left">10.41</td>
+<td align="left">-19.79</td>
+<td align="left">&lt;0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">收入</td>
+<td align="left">Income</td>
+<td align="left">0.01978</td>
+<td align="left">0.0003706</td>
+<td align="left">53.38</td>
+<td align="left">&lt;0.001</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">年紀</td>
+<td align="left">Age</td>
+<td align="left">0.02266</td>
+<td align="left">0.6390</td>
+<td align="left">0.03546</td>
+<td align="left">0.972</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>（一）迴歸方程式</p>
+<p><span class="math inline">\(Spending=−151.69−3.98×Education_Years−8.26×Marital_Status_Couple\)</span>
+<span class="math inline">\(−205.93×Number_of_child+0.0198×Income+0.0227×Age\)</span></p>
+<p>（二）係數（Coefficients）</p>
+<p>根據Table<a href="迴歸模型.html#tab:table-7">7.7</a></p>
+<ol style="list-style-type: decimal">
+<li>Education_Years（受教育年數）:每增加一年受教育年數，消費支出減少約 3.98 單位，但這個效應在統計上不顯著（P值 0.2451）。</li>
+<li>Marital_StatusCouple（婚姻狀況為伴侶）:若婚姻狀況是伴侶，消費支出較其他狀況少 8.26 單位，但這差異在統計上也不顯著（P值 0.5819）。</li>
+<li>Number_of_child（子女數量）:子女每增加一個，消費支出平均減少 205.93 單位，且這一結果在統計上非常顯著（P值極小）。</li>
+<li>Income（收入）:平均上，每增加一單位收入，消費支出增加約 0.01978 單位，這個影響非常顯著（P值極小）。（同樣說法：所得高於平均一單位，⋯⋯）</li>
+<li>Age（年齡）:年齡每增加一歲，消費支出增加 0.02266 單位，但這個效果在統計上不顯著（P值 0.9717）。</li>
+</ol>
+<p>（三）模型擬合度</p>
+<p>根據Table<a href="迴歸模型.html#tab:table-7">7.7</a></p>
+<ol style="list-style-type: decimal">
+<li>Residual standard error（殘差標準誤差）: 337.2，反映了模型預測與實際數據之間的平均差異。</li>
+<li>Multiple <span class="math inline">\(R^2\)</span>（多重決定係數）: 0.6874，表明大約 68.74% 的消費支出變異可以由模型中的這些變數解釋。</li>
+<li>Adjusted <span class="math inline">\(R^2\)</span>（調整後的決定係數）: 0.6867，考慮到自由度的影響後，決定係數有輕微下降。</li>
+<li>F-statistic（F統計量）: 970.2，顯示在極低的 P值下（&lt; 0.00000000000000022），模型中至少有一個變量是顯著的。</li>
+</ol>
+<p>(四）結論</p>
+<p>模型顯示「收入」和「子女數量」是影響消費支出的重要因素，其中「收入」的影響是正向的，而「子女數量」的影響是負向的，且這兩個變量在統計上都非常顯著。其他變量如「受教育年數」、「婚姻狀況」和「年齡」對消費支出的影響不顯著。</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="評分資料-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="廣義線性迴歸模型-glm-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-liner-model.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

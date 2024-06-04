@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>First Report</title>
+  <meta name="description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="First Report" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="First Report" />
+  
+  <meta name="twitter:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  
+
+<meta name="author" content="管研碩一 呂珣瑄" />
+
+
+<meta name="date" content="2024-06-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="資料初心者-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">First report</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 報告概述</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#資料初心者"><i class="fa fa-check"></i><b>1.1</b> 資料初心者</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#購物車資料行銷專案發展"><i class="fa fa-check"></i><b>1.2</b> 購物車資料：行銷專案發展</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#文字資料"><i class="fa fa-check"></i><b>1.3</b> 文字資料</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#地圖資料"><i class="fa fa-check"></i><b>1.4</b> 地圖資料</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#評分資料"><i class="fa fa-check"></i><b>1.5</b> 評分資料</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#迴歸模型與廣義線性模型"><i class="fa fa-check"></i><b>1.6</b> 迴歸模型與廣義線性模型</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料初心者-1.html"><a href="資料初心者-1.html"><i class="fa fa-check"></i><b>2</b> 資料初心者</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料初心者-1.html"><a href="資料初心者-1.html#安装-r-和-rstudio"><i class="fa fa-check"></i><b>2.1</b> 安装 R 和 RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="資料初心者-1.html"><a href="資料初心者-1.html#建立新專案"><i class="fa fa-check"></i><b>2.2</b> 建立新專案</a></li>
+<li class="chapter" data-level="2.3" data-path="資料初心者-1.html"><a href="資料初心者-1.html#r-markdown"><i class="fa fa-check"></i><b>2.3</b> R markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html"><i class="fa fa-check"></i><b>3</b> 購物車資料：行銷專案發展</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與資料統整"><i class="fa fa-check"></i><b>3.1</b> 輸入資料與資料統整</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與合併"><i class="fa fa-check"></i><b>3.1.1</b> 輸入資料與合併</a></li>
+<li class="chapter" data-level="3.1.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料欄位說明"><i class="fa fa-check"></i><b>3.1.2</b> 資料欄位說明</a></li>
+<li class="chapter" data-level="3.1.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料初步彙整"><i class="fa fa-check"></i><b>3.1.3</b> 資料初步彙整</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料集群大小"><i class="fa fa-check"></i><b>3.2</b> 資料集群大小</a></li>
+<li class="chapter" data-level="3.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#發展問題"><i class="fa fa-check"></i><b>3.3</b> 發展問題</a></li>
+<li class="chapter" data-level="3.4" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#探索性資料分析"><i class="fa fa-check"></i><b>3.4</b> 探索性資料分析</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#銷售趨勢分析"><i class="fa fa-check"></i><b>3.4.1</b> 銷售趨勢分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#顧客行為分析"><i class="fa fa-check"></i><b>3.4.2</b> 顧客行為分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="文字資料-1.html"><a href="文字資料-1.html"><i class="fa fa-check"></i><b>4</b> 文字資料</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="文字資料-1.html"><a href="文字資料-1.html#文字雲"><i class="fa fa-check"></i><b>4.1</b> 文字雲</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="文字資料-1.html"><a href="文字資料-1.html#導入範例文章"><i class="fa fa-check"></i><b>4.1.1</b> 導入範例文章</a></li>
+<li class="chapter" data-level="4.1.2" data-path="文字資料-1.html"><a href="文字資料-1.html#定義斷詞器"><i class="fa fa-check"></i><b>4.1.2</b> 定義斷詞器</a></li>
+<li class="chapter" data-level="4.1.3" data-path="文字資料-1.html"><a href="文字資料-1.html#建立新詞"><i class="fa fa-check"></i><b>4.1.3</b> 建立新詞</a></li>
+<li class="chapter" data-level="4.1.4" data-path="文字資料-1.html"><a href="文字資料-1.html#匯出新詞"><i class="fa fa-check"></i><b>4.1.4</b> 匯出新詞</a></li>
+<li class="chapter" data-level="4.1.5" data-path="文字資料-1.html"><a href="文字資料-1.html#設定停止詞"><i class="fa fa-check"></i><b>4.1.5</b> 設定停止詞</a></li>
+<li class="chapter" data-level="4.1.6" data-path="文字資料-1.html"><a href="文字資料-1.html#重新定義斷詞器匯入停止詞"><i class="fa fa-check"></i><b>4.1.6</b> 重新定義斷詞器，匯入停止詞</a></li>
+<li class="chapter" data-level="4.1.7" data-path="文字資料-1.html"><a href="文字資料-1.html#計算詞彙頻率"><i class="fa fa-check"></i><b>4.1.7</b> 計算詞彙頻率</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="文字資料-1.html"><a href="文字資料-1.html#繪製文字雲"><i class="fa fa-check"></i><b>4.2</b> 繪製文字雲</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="地圖資料-1.html"><a href="地圖資料-1.html"><i class="fa fa-check"></i><b>5</b> 地圖資料</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣行政區模擬颱風降雨量"><i class="fa fa-check"></i><b>5.1</b> 台灣行政區模擬颱風降雨量</a></li>
+<li class="chapter" data-level="5.2" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣新生兒數量"><i class="fa fa-check"></i><b>5.2</b> 2022台灣新生兒數量</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="評分資料-1.html"><a href="評分資料-1.html"><i class="fa fa-check"></i><b>6</b> 評分資料</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="評分資料-1.html"><a href="評分資料-1.html#資料概況"><i class="fa fa-check"></i><b>6.1</b> 資料概況</a></li>
+<li class="chapter" data-level="6.2" data-path="評分資料-1.html"><a href="評分資料-1.html#評分分佈"><i class="fa fa-check"></i><b>6.2</b> 評分分佈</a></li>
+<li class="chapter" data-level="6.3" data-path="評分資料-1.html"><a href="評分資料-1.html#國家分析"><i class="fa fa-check"></i><b>6.3</b> 國家分析</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="迴歸模型.html"><a href="迴歸模型.html"><i class="fa fa-check"></i><b>7</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="迴歸模型.html"><a href="迴歸模型.html#資料敘述"><i class="fa fa-check"></i><b>7.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="迴歸模型.html"><a href="迴歸模型.html#概要"><i class="fa fa-check"></i><b>7.1.1</b> 概要</a></li>
+<li class="chapter" data-level="7.1.2" data-path="迴歸模型.html"><a href="迴歸模型.html#轉換"><i class="fa fa-check"></i><b>7.1.2</b> 轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈"><i class="fa fa-check"></i><b>7.2</b> 資料分佈</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="迴歸模型.html"><a href="迴歸模型.html#查看異常值"><i class="fa fa-check"></i><b>7.2.1</b> 查看異常值</a></li>
+<li class="chapter" data-level="7.2.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈-1"><i class="fa fa-check"></i><b>7.2.2</b> 資料分佈</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="迴歸模型.html"><a href="迴歸模型.html#迴歸模型-1"><i class="fa fa-check"></i><b>7.3</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="迴歸模型.html"><a href="迴歸模型.html#one-variable-regression"><i class="fa fa-check"></i><b>7.3.1</b> One-variable regression</a></li>
+<li class="chapter" data-level="7.3.2" data-path="迴歸模型.html"><a href="迴歸模型.html#multiple-regressors"><i class="fa fa-check"></i><b>7.3.2</b> Multiple regressors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="迴歸模型.html"><a href="迴歸模型.html#one-categorical-variable-ls-estimation"><i class="fa fa-check"></i><b>7.3.3</b> One categorical variable LS Estimation</a></li>
+<li class="chapter" data-level="7.3.4" data-path="迴歸模型.html"><a href="迴歸模型.html#interaction-effect"><i class="fa fa-check"></i><b>7.3.4</b> Interaction effect</a></li>
+<li class="chapter" data-level="7.3.5" data-path="迴歸模型.html"><a href="迴歸模型.html#complete-model"><i class="fa fa-check"></i><b>7.3.5</b> Complete model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html"><i class="fa fa-check"></i><b>8</b> 廣義線性迴歸模型 GLM model</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料敘述-1"><i class="fa fa-check"></i><b>8.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#故事背景"><i class="fa fa-check"></i><b>8.1.1</b> 故事背景</a></li>
+<li class="chapter" data-level="8.1.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料概要"><i class="fa fa-check"></i><b>8.1.2</b> 資料概要</a></li>
+<li class="chapter" data-level="8.1.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料前處理與轉換"><i class="fa fa-check"></i><b>8.1.3</b> 資料前處理與轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#視覺化消費者活動接受情況"><i class="fa fa-check"></i><b>8.2</b> 視覺化消費者活動接受情況</a></li>
+<li class="chapter" data-level="8.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#二元變數之probitlogit-glm"><i class="fa fa-check"></i><b>8.3</b> 二元變數之Probit/Logit GLM</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model1-考量消費金額的logit-glm"><i class="fa fa-check"></i><b>8.3.1</b> Model1 考量「消費金額」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model2-考量消費者型態的logit-glm"><i class="fa fa-check"></i><b>8.3.2</b> Model2 考量「消費者型態」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model3-考量消費者前期活動參與的logit-glm"><i class="fa fa-check"></i><b>8.3.3</b> Model3 考量「消費者前期活動參與」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.4" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model-4-考量所有變數的logit-glm"><i class="fa fa-check"></i><b>8.3.4</b> Model 4 考量「所有變數」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.5" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#每個模型的roc曲線"><i class="fa fa-check"></i><b>8.3.5</b> 每個模型的ROC曲線</a></li>
+<li class="chapter" data-level="8.3.6" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#總結影響因素"><i class="fa fa-check"></i><b>8.3.6</b> 總結影響因素</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">First Report</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">First Report</h1>
+<p class="author"><em>管研碩一 呂珣瑄</em></p>
+<p class="date"><em>2024-06-04</em></p>
+</div>
+<div id="報告概述" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> 報告概述<a href="index.html#報告概述" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>我是呂珣瑄，目前就讀台師大管理研究所。
+因未來希望能夠邁向行銷結合數據等商業分析的領域，開始學習資料分析。儘管在過程中遇到不少困難，但很開心順利結束了這學期的實作報告，但是仍有許多不足，在往後持續學習進步！</p>
+<p>資料分析課程紀錄及驗證上課的學習及實際操作。
+授課老師：何宗武教授</p>
+<div id="資料初心者" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> 資料初心者<a href="index.html#資料初心者" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>開始Ｒ的第一步</p>
+</div>
+<div id="購物車資料行銷專案發展" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> 購物車資料：行銷專案發展<a href="index.html#購物車資料行銷專案發展" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>資料源自於kaggle，為超市的購物車資料發展行銷相關的專案
+將進行統整資料、發展問題、探索性資料分析等進行銷售分析以及顧客行為分析</p>
+</div>
+<div id="文字資料" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> 文字資料<a href="index.html#文字資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>因爲對於行動支付議題感興趣，找到一篇數位時代關於「全支付」的文章做文字雲</p>
+</div>
+<div id="地圖資料" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> 地圖資料<a href="index.html#地圖資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>台灣行政地區模擬氣象以及出生率分佈</p>
+</div>
+<div id="評分資料" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> 評分資料<a href="index.html#評分資料" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>資料源自於kaggle，為世界各國泡麵評分資料
+找出平均評分、不同國家泡麵評分等資訊</p>
+</div>
+<div id="迴歸模型與廣義線性模型" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> 迴歸模型與廣義線性模型<a href="index.html#迴歸模型與廣義線性模型" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>資料取自於Kaggle，資料名稱為Marketing Campaign <a href="https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign" class="uri">https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="資料初心者-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

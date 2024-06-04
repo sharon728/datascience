@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 文字資料 | First Report</title>
+  <meta name="description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 文字資料 | First Report" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 文字資料 | First Report" />
+  
+  <meta name="twitter:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  
+
+<meta name="author" content="管研碩一 呂珣瑄" />
+
+
+<meta name="date" content="2024-06-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="購物車資料行銷專案發展-1.html"/>
+<link rel="next" href="地圖資料-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">First report</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#資料初心者"><i class="fa fa-check"></i><b>1.1</b> 資料初心者</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#購物車資料行銷專案發展"><i class="fa fa-check"></i><b>1.2</b> 購物車資料：行銷專案發展</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#文字資料"><i class="fa fa-check"></i><b>1.3</b> 文字資料</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#地圖資料"><i class="fa fa-check"></i><b>1.4</b> 地圖資料</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#評分資料"><i class="fa fa-check"></i><b>1.5</b> 評分資料</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料初心者-1.html"><a href="資料初心者-1.html"><i class="fa fa-check"></i><b>2</b> 資料初心者</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料初心者-1.html"><a href="資料初心者-1.html#安装-r-和-rstudio"><i class="fa fa-check"></i><b>2.1</b> 安装 R 和 RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="資料初心者-1.html"><a href="資料初心者-1.html#建立新專案"><i class="fa fa-check"></i><b>2.2</b> 建立新專案</a></li>
+<li class="chapter" data-level="2.3" data-path="資料初心者-1.html"><a href="資料初心者-1.html#r-markdown"><i class="fa fa-check"></i><b>2.3</b> R markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html"><i class="fa fa-check"></i><b>3</b> 購物車資料：行銷專案發展</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與資料統整"><i class="fa fa-check"></i><b>3.1</b> 輸入資料與資料統整</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與合併"><i class="fa fa-check"></i><b>3.1.1</b> 輸入資料與合併</a></li>
+<li class="chapter" data-level="3.1.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料欄位說明"><i class="fa fa-check"></i><b>3.1.2</b> 資料欄位說明</a></li>
+<li class="chapter" data-level="3.1.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料初步彙整"><i class="fa fa-check"></i><b>3.1.3</b> 資料初步彙整</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料集群大小"><i class="fa fa-check"></i><b>3.2</b> 資料集群大小</a></li>
+<li class="chapter" data-level="3.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#發展問題"><i class="fa fa-check"></i><b>3.3</b> 發展問題</a></li>
+<li class="chapter" data-level="3.4" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#探索性資料分析"><i class="fa fa-check"></i><b>3.4</b> 探索性資料分析</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#銷售趨勢分析"><i class="fa fa-check"></i><b>3.4.1</b> 銷售趨勢分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#顧客行為分析"><i class="fa fa-check"></i><b>3.4.2</b> 顧客行為分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="文字資料-1.html"><a href="文字資料-1.html"><i class="fa fa-check"></i><b>4</b> 文字資料</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="文字資料-1.html"><a href="文字資料-1.html#文字雲"><i class="fa fa-check"></i><b>4.1</b> 文字雲</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="文字資料-1.html"><a href="文字資料-1.html#導入範例文章"><i class="fa fa-check"></i><b>4.1.1</b> 導入範例文章</a></li>
+<li class="chapter" data-level="4.1.2" data-path="文字資料-1.html"><a href="文字資料-1.html#定義斷詞器"><i class="fa fa-check"></i><b>4.1.2</b> 定義斷詞器</a></li>
+<li class="chapter" data-level="4.1.3" data-path="文字資料-1.html"><a href="文字資料-1.html#建立新詞"><i class="fa fa-check"></i><b>4.1.3</b> 建立新詞</a></li>
+<li class="chapter" data-level="4.1.4" data-path="文字資料-1.html"><a href="文字資料-1.html#匯出新詞"><i class="fa fa-check"></i><b>4.1.4</b> 匯出新詞</a></li>
+<li class="chapter" data-level="4.1.5" data-path="文字資料-1.html"><a href="文字資料-1.html#設定停止詞"><i class="fa fa-check"></i><b>4.1.5</b> 設定停止詞</a></li>
+<li class="chapter" data-level="4.1.6" data-path="文字資料-1.html"><a href="文字資料-1.html#重新定義斷詞器匯入停止詞"><i class="fa fa-check"></i><b>4.1.6</b> 重新定義斷詞器，匯入停止詞</a></li>
+<li class="chapter" data-level="4.1.7" data-path="文字資料-1.html"><a href="文字資料-1.html#計算詞彙頻率"><i class="fa fa-check"></i><b>4.1.7</b> 計算詞彙頻率</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="文字資料-1.html"><a href="文字資料-1.html#繪製文字雲"><i class="fa fa-check"></i><b>4.2</b> 繪製文字雲</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="地圖資料-1.html"><a href="地圖資料-1.html"><i class="fa fa-check"></i><b>5</b> 地圖資料</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣行政區模擬颱風降雨量"><i class="fa fa-check"></i><b>5.1</b> 台灣行政區模擬颱風降雨量</a></li>
+<li class="chapter" data-level="5.2" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣新生兒數量"><i class="fa fa-check"></i><b>5.2</b> 2022台灣新生兒數量</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="評分資料-1.html"><a href="評分資料-1.html"><i class="fa fa-check"></i><b>6</b> 評分資料</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="評分資料-1.html"><a href="評分資料-1.html#資料概況"><i class="fa fa-check"></i><b>6.1</b> 資料概況</a></li>
+<li class="chapter" data-level="6.2" data-path="評分資料-1.html"><a href="評分資料-1.html#評分分佈"><i class="fa fa-check"></i><b>6.2</b> 評分分佈</a></li>
+<li class="chapter" data-level="6.3" data-path="評分資料-1.html"><a href="評分資料-1.html#國家分析"><i class="fa fa-check"></i><b>6.3</b> 國家分析</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="迴歸模型.html"><a href="迴歸模型.html"><i class="fa fa-check"></i><b>7</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="迴歸模型.html"><a href="迴歸模型.html#資料敘述"><i class="fa fa-check"></i><b>7.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="迴歸模型.html"><a href="迴歸模型.html#概要"><i class="fa fa-check"></i><b>7.1.1</b> 概要</a></li>
+<li class="chapter" data-level="7.1.2" data-path="迴歸模型.html"><a href="迴歸模型.html#轉換"><i class="fa fa-check"></i><b>7.1.2</b> 轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈"><i class="fa fa-check"></i><b>7.2</b> 資料分佈</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="迴歸模型.html"><a href="迴歸模型.html#查看異常值"><i class="fa fa-check"></i><b>7.2.1</b> 查看異常值</a></li>
+<li class="chapter" data-level="7.2.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈-1"><i class="fa fa-check"></i><b>7.2.2</b> 資料分佈</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="迴歸模型.html"><a href="迴歸模型.html#迴歸模型-1"><i class="fa fa-check"></i><b>7.3</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="迴歸模型.html"><a href="迴歸模型.html#one-variable-regression"><i class="fa fa-check"></i><b>7.3.1</b> One-variable regression</a></li>
+<li class="chapter" data-level="7.3.2" data-path="迴歸模型.html"><a href="迴歸模型.html#multiple-regressors"><i class="fa fa-check"></i><b>7.3.2</b> Multiple regressors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="迴歸模型.html"><a href="迴歸模型.html#one-categorical-variable-ls-estimation"><i class="fa fa-check"></i><b>7.3.3</b> One categorical variable LS Estimation</a></li>
+<li class="chapter" data-level="7.3.4" data-path="迴歸模型.html"><a href="迴歸模型.html#interaction-effect"><i class="fa fa-check"></i><b>7.3.4</b> Interaction effect</a></li>
+<li class="chapter" data-level="7.3.5" data-path="迴歸模型.html"><a href="迴歸模型.html#complete-model"><i class="fa fa-check"></i><b>7.3.5</b> Complete model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html"><i class="fa fa-check"></i><b>8</b> 廣義線性迴歸模型 GLM model</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料敘述-1"><i class="fa fa-check"></i><b>8.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#故事背景"><i class="fa fa-check"></i><b>8.1.1</b> 故事背景</a></li>
+<li class="chapter" data-level="8.1.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料概要"><i class="fa fa-check"></i><b>8.1.2</b> 資料概要</a></li>
+<li class="chapter" data-level="8.1.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料前處理與轉換"><i class="fa fa-check"></i><b>8.1.3</b> 資料前處理與轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#視覺化消費者活動接受情況"><i class="fa fa-check"></i><b>8.2</b> 視覺化消費者活動接受情況</a></li>
+<li class="chapter" data-level="8.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#二元變數之probitlogit-glm"><i class="fa fa-check"></i><b>8.3</b> 二元變數之Probit/Logit GLM</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model1-考量消費金額的logit-glm"><i class="fa fa-check"></i><b>8.3.1</b> Model1 考量「消費金額」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model2-考量消費者型態的logit-glm"><i class="fa fa-check"></i><b>8.3.2</b> Model2 考量「消費者型態」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model3-考量消費者前期活動參與的logit-glm"><i class="fa fa-check"></i><b>8.3.3</b> Model3 考量「消費者前期活動參與」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.4" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model-4-考量所有變數的logit-glm"><i class="fa fa-check"></i><b>8.3.4</b> Model 4 考量「所有變數」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.5" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#每個模型的roc曲線"><i class="fa fa-check"></i><b>8.3.5</b> 每個模型的ROC曲線</a></li>
+<li class="chapter" data-level="8.3.6" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#總結影響因素"><i class="fa fa-check"></i><b>8.3.6</b> 總結影響因素</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">First Report</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="文字資料-1" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> 文字資料<a href="文字資料-1.html#文字資料-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="文字雲" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> 文字雲<a href="文字資料-1.html#文字雲" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>以關鍵字「全支付」於Chrome中搜尋，以網頁排名第八「數位時代」之文章
+「【圖解】全支付進軍日本，2個步驟大賺30%回饋！PayPay哪裡可刷？一文看懂怎麼用」
+作為地圖雲之範例資歷，將檔案以 UTF-8 編碼 txt. 檔案格式存檔，導入R markdown 中</p>
+<div id="導入範例文章" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> 導入範例文章<a href="文字資料-1.html#導入範例文章" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="文字資料-1.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(jiebaR)</span>
+<span id="cb1-2"><a href="文字資料-1.html#cb1-2" tabindex="-1"></a>content <span class="ot">=</span> <span class="fu">readLines</span>(<span class="st">&quot;~/Desktop/data science/全支付圖解.txt&quot;</span>, <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
+</div>
+<div id="定義斷詞器" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> 定義斷詞器<a href="文字資料-1.html#定義斷詞器" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="文字資料-1.html#cb2-1" tabindex="-1"></a>cutter <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">bylines =</span> F)</span>
+<span id="cb2-2"><a href="文字資料-1.html#cb2-2" tabindex="-1"></a>segmented_content <span class="ot">=</span> <span class="fu">segment</span>(content, cutter)</span></code></pre></div>
+<pre><code>##  [1] &quot;圖解&quot;     &quot;全&quot;       &quot;支付&quot;     &quot;進軍&quot;     &quot;日本&quot;     &quot;2&quot;       
+##  [7] &quot;個&quot;       &quot;步驟&quot;     &quot;大&quot;       &quot;賺&quot;       &quot;30&quot;       &quot;回饋&quot;    
+## [13] &quot;PayPay&quot;   &quot;哪裡&quot;     &quot;可刷&quot;     &quot;一文&quot;     &quot;看&quot;       &quot;懂&quot;      
+## [19] &quot;怎麼&quot;     &quot;用&quot;       &quot;台灣民眾&quot; &quot;赴&quot;       &quot;日&quot;       &quot;旅遊&quot;    
+## [25] &quot;電子&quot;     &quot;支付&quot;     &quot;功能&quot;     &quot;再&quot;       &quot;1&quot;        &quot;除了&quot;    
+## [31] &quot;街口&quot;     &quot;支付&quot;     &quot;玉山&quot;     &quot;Wallet&quot;   &quot;全&quot;       &quot;支付&quot;    
+## [37] &quot;也&quot;       &quot;宣布&quot;     &quot;開放&quot;     &quot;台灣&quot;     &quot;消費者&quot;   &quot;在&quot;      
+## [43] &quot;日本&quot;     &quot;全&quot;       &quot;通路&quot;     &quot;超過&quot;     &quot;上百萬&quot;   &quot;家&quot;      
+## [49] &quot;的&quot;       &quot;PayPay&quot;</code></pre>
+<p>( 顯示程式碼結果前50項)</p>
+</div>
+<div id="建立新詞" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> 建立新詞<a href="文字資料-1.html#建立新詞" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>從上述程式碼結果可見「全支付」三個字被拆成「全」、「支付」，因此建立「全支付」新詞
+建立新詞:QRCode、藥妝店、跨境支付、市占率、</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="文字資料-1.html#cb4-1" tabindex="-1"></a><span class="fu">new_user_word</span>(cutter, <span class="st">&quot;全支付&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>重新顯示結果前50項，已將「全支付」三個字合併為一詞</p>
+<pre><code>## [1] TRUE</code></pre>
+<pre><code>##  [1] &quot;圖解&quot;     &quot;全支付&quot;   &quot;進軍&quot;     &quot;日本&quot;     &quot;2&quot;        &quot;個&quot;      
+##  [7] &quot;步驟&quot;     &quot;大&quot;       &quot;賺&quot;       &quot;30&quot;       &quot;回饋&quot;     &quot;PayPay&quot;  
+## [13] &quot;哪裡&quot;     &quot;可刷&quot;     &quot;一文&quot;     &quot;看&quot;       &quot;懂&quot;       &quot;怎麼&quot;    
+## [19] &quot;用&quot;       &quot;台灣民眾&quot; &quot;赴&quot;       &quot;日&quot;       &quot;旅遊&quot;     &quot;電子&quot;    
+## [25] &quot;支付&quot;     &quot;功能&quot;     &quot;再&quot;       &quot;1&quot;        &quot;除了&quot;     &quot;街口&quot;    
+## [31] &quot;支付&quot;     &quot;玉山&quot;     &quot;Wallet&quot;   &quot;全支付&quot;   &quot;也&quot;       &quot;宣布&quot;    
+## [37] &quot;開放&quot;     &quot;台灣&quot;     &quot;消費者&quot;   &quot;在&quot;       &quot;日本&quot;     &quot;全&quot;      
+## [43] &quot;通路&quot;     &quot;超過&quot;     &quot;上百萬&quot;   &quot;家&quot;       &quot;的&quot;       &quot;PayPay&quot;  
+## [49] &quot;進行&quot;     &quot;掃碼&quot;</code></pre>
+<p>建立其他新詞：QRCode、藥妝店、市占率、玉山Wallet、街口支付、量販店、台灣人、赴日</p>
+<pre><code>## [1] TRUE</code></pre>
+<pre><code>##  [1] &quot;圖解&quot;       &quot;全支付&quot;     &quot;進軍&quot;       &quot;日本&quot;       &quot;2&quot;         
+##  [6] &quot;個&quot;         &quot;步驟&quot;       &quot;大&quot;         &quot;賺&quot;         &quot;30&quot;        
+## [11] &quot;回饋&quot;       &quot;PayPay&quot;     &quot;哪裡&quot;       &quot;可刷&quot;       &quot;一文&quot;      
+## [16] &quot;看&quot;         &quot;懂&quot;         &quot;怎麼&quot;       &quot;用&quot;         &quot;台灣民眾&quot;  
+## [21] &quot;赴日&quot;       &quot;旅遊&quot;       &quot;電子&quot;       &quot;支付&quot;       &quot;功能&quot;      
+## [26] &quot;再&quot;         &quot;1&quot;          &quot;除了&quot;       &quot;街口支付&quot;   &quot;玉山Wallet&quot;
+## [31] &quot;全支付&quot;     &quot;也&quot;         &quot;宣布&quot;       &quot;開放&quot;       &quot;台灣&quot;      
+## [36] &quot;消費者&quot;     &quot;在&quot;         &quot;日本&quot;       &quot;全&quot;         &quot;通路&quot;      
+## [41] &quot;超過&quot;       &quot;上百萬&quot;     &quot;家&quot;         &quot;的&quot;         &quot;PayPay&quot;    
+## [46] &quot;進行&quot;       &quot;掃碼&quot;       &quot;付款&quot;       &quot;台灣民眾&quot;   &quot;前往&quot;</code></pre>
+</div>
+<div id="匯出新詞" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> 匯出新詞<a href="文字資料-1.html#匯出新詞" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="文字資料-1.html#cb10-1" tabindex="-1"></a>new_words <span class="ot">&lt;-</span> <span class="fu">enc2utf8</span>(<span class="fu">c</span>(<span class="st">&quot;全支付&quot;</span>,<span class="st">&quot;QRCode&quot;</span>,<span class="st">&quot;藥妝店&quot;</span>,<span class="st">&quot;市占率&quot;</span>,<span class="st">&quot;玉山Wallet&quot;</span>,<span class="st">&quot;街口支付&quot;</span>,<span class="st">&quot;量販店&quot;</span>,<span class="st">&quot;台灣人&quot;</span>,<span class="st">&quot;赴日&quot;</span>))</span>
+<span id="cb10-2"><a href="文字資料-1.html#cb10-2" tabindex="-1"></a><span class="fu">writeLines</span>(new_words, <span class="st">&quot;new_words.txt&quot;</span>)</span></code></pre></div>
+</div>
+<div id="設定停止詞" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> 設定停止詞<a href="文字資料-1.html#設定停止詞" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="文字資料-1.html#cb11-1" tabindex="-1"></a>stop_words <span class="ot">&lt;-</span> <span class="fu">enc2utf8</span>(<span class="fu">c</span>(<span class="st">&quot;我&quot;</span>,<span class="st">&quot;再&quot;</span>,<span class="st">&quot;在&quot;</span>,<span class="st">&quot;的&quot;</span>,<span class="st">&quot;上&quot;</span>,<span class="st">&quot;下&quot;</span>,<span class="st">&quot;個&quot;</span>,<span class="st">&quot;來&quot;</span>,<span class="st">&quot;至&quot;</span>,<span class="st">&quot;從&quot;</span>,<span class="st">&quot;亦&quot;</span>,<span class="st">&quot;與&quot;</span>,<span class="st">&quot;或&quot;</span>,<span class="st">&quot;日&quot;</span>,<span class="st">&quot;月&quot;</span>,<span class="st">&quot;年&quot;</span>,<span class="st">&quot;的&quot;</span>,<span class="st">&quot;即&quot;</span>,<span class="st">&quot;去&quot;</span>,<span class="st">&quot;及&quot;</span>,<span class="st">&quot;他&quot;</span>,<span class="st">&quot;有&quot;</span>,<span class="st">&quot;是&quot;</span>,<span class="st">&quot;就&quot;</span>,<span class="st">&quot;如&quot;</span>))</span>
+<span id="cb11-2"><a href="文字資料-1.html#cb11-2" tabindex="-1"></a><span class="fu">writeLines</span>(stop_words, <span class="st">&quot;stop_words.txt&quot;</span>)</span></code></pre></div>
+</div>
+<div id="重新定義斷詞器匯入停止詞" class="section level3 hasAnchor" number="4.1.6">
+<h3><span class="header-section-number">4.1.6</span> 重新定義斷詞器，匯入停止詞<a href="文字資料-1.html#重新定義斷詞器匯入停止詞" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="文字資料-1.html#cb12-1" tabindex="-1"></a>cutter <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">stop_word =</span> <span class="st">&quot;stop_words.txt&quot;</span>,<span class="at">user =</span> <span class="st">&quot;new_words.txt&quot;</span>,  <span class="at">bylines =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-2"><a href="文字資料-1.html#cb12-2" tabindex="-1"></a>seg_words <span class="ot">&lt;-</span> cutter[content]</span>
+<span id="cb12-3"><a href="文字資料-1.html#cb12-3" tabindex="-1"></a>seg_words</span>
+<span id="cb12-4"><a href="文字資料-1.html#cb12-4" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">c</span>(<span class="st">&quot;stop_words.txt&quot;</span>,<span class="st">&quot;new_words.txt&quot;</span>))</span></code></pre></div>
+</div>
+<div id="計算詞彙頻率" class="section level3 hasAnchor" number="4.1.7">
+<h3><span class="header-section-number">4.1.7</span> 計算詞彙頻率<a href="文字資料-1.html#計算詞彙頻率" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>由大排到小，檢查前六名
+可見「全支付」出現頻率最高，共有31次，促使文章在SEO排名高</p>
+<pre><code>## [1] TRUE TRUE</code></pre>
+<pre><code>##     char freq
+## 1 全支付   31
+## 2   日本   23
+## 3   支付   18
+## 4 PayPay   14
+## 5   旅遊   12
+## 6   跨境   11</code></pre>
+<p>利用ggplot視覺化以長條圖呈現</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="文字資料-1.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-2"><a href="文字資料-1.html#cb15-2" tabindex="-1"></a>top_txt_freq <span class="ot">&lt;-</span> <span class="fu">head</span>(txt_freq)</span>
+<span id="cb15-3"><a href="文字資料-1.html#cb15-3" tabindex="-1"></a><span class="fu">ggplot</span>(top_txt_freq, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(char, freq), <span class="at">y=</span>freq)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="文字資料-1.html#cb15-4" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">fill=</span><span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="文字資料-1.html#cb15-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;字詞&quot;</span>, <span class="at">y =</span> <span class="st">&quot;次數&quot;</span>, <span class="at">title =</span> <span class="st">&quot;字詞出現次數Top 10&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="文字資料-1.html#cb15-6" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  </span>
+<span id="cb15-7"><a href="文字資料-1.html#cb15-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;STHeiti&quot;</span>), </span>
+<span id="cb15-8"><a href="文字資料-1.html#cb15-8" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;STHeiti&quot;</span>), </span>
+<span id="cb15-9"><a href="文字資料-1.html#cb15-9" tabindex="-1"></a>        <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;STHeiti&quot;</span>))       </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label6"></span>
+<img src="_main_files/figure-html/label6-1.png" alt="字詞出現次數Top 10" width="672" />
+<p class="caption">
+Figure 4.1: 字詞出現次數Top 10
+</p>
+</div>
+</div>
+</div>
+<div id="繪製文字雲" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> 繪製文字雲<a href="文字資料-1.html#繪製文字雲" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="文字資料-1.html#cb16-1" tabindex="-1"></a>wordcloud2<span class="sc">::</span><span class="fu">wordcloud2</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(txt_freq, freq <span class="sc">&gt;</span> <span class="dv">3</span>), </span>
+<span id="cb16-2"><a href="文字資料-1.html#cb16-2" tabindex="-1"></a>           <span class="at">minSize =</span> <span class="dv">2</span>, <span class="at">fontFamily =</span> <span class="st">&quot;Microsoft YaHei&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-ce95b9ede048e83dc031" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-ce95b9ede048e83dc031">{"x":{"word":["全支付","日本","支付","PayPay","旅遊","跨境","回饋","App","合作","台灣","使用","用戶","掃","付款","用","可以","QR","消費","旅客","店家","直接","交易","銀行帳戶","通路","掃碼","消費者","赴日","台灣民眾","等","最","商家","將","世華","最高","國泰","新","海外","Code","透過","什麼"],"freq":[31,23,18,14,12,11,10,9,8,8,7,7,7,7,6,6,6,6,6,6,6,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4],"fontFamily":"Microsoft YaHei","fontWeight":"bold","color":"random-dark","minSize":2,"weightFactor":5.806451612903226,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="購物車資料行銷專案發展-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="地圖資料-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-word.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

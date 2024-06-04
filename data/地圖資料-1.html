@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 地圖資料 | First Report</title>
+  <meta name="description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 地圖資料 | First Report" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 地圖資料 | First Report" />
+  
+  <meta name="twitter:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  
+
+<meta name="author" content="管研碩一 呂珣瑄" />
+
+
+<meta name="date" content="2024-06-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="文字資料-1.html"/>
+<link rel="next" href="評分資料-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">First report</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#資料初心者"><i class="fa fa-check"></i><b>1.1</b> 資料初心者</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#購物車資料行銷專案發展"><i class="fa fa-check"></i><b>1.2</b> 購物車資料：行銷專案發展</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#文字資料"><i class="fa fa-check"></i><b>1.3</b> 文字資料</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#地圖資料"><i class="fa fa-check"></i><b>1.4</b> 地圖資料</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#評分資料"><i class="fa fa-check"></i><b>1.5</b> 評分資料</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料初心者-1.html"><a href="資料初心者-1.html"><i class="fa fa-check"></i><b>2</b> 資料初心者</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料初心者-1.html"><a href="資料初心者-1.html#安装-r-和-rstudio"><i class="fa fa-check"></i><b>2.1</b> 安装 R 和 RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="資料初心者-1.html"><a href="資料初心者-1.html#建立新專案"><i class="fa fa-check"></i><b>2.2</b> 建立新專案</a></li>
+<li class="chapter" data-level="2.3" data-path="資料初心者-1.html"><a href="資料初心者-1.html#r-markdown"><i class="fa fa-check"></i><b>2.3</b> R markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html"><i class="fa fa-check"></i><b>3</b> 購物車資料：行銷專案發展</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與資料統整"><i class="fa fa-check"></i><b>3.1</b> 輸入資料與資料統整</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與合併"><i class="fa fa-check"></i><b>3.1.1</b> 輸入資料與合併</a></li>
+<li class="chapter" data-level="3.1.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料欄位說明"><i class="fa fa-check"></i><b>3.1.2</b> 資料欄位說明</a></li>
+<li class="chapter" data-level="3.1.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料初步彙整"><i class="fa fa-check"></i><b>3.1.3</b> 資料初步彙整</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料集群大小"><i class="fa fa-check"></i><b>3.2</b> 資料集群大小</a></li>
+<li class="chapter" data-level="3.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#發展問題"><i class="fa fa-check"></i><b>3.3</b> 發展問題</a></li>
+<li class="chapter" data-level="3.4" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#探索性資料分析"><i class="fa fa-check"></i><b>3.4</b> 探索性資料分析</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#銷售趨勢分析"><i class="fa fa-check"></i><b>3.4.1</b> 銷售趨勢分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#顧客行為分析"><i class="fa fa-check"></i><b>3.4.2</b> 顧客行為分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="文字資料-1.html"><a href="文字資料-1.html"><i class="fa fa-check"></i><b>4</b> 文字資料</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="文字資料-1.html"><a href="文字資料-1.html#文字雲"><i class="fa fa-check"></i><b>4.1</b> 文字雲</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="文字資料-1.html"><a href="文字資料-1.html#導入範例文章"><i class="fa fa-check"></i><b>4.1.1</b> 導入範例文章</a></li>
+<li class="chapter" data-level="4.1.2" data-path="文字資料-1.html"><a href="文字資料-1.html#定義斷詞器"><i class="fa fa-check"></i><b>4.1.2</b> 定義斷詞器</a></li>
+<li class="chapter" data-level="4.1.3" data-path="文字資料-1.html"><a href="文字資料-1.html#建立新詞"><i class="fa fa-check"></i><b>4.1.3</b> 建立新詞</a></li>
+<li class="chapter" data-level="4.1.4" data-path="文字資料-1.html"><a href="文字資料-1.html#匯出新詞"><i class="fa fa-check"></i><b>4.1.4</b> 匯出新詞</a></li>
+<li class="chapter" data-level="4.1.5" data-path="文字資料-1.html"><a href="文字資料-1.html#設定停止詞"><i class="fa fa-check"></i><b>4.1.5</b> 設定停止詞</a></li>
+<li class="chapter" data-level="4.1.6" data-path="文字資料-1.html"><a href="文字資料-1.html#重新定義斷詞器匯入停止詞"><i class="fa fa-check"></i><b>4.1.6</b> 重新定義斷詞器，匯入停止詞</a></li>
+<li class="chapter" data-level="4.1.7" data-path="文字資料-1.html"><a href="文字資料-1.html#計算詞彙頻率"><i class="fa fa-check"></i><b>4.1.7</b> 計算詞彙頻率</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="文字資料-1.html"><a href="文字資料-1.html#繪製文字雲"><i class="fa fa-check"></i><b>4.2</b> 繪製文字雲</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="地圖資料-1.html"><a href="地圖資料-1.html"><i class="fa fa-check"></i><b>5</b> 地圖資料</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣行政區模擬颱風降雨量"><i class="fa fa-check"></i><b>5.1</b> 台灣行政區模擬颱風降雨量</a></li>
+<li class="chapter" data-level="5.2" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣新生兒數量"><i class="fa fa-check"></i><b>5.2</b> 2022台灣新生兒數量</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="評分資料-1.html"><a href="評分資料-1.html"><i class="fa fa-check"></i><b>6</b> 評分資料</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="評分資料-1.html"><a href="評分資料-1.html#資料概況"><i class="fa fa-check"></i><b>6.1</b> 資料概況</a></li>
+<li class="chapter" data-level="6.2" data-path="評分資料-1.html"><a href="評分資料-1.html#評分分佈"><i class="fa fa-check"></i><b>6.2</b> 評分分佈</a></li>
+<li class="chapter" data-level="6.3" data-path="評分資料-1.html"><a href="評分資料-1.html#國家分析"><i class="fa fa-check"></i><b>6.3</b> 國家分析</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="迴歸模型.html"><a href="迴歸模型.html"><i class="fa fa-check"></i><b>7</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="迴歸模型.html"><a href="迴歸模型.html#資料敘述"><i class="fa fa-check"></i><b>7.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="迴歸模型.html"><a href="迴歸模型.html#概要"><i class="fa fa-check"></i><b>7.1.1</b> 概要</a></li>
+<li class="chapter" data-level="7.1.2" data-path="迴歸模型.html"><a href="迴歸模型.html#轉換"><i class="fa fa-check"></i><b>7.1.2</b> 轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈"><i class="fa fa-check"></i><b>7.2</b> 資料分佈</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="迴歸模型.html"><a href="迴歸模型.html#查看異常值"><i class="fa fa-check"></i><b>7.2.1</b> 查看異常值</a></li>
+<li class="chapter" data-level="7.2.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈-1"><i class="fa fa-check"></i><b>7.2.2</b> 資料分佈</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="迴歸模型.html"><a href="迴歸模型.html#迴歸模型-1"><i class="fa fa-check"></i><b>7.3</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="迴歸模型.html"><a href="迴歸模型.html#one-variable-regression"><i class="fa fa-check"></i><b>7.3.1</b> One-variable regression</a></li>
+<li class="chapter" data-level="7.3.2" data-path="迴歸模型.html"><a href="迴歸模型.html#multiple-regressors"><i class="fa fa-check"></i><b>7.3.2</b> Multiple regressors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="迴歸模型.html"><a href="迴歸模型.html#one-categorical-variable-ls-estimation"><i class="fa fa-check"></i><b>7.3.3</b> One categorical variable LS Estimation</a></li>
+<li class="chapter" data-level="7.3.4" data-path="迴歸模型.html"><a href="迴歸模型.html#interaction-effect"><i class="fa fa-check"></i><b>7.3.4</b> Interaction effect</a></li>
+<li class="chapter" data-level="7.3.5" data-path="迴歸模型.html"><a href="迴歸模型.html#complete-model"><i class="fa fa-check"></i><b>7.3.5</b> Complete model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html"><i class="fa fa-check"></i><b>8</b> 廣義線性迴歸模型 GLM model</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料敘述-1"><i class="fa fa-check"></i><b>8.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#故事背景"><i class="fa fa-check"></i><b>8.1.1</b> 故事背景</a></li>
+<li class="chapter" data-level="8.1.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料概要"><i class="fa fa-check"></i><b>8.1.2</b> 資料概要</a></li>
+<li class="chapter" data-level="8.1.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料前處理與轉換"><i class="fa fa-check"></i><b>8.1.3</b> 資料前處理與轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#視覺化消費者活動接受情況"><i class="fa fa-check"></i><b>8.2</b> 視覺化消費者活動接受情況</a></li>
+<li class="chapter" data-level="8.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#二元變數之probitlogit-glm"><i class="fa fa-check"></i><b>8.3</b> 二元變數之Probit/Logit GLM</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model1-考量消費金額的logit-glm"><i class="fa fa-check"></i><b>8.3.1</b> Model1 考量「消費金額」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model2-考量消費者型態的logit-glm"><i class="fa fa-check"></i><b>8.3.2</b> Model2 考量「消費者型態」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model3-考量消費者前期活動參與的logit-glm"><i class="fa fa-check"></i><b>8.3.3</b> Model3 考量「消費者前期活動參與」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.4" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model-4-考量所有變數的logit-glm"><i class="fa fa-check"></i><b>8.3.4</b> Model 4 考量「所有變數」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.5" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#每個模型的roc曲線"><i class="fa fa-check"></i><b>8.3.5</b> 每個模型的ROC曲線</a></li>
+<li class="chapter" data-level="8.3.6" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#總結影響因素"><i class="fa fa-check"></i><b>8.3.6</b> 總結影響因素</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">First Report</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="地圖資料-1" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> 地圖資料<a href="地圖資料-1.html#地圖資料-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="台灣行政區模擬颱風降雨量" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> 台灣行政區模擬颱風降雨量<a href="地圖資料-1.html#台灣行政區模擬颱風降雨量" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>導入套件包</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="地圖資料-1.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(geodata)</span>
+<span id="cb1-2"><a href="地圖資料-1.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code></pre></div>
+<p><strong>（一）台灣行政區模擬颱風降雨量</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="地圖資料-1.html#cb2-1" tabindex="-1"></a><span class="co"># 確保路徑存在</span></span>
+<span id="cb2-2"><a href="地圖資料-1.html#cb2-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;data/gadm&quot;</span>)) {</span>
+<span id="cb2-3"><a href="地圖資料-1.html#cb2-3" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="st">&quot;data/gadm&quot;</span>, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-4"><a href="地圖資料-1.html#cb2-4" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="地圖資料-1.html#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="地圖資料-1.html#cb2-6" tabindex="-1"></a>Taiwan2 <span class="ot">=</span> <span class="fu">gadm</span>(<span class="at">country=</span><span class="st">&quot;TWN&quot;</span>, <span class="at">level=</span><span class="dv">2</span>, <span class="at">path=</span><span class="fu">tempdir</span>())</span>
+<span id="cb2-7"><a href="地圖資料-1.html#cb2-7" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">saveRDS</span>(Taiwan2, <span class="at">file=</span><span class="st">&quot;data/gadm/Taiwan2.rds&quot;</span>)</span>
+<span id="cb2-8"><a href="地圖資料-1.html#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="地圖資料-1.html#cb2-9" tabindex="-1"></a>Taiwan2 <span class="ot">=</span> terra<span class="sc">::</span><span class="fu">readRDS</span>(<span class="st">&quot;data/gadm/Taiwan2.rds&quot;</span>)</span>
+<span id="cb2-10"><a href="地圖資料-1.html#cb2-10" tabindex="-1"></a>Taiwan2<span class="sc">$</span>rainfall <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(Taiwan2<span class="sc">$</span>NAME_2), <span class="at">mean=</span><span class="dv">500</span>, <span class="at">sd=</span><span class="dv">100</span>) <span class="co">#數據模擬</span></span>
+<span id="cb2-11"><a href="地圖資料-1.html#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="地圖資料-1.html#cb2-12" tabindex="-1"></a><span class="fu">plot</span>(Taiwan2, <span class="st">&quot;rainfall&quot;</span>, <span class="at">col.regions =</span> <span class="fu">rev</span>(<span class="fu">terrain.colors</span>(<span class="dv">100</span>)), </span>
+<span id="cb2-13"><a href="地圖資料-1.html#cb2-13" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Simulated Typhoon Rainfall in Taiwan&#39;s Administrative Districts&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label7"></span>
+<img src="_main_files/figure-html/label7-1.png" alt="台灣行政區模擬颱風降雨量" width="672" />
+<p class="caption">
+Figure 5.1: 台灣行政區模擬颱風降雨量
+</p>
+</div>
+<p><strong>（二）台灣行政區模擬冬季氣溫模擬</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="地圖資料-1.html#cb3-1" tabindex="-1"></a>Taiwan2 <span class="ot">=</span> terra<span class="sc">::</span><span class="fu">readRDS</span>(<span class="st">&quot;data/gadm/Taiwan2.rds&quot;</span>)</span>
+<span id="cb3-2"><a href="地圖資料-1.html#cb3-2" tabindex="-1"></a>Taiwan2<span class="sc">$</span>temperature <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(Taiwan2<span class="sc">$</span>NAME_2), <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb3-3"><a href="地圖資料-1.html#cb3-3" tabindex="-1"></a><span class="fu">plot</span>(Taiwan2, <span class="st">&quot;temperature&quot;</span>, <span class="at">col.regions =</span> <span class="fu">rev</span>(<span class="fu">terrain.colors</span>(<span class="dv">100</span>)), </span>
+<span id="cb3-4"><a href="地圖資料-1.html#cb3-4" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Simulation of winter temperatures in Taiwan&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label8"></span>
+<img src="_main_files/figure-html/label8-1.png" alt="台灣行政區模擬冬季氣溫模擬" width="672" />
+<p class="caption">
+Figure 5.2: 台灣行政區模擬冬季氣溫模擬
+</p>
+</div>
+</div>
+<div id="台灣新生兒數量" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> 2022台灣新生兒數量<a href="地圖資料-1.html#台灣新生兒數量" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>(一)2022台灣新生兒數量：男女分開</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="地圖資料-1.html#cb4-1" tabindex="-1"></a>dat<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;~/Downloads/TWN_newBirth.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="地圖資料-1.html#cb5-1" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(dat<span class="sc">$</span>Region.c)) {</span>
+<span id="cb5-2"><a href="地圖資料-1.html#cb5-2" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Taiwan2<span class="sc">$</span>NL_NAME_2)) {</span>
+<span id="cb5-3"><a href="地圖資料-1.html#cb5-3" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">grepl</span>(dat<span class="sc">$</span>Region.c[i], Taiwan2<span class="sc">$</span>NL_NAME_2[j], <span class="at">ignore.case=</span><span class="cn">TRUE</span>)) {</span>
+<span id="cb5-4"><a href="地圖資料-1.html#cb5-4" tabindex="-1"></a>      <span class="co"># 更新男孩出生数</span></span>
+<span id="cb5-5"><a href="地圖資料-1.html#cb5-5" tabindex="-1"></a>      Taiwan2<span class="sc">$</span>MeasureBoy[j] <span class="ot">&lt;-</span> <span class="fu">as.double</span>(dat<span class="sc">$</span>Boy[i])</span>
+<span id="cb5-6"><a href="地圖資料-1.html#cb5-6" tabindex="-1"></a>      <span class="co"># 更新女孩出生数</span></span>
+<span id="cb5-7"><a href="地圖資料-1.html#cb5-7" tabindex="-1"></a>      Taiwan2<span class="sc">$</span>MeasureGirl[j] <span class="ot">&lt;-</span> <span class="fu">as.double</span>(dat<span class="sc">$</span>Girl[i])</span>
+<span id="cb5-8"><a href="地圖資料-1.html#cb5-8" tabindex="-1"></a>    }</span>
+<span id="cb5-9"><a href="地圖資料-1.html#cb5-9" tabindex="-1"></a>  }</span>
+<span id="cb5-10"><a href="地圖資料-1.html#cb5-10" tabindex="-1"></a>}</span></code></pre></div>
+<p>繪製男孩出生數地圖</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="地圖資料-1.html#cb6-1" tabindex="-1"></a><span class="fu">plot</span>(Taiwan2, <span class="st">&quot;MeasureBoy&quot;</span>, <span class="at">col.regions =</span> <span class="fu">rev</span>(<span class="fu">terrain.colors</span>(<span class="fu">max</span>(Taiwan2<span class="sc">$</span>MeasureBoy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))),</span>
+<span id="cb6-2"><a href="地圖資料-1.html#cb6-2" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;2022 Taiwan County and City Total Newborn Boys&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label9"></span>
+<img src="_main_files/figure-html/label9-1.png" alt="男孩出生數地圖" width="672" />
+<p class="caption">
+Figure 5.3: 男孩出生數地圖
+</p>
+</div>
+<p>繪製女孩出生數地圖</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="地圖資料-1.html#cb7-1" tabindex="-1"></a><span class="fu">plot</span>(Taiwan2, <span class="st">&quot;MeasureGirl&quot;</span>, <span class="at">col.regions =</span> <span class="fu">rev</span>(<span class="fu">terrain.colors</span>(<span class="fu">max</span>(Taiwan2<span class="sc">$</span>MeasureGirl, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))),</span>
+<span id="cb7-2"><a href="地圖資料-1.html#cb7-2" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;2022 Taiwan County and City Total Newborn Girls&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label10"></span>
+<img src="_main_files/figure-html/label10-1.png" alt="女孩出生數地圖" width="672" />
+<p class="caption">
+Figure 5.4: 女孩出生數地圖
+</p>
+</div>
+<p>男女出生數在地圖上看並無顯著差異</p>
+<p><strong>(二)2022台灣新生兒數量：男女合併</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="地圖資料-1.html#cb8-1" tabindex="-1"></a>dat<span class="ot">=</span><span class="fu">read.csv</span>(<span class="st">&quot;~/Downloads/TWN_newBirth.csv&quot;</span>)</span>
+<span id="cb8-2"><a href="地圖資料-1.html#cb8-2" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(dat<span class="sc">$</span>Region.c)) {</span>
+<span id="cb8-3"><a href="地圖資料-1.html#cb8-3" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Taiwan2<span class="sc">$</span>NL_NAME_2)) {</span>
+<span id="cb8-4"><a href="地圖資料-1.html#cb8-4" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">grepl</span>(dat<span class="sc">$</span>Region.c[i],Taiwan2<span class="sc">$</span>NL_NAME_2[j],<span class="at">ignore.case=</span>T))</span>
+<span id="cb8-5"><a href="地圖資料-1.html#cb8-5" tabindex="-1"></a>      Taiwan2<span class="sc">$</span>measure[j] <span class="ot">&lt;-</span> <span class="fu">as.double</span>(dat<span class="sc">$</span>Total[i])</span>
+<span id="cb8-6"><a href="地圖資料-1.html#cb8-6" tabindex="-1"></a>  }</span>
+<span id="cb8-7"><a href="地圖資料-1.html#cb8-7" tabindex="-1"></a>}</span></code></pre></div>
+<p>繪製男女合併出生數地圖</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="地圖資料-1.html#cb9-1" tabindex="-1"></a><span class="fu">plot</span>(Taiwan2,<span class="st">&quot;measure&quot;</span>, <span class="at">col.regions =</span> <span class="fu">rev</span>(<span class="fu">terrain.colors</span>(Taiwan2<span class="sc">$</span>measure)),</span>
+<span id="cb9-2"><a href="地圖資料-1.html#cb9-2" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;2022 Taiwan County and City Total Newborn&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label11"></span>
+<img src="_main_files/figure-html/label11-1.png" alt="2022台灣新生兒數量：男女合併" width="672" />
+<p class="caption">
+Figure 5.5: 2022台灣新生兒數量：男女合併
+</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="文字資料-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="評分資料-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-map.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

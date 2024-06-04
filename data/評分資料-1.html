@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 評分資料 | First Report</title>
+  <meta name="description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 評分資料 | First Report" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 評分資料 | First Report" />
+  
+  <meta name="twitter:description" content="一個文組腦女生闖入資料科學領域，匍匐前進過程紀錄" />
+  
+
+<meta name="author" content="管研碩一 呂珣瑄" />
+
+
+<meta name="date" content="2024-06-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="地圖資料-1.html"/>
+<link rel="next" href="迴歸模型.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">First report</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#資料初心者"><i class="fa fa-check"></i><b>1.1</b> 資料初心者</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#購物車資料行銷專案發展"><i class="fa fa-check"></i><b>1.2</b> 購物車資料：行銷專案發展</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#文字資料"><i class="fa fa-check"></i><b>1.3</b> 文字資料</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#地圖資料"><i class="fa fa-check"></i><b>1.4</b> 地圖資料</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#評分資料"><i class="fa fa-check"></i><b>1.5</b> 評分資料</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料初心者-1.html"><a href="資料初心者-1.html"><i class="fa fa-check"></i><b>2</b> 資料初心者</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料初心者-1.html"><a href="資料初心者-1.html#安装-r-和-rstudio"><i class="fa fa-check"></i><b>2.1</b> 安装 R 和 RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="資料初心者-1.html"><a href="資料初心者-1.html#建立新專案"><i class="fa fa-check"></i><b>2.2</b> 建立新專案</a></li>
+<li class="chapter" data-level="2.3" data-path="資料初心者-1.html"><a href="資料初心者-1.html#r-markdown"><i class="fa fa-check"></i><b>2.3</b> R markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html"><i class="fa fa-check"></i><b>3</b> 購物車資料：行銷專案發展</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與資料統整"><i class="fa fa-check"></i><b>3.1</b> 輸入資料與資料統整</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#輸入資料與合併"><i class="fa fa-check"></i><b>3.1.1</b> 輸入資料與合併</a></li>
+<li class="chapter" data-level="3.1.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料欄位說明"><i class="fa fa-check"></i><b>3.1.2</b> 資料欄位說明</a></li>
+<li class="chapter" data-level="3.1.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料初步彙整"><i class="fa fa-check"></i><b>3.1.3</b> 資料初步彙整</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#資料集群大小"><i class="fa fa-check"></i><b>3.2</b> 資料集群大小</a></li>
+<li class="chapter" data-level="3.3" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#發展問題"><i class="fa fa-check"></i><b>3.3</b> 發展問題</a></li>
+<li class="chapter" data-level="3.4" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#探索性資料分析"><i class="fa fa-check"></i><b>3.4</b> 探索性資料分析</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#銷售趨勢分析"><i class="fa fa-check"></i><b>3.4.1</b> 銷售趨勢分析</a></li>
+<li class="chapter" data-level="3.4.2" data-path="購物車資料行銷專案發展-1.html"><a href="購物車資料行銷專案發展-1.html#顧客行為分析"><i class="fa fa-check"></i><b>3.4.2</b> 顧客行為分析</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="文字資料-1.html"><a href="文字資料-1.html"><i class="fa fa-check"></i><b>4</b> 文字資料</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="文字資料-1.html"><a href="文字資料-1.html#文字雲"><i class="fa fa-check"></i><b>4.1</b> 文字雲</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="文字資料-1.html"><a href="文字資料-1.html#導入範例文章"><i class="fa fa-check"></i><b>4.1.1</b> 導入範例文章</a></li>
+<li class="chapter" data-level="4.1.2" data-path="文字資料-1.html"><a href="文字資料-1.html#定義斷詞器"><i class="fa fa-check"></i><b>4.1.2</b> 定義斷詞器</a></li>
+<li class="chapter" data-level="4.1.3" data-path="文字資料-1.html"><a href="文字資料-1.html#建立新詞"><i class="fa fa-check"></i><b>4.1.3</b> 建立新詞</a></li>
+<li class="chapter" data-level="4.1.4" data-path="文字資料-1.html"><a href="文字資料-1.html#匯出新詞"><i class="fa fa-check"></i><b>4.1.4</b> 匯出新詞</a></li>
+<li class="chapter" data-level="4.1.5" data-path="文字資料-1.html"><a href="文字資料-1.html#設定停止詞"><i class="fa fa-check"></i><b>4.1.5</b> 設定停止詞</a></li>
+<li class="chapter" data-level="4.1.6" data-path="文字資料-1.html"><a href="文字資料-1.html#重新定義斷詞器匯入停止詞"><i class="fa fa-check"></i><b>4.1.6</b> 重新定義斷詞器，匯入停止詞</a></li>
+<li class="chapter" data-level="4.1.7" data-path="文字資料-1.html"><a href="文字資料-1.html#計算詞彙頻率"><i class="fa fa-check"></i><b>4.1.7</b> 計算詞彙頻率</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="文字資料-1.html"><a href="文字資料-1.html#繪製文字雲"><i class="fa fa-check"></i><b>4.2</b> 繪製文字雲</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="地圖資料-1.html"><a href="地圖資料-1.html"><i class="fa fa-check"></i><b>5</b> 地圖資料</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣行政區模擬颱風降雨量"><i class="fa fa-check"></i><b>5.1</b> 台灣行政區模擬颱風降雨量</a></li>
+<li class="chapter" data-level="5.2" data-path="地圖資料-1.html"><a href="地圖資料-1.html#台灣新生兒數量"><i class="fa fa-check"></i><b>5.2</b> 2022台灣新生兒數量</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="評分資料-1.html"><a href="評分資料-1.html"><i class="fa fa-check"></i><b>6</b> 評分資料</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="評分資料-1.html"><a href="評分資料-1.html#資料概況"><i class="fa fa-check"></i><b>6.1</b> 資料概況</a></li>
+<li class="chapter" data-level="6.2" data-path="評分資料-1.html"><a href="評分資料-1.html#評分分佈"><i class="fa fa-check"></i><b>6.2</b> 評分分佈</a></li>
+<li class="chapter" data-level="6.3" data-path="評分資料-1.html"><a href="評分資料-1.html#國家分析"><i class="fa fa-check"></i><b>6.3</b> 國家分析</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="迴歸模型.html"><a href="迴歸模型.html"><i class="fa fa-check"></i><b>7</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="迴歸模型.html"><a href="迴歸模型.html#資料敘述"><i class="fa fa-check"></i><b>7.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="迴歸模型.html"><a href="迴歸模型.html#概要"><i class="fa fa-check"></i><b>7.1.1</b> 概要</a></li>
+<li class="chapter" data-level="7.1.2" data-path="迴歸模型.html"><a href="迴歸模型.html#轉換"><i class="fa fa-check"></i><b>7.1.2</b> 轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈"><i class="fa fa-check"></i><b>7.2</b> 資料分佈</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="迴歸模型.html"><a href="迴歸模型.html#查看異常值"><i class="fa fa-check"></i><b>7.2.1</b> 查看異常值</a></li>
+<li class="chapter" data-level="7.2.2" data-path="迴歸模型.html"><a href="迴歸模型.html#資料分佈-1"><i class="fa fa-check"></i><b>7.2.2</b> 資料分佈</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="迴歸模型.html"><a href="迴歸模型.html#迴歸模型-1"><i class="fa fa-check"></i><b>7.3</b> 迴歸模型</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="迴歸模型.html"><a href="迴歸模型.html#one-variable-regression"><i class="fa fa-check"></i><b>7.3.1</b> One-variable regression</a></li>
+<li class="chapter" data-level="7.3.2" data-path="迴歸模型.html"><a href="迴歸模型.html#multiple-regressors"><i class="fa fa-check"></i><b>7.3.2</b> Multiple regressors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="迴歸模型.html"><a href="迴歸模型.html#one-categorical-variable-ls-estimation"><i class="fa fa-check"></i><b>7.3.3</b> One categorical variable LS Estimation</a></li>
+<li class="chapter" data-level="7.3.4" data-path="迴歸模型.html"><a href="迴歸模型.html#interaction-effect"><i class="fa fa-check"></i><b>7.3.4</b> Interaction effect</a></li>
+<li class="chapter" data-level="7.3.5" data-path="迴歸模型.html"><a href="迴歸模型.html#complete-model"><i class="fa fa-check"></i><b>7.3.5</b> Complete model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html"><i class="fa fa-check"></i><b>8</b> 廣義線性迴歸模型 GLM model</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料敘述-1"><i class="fa fa-check"></i><b>8.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#故事背景"><i class="fa fa-check"></i><b>8.1.1</b> 故事背景</a></li>
+<li class="chapter" data-level="8.1.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料概要"><i class="fa fa-check"></i><b>8.1.2</b> 資料概要</a></li>
+<li class="chapter" data-level="8.1.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#資料前處理與轉換"><i class="fa fa-check"></i><b>8.1.3</b> 資料前處理與轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#視覺化消費者活動接受情況"><i class="fa fa-check"></i><b>8.2</b> 視覺化消費者活動接受情況</a></li>
+<li class="chapter" data-level="8.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#二元變數之probitlogit-glm"><i class="fa fa-check"></i><b>8.3</b> 二元變數之Probit/Logit GLM</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model1-考量消費金額的logit-glm"><i class="fa fa-check"></i><b>8.3.1</b> Model1 考量「消費金額」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.2" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model2-考量消費者型態的logit-glm"><i class="fa fa-check"></i><b>8.3.2</b> Model2 考量「消費者型態」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.3" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model3-考量消費者前期活動參與的logit-glm"><i class="fa fa-check"></i><b>8.3.3</b> Model3 考量「消費者前期活動參與」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.4" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#model-4-考量所有變數的logit-glm"><i class="fa fa-check"></i><b>8.3.4</b> Model 4 考量「所有變數」的Logit GLM</a></li>
+<li class="chapter" data-level="8.3.5" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#每個模型的roc曲線"><i class="fa fa-check"></i><b>8.3.5</b> 每個模型的ROC曲線</a></li>
+<li class="chapter" data-level="8.3.6" data-path="廣義線性迴歸模型-glm-model.html"><a href="廣義線性迴歸模型-glm-model.html#總結影響因素"><i class="fa fa-check"></i><b>8.3.6</b> 總結影響因素</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">First Report</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="評分資料-1" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> 評分資料<a href="評分資料-1.html#評分資料-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>在kabble上下載泡麵評分資料，標題為Ramen Ratings，包含各國泡麵評分資料
+<a href="https://www.kaggle.com/datasets/residentmario/ramen-ratings/data" class="uri">https://www.kaggle.com/datasets/residentmario/ramen-ratings/data</a></p>
+<div id="資料概況" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> 資料概況<a href="評分資料-1.html#資料概況" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>導入資料進入R Studio</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="評分資料-1.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="評分資料-1.html#cb1-2" tabindex="-1"></a>ramen_ratings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;~/Downloads/ramen-ratings.csv&quot;</span>)</span></code></pre></div>
+<p>加載所需的包</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="評分資料-1.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="評分資料-1.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<p><strong>資料概況</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="評分資料-1.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-2"><a href="評分資料-1.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb3-3"><a href="評分資料-1.html#cb3-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-4"><a href="評分資料-1.html#cb3-4" tabindex="-1"></a>ramen_ratings <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="評分資料-1.html#cb3-5" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="評分資料-1.html#cb3-6" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="評分資料-1.html#cb3-7" tabindex="-1"></a>  <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="評分資料-1.html#cb3-8" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="at">height =</span> <span class="st">&quot;500px&quot;</span>)</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Review #
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Brand
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Variety
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Style
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Country
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Stars
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Top Ten
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2580
+</td>
+<td style="text-align:left;">
+New Touch
+</td>
+<td style="text-align:left;">
+T’s Restaurant Tantanmen
+</td>
+<td style="text-align:left;">
+Cup
+</td>
+<td style="text-align:left;">
+Japan
+</td>
+<td style="text-align:left;">
+3.75
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2579
+</td>
+<td style="text-align:left;">
+Just Way
+</td>
+<td style="text-align:left;">
+Noodles Spicy Hot Sesame Spicy Hot Sesame Guan-miao Noodles
+</td>
+<td style="text-align:left;">
+Pack
+</td>
+<td style="text-align:left;">
+Taiwan
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2578
+</td>
+<td style="text-align:left;">
+Nissin
+</td>
+<td style="text-align:left;">
+Cup Noodles Chicken Vegetable
+</td>
+<td style="text-align:left;">
+Cup
+</td>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+2.25
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2577
+</td>
+<td style="text-align:left;">
+Wei Lih
+</td>
+<td style="text-align:left;">
+GGE Ramen Snack Tomato Flavor
+</td>
+<td style="text-align:left;">
+Pack
+</td>
+<td style="text-align:left;">
+Taiwan
+</td>
+<td style="text-align:left;">
+2.75
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2576
+</td>
+<td style="text-align:left;">
+Ching’s Secret
+</td>
+<td style="text-align:left;">
+Singapore Curry
+</td>
+<td style="text-align:left;">
+Pack
+</td>
+<td style="text-align:left;">
+India
+</td>
+<td style="text-align:left;">
+3.75
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2575
+</td>
+<td style="text-align:left;">
+Samyang Foods
+</td>
+<td style="text-align:left;">
+Kimchi song Song Ramen
+</td>
+<td style="text-align:left;">
+Pack
+</td>
+<td style="text-align:left;">
+South Korea
+</td>
+<td style="text-align:left;">
+4.75
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2574
+</td>
+<td style="text-align:left;">
+Acecook
+</td>
+<td style="text-align:left;">
+Spice Deli Tantan Men With Cilantro
+</td>
+<td style="text-align:left;">
+Cup
+</td>
+<td style="text-align:left;">
+Japan
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2573
+</td>
+<td style="text-align:left;">
+Ikeda Shoku
+</td>
+<td style="text-align:left;">
+Nabeyaki Kitsune Udon
+</td>
+<td style="text-align:left;">
+Tray
+</td>
+<td style="text-align:left;">
+Japan
+</td>
+<td style="text-align:left;">
+3.75
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2572
+</td>
+<td style="text-align:left;">
+Ripe’n’Dry
+</td>
+<td style="text-align:left;">
+Hokkaido Soy Sauce Ramen
+</td>
+<td style="text-align:left;">
+Pack
+</td>
+<td style="text-align:left;">
+Japan
+</td>
+<td style="text-align:left;">
+0.25
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2571
+</td>
+<td style="text-align:left;">
+KOKA
+</td>
+<td style="text-align:left;">
+The Original Spicy Stir-Fried Noodles
+</td>
+<td style="text-align:left;">
+Pack
+</td>
+<td style="text-align:left;">
+Singapore
+</td>
+<td style="text-align:left;">
+2.5
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>資料總數：2580</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="評分資料-1.html#cb4-1" tabindex="-1"></a><span class="fu">nrow</span>(ramen_ratings)</span></code></pre></div>
+<pre><code>## [1] 2580</code></pre>
+<p>計算國家數量：38個</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="評分資料-1.html#cb6-1" tabindex="-1"></a>countries_count <span class="ot">&lt;-</span> ramen_ratings <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="評分資料-1.html#cb6-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">NumberOfCountries =</span> <span class="fu">n_distinct</span>(Country)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="評分資料-1.html#cb6-3" tabindex="-1"></a>  <span class="fu">pull</span>(NumberOfCountries)</span></code></pre></div>
+<p>計算品牌數量：355個</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="評分資料-1.html#cb7-1" tabindex="-1"></a>brands_count <span class="ot">&lt;-</span> ramen_ratings <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="評分資料-1.html#cb7-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">NumberOfBrands =</span> <span class="fu">n_distinct</span>(Brand)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="評分資料-1.html#cb7-3" tabindex="-1"></a>  <span class="fu">pull</span>(NumberOfBrands)</span></code></pre></div>
+<p>計算口味種類數量：2412個</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="評分資料-1.html#cb8-1" tabindex="-1"></a>varieties_count <span class="ot">&lt;-</span> ramen_ratings <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="評分資料-1.html#cb8-2" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">NumberOfVarieties =</span> <span class="fu">n_distinct</span>(Variety)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="評分資料-1.html#cb8-3" tabindex="-1"></a>  <span class="fu">pull</span>(NumberOfVarieties)</span></code></pre></div>
+</div>
+<div id="評分分佈" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> 評分分佈<a href="評分資料-1.html#評分分佈" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>將Stars列轉換為數字，非數字值將被設為NA</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="評分資料-1.html#cb9-1" tabindex="-1"></a>ramen_ratings<span class="sc">$</span>Stars <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(ramen_ratings<span class="sc">$</span>Stars))</span>
+<span id="cb9-2"><a href="評分資料-1.html#cb9-2" tabindex="-1"></a>full_score_count <span class="ot">&lt;-</span> <span class="fu">sum</span>(ramen_ratings<span class="sc">$</span>Stars <span class="sc">==</span> <span class="dv">5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>繪製評分的直方圖</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="評分資料-1.html#cb10-1" tabindex="-1"></a><span class="fu">ggplot</span>(ramen_ratings, <span class="fu">aes</span>(<span class="at">x=</span>Stars)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="評分資料-1.html#cb10-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.25</span>, <span class="at">fill=</span><span class="st">&quot;light blue&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="評分資料-1.html#cb10-3" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-4"><a href="評分資料-1.html#cb10-4" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Ramen Ratings&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="評分資料-1.html#cb10-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Stars&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="評分資料-1.html#cb10-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;numbers&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="評分資料-1.html#cb10-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label12"></span>
+<img src="_main_files/figure-html/label12-1.png" alt="泡麵評分分佈直方圖" width="672" />
+<p class="caption">
+Figure 6.1: 泡麵評分分佈直方圖
+</p>
+</div>
+<p>發現評分集中在3.5~4分左右，而5分的品項也有許多，共有386種</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="評分資料-1.html#cb11-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;獲得滿分的泡麵數量：&quot;</span>, full_score_count))</span></code></pre></div>
+<pre><code>## [1] &quot;獲得滿分的泡麵數量： 386&quot;</code></pre>
+</div>
+<div id="國家分析" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> 國家分析<a href="評分資料-1.html#國家分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>各國泡麵品牌和口味種類為何？
+哪個國家的拉麵獲得了最高的平均評分？</p>
+<p>首先計算每個國家平均評分</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="評分資料-1.html#cb13-1" tabindex="-1"></a>country_average_rating <span class="ot">&lt;-</span> ramen_ratings <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="評分資料-1.html#cb13-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="評分資料-1.html#cb13-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">AverageRating =</span> <span class="fu">mean</span>(Stars, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="評分資料-1.html#cb13-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(AverageRating)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="評分資料-1.html#cb13-5" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb13-6"><a href="評分資料-1.html#cb13-6" tabindex="-1"></a><span class="fu">kable</span>(country_average_rating)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Country</th>
+<th align="right">AverageRating</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Brazil</td>
+<td align="right">4.350000</td>
+</tr>
+<tr class="even">
+<td align="left">Sarawak</td>
+<td align="right">4.333333</td>
+</tr>
+<tr class="odd">
+<td align="left">Cambodia</td>
+<td align="right">4.200000</td>
+</tr>
+<tr class="even">
+<td align="left">Malaysia</td>
+<td align="right">4.154193</td>
+</tr>
+<tr class="odd">
+<td align="left">Singapore</td>
+<td align="right">4.126147</td>
+</tr>
+<tr class="even">
+<td align="left">Indonesia</td>
+<td align="right">4.067460</td>
+</tr>
+<tr class="odd">
+<td align="left">Japan</td>
+<td align="right">3.981605</td>
+</tr>
+<tr class="even">
+<td align="left">Myanmar</td>
+<td align="right">3.946429</td>
+</tr>
+<tr class="odd">
+<td align="left">Fiji</td>
+<td align="right">3.875000</td>
+</tr>
+<tr class="even">
+<td align="left">Hong Kong</td>
+<td align="right">3.801825</td>
+</tr>
+</tbody>
+</table>
+<p>發現巴西、砂拉越、柬埔寨、馬來西亞、新加坡等國家名列前茅，但是和我們熟悉的既定印象卻有些不同。
+因此，進一步看每個國家的品牌數量和口味數量</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="評分資料-1.html#cb14-1" tabindex="-1"></a>country_diversity <span class="ot">&lt;-</span> ramen_ratings <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="評分資料-1.html#cb14-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="評分資料-1.html#cb14-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">BrandCount =</span> <span class="fu">n_distinct</span>(Brand),</span>
+<span id="cb14-4"><a href="評分資料-1.html#cb14-4" tabindex="-1"></a>            <span class="at">VarietyCount =</span> <span class="fu">n_distinct</span>(Variety)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="評分資料-1.html#cb14-5" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="評分資料-1.html#cb14-6" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(VarietyCount))</span>
+<span id="cb14-7"><a href="評分資料-1.html#cb14-7" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="評分資料-1.html#cb14-8" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(country_diversity))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Country</th>
+<th align="right">BrandCount</th>
+<th align="right">VarietyCount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Japan</td>
+<td align="right">58</td>
+<td align="right">333</td>
+</tr>
+<tr class="even">
+<td align="left">USA</td>
+<td align="right">49</td>
+<td align="right">315</td>
+</tr>
+<tr class="odd">
+<td align="left">South Korea</td>
+<td align="right">35</td>
+<td align="right">289</td>
+</tr>
+<tr class="even">
+<td align="left">Taiwan</td>
+<td align="right">47</td>
+<td align="right">222</td>
+</tr>
+<tr class="odd">
+<td align="left">Thailand</td>
+<td align="right">25</td>
+<td align="right">178</td>
+</tr>
+<tr class="even">
+<td align="left">China</td>
+<td align="right">33</td>
+<td align="right">156</td>
+</tr>
+</tbody>
+</table>
+<p>將兩個結果合併</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="評分資料-1.html#cb15-1" tabindex="-1"></a>country_analysis <span class="ot">&lt;-</span> <span class="fu">merge</span>(country_average_rating, country_diversity, <span class="at">by =</span> <span class="st">&quot;Country&quot;</span>)</span></code></pre></div>
+<p>查看國家按平均評分排序的結果</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="評分資料-1.html#cb16-1" tabindex="-1"></a>country_analysis <span class="ot">&lt;-</span> country_analysis[<span class="fu">order</span>(<span class="sc">-</span>country_analysis<span class="sc">$</span>AverageRating),]</span>
+<span id="cb16-2"><a href="評分資料-1.html#cb16-2" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(country_analysis))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Country</th>
+<th align="right">AverageRating</th>
+<th align="right">BrandCount</th>
+<th align="right">VarietyCount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">Brazil</td>
+<td align="right">4.350000</td>
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">9</td>
+<td align="left">Sarawak</td>
+<td align="right">4.333333</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">Cambodia</td>
+<td align="right">4.200000</td>
+<td align="right">2</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">7</td>
+<td align="left">Malaysia</td>
+<td align="right">4.154193</td>
+<td align="right">32</td>
+<td align="right">150</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">Singapore</td>
+<td align="right">4.126147</td>
+<td align="right">10</td>
+<td align="right">102</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">Indonesia</td>
+<td align="right">4.067460</td>
+<td align="right">19</td>
+<td align="right">125</td>
+</tr>
+</tbody>
+</table>
+<p>發現結果不如預期是因為有些國家種類少但單一品項評分高，因此提升排名。
+為了避免這種情況，以「口味種類」多寡初步篩選出前十名，在進行評分平均分析。</p>
+<p>確定拉麵品種數量排名前10的國家</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="評分資料-1.html#cb17-1" tabindex="-1"></a>top_countries_by_variety <span class="ot">&lt;-</span> ramen_ratings <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="評分資料-1.html#cb17-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="評分資料-1.html#cb17-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">VarietyCount =</span> <span class="fu">n_distinct</span>(Variety)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="評分資料-1.html#cb17-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(VarietyCount)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="評分資料-1.html#cb17-5" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="評分資料-1.html#cb17-6" tabindex="-1"></a>  <span class="fu">pull</span>(Country)</span></code></pre></div>
+<p>前五名分別是：日本、美國、南韓、台灣、泰國</p>
+<p>針對這些國家進行平均評分分析，以水平長條圖呈現</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="評分資料-1.html#cb18-1" tabindex="-1"></a>average_rating_top_countries <span class="ot">&lt;-</span> ramen_ratings <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="評分資料-1.html#cb18-2" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">%in%</span> top_countries_by_variety) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="評分資料-1.html#cb18-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="評分資料-1.html#cb18-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">AverageRating =</span> <span class="fu">mean</span>(Stars, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="評分資料-1.html#cb18-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(AverageRating))</span>
+<span id="cb18-6"><a href="評分資料-1.html#cb18-6" tabindex="-1"></a><span class="fu">ggplot</span>(average_rating_top_countries, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Country, AverageRating), <span class="at">y =</span> AverageRating)) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="評分資料-1.html#cb18-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="評分資料-1.html#cb18-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  </span>
+<span id="cb18-9"><a href="評分資料-1.html#cb18-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Average Ramen Ratings by Country&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Average Rating&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Country&quot;</span>) <span class="sc">+</span></span>
+<span id="cb18-10"><a href="評分資料-1.html#cb18-10" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:label13"></span>
+<img src="_main_files/figure-html/label13-1.png" alt="國家Top 10泡麵評分長條圖" width="672" />
+<p class="caption">
+Figure 6.2: 國家Top 10泡麵評分長條圖
+</p>
+</div>
+<p>結果發現排名依序為馬來西亞、印尼、日本、香港、南韓，而台灣泡麵位居第六名。
+且種類豐富、評分高的國家幾乎都是在亞洲，再次驗證亞洲的泡麵風氣盛行！</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="地圖資料-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="迴歸模型.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-rating.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

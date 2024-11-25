@@ -1,0 +1,3681 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 資料分析：超商購物車消費者資料分析 | 呂珣瑄 數據分析作品集</title>
+  <meta name="description" content="Chapter 2 資料分析：超商購物車消費者資料分析 | 呂珣瑄 數據分析作品集" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 資料分析：超商購物車消費者資料分析 | 呂珣瑄 數據分析作品集" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 2 資料分析：超商購物車消費者資料分析 | 呂珣瑄 數據分析作品集" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 資料分析：超商購物車消費者資料分析 | 呂珣瑄 數據分析作品集" />
+  
+  <meta name="twitter:description" content="Chapter 2 資料分析：超商購物車消費者資料分析 | 呂珣瑄 數據分析作品集" />
+  
+
+<meta name="author" content="呂珣瑄" />
+
+
+<meta name="date" content="2024-11-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="半導體永續報告書分析.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#資料分析超商購物車消費者資料分析"><i class="fa fa-check"></i><b>1.1</b> 資料分析：超商購物車消費者資料分析</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#文字探勘半導體永續報告書分析"><i class="fa fa-check"></i><b>1.2</b> 文字探勘：半導體永續報告書分析</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html"><i class="fa fa-check"></i><b>2</b> 資料分析：超商購物車消費者資料分析</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#資料敘述"><i class="fa fa-check"></i><b>2.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#故事背景"><i class="fa fa-check"></i><b>2.1.1</b> 故事背景</a></li>
+<li class="chapter" data-level="2.1.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#資料概要"><i class="fa fa-check"></i><b>2.1.2</b> 資料概要</a></li>
+<li class="chapter" data-level="2.1.3" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#資料前處理與轉換"><i class="fa fa-check"></i><b>2.1.3</b> 資料前處理與轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#探索性資料分析"><i class="fa fa-check"></i><b>2.2</b> 探索性資料分析</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#銷售趨勢分析"><i class="fa fa-check"></i><b>2.2.1</b> 銷售趨勢分析</a></li>
+<li class="chapter" data-level="2.2.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#顧客行為分析"><i class="fa fa-check"></i><b>2.2.2</b> 顧客行為分析</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#視覺化消費者活動接受情況"><i class="fa fa-check"></i><b>2.3</b> 視覺化消費者活動接受情況</a></li>
+<li class="chapter" data-level="2.4" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#二元變數之probitlogit-glm"><i class="fa fa-check"></i><b>2.4</b> 二元變數之Probit/Logit GLM</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model1-考量消費金額的logit-glm"><i class="fa fa-check"></i><b>2.4.1</b> Model1 考量「消費金額」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model2-考量消費者型態的logit-glm"><i class="fa fa-check"></i><b>2.4.2</b> Model2 考量「消費者型態」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.3" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model3-考量消費者前期活動參與的logit-glm"><i class="fa fa-check"></i><b>2.4.3</b> Model3 考量「消費者前期活動參與」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.4" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model-4-考量所有變數的logit-glm"><i class="fa fa-check"></i><b>2.4.4</b> Model 4 考量「所有變數」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.5" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#每個模型的roc曲線"><i class="fa fa-check"></i><b>2.4.5</b> 每個模型的ROC曲線</a></li>
+<li class="chapter" data-level="2.4.6" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#總結影響因素"><i class="fa fa-check"></i><b>2.4.6</b> 總結影響因素</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html"><i class="fa fa-check"></i><b>3</b> 半導體永續報告書分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#年台灣ic產業主要廠商排名"><i class="fa fa-check"></i><b>3.1</b> 2022年台灣IC產業主要廠商排名</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#xpath-爬取網站資料"><i class="fa fa-check"></i><b>3.1.1</b> Xpath 爬取網站資料</a></li>
+<li class="chapter" data-level="3.1.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#網站文字清理"><i class="fa fa-check"></i><b>3.1.2</b> 網站文字清理</a></li>
+<li class="chapter" data-level="3.1.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#年台灣ic產業主要廠商排名-1"><i class="fa fa-check"></i><b>3.1.3</b> 2022年台灣IC產業主要廠商排名</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#半導體永續報告書導入與清理"><i class="fa fa-check"></i><b>3.2</b> 半導體永續報告書導入與清理</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#台積電永續報告書"><i class="fa fa-check"></i><b>3.2.1</b> 台積電永續報告書</a></li>
+<li class="chapter" data-level="3.2.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#聯發科永續報告書"><i class="fa fa-check"></i><b>3.2.2</b> 聯發科永續報告書</a></li>
+<li class="chapter" data-level="3.2.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#日月光控股永續報告書"><i class="fa fa-check"></i><b>3.2.3</b> 日月光控股永續報告書</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#計算-tf-idf"><i class="fa fa-check"></i><b>3.3</b> 計算 tf-idf</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#將資料合併"><i class="fa fa-check"></i><b>3.3.1</b> 將資料合併</a></li>
+<li class="chapter" data-level="3.3.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#設定停止詞和自訂義辭典"><i class="fa fa-check"></i><b>3.3.2</b> 設定停止詞和自訂義辭典</a></li>
+<li class="chapter" data-level="3.3.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#斷詞"><i class="fa fa-check"></i><b>3.3.3</b> 斷詞</a></li>
+<li class="chapter" data-level="3.3.4" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#計算-tf-idf-1"><i class="fa fa-check"></i><b>3.3.4</b> 計算 tf-idf</a></li>
+<li class="chapter" data-level="3.3.5" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#繪製長條圖"><i class="fa fa-check"></i><b>3.3.5</b> 繪製長條圖</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#正面情緒分析"><i class="fa fa-check"></i><b>3.4</b> 正面情緒分析</a></li>
+<li class="chapter" data-level="3.5" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#分析永續報告書用字相似度"><i class="fa fa-check"></i><b>3.5</b> 分析永續報告書用字相似度</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#計算tf-idf每一個字分別出現在這三家永續報告書的次數"><i class="fa fa-check"></i><b>3.5.1</b> 計算tf-idf(每一個字分別出現在這三家永續報告書的次數)</a></li>
+<li class="chapter" data-level="3.5.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#查看相關係數"><i class="fa fa-check"></i><b>3.5.2</b> 查看相關係數</a></li>
+<li class="chapter" data-level="3.5.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#分析詞頻差異"><i class="fa fa-check"></i><b>3.5.3</b> 分析詞頻差異</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#lda主題模型"><i class="fa fa-check"></i><b>3.6</b> LDA主題模型</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#前置處理"><i class="fa fa-check"></i><b>3.6.1</b> 前置處理</a></li>
+<li class="chapter" data-level="3.6.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#lda主題建模"><i class="fa fa-check"></i><b>3.6.2</b> LDA主題建模</a></li>
+<li class="chapter" data-level="3.6.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#為主題命名"><i class="fa fa-check"></i><b>3.6.3</b> 為主題命名</a></li>
+<li class="chapter" data-level="3.6.4" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#主題與公司對應關係"><i class="fa fa-check"></i><b>3.6.4</b> 主題與公司對應關係</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">呂珣瑄 數據分析作品集</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="資料分析超商購物車消費者資料分析-1" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> 資料分析：超商購物車消費者資料分析<a href="資料分析超商購物車消費者資料分析-1.html#資料分析超商購物車消費者資料分析-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>資料取自於Kaggle，資料名稱為Marketing Campaign
+<a href="https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign" class="uri">https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign</a></p>
+<div id="資料敘述" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> 資料敘述<a href="資料分析超商購物車消費者資料分析-1.html#資料敘述" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="故事背景" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> 故事背景<a href="資料分析超商購物車消費者資料分析-1.html#故事背景" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>（一）背景</p>
+<p>一家大型超市同時運營線上和線下銷售通路。為了提升客戶參與度和忠誠度，超市定期推出各種優惠活動。然而，並不是所有客戶都會接受這些優惠。因此，超市希望通過分析過去行銷活動的數據，了解哪些因素影響客戶接受優惠，從而提高未來行銷活動的精準度和效果。</p>
+<p>（二）目標</p>
+<p>利用過去的行銷活動數據，預測哪些客戶在最後一次活動中接受了優惠，並識別影響這一決策的關鍵因素。</p>
+<p>（三）問題</p>
+<p>為什麼有些客戶在最後一次活動中接受了優惠，而有些客戶沒有？</p>
+<p>（四）重要性</p>
+<ol style="list-style-type: decimal">
+<li>提升行銷精準度：通過分析客戶行為，超市可以針對更有可能接受優惠的客戶進行精準行銷，提高活動的成功率。</li>
+<li>資源有效分配：將行銷資源集中在高潛力客戶上，降低行銷成本，提高資源利用效率。</li>
+<li>客戶滿意度：通過提供更符合客戶需求的優惠，提升客戶滿意度和忠誠度。</li>
+<li>銷售提升：增加優惠接受率，提高銷售額和客戶購買頻次。</li>
+</ol>
+<p>（五）分析方法</p>
+<p>使用Logit GLM分析過去的行銷活動數據，確定影響客戶接受優惠的關鍵因素，如收入水平、購買習慣、教育程度等。這些信息將幫助超市設計更有針對性的行銷活動，從而提高優惠接受率和整體行銷效果。</p>
+<p>（六）預期結果</p>
+<p>識別出高價值客戶群體：了解哪些客戶更有可能接受優惠。
+優化行銷策略：根據分析結果，調整和優化未來的行銷活動策略。
+提高優惠接受率：增加優惠接受率，從而提高銷售和客戶忠誠度。</p>
+</div>
+<div id="資料概要" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> 資料概要<a href="資料分析超商購物車消費者資料分析-1.html#資料概要" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>首先將資料導入R studio</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb1-2" tabindex="-1"></a>marketing_campaign<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;~/Desktop/data science/marketing campaign data/marketing_campaign_111.xlsx&quot;</span>)</span></code></pre></div>
+<p><span class="math inline">\(資料欄位說明\)</span></p>
+<p>如表<a href="資料分析超商購物車消費者資料分析-1.html#tab:table-1">2.1</a>所示總共有2240筆資料，總共有29個變數欄位，有3個類別變數和26個數值變數，Income存在缺失值。</p>
+<table>
+<caption>
+<span id="tab:table-1">Table 2.1: </span>資料欄位說明
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+字段名稱
+</th>
+<th style="text-align:left;">
+描述
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp1
+</td>
+<td style="text-align:left;">
+如果客戶在第一次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp2
+</td>
+<td style="text-align:left;">
+如果客戶在第二次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp3
+</td>
+<td style="text-align:left;">
+如果客戶在第三次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp4
+</td>
+<td style="text-align:left;">
+如果客戶在第四次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AcceptedCmp5
+</td>
+<td style="text-align:left;">
+如果客戶在第五次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Response
+</td>
+<td style="text-align:left;">
+如果客戶在最後一次活動中接受了優惠，則為1，否則為0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Complain
+</td>
+<td style="text-align:left;">
+如果客戶在過去兩年內有投訴，則為1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DtCustomer
+</td>
+<td style="text-align:left;">
+客戶加入公司的日期
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Education
+</td>
+<td style="text-align:left;">
+客戶的教育程度
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Marital
+</td>
+<td style="text-align:left;">
+客戶的婚姻狀況
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kidhome
+</td>
+<td style="text-align:left;">
+客戶家庭中小孩的數量
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Teenhome
+</td>
+<td style="text-align:left;">
+客戶家庭中青少年的數量
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Income
+</td>
+<td style="text-align:left;">
+客戶家庭的年收入
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntFishProducts
+</td>
+<td style="text-align:left;">
+過去兩年內在魚類產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntMeatProducts
+</td>
+<td style="text-align:left;">
+過去兩年內在肉類產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntFruits
+</td>
+<td style="text-align:left;">
+過去兩年內在水果產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntSweetProducts
+</td>
+<td style="text-align:left;">
+過去兩年內在甜品產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntWines
+</td>
+<td style="text-align:left;">
+過去兩年內在葡萄酒產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MntGoldProds
+</td>
+<td style="text-align:left;">
+過去兩年內在黃金產品上的花費
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumDealsPurchases
+</td>
+<td style="text-align:left;">
+使用折扣進行的購買次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumCatalogPurchases
+</td>
+<td style="text-align:left;">
+使用目錄進行的購買次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumStorePurchases
+</td>
+<td style="text-align:left;">
+直接在商店進行的購買次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumWebPurchases
+</td>
+<td style="text-align:left;">
+透過公司網站進行的購買次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NumWebVisitsMonth
+</td>
+<td style="text-align:left;">
+過去一個月內訪問公司網站的次數
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Recency
+</td>
+<td style="text-align:left;">
+自上次購買以來的天數
+</td>
+</tr>
+</tbody>
+</table>
+<p>呈現資料集的前十項</p>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Year_Birth
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Education
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Marital_Status
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Income
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Kidhome
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Teenhome
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Dt_Customer
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Recency
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntWines
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntFruits
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntMeatProducts
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntFishProducts
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntSweetProducts
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+MntGoldProds
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumDealsPurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumWebPurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumCatalogPurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumStorePurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumWebVisitsMonth
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp3
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp4
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp5
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp1
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Complain
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Z_CostContact
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Z_Revenue
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Response
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+…30
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+6862
+</td>
+<td style="text-align:right;">
+1971
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Divorced
+</td>
+<td style="text-align:right;">
+1730
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2014-05-18
+</td>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5899
+</td>
+<td style="text-align:right;">
+1950
+</td>
+<td style="text-align:left;">
+PhD
+</td>
+<td style="text-align:left;">
+Together
+</td>
+<td style="text-align:right;">
+5648
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2014-03-13
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+49
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4303
+</td>
+<td style="text-align:right;">
+1957
+</td>
+<td style="text-align:left;">
+PhD
+</td>
+<td style="text-align:left;">
+Together
+</td>
+<td style="text-align:right;">
+6835
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2012-12-08
+</td>
+<td style="text-align:right;">
+76
+</td>
+<td style="text-align:right;">
+107
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+137
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10749
+</td>
+<td style="text-align:right;">
+1991
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Single
+</td>
+<td style="text-align:right;">
+8028
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2012-09-18
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+66
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+178
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9931
+</td>
+<td style="text-align:right;">
+1963
+</td>
+<td style="text-align:left;">
+PhD
+</td>
+<td style="text-align:left;">
+Married
+</td>
+<td style="text-align:right;">
+4023
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2014-06-23
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4246
+</td>
+<td style="text-align:right;">
+1982
+</td>
+<td style="text-align:left;">
+Master
+</td>
+<td style="text-align:left;">
+Single
+</td>
+<td style="text-align:right;">
+6560
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2013-12-12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+262
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+373
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3955
+</td>
+<td style="text-align:right;">
+1965
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Divorced
+</td>
+<td style="text-align:right;">
+4861
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2014-06-22
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11110
+</td>
+<td style="text-align:right;">
+1973
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Single
+</td>
+<td style="text-align:right;">
+3502
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2013-04-13
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9303
+</td>
+<td style="text-align:right;">
+1976
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Married
+</td>
+<td style="text-align:right;">
+5305
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+2013-07-30
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+32
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7286
+</td>
+<td style="text-align:right;">
+1968
+</td>
+<td style="text-align:left;">
+Graduation
+</td>
+<td style="text-align:left;">
+Together
+</td>
+<td style="text-align:right;">
+41728
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+2013-05-24
+</td>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+55
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="資料前處理與轉換" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> 資料前處理與轉換<a href="資料分析超商購物車消費者資料分析-1.html#資料前處理與轉換" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>簡化類別變數或是轉換成數值</p>
+<ol style="list-style-type: decimal">
+<li>計算年齡</li>
+<li>計算教育年份</li>
+<li>單身或非單身</li>
+<li>家中小孩數量</li>
+<li>在店家的總支出</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-1" tabindex="-1"></a>customer_data <span class="ot">&lt;-</span> marketing_campaign <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-2" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb2-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-3" tabindex="-1"></a>    <span class="at">ID =</span> ID,</span>
+<span id="cb2-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-4" tabindex="-1"></a>    <span class="at">Age =</span> <span class="dv">2024</span> <span class="sc">-</span> Year_Birth,  <span class="co"># 從2024年減去出生年份以計算年齡</span></span>
+<span id="cb2-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-5" tabindex="-1"></a>    <span class="at">Education_Years =</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-6" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;Basic&quot;</span> <span class="sc">~</span> <span class="dv">12</span>,</span>
+<span id="cb2-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-7" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;Graduation&quot;</span> <span class="sc">~</span> <span class="dv">16</span>,</span>
+<span id="cb2-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-8" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;Master&quot;</span> <span class="sc">~</span> <span class="dv">18</span>,</span>
+<span id="cb2-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-9" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;2n Cycle&quot;</span> <span class="sc">~</span> <span class="dv">18</span>,</span>
+<span id="cb2-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-10" tabindex="-1"></a>      Education <span class="sc">==</span> <span class="st">&quot;PhD&quot;</span> <span class="sc">~</span> <span class="dv">21</span>,</span>
+<span id="cb2-11"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-11" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span>  <span class="co"># 如果有不符合以上條件的Education值，將賦予NA</span></span>
+<span id="cb2-12"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-12" tabindex="-1"></a>    ),</span>
+<span id="cb2-13"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-13" tabindex="-1"></a>    <span class="at">Marital_Status=</span> <span class="fu">case_when</span>(</span>
+<span id="cb2-14"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-14" tabindex="-1"></a>    Marital_Status <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Alone&quot;</span>, <span class="st">&quot;Single&quot;</span>, <span class="st">&quot;Divorced&quot;</span>, <span class="st">&quot;Widow&quot;</span>, <span class="st">&quot;Absurd&quot;</span>, <span class="st">&quot;YOLO&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Alone&quot;</span>,</span>
+<span id="cb2-15"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-15" tabindex="-1"></a>    Marital_Status <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Married&quot;</span>, <span class="st">&quot;Together&quot;</span>) <span class="sc">~</span> <span class="st">&quot;Couple&quot;</span>,</span>
+<span id="cb2-16"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-16" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span>  <span class="co"># 如果有不符合以上條件的Marital_Status值，將賦予NA</span></span>
+<span id="cb2-17"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-17" tabindex="-1"></a>    ),</span>
+<span id="cb2-18"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-18" tabindex="-1"></a>    <span class="at">Income =</span> Income,</span>
+<span id="cb2-19"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-19" tabindex="-1"></a>    <span class="at">Number_of_child =</span> Kidhome <span class="sc">+</span> Teenhome,</span>
+<span id="cb2-20"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-20" tabindex="-1"></a>    <span class="at">Spending =</span> MntFishProducts<span class="sc">+</span>MntMeatProducts<span class="sc">+</span>MntFruits<span class="sc">+</span>MntSweetProducts<span class="sc">+</span>MntWines<span class="sc">+</span>MntGoldProds,</span>
+<span id="cb2-21"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-21" tabindex="-1"></a>    <span class="at">AcceptedCmp1=</span>AcceptedCmp1,</span>
+<span id="cb2-22"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-22" tabindex="-1"></a>    <span class="at">AcceptedCmp2=</span>AcceptedCmp2,</span>
+<span id="cb2-23"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-23" tabindex="-1"></a>    <span class="at">AcceptedCmp3=</span>AcceptedCmp3,</span>
+<span id="cb2-24"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-24" tabindex="-1"></a>    <span class="at">AcceptedCmp4=</span>AcceptedCmp4,</span>
+<span id="cb2-25"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-25" tabindex="-1"></a>    <span class="at">AcceptedCmp5=</span>AcceptedCmp5,</span>
+<span id="cb2-26"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-26" tabindex="-1"></a>    <span class="at">Response=</span>Response,</span>
+<span id="cb2-27"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-27" tabindex="-1"></a>    <span class="at">NumStorePurchases=</span>NumStorePurchases,</span>
+<span id="cb2-28"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-28" tabindex="-1"></a>    <span class="at">NumWebPurchases=</span>NumWebPurchases,</span>
+<span id="cb2-29"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-29" tabindex="-1"></a>    <span class="at">NumWebVisitsMonth=</span>NumWebVisitsMonth</span>
+<span id="cb2-30"><a href="資料分析超商購物車消費者資料分析-1.html#cb2-30" tabindex="-1"></a>  )</span></code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+ID
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Age
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Education_Years
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Marital_Status
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Income
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Number_of_child
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Spending
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp1
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp2
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp3
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp4
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+AcceptedCmp5
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Response
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumStorePurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumWebPurchases
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+NumWebVisitsMonth
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+6862
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Alone
+</td>
+<td style="text-align:right;">
+1730
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5899
+</td>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+5648
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4303
+</td>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+6835
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+137
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10749
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Alone
+</td>
+<td style="text-align:right;">
+8028
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+178
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9931
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+4023
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+19
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4246
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:left;">
+Alone
+</td>
+<td style="text-align:right;">
+6560
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+373
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+17
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3955
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Alone
+</td>
+<td style="text-align:right;">
+4861
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11110
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Alone
+</td>
+<td style="text-align:right;">
+3502
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9303
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+5305
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7286
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:left;">
+Couple
+</td>
+<td style="text-align:right;">
+41728
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+55
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="探索性資料分析" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> 探索性資料分析<a href="資料分析超商購物車消費者資料分析-1.html#探索性資料分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="銷售趨勢分析" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> 銷售趨勢分析<a href="資料分析超商購物車消費者資料分析-1.html#銷售趨勢分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>（一）每日訂單數量概況</strong></p>
+<p>建立 “daily_orders” data frame整理每日訂單數量概況</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb3-1" tabindex="-1"></a>daily_orders <span class="ot">&lt;-</span> orders <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb3-2" tabindex="-1"></a>  <span class="fu">group_by</span>(order_dow) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb3-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">order_count =</span> <span class="fu">n</span>())</span></code></pre></div>
+<p>以表格呈現</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">order_dow</th>
+<th align="right">order_count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">600905</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">587478</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">467260</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">436972</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">426339</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">453368</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">448761</td>
+</tr>
+</tbody>
+</table>
+<p>以直方圖呈現</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb4-1" tabindex="-1"></a><span class="fu">ggplot</span>(daily_orders, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(order_dow), <span class="at">y =</span> order_count)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb4-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;light blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb4-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Day of Week&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of Orders&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Orders by Day of Week&quot;</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb4-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb4-5" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Sat&quot;</span>,<span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>)) </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="_main_files/figure-html/unnamed-chunk-8-1.png" alt="一週訂單數量分佈" width="672" />
+<p class="caption">
+Figure 2.1: 一週訂單數量分佈
+</p>
+</div>
+<p>從上述表格和圖片可以得知訂單量在一星期中的分佈情況，其中星期六、日最多，星期三最少。可知消費者偏好在週末的時候採購日用品，平日忙碌相較之下沒時間採購。而超市中食品類食物具有時效性，了解消費者採購的時間分佈可以更好的管理庫存，或是能夠在週三時多推出促銷活動增加消費者購物誘因。</p>
+<p><strong>(二）單日購買時間分佈</strong></p>
+<p>利用分布圖不分日期看訂單集中在哪一個時間
+使用ggplot2繪製一天中各小時訂單量的分布圖，發現訂單集中在上午10:00到下午16:00的區間段，而中午12:00訂單相對較少</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb5-1" tabindex="-1"></a>hourly_orders <span class="ot">&lt;-</span> orders <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb5-2" tabindex="-1"></a>  <span class="fu">group_by</span>(order_hour_of_day) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb5-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">order_count =</span> <span class="fu">n</span>())</span>
+<span id="cb5-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb5-4" tabindex="-1"></a><span class="fu">ggplot</span>(hourly_orders, <span class="fu">aes</span>(<span class="at">x =</span> order_hour_of_day, <span class="at">y =</span> order_count)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb5-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">group=</span><span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb5-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb5-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;light blue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb5-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb5-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Hour of Day&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Number of Orders&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Distribution of Orders Throughout the Day&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb5-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
+<img src="_main_files/figure-html/unnamed-chunk-9-1.png" alt="單日購買時間分佈圖" width="672" />
+<p class="caption">
+Figure 2.2: 單日購買時間分佈圖
+</p>
+</div>
+<p>近一步分析不同日間訂單每小時購買情況
+依照不同日期，按小時分組，計算每小时的訂單數量
+使用氣泡圖繪製，視覺化看出購買時間分佈
+可以發現在禮拜六訂單集中在下午時段，禮拜日則上午時段較多，平日則無明顯差異。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-1" tabindex="-1"></a>hourly_orders_by_dow <span class="ot">&lt;-</span> orders <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-2" tabindex="-1"></a>  <span class="fu">group_by</span>(order_dow, order_hour_of_day) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">order_count =</span> <span class="fu">n</span>())</span>
+<span id="cb6-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-4" tabindex="-1"></a>hourly_orders_by_dow <span class="ot">&lt;-</span> hourly_orders_by_dow <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">order_dow =</span> <span class="fu">factor</span>(order_dow, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>)))</span>
+<span id="cb6-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-6" tabindex="-1"></a><span class="fu">ggplot</span>(hourly_orders_by_dow, <span class="fu">aes</span>(<span class="at">x =</span> order_hour_of_day, <span class="at">y =</span> order_dow, <span class="at">size =</span> order_count)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> order_count), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb6-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-8" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">12</span>)) <span class="sc">+</span> </span>
+<span id="cb6-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-9" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">&quot;red&quot;</span>, <span class="at">high =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb6-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Hour of Day&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Day of Week&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Order Distribution by Hour and Day of Week&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb6-12"><a href="資料分析超商購物車消費者資料分析-1.html#cb6-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>)) </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="_main_files/figure-html/unnamed-chunk-10-1.png" alt="單日購買時間分佈氣泡圖" width="672" />
+<p class="caption">
+Figure 2.3: 單日購買時間分佈氣泡圖
+</p>
+</div>
+<p><strong>(三）顧客購買週期</strong></p>
+<p>分析顧客間隔多久再下訂單購買商品
+過濾掉days_since_prior_order中的缺失值，排除首次購買的顧客
+將dataframe命名為 orders_df_filtered</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb7-1" tabindex="-1"></a>orders_df_filtered <span class="ot">&lt;-</span> orders[<span class="sc">!</span><span class="fu">is.na</span>(orders<span class="sc">$</span>days_since_prior_order), ]</span></code></pre></div>
+<p>以ggplot畫直方圖，視覺化趨勢。
+發現其中購買頻以7天為最高，多數顧客以一週作為購買週期
+而發現30天的訂單量多，推測資料將30天以上的資料都歸納在30天。
+因此，超市可以一週為單位，在網站或是 App 提醒顧客再回來購買商品。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb8-1" tabindex="-1"></a><span class="fu">ggplot</span>(orders_df_filtered, <span class="fu">aes</span>(<span class="at">x =</span> days_since_prior_order)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb8-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;light blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb8-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Days Since Prior Order&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Distribution of Days Since Prior Order&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb8-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
+<img src="_main_files/figure-html/unnamed-chunk-12-1.png" alt="顧客購買週期" width="672" />
+<p class="caption">
+Figure 2.4: 顧客購買週期
+</p>
+</div>
+<p><strong>（四）顧客忠誠度</strong></p>
+<p>根據顧客購買週期進一步看顧客的忠誠度
+依照購買週期頻率將顧客分群成高忠誠、中忠誠、低忠誠</p>
+<p>7天以內：高忠誠</p>
+<p>7-20天內：中忠誠</p>
+<p>21-29天以上：低忠誠</p>
+<p>30天（以上）:零星顧客</p>
+<p>首先計算每個顧客的平均回購週期</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb9-1" tabindex="-1"></a>average_repurchase <span class="ot">&lt;-</span> orders <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb9-2" tabindex="-1"></a>  <span class="fu">group_by</span>(user_id) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb9-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">average_days_between_orders =</span> <span class="fu">mean</span>(days_since_prior_order, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<p>根據平均回購週期將顧客分類</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb10-1" tabindex="-1"></a>customer_loyalty <span class="ot">&lt;-</span> average_repurchase <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb10-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">loyalty_category =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb10-3" tabindex="-1"></a>    average_days_between_orders <span class="sc">&lt;=</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">&quot;High Loyalty&quot;</span>,</span>
+<span id="cb10-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb10-4" tabindex="-1"></a>    average_days_between_orders <span class="sc">&gt;</span> <span class="dv">7</span> <span class="sc">&amp;</span> average_days_between_orders <span class="sc">&lt;=</span> <span class="dv">20</span> <span class="sc">~</span> <span class="st">&quot;Medium Loyalty&quot;</span>,</span>
+<span id="cb10-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb10-5" tabindex="-1"></a>    average_days_between_orders <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> average_days_between_orders <span class="sc">&lt;=</span> <span class="dv">29</span> <span class="sc">~</span> <span class="st">&quot;Low Loyalty&quot;</span>,</span>
+<span id="cb10-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb10-6" tabindex="-1"></a>    average_days_between_orders <span class="sc">&gt;</span> <span class="dv">29</span> <span class="sc">~</span> <span class="st">&quot;Occasional Customer&quot;</span>,</span>
+<span id="cb10-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb10-7" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span> <span class="co"># 为安全起见，包含一个其它类别</span></span>
+<span id="cb10-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb10-8" tabindex="-1"></a>  ))</span></code></pre></div>
+<p>統計各個忠誠度的顧客總數及百分比</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb11-1" tabindex="-1"></a>loyalty_counts <span class="ot">&lt;-</span> customer_loyalty <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb11-2" tabindex="-1"></a>  <span class="fu">group_by</span>(loyalty_category) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb11-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>())</span>
+<span id="cb11-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb11-4" tabindex="-1"></a>total_customers <span class="ot">&lt;-</span> <span class="fu">sum</span>(loyalty_counts<span class="sc">$</span>count)</span>
+<span id="cb11-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb11-5" tabindex="-1"></a>loyalty_counts <span class="ot">&lt;-</span> loyalty_counts <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb11-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentage =</span> count <span class="sc">/</span> total_customers)</span>
+<span id="cb11-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb11-7" tabindex="-1"></a><span class="fu">kable</span>(loyalty_counts)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">loyalty_category</th>
+<th align="right">count</th>
+<th align="right">percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">High Loyalty</td>
+<td align="right">24471</td>
+<td align="right">0.1186709</td>
+</tr>
+<tr class="even">
+<td align="left">Low Loyalty</td>
+<td align="right">48725</td>
+<td align="right">0.2362894</td>
+</tr>
+<tr class="odd">
+<td align="left">Medium Loyalty</td>
+<td align="right">125779</td>
+<td align="right">0.6099588</td>
+</tr>
+<tr class="even">
+<td align="left">Occasional Customer</td>
+<td align="right">7234</td>
+<td align="right">0.0350809</td>
+</tr>
+</tbody>
+</table>
+<p>利用ggplot繪製圓餅圖
+發現顧客以中忠誠度為大宗，占了61％，而高忠誠度的客戶只有約12％，超市能夠思考如何再提升顧客的購買週期</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb12-1" tabindex="-1"></a><span class="fu">ggplot</span>(loyalty_counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> count, <span class="at">fill =</span> loyalty_category)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb12-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb12-3" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb12-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb12-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(percentage)), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb12-5" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb12-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Customer Loyalty Categories&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb12-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb12-8" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Pastel1&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="_main_files/figure-html/unnamed-chunk-16-1.png" alt="顧客忠誠度圓餅圖" width="672" />
+<p class="caption">
+Figure 2.5: 顧客忠誠度圓餅圖
+</p>
+</div>
+</div>
+<div id="顧客行為分析" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> 顧客行為分析<a href="資料分析超商購物車消費者資料分析-1.html#顧客行為分析" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>(一）購買頻率最高的前10名商品</strong></p>
+<p>找出超市中購買次數頻率最高的品項</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb13-1" tabindex="-1"></a>top10_products <span class="ot">&lt;-</span> complete_df <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb13-2" tabindex="-1"></a>  <span class="fu">group_by</span>(product_name) <span class="sc">%&gt;%</span>         <span class="co"># 按商品名稱分組</span></span>
+<span id="cb13-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb13-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span>         <span class="co"># 計算每個商品的購買次數</span></span>
+<span id="cb13-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb13-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span>           <span class="co"># 按購買次數降序排列</span></span>
+<span id="cb13-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb13-5" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, count)                   <span class="co"># 選擇前10名</span></span>
+<span id="cb13-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb13-6" tabindex="-1"></a><span class="fu">kable</span>(top10_products)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">product_name</th>
+<th align="right">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Banana</td>
+<td align="right">472565</td>
+</tr>
+<tr class="even">
+<td align="left">Bag of Organic Bananas</td>
+<td align="right">379450</td>
+</tr>
+<tr class="odd">
+<td align="left">Organic Strawberries</td>
+<td align="right">264683</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Baby Spinach</td>
+<td align="right">241921</td>
+</tr>
+<tr class="odd">
+<td align="left">Organic Hass Avocado</td>
+<td align="right">213584</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Avocado</td>
+<td align="right">176815</td>
+</tr>
+<tr class="odd">
+<td align="left">Large Lemon</td>
+<td align="right">152657</td>
+</tr>
+<tr class="even">
+<td align="left">Strawberries</td>
+<td align="right">142951</td>
+</tr>
+<tr class="odd">
+<td align="left">Limes</td>
+<td align="right">140627</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Whole Milk</td>
+<td align="right">137905</td>
+</tr>
+</tbody>
+</table>
+<p>發現第一名是香蕉，而第二名也是香蕉（有機香蕉）
+其他品項熱門品項也大多是有機水果，推測超市深耕於有機水果的市場
+也能夠進一步推出綜合水果禮盒等商品刺激銷量</p>
+<p>分析購買頻率最高的商品及其所屬部門，多是屬於produce部門</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb14-1" tabindex="-1"></a>top_product_in_department <span class="ot">&lt;-</span> complete_df <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb14-2" tabindex="-1"></a>  <span class="fu">group_by</span>(product_name, department) <span class="sc">%&gt;%</span>  <span class="co"># 按商品名稱和部門分組</span></span>
+<span id="cb14-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb14-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span>) <span class="sc">%&gt;%</span>  <span class="co"># 計算每個商品的購買次數，移除分組</span></span>
+<span id="cb14-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb14-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span>  <span class="co"># 按購買次數降序排列</span></span>
+<span id="cb14-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb14-5" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, count)  <span class="co"># 選擇購買次數最多的商品</span></span>
+<span id="cb14-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb14-6" tabindex="-1"></a><span class="fu">kable</span>(top_product_in_department)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">product_name</th>
+<th align="left">department</th>
+<th align="right">count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Banana</td>
+<td align="left">produce</td>
+<td align="right">472565</td>
+</tr>
+<tr class="even">
+<td align="left">Bag of Organic Bananas</td>
+<td align="left">produce</td>
+<td align="right">379450</td>
+</tr>
+<tr class="odd">
+<td align="left">Organic Strawberries</td>
+<td align="left">produce</td>
+<td align="right">264683</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Baby Spinach</td>
+<td align="left">produce</td>
+<td align="right">241921</td>
+</tr>
+<tr class="odd">
+<td align="left">Organic Hass Avocado</td>
+<td align="left">produce</td>
+<td align="right">213584</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Avocado</td>
+<td align="left">produce</td>
+<td align="right">176815</td>
+</tr>
+<tr class="odd">
+<td align="left">Large Lemon</td>
+<td align="left">produce</td>
+<td align="right">152657</td>
+</tr>
+<tr class="even">
+<td align="left">Strawberries</td>
+<td align="left">produce</td>
+<td align="right">142951</td>
+</tr>
+<tr class="odd">
+<td align="left">Limes</td>
+<td align="left">produce</td>
+<td align="right">140627</td>
+</tr>
+<tr class="even">
+<td align="left">Organic Whole Milk</td>
+<td align="left">dairy eggs</td>
+<td align="right">137905</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(二) 重複購買率最高的前十名商品</strong></p>
+<p>緊接者好奇熱門品項的重複購買率是否也是最高的？
+計算每個產品的訂單總數和重複購買訂單數
+先彙整出產品忠誠度data frame</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb15-1" tabindex="-1"></a>product_loyalty <span class="ot">&lt;-</span> complete_df <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb15-2" tabindex="-1"></a>  <span class="fu">group_by</span>(product_id, product_name,department) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb15-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb15-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb15-4" tabindex="-1"></a>    <span class="at">total_orders =</span> <span class="fu">n</span>(), </span>
+<span id="cb15-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb15-5" tabindex="-1"></a>    <span class="at">reordered_count =</span> <span class="fu">sum</span>(reordered),</span>
+<span id="cb15-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb15-6" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span> <span class="co">#去除分組</span></span>
+<span id="cb15-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb15-7" tabindex="-1"></a>  )</span></code></pre></div>
+<p>計算重複購買率（重複購買訂單數/訂單總數）</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb16-1" tabindex="-1"></a>product_loyalty <span class="ot">&lt;-</span> product_loyalty <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb16-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">reorder_rate =</span> reordered_count <span class="sc">/</span> total_orders)</span></code></pre></div>
+<p>列出重複購買率最高的十樣商品
+找到一些比較小眾，雖然訂單量不多，但是重複購買意願很高的商品，超市可以進一步廣告這些商品，增加顧客流量</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb17-1" tabindex="-1"></a>top_reorder_rate_products <span class="ot">&lt;-</span> product_loyalty <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb17-2" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(reorder_rate)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb17-3" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, reorder_rate) </span>
+<span id="cb17-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb17-4" tabindex="-1"></a><span class="fu">kable</span>(top_reorder_rate_products)  </span></code></pre></div>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="37%" />
+<col width="12%" />
+<col width="12%" />
+<col width="14%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">product_id</th>
+<th align="left">product_name</th>
+<th align="left">department</th>
+<th align="right">total_orders</th>
+<th align="right">reordered_count</th>
+<th align="right">reorder_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">6433</td>
+<td align="left">Raw Veggie Wrappers</td>
+<td align="left">deli</td>
+<td align="right">68</td>
+<td align="right">64</td>
+<td align="right">0.9411765</td>
+</tr>
+<tr class="even">
+<td align="right">2075</td>
+<td align="left">Serenity Ultimate Extrema Overnight Pads</td>
+<td align="left">personal care</td>
+<td align="right">87</td>
+<td align="right">81</td>
+<td align="right">0.9310345</td>
+</tr>
+<tr class="odd">
+<td align="right">43553</td>
+<td align="left">Orange Energy Shots</td>
+<td align="left">beverages</td>
+<td align="right">13</td>
+<td align="right">12</td>
+<td align="right">0.9230769</td>
+</tr>
+<tr class="even">
+<td align="right">27740</td>
+<td align="left">Chocolate Love Bar</td>
+<td align="left">snacks</td>
+<td align="right">101</td>
+<td align="right">93</td>
+<td align="right">0.9207921</td>
+</tr>
+<tr class="odd">
+<td align="right">14609</td>
+<td align="left">Soy Powder Infant Formula</td>
+<td align="left">babies</td>
+<td align="right">35</td>
+<td align="right">32</td>
+<td align="right">0.9142857</td>
+</tr>
+<tr class="even">
+<td align="right">13875</td>
+<td align="left">Simply Sleep Nighttime Sleep Aid</td>
+<td align="left">other</td>
+<td align="right">45</td>
+<td align="right">41</td>
+<td align="right">0.9111111</td>
+</tr>
+<tr class="odd">
+<td align="right">39992</td>
+<td align="left">Energy Shot, Grape Flavor</td>
+<td align="left">beverages</td>
+<td align="right">22</td>
+<td align="right">20</td>
+<td align="right">0.9090909</td>
+</tr>
+<tr class="even">
+<td align="right">5868</td>
+<td align="left">Russian River Valley Reserve Pinot Noir</td>
+<td align="left">alcohol</td>
+<td align="right">30</td>
+<td align="right">27</td>
+<td align="right">0.9000000</td>
+</tr>
+<tr class="odd">
+<td align="right">31418</td>
+<td align="left">Sparking Water</td>
+<td align="left">beverages</td>
+<td align="right">60</td>
+<td align="right">54</td>
+<td align="right">0.9000000</td>
+</tr>
+<tr class="even">
+<td align="right">35604</td>
+<td align="left">Maca Buttercups</td>
+<td align="left">snacks</td>
+<td align="right">100</td>
+<td align="right">90</td>
+<td align="right">0.9000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="視覺化消費者活動接受情況" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> 視覺化消費者活動接受情況<a href="資料分析超商購物車消費者資料分析-1.html#視覺化消費者活動接受情況" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在資料集中有六個欄位表示消費者接受行銷活動的情況，行銷活動共有六次，第一次到第五次行銷活動，以及最後一次活動，以長條比例圖呈現。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb18-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-3" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb18-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-5" tabindex="-1"></a>summary_stats <span class="ot">&lt;-</span> customer_data <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-6" tabindex="-1"></a>  <span class="fu">select</span>(AcceptedCmp1, AcceptedCmp2, AcceptedCmp3, AcceptedCmp4, AcceptedCmp5, Response) <span class="sc">%&gt;%</span></span>
+<span id="cb18-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-7" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb18-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-8" tabindex="-1"></a>    <span class="at">AcceptedCmp1_Accepted =</span> <span class="fu">sum</span>(AcceptedCmp1 <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb18-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-9" tabindex="-1"></a>    <span class="at">AcceptedCmp1_Rejected =</span> <span class="fu">sum</span>(AcceptedCmp1 <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb18-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-10" tabindex="-1"></a>    <span class="at">AcceptedCmp2_Accepted =</span> <span class="fu">sum</span>(AcceptedCmp2 <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb18-11"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-11" tabindex="-1"></a>    <span class="at">AcceptedCmp2_Rejected =</span> <span class="fu">sum</span>(AcceptedCmp2 <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb18-12"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-12" tabindex="-1"></a>    <span class="at">AcceptedCmp3_Accepted =</span> <span class="fu">sum</span>(AcceptedCmp3 <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb18-13"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-13" tabindex="-1"></a>    <span class="at">AcceptedCmp3_Rejected =</span> <span class="fu">sum</span>(AcceptedCmp3 <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb18-14"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-14" tabindex="-1"></a>    <span class="at">AcceptedCmp4_Accepted =</span> <span class="fu">sum</span>(AcceptedCmp4 <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb18-15"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-15" tabindex="-1"></a>    <span class="at">AcceptedCmp4_Rejected =</span> <span class="fu">sum</span>(AcceptedCmp4 <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb18-16"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-16" tabindex="-1"></a>    <span class="at">AcceptedCmp5_Accepted =</span> <span class="fu">sum</span>(AcceptedCmp5 <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb18-17"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-17" tabindex="-1"></a>    <span class="at">AcceptedCmp5_Rejected =</span> <span class="fu">sum</span>(AcceptedCmp5 <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb18-18"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-18" tabindex="-1"></a>    <span class="at">Response_Accepted =</span> <span class="fu">sum</span>(Response <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb18-19"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-19" tabindex="-1"></a>    <span class="at">Response_Rejected =</span> <span class="fu">sum</span>(Response <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb18-20"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-20" tabindex="-1"></a>  )</span>
+<span id="cb18-21"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-21" tabindex="-1"></a></span>
+<span id="cb18-22"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-22" tabindex="-1"></a>summary_long <span class="ot">&lt;-</span> summary_stats <span class="sc">%&gt;%</span></span>
+<span id="cb18-23"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-23" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">&quot;Campaign&quot;</span>, <span class="st">&quot;Response&quot;</span>), <span class="at">names_sep =</span> <span class="st">&quot;_&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-24"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-24" tabindex="-1"></a>  <span class="fu">group_by</span>(Campaign) <span class="sc">%&gt;%</span></span>
+<span id="cb18-25"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-25" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Proportion =</span> value <span class="sc">/</span> <span class="fu">sum</span>(value) <span class="sc">*</span> <span class="dv">100</span>) <span class="co">#將數據框轉換為長格式</span></span>
+<span id="cb18-26"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-26" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-27" tabindex="-1"></a><span class="fu">ggplot</span>(summary_long, <span class="fu">aes</span>(<span class="at">x =</span> Campaign, <span class="at">y =</span> Proportion, <span class="at">fill =</span> Response)) <span class="sc">+</span></span>
+<span id="cb18-28"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-28" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb18-29"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-29" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(<span class="at">scale =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb18-30"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-30" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Proportion of Acceptance and Rejection for Each Campaign&quot;</span>,</span>
+<span id="cb18-31"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-31" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Campaign&quot;</span>,</span>
+<span id="cb18-32"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-32" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Proportion (%)&quot;</span>,</span>
+<span id="cb18-33"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-33" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Response&quot;</span>) <span class="sc">+</span></span>
+<span id="cb18-34"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-34" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb18-35"><a href="資料分析超商購物車消費者資料分析-1.html#cb18-35" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="co">#繪製堆積長條比例圖</span></span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<img src="_main_files/figure-html/unnamed-chunk-22-1.png" alt="接受優惠活動長條堆積圖" width="672" />
+<p class="caption">
+Figure 2.6: 接受優惠活動長條堆積圖
+</p>
+</div>
+<p>從圖<a href="#fig:labelGLM1"><strong>??</strong></a>來看，可以發現接受第二次活動的比例是最少的，僅有4.46%，而接受最後一次活動的比例最高，達33.88％。因此接下來的二元變數GLM模型將以「最後一次活動」作為分析數值。</p>
+</div>
+<div id="二元變數之probitlogit-glm" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> 二元變數之Probit/Logit GLM<a href="資料分析超商購物車消費者資料分析-1.html#二元變數之probitlogit-glm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="model1-考量消費金額的logit-glm" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Model1 考量「消費金額」的Logit GLM<a href="資料分析超商購物車消費者資料分析-1.html#model1-考量消費金額的logit-glm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>目標識別消費金額與客戶是否接受最後一次優惠活動之間的關聯，幫助超市了解哪些客戶更可能對促銷活動作出積極回應，從而針對這些高價值客戶設計更吸引人的促銷策略。使用Logit GLM 來預測客戶是否會接受優惠活動，以消費金額作為主要的解釋變數，分析消費金額對接受促銷的概率的影響程度，探索其他可能影響促銷接受率的因素。</p>
+<p>（一）模型建立</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb19-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb19-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb19-2" tabindex="-1"></a>customer_data <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(customer_data)</span>
+<span id="cb19-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb19-3" tabindex="-1"></a>result1 <span class="ot">=</span> <span class="fu">glm</span>(<span class="fu">as.factor</span>(Response) <span class="sc">~</span> Spending,</span>
+<span id="cb19-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb19-4" tabindex="-1"></a>              <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>,</span>
+<span id="cb19-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb19-5" tabindex="-1"></a>              <span class="at">data=</span>customer_data)</span>
+<span id="cb19-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb19-6" tabindex="-1"></a><span class="fu">summary</span>(result1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = as.factor(Response) ~ Spending, family = &quot;binomial&quot;, 
+##     data = customer_data)
+## 
+## Coefficients:
+##                Estimate  Std. Error z value            Pr(&gt;|z|)    
+## (Intercept) -1.89479034  0.08152403  -23.24 &lt;0.0000000000000002 ***
+## Spending     0.00182502  0.00009037   20.19 &lt;0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2837.8  on 2215  degrees of freedom
+## Residual deviance: 2323.9  on 2214  degrees of freedom
+## AIC: 2327.9
+## 
+## Number of Fisher Scoring iterations: 3</code></pre>
+<p>以表格方式美化呈現結果，如表<a href="資料分析超商購物車消費者資料分析-1.html#tab:table-2">2.2</a></p>
+<table>
+<caption><span id="tab:table-2">Table 2.2: </span>GLM Model 1 迴歸結果</caption>
+<colgroup>
+<col width="11%" />
+<col width="15%" />
+<col width="11%" />
+<col width="13%" />
+<col width="10%" />
+<col width="24%" />
+<col width="8%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Estimate</th>
+<th align="left">Std. Error</th>
+<th align="left">z value</th>
+<th align="left">Pr(&gt;|z|)</th>
+<th align="left">OR</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">截距</td>
+<td align="left">(Intercept)</td>
+<td align="left">-1.895</td>
+<td align="left">0.08152</td>
+<td align="left">-23.24</td>
+<td align="left">&lt; 0.001</td>
+<td align="left">0.1503</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">消費金額</td>
+<td align="left">Spending</td>
+<td align="left">0.001825</td>
+<td align="left">9.037e-05</td>
+<td align="left">20.19</td>
+<td align="left">&lt; 0.001</td>
+<td align="left">1.002</td>
+<td align="left">***</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: decimal">
+<li>方程式</li>
+</ol>
+<pre><code>## logit(P) = -1.8948 + 0.0018 * Spending</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>係數與統計顯著性</li>
+</ol>
+<ol style="list-style-type: decimal">
+<li>(Intercept): 截距項是-1.881，表示當Spending為0時，客戶接受優惠的對數概率（在邏輯迴歸中對應於事件發生的對數機率與事件不發生的對數機率之比）。截距項為負數，說明在沒有消費的情況下，客戶接受優惠的概率較低。</li>
+<li>Spending: 斜率為 0.001816，表示消費越多，客戶接受優惠的可能性越大。其p-value很顯著，為正相關。</li>
+</ol>
+<p>（二）McFadden’s Pseudo-R²</p>
+<p>McFadden’s Pseudo-R²計算，值範圍從0到1，值越接近1表示模型的解釋能力越強。</p>
+<p>McFadden’s Pseudo-R²=0.1796，模型解釋了約 17.96% 的變異性</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb22-1" tabindex="-1"></a>McFadden.R2<span class="ot">=</span><span class="dv">1</span> <span class="sc">-</span> (result1<span class="sc">$</span>deviance<span class="sc">/</span> result1<span class="sc">$</span>null.deviance)</span>
+<span id="cb22-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb22-2" tabindex="-1"></a>McFadden.R2</span></code></pre></div>
+<pre><code>## [1] 0.181094</code></pre>
+<p>（三）估計個體機率，設定臨界機率</p>
+<p>利用 predict(model, type) 函數得到模型估計的ℙ(Y=1|X1,⋯,Xp)</p>
+<p>type = “response”：得到每一個個體的機率。</p>
+<p>將預測的概率轉換為二元預測（1或0），如果概率大於或等於0.5，則預測結果為1（即接受優惠），否則為0（不接受優惠）。</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb24-1" tabindex="-1"></a>Prob<span class="ot">=</span><span class="fu">predict</span>(result1,<span class="at">type =</span> <span class="st">&quot;response&quot;</span>) </span>
+<span id="cb24-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb24-2" tabindex="-1"></a>Response.predicted<span class="ot">=</span><span class="fu">ifelse</span>(Prob<span class="sc">&gt;=</span><span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span></code></pre></div>
+<p>（四）⽤Confusion Matrix總結分類情況</p>
+<p>透過混淆矩陣解釋模型預測結果與實際數據之間的比較</p>
+<ol style="list-style-type: decimal">
+<li><p>Precision=TP/TP+FN (真正的 Positive 有多少被分類正確)</p></li>
+<li><p>Sensitivity (recall)=TP/TP+FN (被分類成 Positive 有多少是真正的 Positive)</p></li>
+<li><p>Specificity=TN/TN+FP (被分類成 Negative 有多少是真正的 Negative)</p></li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb25-1" tabindex="-1"></a>Actual<span class="ot">=</span><span class="fu">as.integer</span>(<span class="fu">as.factor</span>(customer_data<span class="sc">$</span>Response))<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb25-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb25-2" tabindex="-1"></a>TABEL<span class="ot">=</span><span class="fu">table</span>(<span class="at">Pred=</span><span class="fu">as.factor</span>(Response.predicted),<span class="at">Actual=</span>Actual)</span>
+<span id="cb25-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb25-3" tabindex="-1"></a><span class="fu">as.matrix</span>(caret<span class="sc">::</span><span class="fu">confusionMatrix</span>(TABEL,<span class="at">positive=</span><span class="st">&quot;1&quot;</span>),<span class="st">&quot;classes&quot;</span>)</span>
+<span id="cb25-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb25-4" tabindex="-1"></a>conf_matrix <span class="ot">=</span> caret<span class="sc">::</span><span class="fu">confusionMatrix</span>(<span class="fu">table</span>(<span class="at">Pred=</span><span class="fu">as.factor</span>(Response.predicted),<span class="at">Actual=</span>Actual),<span class="at">positive=</span><span class="st">&quot;1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb26-1" tabindex="-1"></a>conf_matrix</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##     Actual
+## Pred    0    1
+##    0 1303  351
+##    1  162  400
+##                                                
+##                Accuracy : 0.7685               
+##                  95% CI : (0.7504, 0.7859)     
+##     No Information Rate : 0.6611               
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.4496               
+##                                                
+##  Mcnemar&#39;s Test P-Value : &lt; 0.00000000000000022
+##                                                
+##             Sensitivity : 0.5326               
+##             Specificity : 0.8894               
+##          Pos Pred Value : 0.7117               
+##          Neg Pred Value : 0.7878               
+##              Prevalence : 0.3389               
+##          Detection Rate : 0.1805               
+##    Detection Prevalence : 0.2536               
+##       Balanced Accuracy : 0.7110               
+##                                                
+##        &#39;Positive&#39; Class : 1                    
+## </code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-1" tabindex="-1"></a>TN1 <span class="ot">&lt;-</span> TABEL[<span class="dv">1</span>, <span class="dv">1</span>]  <span class="co"># True Negatives</span></span>
+<span id="cb28-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-2" tabindex="-1"></a>FN1 <span class="ot">&lt;-</span> TABEL[<span class="dv">1</span>, <span class="dv">2</span>]  <span class="co"># False Negatives</span></span>
+<span id="cb28-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-3" tabindex="-1"></a>FP1 <span class="ot">&lt;-</span> TABEL[<span class="dv">2</span>, <span class="dv">1</span>]  <span class="co"># False Positives</span></span>
+<span id="cb28-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-4" tabindex="-1"></a>TP1 <span class="ot">&lt;-</span> TABEL[<span class="dv">2</span>, <span class="dv">2</span>]  <span class="co"># True Positives</span></span>
+<span id="cb28-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-5" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-6" tabindex="-1"></a>sensitivity1 <span class="ot">&lt;-</span> conf_matrix<span class="sc">$</span>byClass[<span class="st">&quot;Sensitivity&quot;</span>]</span>
+<span id="cb28-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-7" tabindex="-1"></a>specificity1 <span class="ot">&lt;-</span> conf_matrix<span class="sc">$</span>byClass[<span class="st">&quot;Specificity&quot;</span>]</span>
+<span id="cb28-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-8" tabindex="-1"></a>precision1 <span class="ot">&lt;-</span> conf_matrix<span class="sc">$</span>byClass[<span class="st">&quot;Pos Pred Value&quot;</span>]</span>
+<span id="cb28-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-9" tabindex="-1"></a>neg_pred_value1 <span class="ot">&lt;-</span> conf_matrix<span class="sc">$</span>byClass[<span class="st">&quot;Neg Pred Value&quot;</span>]</span>
+<span id="cb28-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-10" tabindex="-1"></a>accuracy1 <span class="ot">&lt;-</span> conf_matrix<span class="sc">$</span>overall[<span class="st">&quot;Accuracy&quot;</span>]</span>
+<span id="cb28-11"><a href="資料分析超商購物車消費者資料分析-1.html#cb28-11" tabindex="-1"></a>kappa1 <span class="ot">&lt;-</span> conf_matrix<span class="sc">$</span>overall[<span class="st">&quot;Kappa&quot;</span>]</span></code></pre></div>
+<p>混淆矩陣數據解釋</p>
+<ol style="list-style-type: decimal">
+<li>實際與預測結果</li>
+</ol>
+<p>● True Negatives (TN): 1303（預測為負例，實際為負例）</p>
+<p>● False Negatives (FN): 351（預測為負例，實際為正例）</p>
+<p>● False Positives (FP): 162（預測為正例，實際為負例）</p>
+<p>● True Positives (TP): 400（預測為正例，實際為正例）</p>
+<ol start="2" style="list-style-type: decimal">
+<li>預測力</li>
+</ol>
+<p>● Sensitivity (召回率)：0.5326232，模型對正例的辨識力中等。</p>
+<p>● Specificity (特異度)：0.8894198，表明模型對負例的辨識力非常高。</p>
+<p>● Precision (精確率)：0.7117438，當模型預測為正例時，有71.05%的機率實際為正例。</p>
+<p>● Neg Pred Value (負預測值)：0.7877872，當模型預測為負例時，有的78.58%機率實際為負例。</p>
+<p>● Accuracy (準確度)：0.7685018，表明模型整體正確預測了約76.67%的案例。</p>
+<p>● Kappa (卡帕統計量)：0.4496167，表示診斷試驗的可重復性中等。</p>
+<p>以「消費金額」考量的Logit GLM在預測消費者是否會接受最後一個優惠活動時具有以下特點：</p>
+<ol style="list-style-type: decimal">
+<li>中等的正例辨識能力：模型在辨識接受優惠的消費者方面有中等的靈敏度（召回率為53.05%）。</li>
+<li>高的負例辨識能力：模型在辨識不接受優惠的消費者方面表現非常好（特異度為88.85%）。</li>
+<li>合理的預測精度：當模型預測消費者會接受優惠時，約71.05%的預測是正確的（精確率）。</li>
+<li>高的負預測值：當模型預測消費者不會接受優惠時，約78.58%的預測是正確的（負預測值）。</li>
+<li>整體準確度高：模型整體上能正確預測約76.67%的案例（準確度）。</li>
+<li>中等的診斷試驗可重複性：卡帕統計量為0.4464，表示模型的分類效果比隨機猜測要好，但仍有改進空間。</li>
+</ol>
+</div>
+<div id="model2-考量消費者型態的logit-glm" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Model2 考量「消費者型態」的Logit GLM<a href="資料分析超商購物車消費者資料分析-1.html#model2-考量消費者型態的logit-glm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>（一）模型建立</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb29-1" tabindex="-1"></a>customer_data <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(customer_data)</span>
+<span id="cb29-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb29-2" tabindex="-1"></a>result2 <span class="ot">=</span> <span class="fu">glm</span>(<span class="fu">as.factor</span>(Response) <span class="sc">~</span> Age <span class="sc">+</span> Education_Years <span class="sc">+</span> Income <span class="sc">+</span> Number_of_child,</span>
+<span id="cb29-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb29-3" tabindex="-1"></a>              <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>,</span>
+<span id="cb29-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb29-4" tabindex="-1"></a>              <span class="at">data=</span>customer_data)</span>
+<span id="cb29-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb29-5" tabindex="-1"></a><span class="fu">summary</span>(result2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = as.factor(Response) ~ Age + Education_Years + Income + 
+##     Number_of_child, family = &quot;binomial&quot;, data = customer_data)
+## 
+## Coefficients:
+##                     Estimate   Std. Error z value             Pr(&gt;|z|)    
+## (Intercept)     -2.248808941  0.440325000  -5.107       0.000000327042 ***
+## Age             -0.005575668  0.004078198  -1.367               0.1716    
+## Education_Years  0.049017642  0.022882674   2.142               0.0322 *  
+## Income           0.000026366  0.000002596  10.155 &lt; 0.0000000000000002 ***
+## Number_of_child -0.441322657  0.072166099  -6.115       0.000000000963 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2837.8  on 2215  degrees of freedom
+## Residual deviance: 2579.3  on 2211  degrees of freedom
+## AIC: 2589.3
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>表<a href="資料分析超商購物車消費者資料分析-1.html#tab:table-3">2.3</a>，以表格呈現係數</p>
+<table>
+<caption><span id="tab:table-3">Table 2.3: </span>GLM Model 2 迴歸結果</caption>
+<colgroup>
+<col width="10%" />
+<col width="19%" />
+<col width="11%" />
+<col width="13%" />
+<col width="9%" />
+<col width="22%" />
+<col width="8%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Estimate</th>
+<th align="left">Std. Error</th>
+<th align="left">z value</th>
+<th align="left">Pr(&gt;|z|)</th>
+<th align="left">OR</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">截距</td>
+<td align="left">(Intercept)</td>
+<td align="left">-2.249</td>
+<td align="left">0.4403</td>
+<td align="left">-5.107</td>
+<td align="left">&lt;0.001</td>
+<td align="left">0.1055</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">年紀</td>
+<td align="left">Age</td>
+<td align="left">-0.005576</td>
+<td align="left">0.004078</td>
+<td align="left">-1.367</td>
+<td align="left">0.172</td>
+<td align="left">0.9944</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">教育年份</td>
+<td align="left">Education_Years</td>
+<td align="left">0.04902</td>
+<td align="left">0.02288</td>
+<td align="left">2.142</td>
+<td align="left">0.032</td>
+<td align="left">1.050</td>
+<td align="left">*</td>
+</tr>
+<tr class="even">
+<td align="left">收入</td>
+<td align="left">Income</td>
+<td align="left">2.637e-05</td>
+<td align="left">2.596e-06</td>
+<td align="left">10.16</td>
+<td align="left">&lt;0.001</td>
+<td align="left">1.000</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">小孩數</td>
+<td align="left">Number_of_child</td>
+<td align="left">-0.4413</td>
+<td align="left">0.07217</td>
+<td align="left">-6.115</td>
+<td align="left">&lt;0.001</td>
+<td align="left">0.6432</td>
+<td align="left">***</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: decimal">
+<li>方程式</li>
+</ol>
+<pre><code>## logit(P) = -2.2488 - 0.0056 * Age + 0.049 * Education_Years + 0 * Income - 0.4413 * Number_of_child</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>係數解釋</li>
+</ol>
+<ol style="list-style-type: decimal">
+<li>Age: 年齡增加，客戶接受優惠的機率減少，但這個變數的 p-value 為 0.2，大於 0.05，統計上不顯著。</li>
+<li>Education_Years: 教育年限增加，客戶接受優惠的機率增加，且 p-value 非常顯著。</li>
+<li>Income: 收入增加，客戶接受優惠的機率增加，且 p-value 為 非常顯著。</li>
+<li>Number_of_child: 子女數量增加，客戶接受優惠的機率減少，且 p-value 非常顯著。</li>
+</ol>
+<p>（二）模型解釋力</p>
+<p>使用 McFadden’s Pseudo-R² 評估模型解釋力，模型解釋了約 9.02% 的變異，比之前的模型差，解釋力相對較低。</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb32-1" tabindex="-1"></a>McFadden.R2 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> (result2<span class="sc">$</span>deviance <span class="sc">/</span> result2<span class="sc">$</span>null.deviance)</span>
+<span id="cb32-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb32-2" tabindex="-1"></a>McFadden.R2</span></code></pre></div>
+<pre><code>## [1] 0.09109374</code></pre>
+<p>（三）預測力/混淆矩陣</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb34-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-2" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-3" tabindex="-1"></a>Prob2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(result2, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>) </span>
+<span id="cb34-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-4" tabindex="-1"></a>Response.predicted2 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(Prob2 <span class="sc">&gt;=</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb34-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-5" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-6" tabindex="-1"></a>Actual <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.factor</span>(customer_data<span class="sc">$</span>Response)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb34-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-7" tabindex="-1"></a>TABEL2 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Pred =</span> <span class="fu">as.factor</span>(Response.predicted2), <span class="at">Actual =</span> Actual)</span>
+<span id="cb34-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-8" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-9" tabindex="-1"></a>conf_matrix2 <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(TABEL2, <span class="at">positive =</span> <span class="st">&quot;1&quot;</span>)</span>
+<span id="cb34-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb34-10" tabindex="-1"></a><span class="fu">print</span>(conf_matrix2)</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##     Actual
+## Pred    0    1
+##    0 1318  453
+##    1  147  298
+##                                                
+##                Accuracy : 0.7292               
+##                  95% CI : (0.7102, 0.7477)     
+##     No Information Rate : 0.6611               
+##     P-Value [Acc &gt; NIR] : 0.000000000003008    
+##                                                
+##                   Kappa : 0.3291               
+##                                                
+##  Mcnemar&#39;s Test P-Value : &lt; 0.00000000000000022
+##                                                
+##             Sensitivity : 0.3968               
+##             Specificity : 0.8997               
+##          Pos Pred Value : 0.6697               
+##          Neg Pred Value : 0.7442               
+##              Prevalence : 0.3389               
+##          Detection Rate : 0.1345               
+##    Detection Prevalence : 0.2008               
+##       Balanced Accuracy : 0.6482               
+##                                                
+##        &#39;Positive&#39; Class : 1                    
+## </code></pre>
+<p>混淆矩陣數據解釋</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-1" tabindex="-1"></a><span class="co"># 動態文字生成</span></span>
+<span id="cb36-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-2" tabindex="-1"></a>TN2 <span class="ot">&lt;-</span> TABEL2[<span class="dv">1</span>, <span class="dv">1</span>]  <span class="co"># True Negatives</span></span>
+<span id="cb36-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-3" tabindex="-1"></a>FN2 <span class="ot">&lt;-</span> TABEL2[<span class="dv">1</span>, <span class="dv">2</span>]  <span class="co"># False Negatives</span></span>
+<span id="cb36-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-4" tabindex="-1"></a>FP2 <span class="ot">&lt;-</span> TABEL2[<span class="dv">2</span>, <span class="dv">1</span>]  <span class="co"># False Positives</span></span>
+<span id="cb36-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-5" tabindex="-1"></a>TP2 <span class="ot">&lt;-</span> TABEL2[<span class="dv">2</span>, <span class="dv">2</span>]  <span class="co"># True Positives</span></span>
+<span id="cb36-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-6" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-7" tabindex="-1"></a>sensitivity2 <span class="ot">&lt;-</span> conf_matrix2<span class="sc">$</span>byClass[<span class="st">&quot;Sensitivity&quot;</span>]</span>
+<span id="cb36-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-8" tabindex="-1"></a>specificity2 <span class="ot">&lt;-</span> conf_matrix2<span class="sc">$</span>byClass[<span class="st">&quot;Specificity&quot;</span>]</span>
+<span id="cb36-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-9" tabindex="-1"></a>precision2 <span class="ot">&lt;-</span> conf_matrix2<span class="sc">$</span>byClass[<span class="st">&quot;Pos Pred Value&quot;</span>]</span>
+<span id="cb36-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-10" tabindex="-1"></a>neg_pred_value2 <span class="ot">&lt;-</span> conf_matrix2<span class="sc">$</span>byClass[<span class="st">&quot;Neg Pred Value&quot;</span>]</span>
+<span id="cb36-11"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-11" tabindex="-1"></a>accuracy2 <span class="ot">&lt;-</span> conf_matrix2<span class="sc">$</span>overall[<span class="st">&quot;Accuracy&quot;</span>]</span>
+<span id="cb36-12"><a href="資料分析超商購物車消費者資料分析-1.html#cb36-12" tabindex="-1"></a>kappa2 <span class="ot">&lt;-</span> conf_matrix2<span class="sc">$</span>overall[<span class="st">&quot;Kappa&quot;</span>]</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>混淆矩陣結果</li>
+</ol>
+<p>● True Negatives (TN): 1318（預測為負例，實際為負例）</p>
+<p>● False Negatives (FN): 453（預測為負例，實際為正例）</p>
+<p>● False Positives (FP): 147（預測為正例，實際為負例）</p>
+<p>● True Positives (TP): 298（預測為正例，實際為正例）</p>
+<ol start="2" style="list-style-type: decimal">
+<li>預測力</li>
+</ol>
+<p>● Sensitivity (召回率)：0.3968043</p>
+<p>● Specificity (特異度)：0.8996587</p>
+<p>● Precision (精確率)：0.6696629</p>
+<p>● Neg Pred Value (負預測值)：0.7442123</p>
+<p>● Accuracy (準確度)：0.7292419</p>
+<p>● Kappa (卡帕統計量)：0.3291442</p>
+<ol start="3" style="list-style-type: decimal">
+<li>主要問題</li>
+</ol>
+<p>整體而言，考量「消費者型態」的GLM 並無優於考量「消費金額」的GLM 模型。
+Model2的準確性72.92，且Kappa 低於0.4，診斷試驗的可重複性差，因此以消費者型態觀察是否接受最後一次優惠為指標並非一個好的選擇。</p>
+</div>
+<div id="model3-考量消費者前期活動參與的logit-glm" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Model3 考量「消費者前期活動參與」的Logit GLM<a href="資料分析超商購物車消費者資料分析-1.html#model3-考量消費者前期活動參與的logit-glm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>（一）模型建立</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb37-1" tabindex="-1"></a>result3 <span class="ot">=</span> <span class="fu">glm</span>(<span class="fu">as.factor</span>(Response) <span class="sc">~</span>AcceptedCmp1 <span class="sc">+</span> AcceptedCmp2 <span class="sc">+</span> AcceptedCmp3 <span class="sc">+</span> AcceptedCmp4 <span class="sc">+</span> AcceptedCmp5,</span>
+<span id="cb37-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb37-2" tabindex="-1"></a>              <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>,</span>
+<span id="cb37-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb37-3" tabindex="-1"></a>              <span class="at">data=</span>customer_data)</span>
+<span id="cb37-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb37-4" tabindex="-1"></a><span class="fu">summary</span>(result3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = as.factor(Response) ~ AcceptedCmp1 + AcceptedCmp2 + 
+##     AcceptedCmp3 + AcceptedCmp4 + AcceptedCmp5, family = &quot;binomial&quot;, 
+##     data = customer_data)
+## 
+## Coefficients:
+##              Estimate Std. Error z value             Pr(&gt;|z|)    
+## (Intercept)  -1.42721    0.06283 -22.714 &lt; 0.0000000000000002 ***
+## AcceptedCmp1  1.55155    0.16810   9.230 &lt; 0.0000000000000002 ***
+## AcceptedCmp2  0.50852    0.30036   1.693               0.0905 .  
+## AcceptedCmp3  1.37541    0.14583   9.432 &lt; 0.0000000000000002 ***
+## AcceptedCmp4  0.80940    0.16785   4.822           0.00000142 ***
+## AcceptedCmp5  1.66826    0.18049   9.243 &lt; 0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2837.8  on 2215  degrees of freedom
+## Residual deviance: 2262.5  on 2210  degrees of freedom
+## AIC: 2274.5
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>表<a href="資料分析超商購物車消費者資料分析-1.html#tab:table-4">2.4</a>，以表格呈現係數</p>
+<table>
+<caption><span id="tab:table-4">Table 2.4: </span>GLM Model 3 迴歸結果</caption>
+<colgroup>
+<col width="7%" />
+<col width="16%" />
+<col width="11%" />
+<col width="14%" />
+<col width="10%" />
+<col width="24%" />
+<col width="9%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Estimate</th>
+<th align="left">Std. Error</th>
+<th align="left">z value</th>
+<th align="left">Pr(&gt;|z|)</th>
+<th align="left">OR</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">截距</td>
+<td align="left">(Intercept)</td>
+<td align="left">-1.427</td>
+<td align="left">0.06283</td>
+<td align="left">-22.71</td>
+<td align="left">&lt;0.001</td>
+<td align="left">0.2400</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">活動1</td>
+<td align="left">AcceptedCmp1</td>
+<td align="left">1.552</td>
+<td align="left">0.1681</td>
+<td align="left">9.230</td>
+<td align="left">&lt;0.001</td>
+<td align="left">4.719</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">活動2</td>
+<td align="left">AcceptedCmp2</td>
+<td align="left">0.5085</td>
+<td align="left">0.3004</td>
+<td align="left">1.693</td>
+<td align="left">0.09</td>
+<td align="left">1.663</td>
+<td align="left">.</td>
+</tr>
+<tr class="even">
+<td align="left">活動3</td>
+<td align="left">AcceptedCmp3</td>
+<td align="left">1.375</td>
+<td align="left">0.1458</td>
+<td align="left">9.432</td>
+<td align="left">&lt;0.001</td>
+<td align="left">3.957</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">活動4</td>
+<td align="left">AcceptedCmp4</td>
+<td align="left">0.8094</td>
+<td align="left">0.1678</td>
+<td align="left">4.822</td>
+<td align="left">&lt;0.001</td>
+<td align="left">2.247</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">活動5</td>
+<td align="left">AcceptedCmp5</td>
+<td align="left">1.668</td>
+<td align="left">0.1805</td>
+<td align="left">9.243</td>
+<td align="left">&lt;0.001</td>
+<td align="left">5.303</td>
+<td align="left">***</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: decimal">
+<li>方程式</li>
+</ol>
+<pre><code>## logit(P) = -1.4272 + 1.5516 * AcceptedCmp1 + 0.5085 * AcceptedCmp2 + 1.3754 * AcceptedCmp3 + 0.8094 * AcceptedCmp4 + 1.6683 * AcceptedCmp5</code></pre>
+<ol style="list-style-type: decimal">
+<li>AcceptedCmp1: 客戶接受促銷活動1，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000002，非常顯著。</li>
+<li>AcceptedCmp2: 客戶接受促銷活動2，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.0334，顯著。</li>
+<li>AcceptedCmp3: 客戶接受促銷活動3，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000002，非常顯著。</li>
+<li>AcceptedCmp4: 客戶接受促銷活動4，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.000000282，非常顯著。</li>
+<li>AcceptedCmp5: 客戶接受促銷活動5，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000002，非常顯著。</li>
+</ol>
+<p>（二）模型解釋力</p>
+<p>使用 McFadden’s Pseudo-R² 評估模型解釋力，模型解釋了約 20.96% 的變異，優於Model 1 和Model</p>
+<p>解釋力相對較高。</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb40-1" tabindex="-1"></a>McFadden.R2_3 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> (result3<span class="sc">$</span>deviance <span class="sc">/</span> result3<span class="sc">$</span>null.deviance)</span>
+<span id="cb40-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb40-2" tabindex="-1"></a>McFadden.R2_3</span></code></pre></div>
+<pre><code>## [1] 0.2027241</code></pre>
+<p>（三）混淆矩陣</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb42-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-2" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-3" tabindex="-1"></a>Prob3 <span class="ot">&lt;-</span> <span class="fu">predict</span>(result3, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>) </span>
+<span id="cb42-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-4" tabindex="-1"></a>Response.predicted3 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(Prob3 <span class="sc">&gt;=</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb42-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-5" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-6" tabindex="-1"></a>Actual <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.factor</span>(customer_data<span class="sc">$</span>Response)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb42-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-7" tabindex="-1"></a>TABEL3 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Pred =</span> <span class="fu">as.factor</span>(Response.predicted3), <span class="at">Actual =</span> Actual)</span>
+<span id="cb42-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-8" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-9" tabindex="-1"></a>conf_matrix3 <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(TABEL3, <span class="at">positive =</span> <span class="st">&quot;1&quot;</span>)</span>
+<span id="cb42-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb42-10" tabindex="-1"></a><span class="fu">print</span>(conf_matrix3)</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##     Actual
+## Pred    0    1
+##    0 1358  398
+##    1  107  353
+##                                                
+##                Accuracy : 0.7721               
+##                  95% CI : (0.7541, 0.7894)     
+##     No Information Rate : 0.6611               
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.4384               
+##                                                
+##  Mcnemar&#39;s Test P-Value : &lt; 0.00000000000000022
+##                                                
+##             Sensitivity : 0.4700               
+##             Specificity : 0.9270               
+##          Pos Pred Value : 0.7674               
+##          Neg Pred Value : 0.7733               
+##              Prevalence : 0.3389               
+##          Detection Rate : 0.1593               
+##    Detection Prevalence : 0.2076               
+##       Balanced Accuracy : 0.6985               
+##                                                
+##        &#39;Positive&#39; Class : 1                    
+## </code></pre>
+<p>混淆矩陣數據解釋</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-1" tabindex="-1"></a><span class="co"># 動態文字生成</span></span>
+<span id="cb44-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-2" tabindex="-1"></a>TN3 <span class="ot">&lt;-</span> TABEL3[<span class="dv">1</span>, <span class="dv">1</span>]  <span class="co"># True Negatives</span></span>
+<span id="cb44-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-3" tabindex="-1"></a>FN3 <span class="ot">&lt;-</span> TABEL3[<span class="dv">1</span>, <span class="dv">2</span>]  <span class="co"># False Negatives</span></span>
+<span id="cb44-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-4" tabindex="-1"></a>FP3 <span class="ot">&lt;-</span> TABEL3[<span class="dv">2</span>, <span class="dv">1</span>]  <span class="co"># False Positives</span></span>
+<span id="cb44-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-5" tabindex="-1"></a>TP3 <span class="ot">&lt;-</span> TABEL3[<span class="dv">2</span>, <span class="dv">2</span>]  <span class="co"># True Positives</span></span>
+<span id="cb44-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-6" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-7" tabindex="-1"></a>sensitivity3 <span class="ot">&lt;-</span> conf_matrix3<span class="sc">$</span>byClass[<span class="st">&quot;Sensitivity&quot;</span>]</span>
+<span id="cb44-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-8" tabindex="-1"></a>specificity3 <span class="ot">&lt;-</span> conf_matrix3<span class="sc">$</span>byClass[<span class="st">&quot;Specificity&quot;</span>]</span>
+<span id="cb44-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-9" tabindex="-1"></a>precision3 <span class="ot">&lt;-</span> conf_matrix3<span class="sc">$</span>byClass[<span class="st">&quot;Pos Pred Value&quot;</span>]</span>
+<span id="cb44-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-10" tabindex="-1"></a>neg_pred_value3 <span class="ot">&lt;-</span> conf_matrix3<span class="sc">$</span>byClass[<span class="st">&quot;Neg Pred Value&quot;</span>]</span>
+<span id="cb44-11"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-11" tabindex="-1"></a>accuracy3 <span class="ot">&lt;-</span> conf_matrix3<span class="sc">$</span>overall[<span class="st">&quot;Accuracy&quot;</span>]</span>
+<span id="cb44-12"><a href="資料分析超商購物車消費者資料分析-1.html#cb44-12" tabindex="-1"></a>kappa3 <span class="ot">&lt;-</span> conf_matrix3<span class="sc">$</span>overall[<span class="st">&quot;Kappa&quot;</span>]</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>混淆矩陣結果</li>
+</ol>
+<p>● True Negatives (TN): 1358（預測為負例，實際為負例）</p>
+<p>● False Negatives (FN): 398（預測為負例，實際為正例）</p>
+<p>● False Positives (FP): 107（預測為正例，實際為負例）</p>
+<p>● True Positives (TP): 353（預測為正例，實際為正例）</p>
+<ol start="2" style="list-style-type: decimal">
+<li>預測力</li>
+</ol>
+<p>● Sensitivity (召回率)：0.4700399</p>
+<p>● Specificity (特異度)：0.9269625</p>
+<p>● Precision (精確率)：0.7673913</p>
+<p>● Neg Pred Value (負預測值)：0.7733485</p>
+<p>● Accuracy (準確度)：0.7721119</p>
+<p>● Kappa (卡帕統計量)：0.4383978</p>
+<p>Model3 在大多數指標上（特別是準確率、Kappa、特異度和精確率）表現最好，而 Model1 的靈敏度最高，並且在平衡準確率上表現略優。Model2 的表現相對較差，特別是在 Kappa、靈敏度和精確率上明顯落後於其他兩個模型。</p>
+</div>
+<div id="model-4-考量所有變數的logit-glm" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Model 4 考量「所有變數」的Logit GLM<a href="資料分析超商購物車消費者資料分析-1.html#model-4-考量所有變數的logit-glm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>（一）模型建立</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb45-1" tabindex="-1"></a>result4 <span class="ot">=</span> <span class="fu">glm</span>(<span class="fu">as.factor</span>(Response) <span class="sc">~</span> Spending<span class="sc">+</span>Age <span class="sc">+</span> Education_Years <span class="sc">+</span> Income <span class="sc">+</span> Number_of_child<span class="sc">+</span>AcceptedCmp1 <span class="sc">+</span> AcceptedCmp2 <span class="sc">+</span> AcceptedCmp3 <span class="sc">+</span> AcceptedCmp4 <span class="sc">+</span> AcceptedCmp5<span class="sc">+</span>NumStorePurchases<span class="sc">+</span>NumWebPurchases,</span>
+<span id="cb45-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb45-2" tabindex="-1"></a>              <span class="at">family=</span><span class="st">&quot;binomial&quot;</span>,</span>
+<span id="cb45-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb45-3" tabindex="-1"></a>              <span class="at">data=</span>customer_data)</span>
+<span id="cb45-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb45-4" tabindex="-1"></a><span class="fu">summary</span>(result4)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = as.factor(Response) ~ Spending + Age + Education_Years + 
+##     Income + Number_of_child + AcceptedCmp1 + AcceptedCmp2 + 
+##     AcceptedCmp3 + AcceptedCmp4 + AcceptedCmp5 + NumStorePurchases + 
+##     NumWebPurchases, family = &quot;binomial&quot;, data = customer_data)
+## 
+## Coefficients:
+##                       Estimate   Std. Error z value             Pr(&gt;|z|)    
+## (Intercept)       -2.089782299  0.499638693  -4.183    0.000028821068365 ***
+## Spending           0.001977085  0.000216180   9.146 &lt; 0.0000000000000002 ***
+## Age               -0.004188295  0.004905752  -0.854             0.393243    
+## Education_Years    0.042019090  0.026212706   1.603             0.108934    
+## Income            -0.000017017  0.000004838  -3.517             0.000436 ***
+## Number_of_child    0.082537934  0.087339236   0.945             0.344645    
+## AcceptedCmp1       1.325490303  0.178738870   7.416    0.000000000000121 ***
+## AcceptedCmp2       0.675768280  0.312906560   2.160             0.030800 *  
+## AcceptedCmp3       0.965479833  0.161363697   5.983    0.000000002187245 ***
+## AcceptedCmp4       0.383021579  0.182542043   2.098             0.035882 *  
+## AcceptedCmp5       1.217968710  0.196272903   6.205    0.000000000545282 ***
+## NumStorePurchases -0.025941535  0.023818058  -1.089             0.276086    
+## NumWebPurchases    0.020367827  0.024073709   0.846             0.397519    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2837.8  on 2215  degrees of freedom
+## Residual deviance: 2071.4  on 2203  degrees of freedom
+## AIC: 2097.4
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>表<a href="資料分析超商購物車消費者資料分析-1.html#tab:table-5">2.5</a>，以表格呈現係數</p>
+<table>
+<caption><span id="tab:table-5">Table 2.5: </span>GLM Model 4 迴歸結果</caption>
+<colgroup>
+<col width="10%" />
+<col width="20%" />
+<col width="12%" />
+<col width="12%" />
+<col width="9%" />
+<col width="21%" />
+<col width="8%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Estimate</th>
+<th align="left">Std. Error</th>
+<th align="left">z value</th>
+<th align="left">Pr(&gt;|z|)</th>
+<th align="left">OR</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">截距</td>
+<td align="left">(Intercept)</td>
+<td align="left">-2.090</td>
+<td align="left">0.4996</td>
+<td align="left">-4.183</td>
+<td align="left">&lt;0.001</td>
+<td align="left">0.1237</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">消費支出</td>
+<td align="left">Spending</td>
+<td align="left">0.001977</td>
+<td align="left">0.0002162</td>
+<td align="left">9.146</td>
+<td align="left">&lt;0.001</td>
+<td align="left">1.002</td>
+<td align="left">***</td>
+</tr>
+<tr class="odd">
+<td align="left">年紀</td>
+<td align="left">Age</td>
+<td align="left">-0.004188</td>
+<td align="left">0.004906</td>
+<td align="left">-0.8538</td>
+<td align="left">0.393</td>
+<td align="left">0.9958</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">教育年份</td>
+<td align="left">Education_Years</td>
+<td align="left">0.04202</td>
+<td align="left">0.02621</td>
+<td align="left">1.603</td>
+<td align="left">0.109</td>
+<td align="left">1.043</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">收入</td>
+<td align="left">Income</td>
+<td align="left">-1.702e-05</td>
+<td align="left">4.838e-06</td>
+<td align="left">-3.517</td>
+<td align="left">&lt;0.001</td>
+<td align="left">1.000</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">小孩數</td>
+<td align="left">Number_of_child</td>
+<td align="left">0.08254</td>
+<td align="left">0.08734</td>
+<td align="left">0.9450</td>
+<td align="left">0.345</td>
+<td align="left">1.086</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">活動1</td>
+<td align="left">AcceptedCmp1</td>
+<td align="left">1.325</td>
+<td align="left">0.1787</td>
+<td align="left">7.416</td>
+<td align="left">&lt;0.001</td>
+<td align="left">3.764</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">活動2</td>
+<td align="left">AcceptedCmp2</td>
+<td align="left">0.6758</td>
+<td align="left">0.3129</td>
+<td align="left">2.160</td>
+<td align="left">0.031</td>
+<td align="left">1.966</td>
+<td align="left">*</td>
+</tr>
+<tr class="odd">
+<td align="left">活動3</td>
+<td align="left">AcceptedCmp3</td>
+<td align="left">0.9655</td>
+<td align="left">0.1614</td>
+<td align="left">5.983</td>
+<td align="left">&lt;0.001</td>
+<td align="left">2.626</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">活動4</td>
+<td align="left">AcceptedCmp4</td>
+<td align="left">0.3830</td>
+<td align="left">0.1825</td>
+<td align="left">2.098</td>
+<td align="left">0.036</td>
+<td align="left">1.467</td>
+<td align="left">*</td>
+</tr>
+<tr class="odd">
+<td align="left">活動5</td>
+<td align="left">AcceptedCmp5</td>
+<td align="left">1.218</td>
+<td align="left">0.1963</td>
+<td align="left">6.205</td>
+<td align="left">&lt;0.001</td>
+<td align="left">3.380</td>
+<td align="left">***</td>
+</tr>
+<tr class="even">
+<td align="left">實體店面</td>
+<td align="left">NumStorePurchases</td>
+<td align="left">-0.02594</td>
+<td align="left">0.02382</td>
+<td align="left">-1.089</td>
+<td align="left">0.276</td>
+<td align="left">0.9744</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">網站</td>
+<td align="left">NumWebPurchases</td>
+<td align="left">0.02037</td>
+<td align="left">0.02407</td>
+<td align="left">0.8461</td>
+<td align="left">0.398</td>
+<td align="left">1.021</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: decimal">
+<li>方程式</li>
+</ol>
+<pre><code>## logit(P) = -2.0898 + 0.002 * Spending - 0.0042 * Age + 0.042 * Education_Years - 0 * Income + 0.0825 * Number_of_child + 1.3255 * AcceptedCmp1 + 0.6758 * AcceptedCmp2 + 0.9655 * AcceptedCmp3 + 0.383 * AcceptedCmp4 + 1.218 * AcceptedCmp5 - 0.0259 * NumStorePurchases + 0.0204 * NumWebPurchases</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>係數解釋</li>
+</ol>
+<ol style="list-style-type: decimal">
+<li>Spending: 消費額增加，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000002，非常顯著。</li>
+<li>Age: 年齡增加，客戶接受優惠的機率減少，但這個變數的 p-value 為 0.419034，大於 0.05，統計上不顯著。</li>
+<li>Education_Years: 教育年限增加，客戶接受優惠的機率增加，但這個變數的 p-value 為 0.088892，接近顯著水準 (p &lt; 0.1)。</li>
+<li>Income: 收入增加，客戶接受優惠的機率減少，且這個變數的 p-value 為 0.000471，非常顯著。</li>
+<li>Number_of_child: 子女數量增加，客戶接受優惠的機率增加，但這個變數的 p-value 為 0.530517，大於 0.05，統計上不顯著。</li>
+<li>AcceptedCmp1: 客戶接受促銷活動1，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000147，非常顯著。</li>
+<li>AcceptedCmp2: 客戶接受促銷活動2，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.008200，非常顯著。</li>
+<li>AcceptedCmp3: 客戶接受促銷活動3，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000004167894，非常顯著。</li>
+<li>AcceptedCmp4: 客戶接受促銷活動4，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.015759，顯著。</li>
+<li>AcceptedCmp5: 客戶接受促銷活動5，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000011577284，非常顯著。</li>
+<li>NumStorePurchases: 實體店購買次數增加，客戶接受優惠的機率減少，但這個變數的 p-value 為 0.095073，接近顯著水準 (p &lt; 0.1)。</li>
+<li>NumWebPurchases: 網上購買次數增加，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.016974，顯著。</li>
+</ol>
+<p>多數變數對於預測客戶接受優惠的機率具有顯著影響。特別是消費額、收入、促銷活動接受情況以及網上購買次數對模型影響較大。而年齡和子女數量對預測的影響並不顯著。</p>
+<p>（二）模型解釋力</p>
+<p>使用 McFadden’s Pseudo-R² 評估模型解釋力，模型解釋了約 27.68% 的變異，優於Model 1 、Model 2和 Model3 ，解釋力相對較高。</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb48-1" tabindex="-1"></a>McFadden.R2_4 <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> (result4<span class="sc">$</span>deviance <span class="sc">/</span> result4<span class="sc">$</span>null.deviance)</span>
+<span id="cb48-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb48-2" tabindex="-1"></a>McFadden.R2_4</span></code></pre></div>
+<pre><code>## [1] 0.2700566</code></pre>
+<p>（三）混淆矩陣</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-1" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb50-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-2" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-3" tabindex="-1"></a>Prob4 <span class="ot">&lt;-</span> <span class="fu">predict</span>(result4, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>) </span>
+<span id="cb50-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-4" tabindex="-1"></a>Response.predicted4 <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(Prob4 <span class="sc">&gt;=</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb50-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-5" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-6" tabindex="-1"></a>Actual <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">as.factor</span>(customer_data<span class="sc">$</span>Response)) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb50-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-7" tabindex="-1"></a>TABEL4 <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Pred =</span> <span class="fu">as.factor</span>(Response.predicted4), <span class="at">Actual =</span> Actual)</span>
+<span id="cb50-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-8" tabindex="-1"></a></span>
+<span id="cb50-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-9" tabindex="-1"></a>conf_matrix4 <span class="ot">&lt;-</span> <span class="fu">confusionMatrix</span>(TABEL4, <span class="at">positive =</span> <span class="st">&quot;1&quot;</span>)</span>
+<span id="cb50-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb50-10" tabindex="-1"></a><span class="fu">print</span>(conf_matrix4)</span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##     Actual
+## Pred    0    1
+##    0 1355  347
+##    1  110  404
+##                                                
+##                Accuracy : 0.7938               
+##                  95% CI : (0.7763, 0.8104)     
+##     No Information Rate : 0.6611               
+##     P-Value [Acc &gt; NIR] : &lt; 0.00000000000000022
+##                                                
+##                   Kappa : 0.5014               
+##                                                
+##  Mcnemar&#39;s Test P-Value : &lt; 0.00000000000000022
+##                                                
+##             Sensitivity : 0.5379               
+##             Specificity : 0.9249               
+##          Pos Pred Value : 0.7860               
+##          Neg Pred Value : 0.7961               
+##              Prevalence : 0.3389               
+##          Detection Rate : 0.1823               
+##    Detection Prevalence : 0.2319               
+##       Balanced Accuracy : 0.7314               
+##                                                
+##        &#39;Positive&#39; Class : 1                    
+## </code></pre>
+<p>混淆矩陣數據解釋</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-1" tabindex="-1"></a><span class="co"># 動態文字生成</span></span>
+<span id="cb52-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-2" tabindex="-1"></a>TN4 <span class="ot">&lt;-</span> TABEL4[<span class="dv">1</span>, <span class="dv">1</span>]  <span class="co"># True Negatives</span></span>
+<span id="cb52-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-3" tabindex="-1"></a>FN4 <span class="ot">&lt;-</span> TABEL4[<span class="dv">1</span>, <span class="dv">2</span>]  <span class="co"># False Negatives</span></span>
+<span id="cb52-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-4" tabindex="-1"></a>FP4 <span class="ot">&lt;-</span> TABEL4[<span class="dv">2</span>, <span class="dv">1</span>]  <span class="co"># False Positives</span></span>
+<span id="cb52-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-5" tabindex="-1"></a>TP4 <span class="ot">&lt;-</span> TABEL4[<span class="dv">2</span>, <span class="dv">2</span>]  <span class="co"># True Positives</span></span>
+<span id="cb52-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-6" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-7" tabindex="-1"></a>sensitivity4 <span class="ot">&lt;-</span> conf_matrix4<span class="sc">$</span>byClass[<span class="st">&quot;Sensitivity&quot;</span>]</span>
+<span id="cb52-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-8" tabindex="-1"></a>specificity4 <span class="ot">&lt;-</span> conf_matrix4<span class="sc">$</span>byClass[<span class="st">&quot;Specificity&quot;</span>]</span>
+<span id="cb52-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-9" tabindex="-1"></a>precision4 <span class="ot">&lt;-</span> conf_matrix4<span class="sc">$</span>byClass[<span class="st">&quot;Pos Pred Value&quot;</span>]</span>
+<span id="cb52-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-10" tabindex="-1"></a>neg_pred_value4 <span class="ot">&lt;-</span> conf_matrix4<span class="sc">$</span>byClass[<span class="st">&quot;Neg Pred Value&quot;</span>]</span>
+<span id="cb52-11"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-11" tabindex="-1"></a>accuracy4 <span class="ot">&lt;-</span> conf_matrix4<span class="sc">$</span>overall[<span class="st">&quot;Accuracy&quot;</span>]</span>
+<span id="cb52-12"><a href="資料分析超商購物車消費者資料分析-1.html#cb52-12" tabindex="-1"></a>kappa4 <span class="ot">&lt;-</span> conf_matrix4<span class="sc">$</span>overall[<span class="st">&quot;Kappa&quot;</span>]</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>混淆矩陣結果</li>
+</ol>
+<p>● True Negatives (TN): 1355（預測為負例，實際為負例）</p>
+<p>● False Negatives (FN): 347（預測為負例，實際為正例）</p>
+<p>● False Positives (FP): 110（預測為正例，實際為負例）</p>
+<p>● True Positives (TP): 404（預測為正例，實際為正例）</p>
+<ol start="2" style="list-style-type: decimal">
+<li>預測力</li>
+</ol>
+<p>● Sensitivity (召回率)：0.5379494</p>
+<p>● Specificity (特異度)：0.9249147</p>
+<p>● Precision (精確率)：0.7859922</p>
+<p>● Neg Pred Value (負預測值)：0.7961222</p>
+<p>● Accuracy (準確度)：0.7937726</p>
+<p>● Kappa (卡帕統計量)：0.5014248</p>
+<p>Model 4 考量所有變數後，在分類效果中明顯優於前面三個模型，是在識別負樣本方面有很高的準確性。然而，模型在識別正樣本方面的性能相對較低，推測是因為原始資料中，接受優惠的消費者佔全體消費者的少數。但總體來說，模型的預測結果具有可靠性， Kappa : 0.5076，且顯著優於隨機猜測。</p>
+</div>
+<div id="每個模型的roc曲線" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> 每個模型的ROC曲線<a href="資料分析超商購物車消費者資料分析-1.html#每個模型的roc曲線" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ROC（Receiver Operating Characteristic）曲線，評估分類模型效能，表示分類模型在不同閾值設定下的表現。通過描繪真陽性率（True Positive Rate, TPR）對假陽性率（False Positive Rate, FPR）的關係來顯示混淆矩陣的辨識能力。</p>
+<p>AUC（Area Under the Curve）：曲線下面積，衡量模型的整體效能。AUC值範圍是0到1，AUC值越接近1，模型性能越好。</p>
+<p><span class="math inline">\(Model1\)</span></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;plotROC&quot;</span>)</span>
+<span id="cb53-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb53-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-3" tabindex="-1"></a>predict.table1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">true_label =</span> customer_data<span class="sc">$</span>Response, <span class="at">predict_prob =</span> Prob)</span>
+<span id="cb53-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-4" tabindex="-1"></a><span class="co"># 繪製ROC曲線</span></span>
+<span id="cb53-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-5" tabindex="-1"></a>basic.plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(predict.table1, <span class="fu">aes</span>(<span class="at">d =</span> true_label, <span class="at">m =</span> predict_prob)) <span class="sc">+</span></span>
+<span id="cb53-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-6" tabindex="-1"></a>  <span class="fu">geom_roc</span>(<span class="at">n.cuts =</span> <span class="dv">3</span>, <span class="at">labelsize =</span> <span class="dv">3</span>, <span class="at">labelround =</span> <span class="dv">2</span>)</span>
+<span id="cb53-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-7" tabindex="-1"></a><span class="co"># AUC值</span></span>
+<span id="cb53-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-8" tabindex="-1"></a>basic.plot1 <span class="sc">+</span> <span class="fu">style_roc</span>() <span class="sc">+</span></span>
+<span id="cb53-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-9" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> .<span class="dv">75</span>, <span class="at">y =</span> .<span class="dv">25</span>, <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb53-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb53-10" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">calc_auc</span>(basic.plot1)<span class="sc">$</span>AUC, <span class="dv">3</span>))) </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-45"></span>
+<img src="_main_files/figure-html/unnamed-chunk-45-1.png" alt="Model 1 ROC" width="672" />
+<p class="caption">
+Figure 2.7: Model 1 ROC
+</p>
+</div>
+<p><span class="math inline">\(Model2\)</span></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb54-1" tabindex="-1"></a>predict.table2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">true_label =</span> customer_data<span class="sc">$</span>Response, <span class="at">predict_prob =</span> Prob2)</span>
+<span id="cb54-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb54-2" tabindex="-1"></a><span class="co"># 繪製ROC曲線</span></span>
+<span id="cb54-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb54-3" tabindex="-1"></a>basic.plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(predict.table2, <span class="fu">aes</span>(<span class="at">d =</span> true_label, <span class="at">m =</span> predict_prob)) <span class="sc">+</span></span>
+<span id="cb54-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb54-4" tabindex="-1"></a>  <span class="fu">geom_roc</span>(<span class="at">n.cuts =</span> <span class="dv">3</span>, <span class="at">labelsize =</span> <span class="dv">3</span>, <span class="at">labelround =</span> <span class="dv">2</span>)</span>
+<span id="cb54-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb54-5" tabindex="-1"></a><span class="co"># AUC值</span></span>
+<span id="cb54-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb54-6" tabindex="-1"></a>basic.plot2 <span class="sc">+</span> <span class="fu">style_roc</span>() <span class="sc">+</span></span>
+<span id="cb54-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb54-7" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> .<span class="dv">75</span>, <span class="at">y =</span> .<span class="dv">25</span>, <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb54-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb54-8" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">calc_auc</span>(basic.plot2)<span class="sc">$</span>AUC, <span class="dv">3</span>)))  </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-46"></span>
+<img src="_main_files/figure-html/unnamed-chunk-46-1.png" alt="Model 2 ROC" width="672" />
+<p class="caption">
+Figure 2.8: Model 2 ROC
+</p>
+</div>
+<p><span class="math inline">\(Model3\)</span></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb55-1" tabindex="-1"></a>predict.table3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">true_label =</span> customer_data<span class="sc">$</span>Response, <span class="at">predict_prob =</span> Prob3)</span>
+<span id="cb55-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb55-2" tabindex="-1"></a><span class="co"># 繪製ROC曲線</span></span>
+<span id="cb55-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb55-3" tabindex="-1"></a>basic.plot3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(predict.table3, <span class="fu">aes</span>(<span class="at">d =</span> true_label, <span class="at">m =</span> predict_prob)) <span class="sc">+</span></span>
+<span id="cb55-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb55-4" tabindex="-1"></a>  <span class="fu">geom_roc</span>(<span class="at">n.cuts =</span> <span class="dv">3</span>, <span class="at">labelsize =</span> <span class="dv">3</span>, <span class="at">labelround =</span> <span class="dv">2</span>)</span>
+<span id="cb55-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb55-5" tabindex="-1"></a><span class="co"># AUC值</span></span>
+<span id="cb55-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb55-6" tabindex="-1"></a>basic.plot3 <span class="sc">+</span> <span class="fu">style_roc</span>() <span class="sc">+</span></span>
+<span id="cb55-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb55-7" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> .<span class="dv">75</span>, <span class="at">y =</span> .<span class="dv">25</span>, <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb55-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb55-8" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">calc_auc</span>(basic.plot3)<span class="sc">$</span>AUC, <span class="dv">3</span>)))     </span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-47"></span>
+<img src="_main_files/figure-html/unnamed-chunk-47-1.png" alt="Model 3 ROC" width="672" />
+<p class="caption">
+Figure 2.9: Model 3 ROC
+</p>
+</div>
+<p><span class="math inline">\(Model4\)</span></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb56-1" tabindex="-1"></a>predict.table4 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">true_label =</span> customer_data<span class="sc">$</span>Response, <span class="at">predict_prob =</span> Prob4)</span>
+<span id="cb56-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb56-2" tabindex="-1"></a><span class="co"># 繪製ROC曲線</span></span>
+<span id="cb56-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb56-3" tabindex="-1"></a>basic.plot4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(predict.table4, <span class="fu">aes</span>(<span class="at">d =</span> true_label, <span class="at">m =</span> predict_prob)) <span class="sc">+</span></span>
+<span id="cb56-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb56-4" tabindex="-1"></a>  <span class="fu">geom_roc</span>(<span class="at">n.cuts =</span> <span class="dv">3</span>, <span class="at">labelsize =</span> <span class="dv">3</span>, <span class="at">labelround =</span> <span class="dv">2</span>)</span>
+<span id="cb56-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb56-5" tabindex="-1"></a><span class="co"># AUC值</span></span>
+<span id="cb56-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb56-6" tabindex="-1"></a>basic.plot4 <span class="sc">+</span> <span class="fu">style_roc</span>() <span class="sc">+</span></span>
+<span id="cb56-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb56-7" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> .<span class="dv">75</span>, <span class="at">y =</span> .<span class="dv">25</span>, <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb56-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb56-8" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">calc_auc</span>(basic.plot4)<span class="sc">$</span>AUC, <span class="dv">3</span>)))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-48"></span>
+<img src="_main_files/figure-html/unnamed-chunk-48-1.png" alt="Model 4 ROC" width="672" />
+<p class="caption">
+Figure 2.10: Model 4 ROC
+</p>
+</div>
+</div>
+<div id="總結影響因素" class="section level3 hasAnchor" number="2.4.6">
+<h3><span class="header-section-number">2.4.6</span> 總結影響因素<a href="資料分析超商購物車消費者資料分析-1.html#總結影響因素" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>由於Model4的解釋力最佳，以Model4作為總結說明。GLM模型中，有一些變量對消費者是否接受最後一次優惠活動有正面影響，而另一些則有負面影響或不顯著的影響。</p>
+<p>視覺化「邏輯迴歸」的結果，每個變數對於接受最後一次優惠活動 odds 的影響程度</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb57-2"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb57-3"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-3" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-4" tabindex="-1"></a><span class="co"># 提取模型係數</span></span>
+<span id="cb57-5"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-5" tabindex="-1"></a>summary.table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">var_name =</span> <span class="fu">names</span>(<span class="fu">coefficients</span>(result4)),</span>
+<span id="cb57-6"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-6" tabindex="-1"></a>                            <span class="at">coefficient =</span> <span class="fu">coefficients</span>(result4))</span>
+<span id="cb57-7"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-7" tabindex="-1"></a><span class="co"># 篩選出需要的變量（去除截距項）</span></span>
+<span id="cb57-8"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-8" tabindex="-1"></a>summary.table <span class="ot">&lt;-</span> summary.table <span class="sc">%&gt;%</span></span>
+<span id="cb57-9"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-9" tabindex="-1"></a>  <span class="fu">filter</span>(var_name <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>)</span>
+<span id="cb57-10"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-10" tabindex="-1"></a><span class="co"># 按照係數大小排序</span></span>
+<span id="cb57-11"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-11" tabindex="-1"></a>summary.table <span class="ot">&lt;-</span> summary.table[<span class="fu">sort</span>(summary.table<span class="sc">$</span>coefficient, <span class="at">index.return =</span> T)<span class="sc">$</span>ix, ]</span>
+<span id="cb57-12"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-12" tabindex="-1"></a><span class="co"># 設定正確的變量類型</span></span>
+<span id="cb57-13"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-13" tabindex="-1"></a>summary.table<span class="sc">$</span>var_name <span class="ot">&lt;-</span> <span class="fu">factor</span>(summary.table<span class="sc">$</span>var_name,</span>
+<span id="cb57-14"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-14" tabindex="-1"></a>                                 <span class="at">levels =</span> summary.table<span class="sc">$</span>var_name)</span>
+<span id="cb57-15"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-15" tabindex="-1"></a><span class="co"># 繪製條形圖</span></span>
+<span id="cb57-16"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-16" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> summary.table,</span>
+<span id="cb57-17"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-17" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> var_name, <span class="at">y =</span> coefficient)) <span class="sc">+</span></span>
+<span id="cb57-18"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-18" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> var_name),</span>
+<span id="cb57-19"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-19" tabindex="-1"></a>           <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>,</span>
+<span id="cb57-20"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-20" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>,</span>
+<span id="cb57-21"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-21" tabindex="-1"></a>           <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb57-22"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-22" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb57-23"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Focus on Previous Marketing Activty&quot;</span>,</span>
+<span id="cb57-24"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-24" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Accept Last Marketing Activty&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Explanatory Variable&quot;</span>) <span class="sc">+</span></span>
+<span id="cb57-25"><a href="資料分析超商購物車消費者資料分析-1.html#cb57-25" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-49"></span>
+<img src="_main_files/figure-html/unnamed-chunk-49-1.png" alt="視覺化Model 4的結果" width="672" />
+<p class="caption">
+Figure 2.11: 視覺化Model 4的結果
+</p>
+</div>
+<p><span class="math inline">\(1. 主要影響因素\)</span></p>
+<p>過去的行銷活動（AcceptedCmp1, AcceptedCmp5, AcceptedCmp3, AcceptedCmp2, AcceptedCmp4）：過去接受行銷活動的次數對顧客是否接受最後一次行銷活動有顯著的正面影響。表示之前參與過行銷活動的顧客更有可能接受新的行銷活動。特別是 AcceptedCmp1 和 AcceptedCmp5 的影響最大，表示這些行銷活動的效果最好。</p>
+<p><span class="math inline">\(2. 網上購買次數（NumWebPurchases）\)</span></p>
+<p>網上購買次數對接受優惠活動有一定的正面影響。這表示經常在網上購買的顧客更傾向於接受新的行銷活動。</p>
+<p><span class="math inline">\(3. 教育年數（Education_Years）和孩子數量（Number_of_child）\)</span></p>
+<p>這兩個變量對顧客接受行銷活動有正面影響，但影響較小。</p>
+<p><span class="math inline">\(3. 負面影響因素；商店購買次數（NumStorePurchases）\)</span></p>
+<p>雖然影響較小，但說明經常在實體店購買的顧客可能不太容易接受新的行銷活動。</p>
+<p><span class="math inline">\(4. 不顯著的因素：花費（Spending）、年齡（Age）和收入（Income）\)</span></p>
+<p>對顧客接受行銷活動的影響不顯著，表示這些變量並不是決定顧客行為的重要因素。</p>
+<p><span class="math inline">\(5. 行銷策略\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p>重點關注過去接受行銷活動的顧客：將主要精力放在那些過去曾經參與過行銷活動的顧客，因為他們更有可能再次接受新的活動。</p></li>
+<li><p>加強線上行銷：針對經常進行網上購買的顧客，提供專屬的線上優惠和促銷活動，激勵他們參與。</p></li>
+<li><p>針對特定顧客群體：對於具有較高教育年數或有孩子的家庭，可以設計特別的行銷活動，雖然影響較小但也能帶來一定的增益。</p></li>
+<li><p>調整實體店策略：對於經常在實體店購買的顧客，可能需要不同的行銷策略，例如更多的店內體驗活動或實體店專屬優惠，以提高他們的參與度。超市需要進一步強化線上和線下的整合：</p></li>
+</ol>
+<ul>
+<li>統一會員數據：建立統一的會員系統，將線上和線下的購物行為整合到同一個平台，讓會員可以在任何渠道獲得相同的優惠和點數。</li>
+<li>線上線下通用：發行可以在線上和線下都能使用的折扣券，提升消費者的使用率。</li>
+<li>增強便利性：提供線上預訂、實體店取貨的選項，讓顧客可以在線上方便地選購商品，然後到最近的實體店取貨。</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="半導體永續報告書分析.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-Marketing-Data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

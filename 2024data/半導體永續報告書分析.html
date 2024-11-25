@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 半導體永續報告書分析 | 呂珣瑄 數據分析作品集</title>
+  <meta name="description" content="Chapter 3 半導體永續報告書分析 | 呂珣瑄 數據分析作品集" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 半導體永續報告書分析 | 呂珣瑄 數據分析作品集" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 3 半導體永續報告書分析 | 呂珣瑄 數據分析作品集" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 半導體永續報告書分析 | 呂珣瑄 數據分析作品集" />
+  
+  <meta name="twitter:description" content="Chapter 3 半導體永續報告書分析 | 呂珣瑄 數據分析作品集" />
+  
+
+<meta name="author" content="呂珣瑄" />
+
+
+<meta name="date" content="2024-11-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="資料分析超商購物車消費者資料分析-1.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#資料分析超商購物車消費者資料分析"><i class="fa fa-check"></i><b>1.1</b> 資料分析：超商購物車消費者資料分析</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#文字探勘半導體永續報告書分析"><i class="fa fa-check"></i><b>1.2</b> 文字探勘：半導體永續報告書分析</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html"><i class="fa fa-check"></i><b>2</b> 資料分析：超商購物車消費者資料分析</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#資料敘述"><i class="fa fa-check"></i><b>2.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#故事背景"><i class="fa fa-check"></i><b>2.1.1</b> 故事背景</a></li>
+<li class="chapter" data-level="2.1.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#資料概要"><i class="fa fa-check"></i><b>2.1.2</b> 資料概要</a></li>
+<li class="chapter" data-level="2.1.3" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#資料前處理與轉換"><i class="fa fa-check"></i><b>2.1.3</b> 資料前處理與轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#探索性資料分析"><i class="fa fa-check"></i><b>2.2</b> 探索性資料分析</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#銷售趨勢分析"><i class="fa fa-check"></i><b>2.2.1</b> 銷售趨勢分析</a></li>
+<li class="chapter" data-level="2.2.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#顧客行為分析"><i class="fa fa-check"></i><b>2.2.2</b> 顧客行為分析</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#視覺化消費者活動接受情況"><i class="fa fa-check"></i><b>2.3</b> 視覺化消費者活動接受情況</a></li>
+<li class="chapter" data-level="2.4" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#二元變數之probitlogit-glm"><i class="fa fa-check"></i><b>2.4</b> 二元變數之Probit/Logit GLM</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model1-考量消費金額的logit-glm"><i class="fa fa-check"></i><b>2.4.1</b> Model1 考量「消費金額」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model2-考量消費者型態的logit-glm"><i class="fa fa-check"></i><b>2.4.2</b> Model2 考量「消費者型態」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.3" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model3-考量消費者前期活動參與的logit-glm"><i class="fa fa-check"></i><b>2.4.3</b> Model3 考量「消費者前期活動參與」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.4" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model-4-考量所有變數的logit-glm"><i class="fa fa-check"></i><b>2.4.4</b> Model 4 考量「所有變數」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.5" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#每個模型的roc曲線"><i class="fa fa-check"></i><b>2.4.5</b> 每個模型的ROC曲線</a></li>
+<li class="chapter" data-level="2.4.6" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#總結影響因素"><i class="fa fa-check"></i><b>2.4.6</b> 總結影響因素</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html"><i class="fa fa-check"></i><b>3</b> 半導體永續報告書分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#年台灣ic產業主要廠商排名"><i class="fa fa-check"></i><b>3.1</b> 2022年台灣IC產業主要廠商排名</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#xpath-爬取網站資料"><i class="fa fa-check"></i><b>3.1.1</b> Xpath 爬取網站資料</a></li>
+<li class="chapter" data-level="3.1.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#網站文字清理"><i class="fa fa-check"></i><b>3.1.2</b> 網站文字清理</a></li>
+<li class="chapter" data-level="3.1.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#年台灣ic產業主要廠商排名-1"><i class="fa fa-check"></i><b>3.1.3</b> 2022年台灣IC產業主要廠商排名</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#半導體永續報告書導入與清理"><i class="fa fa-check"></i><b>3.2</b> 半導體永續報告書導入與清理</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#台積電永續報告書"><i class="fa fa-check"></i><b>3.2.1</b> 台積電永續報告書</a></li>
+<li class="chapter" data-level="3.2.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#聯發科永續報告書"><i class="fa fa-check"></i><b>3.2.2</b> 聯發科永續報告書</a></li>
+<li class="chapter" data-level="3.2.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#日月光控股永續報告書"><i class="fa fa-check"></i><b>3.2.3</b> 日月光控股永續報告書</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#計算-tf-idf"><i class="fa fa-check"></i><b>3.3</b> 計算 tf-idf</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#將資料合併"><i class="fa fa-check"></i><b>3.3.1</b> 將資料合併</a></li>
+<li class="chapter" data-level="3.3.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#設定停止詞和自訂義辭典"><i class="fa fa-check"></i><b>3.3.2</b> 設定停止詞和自訂義辭典</a></li>
+<li class="chapter" data-level="3.3.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#斷詞"><i class="fa fa-check"></i><b>3.3.3</b> 斷詞</a></li>
+<li class="chapter" data-level="3.3.4" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#計算-tf-idf-1"><i class="fa fa-check"></i><b>3.3.4</b> 計算 tf-idf</a></li>
+<li class="chapter" data-level="3.3.5" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#繪製長條圖"><i class="fa fa-check"></i><b>3.3.5</b> 繪製長條圖</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#正面情緒分析"><i class="fa fa-check"></i><b>3.4</b> 正面情緒分析</a></li>
+<li class="chapter" data-level="3.5" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#分析永續報告書用字相似度"><i class="fa fa-check"></i><b>3.5</b> 分析永續報告書用字相似度</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#計算tf-idf每一個字分別出現在這三家永續報告書的次數"><i class="fa fa-check"></i><b>3.5.1</b> 計算tf-idf(每一個字分別出現在這三家永續報告書的次數)</a></li>
+<li class="chapter" data-level="3.5.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#查看相關係數"><i class="fa fa-check"></i><b>3.5.2</b> 查看相關係數</a></li>
+<li class="chapter" data-level="3.5.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#分析詞頻差異"><i class="fa fa-check"></i><b>3.5.3</b> 分析詞頻差異</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#lda主題模型"><i class="fa fa-check"></i><b>3.6</b> LDA主題模型</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#前置處理"><i class="fa fa-check"></i><b>3.6.1</b> 前置處理</a></li>
+<li class="chapter" data-level="3.6.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#lda主題建模"><i class="fa fa-check"></i><b>3.6.2</b> LDA主題建模</a></li>
+<li class="chapter" data-level="3.6.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#為主題命名"><i class="fa fa-check"></i><b>3.6.3</b> 為主題命名</a></li>
+<li class="chapter" data-level="3.6.4" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#主題與公司對應關係"><i class="fa fa-check"></i><b>3.6.4</b> 主題與公司對應關係</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">呂珣瑄 數據分析作品集</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="半導體永續報告書分析" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> 半導體永續報告書分析<a href="半導體永續報告書分析.html#半導體永續報告書分析" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="年台灣ic產業主要廠商排名" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> 2022年台灣IC產業主要廠商排名<a href="半導體永續報告書分析.html#年台灣ic產業主要廠商排名" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="xpath-爬取網站資料" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Xpath 爬取網站資料<a href="半導體永續報告書分析.html#xpath-爬取網站資料" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="半導體永續報告書分析.html#cb1-1" tabindex="-1"></a>industryURL <span class="ot">&lt;-</span> <span class="st">&quot;https://www.sipo.org.tw/industry-overview/industry-ranking/semiconductor-industry-ranking.html&quot;</span></span>
+<span id="cb1-2"><a href="半導體永續報告書分析.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="半導體永續報告書分析.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(rvest)    </span>
+<span id="cb1-4"><a href="半導體永續報告書分析.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(xml2)</span>
+<span id="cb1-5"><a href="半導體永續報告書分析.html#cb1-5" tabindex="-1"></a>industry_path <span class="ot">&lt;-</span> <span class="st">&quot;//div[@class=&#39;sp-column &#39;]/div[@id=&#39;k2Container&#39;]/div[@class=&#39;itemBody&#39;]/div[@class=&#39;itemFullText&#39;]&quot;</span> <span class="co">#用XPATH找到碼</span></span>
+<span id="cb1-6"><a href="半導體永續報告書分析.html#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="半導體永續報告書分析.html#cb1-7" tabindex="-1"></a>industry_data <span class="ot">&lt;-</span> industryURL <span class="sc">|&gt;</span> </span>
+<span id="cb1-8"><a href="半導體永續報告書分析.html#cb1-8" tabindex="-1"></a>  <span class="fu">read_html</span>() <span class="sc">|&gt;</span>                       <span class="co"># 取得網頁中所有的資料</span></span>
+<span id="cb1-9"><a href="半導體永續報告書分析.html#cb1-9" tabindex="-1"></a>  <span class="fu">html_nodes</span>(<span class="at">xpath =</span> industry_path) <span class="sc">|&gt;</span>   <span class="co"># 使用 XPath 擷取資料</span></span>
+<span id="cb1-10"><a href="半導體永續報告書分析.html#cb1-10" tabindex="-1"></a>  <span class="fu">html_text</span>(<span class="at">trim =</span> <span class="cn">TRUE</span>)                <span class="co"># 去除 html 標籤和多餘空白</span></span>
+<span id="cb1-11"><a href="半導體永續報告書分析.html#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="半導體永續報告書分析.html#cb1-12" tabindex="-1"></a>industry_data</span></code></pre></div>
+<pre><code>## [1] &quot;2022年全球主要半導體廠商\r\n \r\n2022年排名公司名稱類型 \r\n2021年營收(百萬美元) \r\n2022年營收(百萬美元) 成長率 (%) 1\r\n三星(Samsung)\r\nIDM\r\n\r\n82,019\r\n\r\n77,097\r\n-6%\r\n2\r\n 台積電(TSMC)\r\nFoundry\r\n56,840\r\n75,851\r\n33%\r\n3\r\n英特爾(Intel)\r\nIDM\r\n76,742\r\n61,534\r\n-20%\r\n4\r\n高通(Qualcomm)\r\nFabless\r\n29,333\r\n36,722\r\n25%\r\n5\r\nSK海力士(SK Hynix)\r\nIDM\r\n37,433\r\n29,922\r\n-7%\r\n6\r\n博通(Broadcom Inc.) \r\nFabless\r\n21,026\r\n26,333\r\n27%\r\n7\r\n美光(Micron)\r\nIDM\r\n30,016\r\n25,637\r\n-15%\r\n8\r\n輝達(Nvidia)\r\nFabless\r\n23,168\r\n24,503\r\n6%\r\n9\r\n超微半導體(AMD)\r\nFabless\r\n16,434\r\n23,601\r\n44%\r\n10\r\n德州儀器(TI)\r\nIDM\r\n17,315\r\n18,993\r\n10%\r\n11\r\n聯發科(MediaTek)\r\nFabless\r\n17,667\r\n18,506\r\n5%\r\n12\r\n蘋果(Apple) \r\nFabless\r\n14,778\r\n17,824\r\n21%\r\n13\r\n意法半導體(ST)\r\nIDM\r\n12,761\r\n16,128\r\n26%\r\n14\r\n英飛凌(Infineon)\r\nIDM\r\n13,685\r\n15,776\r\n15%\r\n15\r\n恩智浦(NXP)\r\nIDM\r\n10,843\r\n12,954\r\n19%\r\n16\r\n亞德諾半導體(Analog Devices) \r\nIDM\r\n8,560\r\n12,388\r\n45%\r\n17\r\n瑞薩(Renesas)\r\nIDM\r\n8,896\r\n11,318\r\n27%\r\n18\r\n鎧俠(Kioxia) \r\nIDM\r\n12,528\r\n10,595\r\n-15%\r\n19\r\n索尼(SONY) \r\nIDM\r\n9,574\r\n9,858\r\n3%\r\n20\r\n聯電(UMC)\r\nFoundry\r\n7,627\r\n9,362\r\n23%\r\n21\r\n安森美半導體(ON Semi)\r\nIDM\r\n6,740\r\n8,327\r\n24%\r\n22\r\n格羅方德(GlobalFoundries)\r\nFoundry\r\n6,585\r\n8,108\r\n23%\r\n23\r\n威騰(Western Digital) \r\nIDM\r\n9,705\r\n8,022\r\n-17%\r\n24\r\n微芯科技(Microchip)\r\nIDM\r\n6,314\r\n7,883\r\n25%\r\n25\r\n中芯國際(SMIC)\r\nFoundry\r\n5,443\r\n7,273\r\n 34%\r\n \r\n 資料來源：各公司、TechInsights，資策會MIC整理，2023年7月\r\n \r\n \r\n \r\n2022年臺灣IC產業主要廠商 ​\r\n2022年排名 公司名稱產業別/產品別2021年營收(單位：新臺幣億元) 2022年營收(單位：新臺幣億元)   成長率%1\r\n台積電\r\n晶圓代工\r\n15,874\r\n22,638\r\n42.6%\r\n2\r\n聯發科\r\nIC設計業\r\n4,934\r\n5,488\r\n11.2%\r\n3\r\n日月光投控\r\nIC封測業\r\n3,277\r\n3,656\r\n11.6%\r\n4\r\n聯    電\r\n 晶圓代工\r\n2,130\r\n2,787\r\n30.8%\r\n5\r\n瑞　昱\r\nIC設計業\r\n1,055\r\n1,118\r\n6.0%\r\n6\r\n聯　詠\r\nIC設計業\r\n1,354\r\n1,100\r\n-18.8%\r\n7\r\n力成科技 \r\nIC封測業\r\n838\r\n839\r\n0.1%\r\n8\r\n力積電(原力晶)\r\n晶圓代工\r\n656\r\n760\r\n15.9%\r\n9\r\n南亞科\r\n記憶體\r\n856\r\n569\r\n-33.5%\r\n10\r\n 華邦電*\r\n記憶體\r\n581\r\n522\r\n-10.2%\r\n以上加總 \r\n31,555\r\n39,477\r\n25.1%\r\n備註：日月光控股僅計入封測營收、華邦電僅計入記憶體事業營收\r\n資料來源：各公司，MIC整理，2023年6月&quot;</code></pre>
+</div>
+<div id="網站文字清理" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> 網站文字清理<a href="半導體永續報告書分析.html#網站文字清理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>提取「2022年臺灣IC產業主要廠商」部分數據</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="半導體永續報告書分析.html#cb3-1" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">regexpr</span>(<span class="st">&quot;2022年臺灣IC產業主要廠商&quot;</span>, industry_data)</span>
+<span id="cb3-2"><a href="半導體永續報告書分析.html#cb3-2" tabindex="-1"></a>data_to_process <span class="ot">&lt;-</span> <span class="fu">substr</span>(industry_data, start, <span class="fu">nchar</span>(industry_data))</span>
+<span id="cb3-3"><a href="半導體永續報告書分析.html#cb3-3" tabindex="-1"></a>data_to_process</span></code></pre></div>
+<pre><code>## [1] &quot;2022年臺灣IC產業主要廠商 ​\r\n2022年排名 公司名稱產業別/產品別2021年營收(單位：新臺幣億元) 2022年營收(單位：新臺幣億元)   成長率%1\r\n台積電\r\n晶圓代工\r\n15,874\r\n22,638\r\n42.6%\r\n2\r\n聯發科\r\nIC設計業\r\n4,934\r\n5,488\r\n11.2%\r\n3\r\n日月光投控\r\nIC封測業\r\n3,277\r\n3,656\r\n11.6%\r\n4\r\n聯    電\r\n 晶圓代工\r\n2,130\r\n2,787\r\n30.8%\r\n5\r\n瑞　昱\r\nIC設計業\r\n1,055\r\n1,118\r\n6.0%\r\n6\r\n聯　詠\r\nIC設計業\r\n1,354\r\n1,100\r\n-18.8%\r\n7\r\n力成科技 \r\nIC封測業\r\n838\r\n839\r\n0.1%\r\n8\r\n力積電(原力晶)\r\n晶圓代工\r\n656\r\n760\r\n15.9%\r\n9\r\n南亞科\r\n記憶體\r\n856\r\n569\r\n-33.5%\r\n10\r\n 華邦電*\r\n記憶體\r\n581\r\n522\r\n-10.2%\r\n以上加總 \r\n31,555\r\n39,477\r\n25.1%\r\n備註：日月光控股僅計入封測營收、華邦電僅計入記憶體事業營收\r\n資料來源：各公司，MIC整理，2023年6月&quot;</code></pre>
+<p>利用strsplit分割，並清理標題和備註等非數據行列</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="半導體永續報告書分析.html#cb5-1" tabindex="-1"></a>lines <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(data_to_process, <span class="st">&quot;</span><span class="sc">\r\n</span><span class="st">&quot;</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb5-2"><a href="半導體永續報告書分析.html#cb5-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> lines[<span class="dv">3</span><span class="sc">:</span>(<span class="fu">length</span>(lines) <span class="sc">-</span> <span class="dv">5</span>)]  <span class="co"># 從第3行開始，到倒數第5行結束</span></span>
+<span id="cb5-3"><a href="半導體永續報告書分析.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="半導體永續報告書分析.html#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="半導體永續報告書分析.html#cb5-5" tabindex="-1"></a>data_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(data, <span class="at">ncol =</span> <span class="dv">6</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="年台灣ic產業主要廠商排名-1" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> 2022年台灣IC產業主要廠商排名<a href="半導體永續報告書分析.html#年台灣ic產業主要廠商排名-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="半導體永續報告書分析.html#cb6-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(data_matrix, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-2"><a href="半導體永續報告書分析.html#cb6-2" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&quot;公司名稱&quot;</span>, <span class="st">&quot;產業別/產品別&quot;</span>, <span class="st">&quot;2021年營收(億)&quot;</span>, <span class="st">&quot;2022年營收(億)&quot;</span>, <span class="st">&quot;成長率%&quot;</span>)</span>
+<span id="cb6-3"><a href="半導體永續報告書分析.html#cb6-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[, <span class="sc">-</span><span class="fu">ncol</span>(df)]</span>
+<span id="cb6-4"><a href="半導體永續報告書分析.html#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="半導體永續報告書分析.html#cb6-5" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb6-6"><a href="半導體永續報告書分析.html#cb6-6" tabindex="-1"></a><span class="fu">kable</span>(df, <span class="at">caption =</span> <span class="st">&quot;2022年台灣IC產業主要廠商營收&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-4">Table 3.1: </span>2022年台灣IC產業主要廠商營收</caption>
+<colgroup>
+<col width="22%" />
+<col width="20%" />
+<col width="22%" />
+<col width="22%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">公司名稱</th>
+<th align="left">產業別/產品別</th>
+<th align="left">2021年營收(億)</th>
+<th align="left">2022年營收(億)</th>
+<th align="left">成長率%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">台積電</td>
+<td align="left">晶圓代工</td>
+<td align="left">15,874</td>
+<td align="left">22,638</td>
+<td align="left">42.6%</td>
+</tr>
+<tr class="even">
+<td align="left">聯發科</td>
+<td align="left">IC設計業</td>
+<td align="left">4,934</td>
+<td align="left">5,488</td>
+<td align="left">11.2%</td>
+</tr>
+<tr class="odd">
+<td align="left">日月光投控</td>
+<td align="left">IC封測業</td>
+<td align="left">3,277</td>
+<td align="left">3,656</td>
+<td align="left">11.6%</td>
+</tr>
+<tr class="even">
+<td align="left">聯    電</td>
+<td align="left"> 晶圓代工</td>
+<td align="left">2,130</td>
+<td align="left">2,787</td>
+<td align="left">30.8%</td>
+</tr>
+<tr class="odd">
+<td align="left">瑞　昱</td>
+<td align="left">IC設計業</td>
+<td align="left">1,055</td>
+<td align="left">1,118</td>
+<td align="left">6.0%</td>
+</tr>
+<tr class="even">
+<td align="left">聯　詠</td>
+<td align="left">IC設計業</td>
+<td align="left">1,354</td>
+<td align="left">1,100</td>
+<td align="left">-18.8%</td>
+</tr>
+<tr class="odd">
+<td align="left">力成科技 </td>
+<td align="left">IC封測業</td>
+<td align="left">838</td>
+<td align="left">839</td>
+<td align="left">0.1%</td>
+</tr>
+<tr class="even">
+<td align="left">力積電(原力晶)</td>
+<td align="left">晶圓代工</td>
+<td align="left">656</td>
+<td align="left">760</td>
+<td align="left">15.9%</td>
+</tr>
+<tr class="odd">
+<td align="left">南亞科</td>
+<td align="left">記憶體</td>
+<td align="left">856</td>
+<td align="left">569</td>
+<td align="left">-33.5%</td>
+</tr>
+<tr class="even">
+<td align="left"> 華邦電*</td>
+<td align="left">記憶體</td>
+<td align="left">581</td>
+<td align="left">522</td>
+<td align="left">-10.2%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="半導體永續報告書導入與清理" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> 半導體永續報告書導入與清理<a href="半導體永續報告書分析.html#半導體永續報告書導入與清理" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>選定前三名公司之永續報告書</p>
+<p>首先載入需要的package</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="半導體永續報告書分析.html#cb7-1" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span>
+<span id="cb7-2"><a href="半導體永續報告書分析.html#cb7-2" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb7-3"><a href="半導體永續報告書分析.html#cb7-3" tabindex="-1"></a><span class="fu">library</span>(tm)</span>
+<span id="cb7-4"><a href="半導體永續報告書分析.html#cb7-4" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb7-5"><a href="半導體永續報告書分析.html#cb7-5" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code></pre></div>
+<p>將pdf文件導入R studio，讀取pdf中的所有的文字，存為”company_fulltext”</p>
+<div id="台積電永續報告書" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> 台積電永續報告書<a href="半導體永續報告書分析.html#台積電永續報告書" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="半導體永續報告書分析.html#cb8-1" tabindex="-1"></a>TSMC_data <span class="ot">&lt;-</span> <span class="st">&quot;/Users/sharon728/Documents/師大管研/text mining/2023 ESG report/TSMC.pdf&quot;</span></span>
+<span id="cb8-2"><a href="半導體永續報告書分析.html#cb8-2" tabindex="-1"></a>TSMC_fulltext <span class="ot">&lt;-</span> <span class="fu">pdf_text</span>(TSMC_data)</span>
+<span id="cb8-3"><a href="半導體永續報告書分析.html#cb8-3" tabindex="-1"></a><span class="fu">cat</span>(TSMC_fulltext[<span class="dv">4</span>])</span></code></pre></div>
+<pre><code>##                                                              導言                       實踐永續管理                  營運與治理          附錄
+##          112 年度永續報告書
+##                                                             追求創新的先行者            負責任的採購者            綠色力量的執行者   員工引以為傲的公司   改變社會的力量
+## 
+## 
+## 
+## 
+## ESG 指導委員會主席的話
+## 在台積公司，我們相信「共好」的價值觀。遍布全球各地的台積人，                         界利害關係人，齊步跨足永續的未來。
+## 將我們深耕的永續理念厚植在公司經營的各項環節，讓台積公司
+##                                                        第二十八屆聯合國氣候變遷大會（28th Climate Change Conference
+## 的存在，得以成為驅動世界更美好的力量。
+##                                                        of Parties, COP28）是《巴黎協定（Paris Agreement）》簽 署 以 來 首
+## 回顧過去一年，根據美國國家海洋暨大氣總署（National Oceanic                  次 進 行 全 球 盤 點（Global Stocktake, GST）
+##                                                                                           ，揭 示 我 們 需 要 更 大
+## and Atmospheric Administration, NOAA）所 發 布 的「 民 國      幅、快速且持續性地控制溫室氣體排放量。台積公司更加專注於
+## 112 年度全球氣候報告（Annual 2023 Global Climate Report）」，      推動低環境影響性的營運模式，透過專責的綠色製造組織整合資
+## 民國 112 年是史上最熱的一年。我們無可忽視地感受到了氣候變                        源，深化氣候與能源、水管理、資源循環、空氣汙染防制各面向
+## 遷的影響，並可預見，隨著全球暖化，氣候變遷將為我們生態系                           的專案執行成效。同時，建立負責任的半導體供應鏈，成為供應
+## 統與社區帶來衝擊。                                              商持續強化碳管理與氣候風險應變能力的堅定支持者。
+## 
+## 在全球實踐環境承諾、驅動低碳轉型的過程中，企業成為愈發關                           在這一年，台積公司也慎重地修訂《人權政策》，包括回應聯合國
+## 鍵 的 要 角。 台 積 公 司 透 過 持 續 投 資 實 現 淨 零 排 放 的 各 項 綠 色 行   大會民國 111 年所決議之——享有潔淨、健康與永續環境是一項
+## 動、創新的節能減碳技術，每一年，我們都更加勇於設定積極目                           基本人權。我們將環境權利納入六大人權承諾之一，並進一步支
+## 標與付諸行動，迎向氣候變遷的挑戰。                                      持多項國際婦女與兒童相關準則規範、揭露人權管理方針，將人
+##                                                        權保障範疇自員工與供應鏈延伸至更廣泛的利害關係人。以擁抱
+## 民 國 112 年， 台 積 公 司 加 速 RE100 的 執 行， 以 提 前 10 年 達 成
+##                                                        創新與改變的精神，台積公司矢志打造讓每個人都能感到安心的
+## 目 標。 民 國 129 年 全 公 司 生 產 營 運 據 點 的 再 生 能 源 使 用 比 例 將
+##                                                        包容職場，並推己及人地透過台積電文教基金會與台積電慈善基
+## 達成 100%，穩健邁向民國 139 年淨零排放目標。海外據點目前
+##                                                        金會，為在地社區提供服務。
+## 已全面使用再生能源，將接續展開因地制宜的環境保育行動。我
+## 們 發 布《 生 物 多 樣 性 宣 言 》，目 標 於 民 國 139 年 達 成 淨 零 毀 林、    台積公司致力為人類福祉與生態環境帶來貢獻。過去一年，我為全
+## 自 然 與 生 物 多 樣 性 無 淨 損 失（No Net Loss）與 淨 正 向 影 響（Net    體台積人齊力帶來的改變感到驕傲；未來，我相信台積公司的永續
+## Positive Impact）。透過定期且持續性的透明揭露，我們攜手各                   行動，將如漣漪般擴大，發揮影響力。
+## 
+## 
+## 
+##     我相信台積公司的永續行動，將如
+##     漣漪般擴大，發揮影響力。
+##                                                                                                     劉德音
+##                                                                                  董事長暨 ESG 指導委員會主席
+##                                                                                劉德音董事長於民國 113 年 6 月 4 日正式退休
+## 
+## 
+## 
+##                                                                                                                                     4</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="半導體永續報告書分析.html#cb10-1" tabindex="-1"></a>TSMC_clean_text <span class="ot">&lt;-</span> <span class="cf">function</span>(page_text) {</span>
+<span id="cb10-2"><a href="半導體永續報告書分析.html#cb10-2" tabindex="-1"></a>  <span class="co"># 定義要移除的關鍵詞</span></span>
+<span id="cb10-3"><a href="半導體永續報告書分析.html#cb10-3" tabindex="-1"></a>  patterns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;112 年度永續報告書&quot;</span>, <span class="st">&quot;導言&quot;</span>, <span class="st">&quot;實踐永續管理&quot;</span>, <span class="st">&quot;營運與治理&quot;</span>, <span class="st">&quot;附錄&quot;</span>, </span>
+<span id="cb10-4"><a href="半導體永續報告書分析.html#cb10-4" tabindex="-1"></a>                <span class="st">&quot;追求創新的先行者&quot;</span>, <span class="st">&quot;負責任的採購者&quot;</span>, <span class="st">&quot;綠色力量的執行者&quot;</span>, <span class="st">&quot;員工引以為傲的公司&quot;</span>, <span class="st">&quot;改變社會的力量&quot;</span>)</span>
+<span id="cb10-5"><a href="半導體永續報告書分析.html#cb10-5" tabindex="-1"></a>  </span>
+<span id="cb10-6"><a href="半導體永續報告書分析.html#cb10-6" tabindex="-1"></a>  <span class="co"># 遍歷每個關鍵詞並替換為空白</span></span>
+<span id="cb10-7"><a href="半導體永續報告書分析.html#cb10-7" tabindex="-1"></a>  <span class="cf">for</span> (pattern <span class="cf">in</span> patterns) {</span>
+<span id="cb10-8"><a href="半導體永續報告書分析.html#cb10-8" tabindex="-1"></a>    page_text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(pattern, <span class="st">&quot;&quot;</span>, page_text)</span>
+<span id="cb10-9"><a href="半導體永續報告書分析.html#cb10-9" tabindex="-1"></a>  }</span>
+<span id="cb10-10"><a href="半導體永續報告書分析.html#cb10-10" tabindex="-1"></a>  </span>
+<span id="cb10-11"><a href="半導體永續報告書分析.html#cb10-11" tabindex="-1"></a>  <span class="co"># 移除所有空白字元</span></span>
+<span id="cb10-12"><a href="半導體永續報告書分析.html#cb10-12" tabindex="-1"></a>  page_text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">s+&quot;</span>, <span class="st">&quot;&quot;</span>, page_text)</span>
+<span id="cb10-13"><a href="半導體永續報告書分析.html#cb10-13" tabindex="-1"></a>  </span>
+<span id="cb10-14"><a href="半導體永續報告書分析.html#cb10-14" tabindex="-1"></a>  <span class="fu">return</span>(page_text)</span>
+<span id="cb10-15"><a href="半導體永續報告書分析.html#cb10-15" tabindex="-1"></a>}</span>
+<span id="cb10-16"><a href="半導體永續報告書分析.html#cb10-16" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="半導體永續報告書分析.html#cb10-17" tabindex="-1"></a><span class="co"># 清理 TSMC_fulltext 的資料</span></span>
+<span id="cb10-18"><a href="半導體永續報告書分析.html#cb10-18" tabindex="-1"></a>TSMC_cleaned_fulltext <span class="ot">&lt;-</span> <span class="fu">lapply</span>(TSMC_fulltext, TSMC_clean_text)</span>
+<span id="cb10-19"><a href="半導體永續報告書分析.html#cb10-19" tabindex="-1"></a>TSMC_cleaned_fulltext[<span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;ESG指導委員會主席的話在台積公司，我們相信「共好」的價值觀。遍布全球各地的台積人，界利害關係人，齊步跨足永續的未來。將我們深耕的永續理念厚植在公司經營的各項環節，讓台積公司第二十八屆聯合國氣候變遷大會（28thClimateChangeConference的存在，得以成為驅動世界更美好的力量。ofParties,COP28）是《巴黎協定（ParisAgreement）》簽署以來首回顧過去一年，根據美國國家海洋暨大氣總署（NationalOceanic次進行全球盤點（GlobalStocktake,GST），揭示我們需要更大andAtmosphericAdministration,NOAA）所發布的「民國幅、快速且持續性地控制溫室氣體排放量。台積公司更加專注於112年度全球氣候報告（Annual2023GlobalClimateReport）」，推動低環境影響性的營運模式，透過專責的綠色製造組織整合資民國112年是史上最熱的一年。我們無可忽視地感受到了氣候變源，深化氣候與能源、水管理、資源循環、空氣汙染防制各面向遷的影響，並可預見，隨著全球暖化，氣候變遷將為我們生態系的專案執行成效。同時，建立負責任的半導體供應鏈，成為供應統與社區帶來衝擊。商持續強化碳管理與氣候風險應變能力的堅定支持者。在全球實踐環境承諾、驅動低碳轉型的過程中，企業成為愈發關在這一年，台積公司也慎重地修訂《人權政策》，包括回應聯合國鍵的要角。台積公司透過持續投資實現淨零排放的各項綠色行大會民國111年所決議之——享有潔淨、健康與永續環境是一項動、創新的節能減碳技術，每一年，我們都更加勇於設定積極目基本人權。我們將環境權利納入六大人權承諾之一，並進一步支標與付諸行動，迎向氣候變遷的挑戰。持多項國際婦女與兒童相關準則規範、揭露人權管理方針，將人權保障範疇自員工與供應鏈延伸至更廣泛的利害關係人。以擁抱民國112年，台積公司加速RE100的執行，以提前10年達成創新與改變的精神，台積公司矢志打造讓每個人都能感到安心的目標。民國129年全公司生產營運據點的再生能源使用比例將包容職場，並推己及人地透過台積電文教基金會與台積電慈善基達成100%，穩健邁向民國139年淨零排放目標。海外據點目前金會，為在地社區提供服務。已全面使用再生能源，將接續展開因地制宜的環境保育行動。我們發布《生物多樣性宣言》，目標於民國139年達成淨零毀林、台積公司致力為人類福祉與生態環境帶來貢獻。過去一年，我為全自然與生物多樣性無淨損失（NoNetLoss）與淨正向影響（Net體台積人齊力帶來的改變感到驕傲；未來，我相信台積公司的永續PositiveImpact）。透過定期且持續性的透明揭露，我們攜手各行動，將如漣漪般擴大，發揮影響力。我相信台積公司的永續行動，將如漣漪般擴大，發揮影響力。劉德音董事長暨ESG指導委員會主席劉德音董事長於民國113年6月4日正式退休4&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="半導體永續報告書分析.html#cb12-1" tabindex="-1"></a><span class="co"># 去除附錄</span></span>
+<span id="cb12-2"><a href="半導體永續報告書分析.html#cb12-2" tabindex="-1"></a>TSMC_ESG <span class="ot">&lt;-</span> TSMC_cleaned_fulltext[<span class="dv">1</span><span class="sc">:</span><span class="dv">203</span>]</span></code></pre></div>
+</div>
+<div id="聯發科永續報告書" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> 聯發科永續報告書<a href="半導體永續報告書分析.html#聯發科永續報告書" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="半導體永續報告書分析.html#cb13-1" tabindex="-1"></a>Mediatek_data <span class="ot">&lt;-</span> <span class="st">&quot;/Users/sharon728/Documents/師大管研/text mining/2023 ESG report/Mediatek.pdf&quot;</span></span>
+<span id="cb13-2"><a href="半導體永續報告書分析.html#cb13-2" tabindex="-1"></a>Mediatek_fulltext <span class="ot">&lt;-</span> <span class="fu">pdf_text</span>(Mediatek_data)</span>
+<span id="cb13-3"><a href="半導體永續報告書分析.html#cb13-3" tabindex="-1"></a><span class="fu">cat</span>(Mediatek_fulltext[<span class="dv">4</span>])</span></code></pre></div>
+<pre><code>##       導 言   全 球 觀   創 新   人才   公 司 治 理     綠 色 營 運       在 地 實 踐         附 錄               聯發科技 2023 永續報告書
+## 
+## 
+## 
+## 
+##                                          企業永續發展委員會主任委員的話
+## 
+##                                          過去一年，非常感謝聯發科技全球員工在各項企業永續發展推動工作的積極參與，將永續的理
+##                                          念實踐在日常營運中，讓聯發科技在環境、社會和治理三個永續面向持續有正面的發展。
+## 
+##                                          在環境保護方面，聯發科技持續往 2050 年溫室氣體淨零排放的目標推進。為提高全體員工對
+##                                          永續的認識與理解，我們積極運用公司性活動的機會推廣環境永續行動，例如 2023 年家庭日，
+##                                          由高階主管帶領員工及其家人參與永續路跑，承諾「每跑一公里，聯發科技即捐贈 26 元，累
+##                                          計每跑 26 公里再捐贈一棵樹」，最後總計贈出 2,000 棵樹苗，並陸續由員工親手栽種，以行
+##                                          動展現守護環境的決心。
+## 
+##                                          聯發科技更發揮產業影響力，推動供應鏈溫室氣體削減，鼓勵主要供應商完成 ISO-14064 查
+##                                          證，並於 2023 年完成溫室氣體管理平臺，期能有效盤查及追蹤管理所有範疇之溫室氣體排放
+##                                          資料。除節能減碳外，我們也與供應鏈夥伴們推進綠色能源的採用，朝 2050 年淨零排放的目
+##                                          標前進。
+## 
+##                                          在社會共融方面，我們致力建立多元共融的友善職場環境，制訂具產業競爭力的整體薪酬策
+##                                          略及提供多元福利措施，並系統性推動多元、平等、包容的文化，包含建立員工資源小組、
+##                                          提供聯發科技員工新生兒專屬出生賀禮等，為女性、家長、異鄉文化族群、及跨世代族群提
+##                                          供支持成長圈。為破除下一代性別刻板印象，我們啟動全台首場系列工作坊「Girls! TECH
+##                                          Action」，讓關鍵學齡女生把 STEM 領域也留在職涯發展選項中。我們也推出員工持股補助
+##                                          計畫，與員工共享公司長期成長的結果。
+## 
+##                                          在公司治理方面，我們增選一名女性獨立董事，增加董事會性別多元性，並提高獨立董事比例。
+##                                          此外，董事會通過將風險管理委員會提升至董事會之功能性委員會層級，由審計委員會執行原
+##                                          風險管理委員會職責。治理方面的努力讓我們持續名列台灣上市公司治理評鑑前 5% 的成績。
+## 
+##                                          聯 發 科 技 的 成 績 持 續 獲 得 國 內 外 權 威 機 構 肯 定，2023 年 再 次 榮 獲 全 球 半 導 體 聯 盟 頒 發
+##                                          「Outstanding APAC Semiconductor Company」，也榮獲 Interbrand 評選為「台灣最
+##                                          佳國際品牌」中第三名，品牌價值突破 10 億美元，年增幅 33%，皆為歷年最佳表現。在永續
+##                                          面向的各類努力也持續獲得「天下永續公民獎」及「天下人才永續獎」的肯定。
+## 
+##                                          我們相信永續的發展是需要長期的耕耘及堅持，在這幾年的累績之下，聯發科技在企業永續發
+##                                          展的道路上已建立了良好基礎，未來將持續以「全球觀」、「創新」、「人才」、「公司治理」、
+##                                          「綠色營運」及「在地實踐」六大面向作為永續發展的基石，為共同使命與願景努力。
+## 
+## 
+## 
+## 
+##                                                                                          聯發科技副董事長暨執行長
+##                                                                                          企業永續發展委員會主任委員
+##                                                                                          蔡力行
+## 
+## 
+## 
+## 
+## 004                                                                                                          005</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="半導體永續報告書分析.html#cb15-1" tabindex="-1"></a>Mediatek_clean_text <span class="ot">&lt;-</span> <span class="cf">function</span>(page_text) {</span>
+<span id="cb15-2"><a href="半導體永續報告書分析.html#cb15-2" tabindex="-1"></a>  <span class="co"># 定義要移除的關鍵詞</span></span>
+<span id="cb15-3"><a href="半導體永續報告書分析.html#cb15-3" tabindex="-1"></a>  patterns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;全 球 觀&quot;</span>, <span class="st">&quot;導 言&quot;</span>, <span class="st">&quot;創 新&quot;</span>, <span class="st">&quot;公 司 治 理&quot;</span>, <span class="st">&quot;綠 色 營 運&quot;</span>, </span>
+<span id="cb15-4"><a href="半導體永續報告書分析.html#cb15-4" tabindex="-1"></a>                <span class="st">&quot;在 地 實 踐&quot;</span>, <span class="st">&quot;附 錄 &quot;</span>, <span class="st">&quot;聯發科技 2023 永續報告書&quot;</span>,<span class="st">&quot;人才&quot;</span>)</span>
+<span id="cb15-5"><a href="半導體永續報告書分析.html#cb15-5" tabindex="-1"></a>  </span>
+<span id="cb15-6"><a href="半導體永續報告書分析.html#cb15-6" tabindex="-1"></a>  <span class="co"># 遍歷每個關鍵詞並替換為空白</span></span>
+<span id="cb15-7"><a href="半導體永續報告書分析.html#cb15-7" tabindex="-1"></a>  <span class="cf">for</span> (pattern <span class="cf">in</span> patterns) {</span>
+<span id="cb15-8"><a href="半導體永續報告書分析.html#cb15-8" tabindex="-1"></a>    page_text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(pattern, <span class="st">&quot;&quot;</span>, page_text)</span>
+<span id="cb15-9"><a href="半導體永續報告書分析.html#cb15-9" tabindex="-1"></a>  }</span>
+<span id="cb15-10"><a href="半導體永續報告書分析.html#cb15-10" tabindex="-1"></a>  </span>
+<span id="cb15-11"><a href="半導體永續報告書分析.html#cb15-11" tabindex="-1"></a>  <span class="co"># 移除所有空白字元</span></span>
+<span id="cb15-12"><a href="半導體永續報告書分析.html#cb15-12" tabindex="-1"></a>  page_text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">s+&quot;</span>, <span class="st">&quot;&quot;</span>, page_text)</span>
+<span id="cb15-13"><a href="半導體永續報告書分析.html#cb15-13" tabindex="-1"></a>  </span>
+<span id="cb15-14"><a href="半導體永續報告書分析.html#cb15-14" tabindex="-1"></a>  <span class="fu">return</span>(page_text)</span>
+<span id="cb15-15"><a href="半導體永續報告書分析.html#cb15-15" tabindex="-1"></a>}</span>
+<span id="cb15-16"><a href="半導體永續報告書分析.html#cb15-16" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="半導體永續報告書分析.html#cb15-17" tabindex="-1"></a><span class="co"># 清理 TSMC_fulltext 的資料</span></span>
+<span id="cb15-18"><a href="半導體永續報告書分析.html#cb15-18" tabindex="-1"></a>Mediatek_cleaned_fulltext <span class="ot">&lt;-</span> <span class="fu">lapply</span>(Mediatek_fulltext, Mediatek_clean_text)</span>
+<span id="cb15-19"><a href="半導體永續報告書分析.html#cb15-19" tabindex="-1"></a>Mediatek_cleaned_fulltext[<span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;企業永續發展委員會主任委員的話過去一年，非常感謝聯發科技全球員工在各項企業永續發展推動工作的積極參與，將永續的理念實踐在日常營運中，讓聯發科技在環境、社會和治理三個永續面向持續有正面的發展。在環境保護方面，聯發科技持續往2050年溫室氣體淨零排放的目標推進。為提高全體員工對永續的認識與理解，我們積極運用公司性活動的機會推廣環境永續行動，例如2023年家庭日，由高階主管帶領員工及其家人參與永續路跑，承諾「每跑一公里，聯發科技即捐贈26元，累計每跑26公里再捐贈一棵樹」，最後總計贈出2,000棵樹苗，並陸續由員工親手栽種，以行動展現守護環境的決心。聯發科技更發揮產業影響力，推動供應鏈溫室氣體削減，鼓勵主要供應商完成ISO-14064查證，並於2023年完成溫室氣體管理平臺，期能有效盤查及追蹤管理所有範疇之溫室氣體排放資料。除節能減碳外，我們也與供應鏈夥伴們推進綠色能源的採用，朝2050年淨零排放的目標前進。在社會共融方面，我們致力建立多元共融的友善職場環境，制訂具產業競爭力的整體薪酬策略及提供多元福利措施，並系統性推動多元、平等、包容的文化，包含建立員工資源小組、提供聯發科技員工新生兒專屬出生賀禮等，為女性、家長、異鄉文化族群、及跨世代族群提供支持成長圈。為破除下一代性別刻板印象，我們啟動全台首場系列工作坊「Girls!TECHAction」，讓關鍵學齡女生把STEM領域也留在職涯發展選項中。我們也推出員工持股補助計畫，與員工共享公司長期成長的結果。在公司治理方面，我們增選一名女性獨立董事，增加董事會性別多元性，並提高獨立董事比例。此外，董事會通過將風險管理委員會提升至董事會之功能性委員會層級，由審計委員會執行原風險管理委員會職責。治理方面的努力讓我們持續名列台灣上市公司治理評鑑前5%的成績。聯發科技的成績持續獲得國內外權威機構肯定，2023年再次榮獲全球半導體聯盟頒發「OutstandingAPACSemiconductorCompany」，也榮獲Interbrand評選為「台灣最佳國際品牌」中第三名，品牌價值突破10億美元，年增幅33%，皆為歷年最佳表現。在永續面向的各類努力也持續獲得「天下永續公民獎」及「天下永續獎」的肯定。我們相信永續的發展是需要長期的耕耘及堅持，在這幾年的累績之下，聯發科技在企業永續發展的道路上已建立了良好基礎，未來將持續以「全球觀」、「創新」、「」、「公司治理」、「綠色營運」及「在地實踐」六大面向作為永續發展的基石，為共同使命與願景努力。聯發科技副董事長暨執行長企業永續發展委員會主任委員蔡力行004005&quot;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="半導體永續報告書分析.html#cb17-1" tabindex="-1"></a><span class="co"># 去除附錄</span></span>
+<span id="cb17-2"><a href="半導體永續報告書分析.html#cb17-2" tabindex="-1"></a>Mediatek_ESG <span class="ot">&lt;-</span> Mediatek_cleaned_fulltext[<span class="dv">1</span><span class="sc">:</span><span class="dv">77</span>]</span></code></pre></div>
+</div>
+<div id="日月光控股永續報告書" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> 日月光控股永續報告書<a href="半導體永續報告書分析.html#日月光控股永續報告書" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="半導體永續報告書分析.html#cb18-1" tabindex="-1"></a>ASE_data <span class="ot">&lt;-</span> <span class="st">&quot;/Users/sharon728/Documents/師大管研/text mining/2023 ESG report/ASE.pdf&quot;</span></span>
+<span id="cb18-2"><a href="半導體永續報告書分析.html#cb18-2" tabindex="-1"></a>ASE_fulltext <span class="ot">&lt;-</span> <span class="fu">pdf_text</span>(ASE_data)</span>
+<span id="cb18-3"><a href="半導體永續報告書分析.html#cb18-3" tabindex="-1"></a><span class="fu">cat</span>(ASE_fulltext[<span class="dv">4</span>])</span></code></pre></div>
+<pre><code>##                  營運模式     永續管理     誠信當責    創新服務     綠色製造與低碳轉型      包容職場   責任採購   企業公民   附 錄   4
+## 
+## 
+## 
+## 
+## 智慧永續工廠與   日月光半導體高雄廠在獲世界經濟論壇選為全球燈塔工廠之後，繼續依循智慧製造與永續發展的雙軸
+##                                                                             2023 年
+## 封測機台白皮書   進行轉型，整合工業 4.0 的各項先進技術並全面應用人工智慧 (AI) 於營運活動中，在提升生產及營運
+##           效率的同時兼顧環境的永續。在智慧製造的主軸上，導入 AI 智慧排程取代人工，有效減少產品生產                    永續主要成果
+##           週期並大幅提升生產效率；在製程控管方面，運用 AI 影像辨識、機械學習、大型語言模型、特徵工
+##           程技術等開發出先進的製程管控系統，可預警設備異常、預測設備壽命，縮短處理時間並減少影響範
+##           圍，維持良率在最高點。在永續發展的主軸上，透過 AI 技術的輔助達到節能、節水、減廢的成效，
+##           採行 AI 智慧能源管理，可隨環境與生產需求動態調配廠務設備以最佳能耗運轉；透過排放水品質的
+##           監控及 AI 演算協作，最佳化產水並提升回收水量，減少水資源的用量；透過多方合作以循環經濟模
+##           式達成廢棄物的資源化，亦透過 AI 自動監控清運車動向，確保廢棄物處理不衝擊環境。面對產業的
+##           高度競爭以及氣候變遷的嚴峻考驗，日月光半導體高雄廠秉持以人為本的精神，透過智慧與永續的雙
+##           軸轉型，提升人員的技能，搭配數位科技的智慧工廠，實踐淨零承諾，達成企業與環境共融的願景，
+##           發揮影響力帶領產業走向永續的美好未來。此外，日月光投控秉持「以人為本」的理念，致力於建構
+##           健康、安全的工作環境。2023 年，與旗下子公司合作，並邀請六家封測業者同行，共同創作半導體
+##           封測產業的首份「封測機台安全白皮書」，提升職場安全，保障員工。白皮書參考國內外標準，進行
+##           機台安全風險識別與設計，並與產、官、學專家討論制定標準，分析職業災害原因，提出預防對策，
+##           結合「人、機、環境」三大面向，導入本質安全設計與人因危害預防，從源頭提升工作場所的安全性
+##           和員工福祉。
+## 
+## 
+## 
+## 
+## 生物多樣性保育   為實踐本公司的「生物多樣性暨無毀林政策」，日月光投控領導旗下子公司完成全球主要廠區的自然
+##           風險評估，透過 TNFD-LEAP 方法識別出公司對自然的依賴、衝擊、風險與機會，擬定相應的對策，
+##           並採用 TNFD 及 TCFD 框架發行「氣候暨自然環境報告」，公開透明的揭露相關資訊。且為呼應昆明 -
+##           蒙特婁全球生物多樣性框架中至少恢復 30% 陸域生態的目標，針對子公司矽品在中科虎尾園區使用
+##           土地新建廠區，依政策承諾的緩解層級 (mitigation hierarchy) 依序採取迴避、減緩、再生及移轉等措
+##           施，盡力減少對環境的衝擊。面對使用土地建廠對環境的衝擊無法迴避或減緩的狀況，日月光投控及
+##           矽品攜手中科管理局及生態專家，認養中科虎尾園區的第 5 號公園，進行生態再生及移轉的措施。預
+##           計在復育在地原生植物的同時，也提供居民身心療癒的空間，將公園打造成兼顧生態復育及社會價值
+##           的示範園區，以異地補償對環境的衝擊，期望達成淨正向影響 (Net Positive Impact, NPI) 的政策目標，
+##           同時提升文化與社會的在地價值。本公司委任的多元專家團隊已完成示範區生態復育策略並經主管機
+##           關中科管理局認可，預計在 2024 年開始執行策略並打造生態公園。</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="半導體永續報告書分析.html#cb20-1" tabindex="-1"></a>ASE_clean_text <span class="ot">&lt;-</span> <span class="cf">function</span>(page_text) {</span>
+<span id="cb20-2"><a href="半導體永續報告書分析.html#cb20-2" tabindex="-1"></a>  <span class="co"># 定義要移除的關鍵詞</span></span>
+<span id="cb20-3"><a href="半導體永續報告書分析.html#cb20-3" tabindex="-1"></a>  patterns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;營運模式&quot;</span>, <span class="st">&quot;永續管理&quot;</span>, <span class="st">&quot;誠信當責&quot;</span>, <span class="st">&quot;創新服務&quot;</span>, <span class="st">&quot;綠色製造與低碳轉型&quot;</span>, </span>
+<span id="cb20-4"><a href="半導體永續報告書分析.html#cb20-4" tabindex="-1"></a>                <span class="st">&quot;包容職場&quot;</span>, <span class="st">&quot;附 錄&quot;</span>, <span class="st">&quot;責任採購&quot;</span>,<span class="st">&quot;企業公民&quot;</span>)</span>
+<span id="cb20-5"><a href="半導體永續報告書分析.html#cb20-5" tabindex="-1"></a>  </span>
+<span id="cb20-6"><a href="半導體永續報告書分析.html#cb20-6" tabindex="-1"></a>  <span class="co"># 遍歷每個關鍵詞並替換為空白</span></span>
+<span id="cb20-7"><a href="半導體永續報告書分析.html#cb20-7" tabindex="-1"></a>  <span class="cf">for</span> (pattern <span class="cf">in</span> patterns) {</span>
+<span id="cb20-8"><a href="半導體永續報告書分析.html#cb20-8" tabindex="-1"></a>    page_text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(pattern, <span class="st">&quot;&quot;</span>, page_text)</span>
+<span id="cb20-9"><a href="半導體永續報告書分析.html#cb20-9" tabindex="-1"></a>  }</span>
+<span id="cb20-10"><a href="半導體永續報告書分析.html#cb20-10" tabindex="-1"></a>  </span>
+<span id="cb20-11"><a href="半導體永續報告書分析.html#cb20-11" tabindex="-1"></a>  <span class="co"># 移除所有空白字元</span></span>
+<span id="cb20-12"><a href="半導體永續報告書分析.html#cb20-12" tabindex="-1"></a>  page_text <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">s+&quot;</span>, <span class="st">&quot;&quot;</span>, page_text)</span>
+<span id="cb20-13"><a href="半導體永續報告書分析.html#cb20-13" tabindex="-1"></a>  </span>
+<span id="cb20-14"><a href="半導體永續報告書分析.html#cb20-14" tabindex="-1"></a>  <span class="fu">return</span>(page_text)</span>
+<span id="cb20-15"><a href="半導體永續報告書分析.html#cb20-15" tabindex="-1"></a>}</span>
+<span id="cb20-16"><a href="半導體永續報告書分析.html#cb20-16" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="半導體永續報告書分析.html#cb20-17" tabindex="-1"></a><span class="co"># 清理 ASE_fulltext 的資料</span></span>
+<span id="cb20-18"><a href="半導體永續報告書分析.html#cb20-18" tabindex="-1"></a>ASE_cleaned_fulltext <span class="ot">&lt;-</span> <span class="fu">lapply</span>(ASE_fulltext, ASE_clean_text)</span>
+<span id="cb20-19"><a href="半導體永續報告書分析.html#cb20-19" tabindex="-1"></a>ASE_cleaned_fulltext[<span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;4智慧永續工廠與日月光半導體高雄廠在獲世界經濟論壇選為全球燈塔工廠之後，繼續依循智慧製造與永續發展的雙軸2023年封測機台白皮書進行轉型，整合工業4.0的各項先進技術並全面應用人工智慧(AI)於營運活動中，在提升生產及營運效率的同時兼顧環境的永續。在智慧製造的主軸上，導入AI智慧排程取代人工，有效減少產品生產永續主要成果週期並大幅提升生產效率；在製程控管方面，運用AI影像辨識、機械學習、大型語言模型、特徵工程技術等開發出先進的製程管控系統，可預警設備異常、預測設備壽命，縮短處理時間並減少影響範圍，維持良率在最高點。在永續發展的主軸上，透過AI技術的輔助達到節能、節水、減廢的成效，採行AI智慧能源管理，可隨環境與生產需求動態調配廠務設備以最佳能耗運轉；透過排放水品質的監控及AI演算協作，最佳化產水並提升回收水量，減少水資源的用量；透過多方合作以循環經濟模式達成廢棄物的資源化，亦透過AI自動監控清運車動向，確保廢棄物處理不衝擊環境。面對產業的高度競爭以及氣候變遷的嚴峻考驗，日月光半導體高雄廠秉持以人為本的精神，透過智慧與永續的雙軸轉型，提升人員的技能，搭配數位科技的智慧工廠，實踐淨零承諾，達成企業與環境共融的願景，發揮影響力帶領產業走向永續的美好未來。此外，日月光投控秉持「以人為本」的理念，致力於建構健康、安全的工作環境。2023年，與旗下子公司合作，並邀請六家封測業者同行，共同創作半導體封測產業的首份「封測機台安全白皮書」，提升職場安全，保障員工。白皮書參考國內外標準，進行機台安全風險識別與設計，並與產、官、學專家討論制定標準，分析職業災害原因，提出預防對策，結合「人、機、環境」三大面向，導入本質安全設計與人因危害預防，從源頭提升工作場所的安全性和員工福祉。生物多樣性保育為實踐本公司的「生物多樣性暨無毀林政策」，日月光投控領導旗下子公司完成全球主要廠區的自然風險評估，透過TNFD-LEAP方法識別出公司對自然的依賴、衝擊、風險與機會，擬定相應的對策，並採用TNFD及TCFD框架發行「氣候暨自然環境報告」，公開透明的揭露相關資訊。且為呼應昆明-蒙特婁全球生物多樣性框架中至少恢復30%陸域生態的目標，針對子公司矽品在中科虎尾園區使用土地新建廠區，依政策承諾的緩解層級(mitigationhierarchy)依序採取迴避、減緩、再生及移轉等措施，盡力減少對環境的衝擊。面對使用土地建廠對環境的衝擊無法迴避或減緩的狀況，日月光投控及矽品攜手中科管理局及生態專家，認養中科虎尾園區的第5號公園，進行生態再生及移轉的措施。預計在復育在地原生植物的同時，也提供居民身心療癒的空間，將公園打造成兼顧生態復育及社會價值的示範園區，以異地補償對環境的衝擊，期望達成淨正向影響(NetPositiveImpact,NPI)的政策目標，同時提升文化與社會的在地價值。本公司委任的多元專家團隊已完成示範區生態復育策略並經主管機關中科管理局認可，預計在2024年開始執行策略並打造生態公園。&quot;</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="半導體永續報告書分析.html#cb22-1" tabindex="-1"></a><span class="co"># 去除附錄</span></span>
+<span id="cb22-2"><a href="半導體永續報告書分析.html#cb22-2" tabindex="-1"></a>ASE_ESG <span class="ot">&lt;-</span> ASE_cleaned_fulltext[<span class="dv">1</span><span class="sc">:</span><span class="dv">194</span>]</span></code></pre></div>
+</div>
+</div>
+<div id="計算-tf-idf" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> 計算 tf-idf<a href="半導體永續報告書分析.html#計算-tf-idf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="半導體永續報告書分析.html#cb23-1" tabindex="-1"></a><span class="fu">library</span>(jiebaR)</span>
+<span id="cb23-2"><a href="半導體永續報告書分析.html#cb23-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb23-3"><a href="半導體永續報告書分析.html#cb23-3" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb23-4"><a href="半導體永續報告書分析.html#cb23-4" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb23-5"><a href="半導體永續報告書分析.html#cb23-5" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<div id="將資料合併" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> 將資料合併<a href="半導體永續報告書分析.html#將資料合併" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="半導體永續報告書分析.html#cb24-1" tabindex="-1"></a>create_ESG_df <span class="ot">&lt;-</span> <span class="cf">function</span>(content, company_name) { <span class="co">#自訂合併函數</span></span>
+<span id="cb24-2"><a href="半導體永續報告書分析.html#cb24-2" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb24-3"><a href="半導體永續報告書分析.html#cb24-3" tabindex="-1"></a>    <span class="at">page =</span> <span class="fu">seq_along</span>(content),</span>
+<span id="cb24-4"><a href="半導體永續報告書分析.html#cb24-4" tabindex="-1"></a>    <span class="at">content =</span> content,</span>
+<span id="cb24-5"><a href="半導體永續報告書分析.html#cb24-5" tabindex="-1"></a>    <span class="at">company =</span> company_name </span>
+<span id="cb24-6"><a href="半導體永續報告書分析.html#cb24-6" tabindex="-1"></a>  )</span>
+<span id="cb24-7"><a href="半導體永續報告書分析.html#cb24-7" tabindex="-1"></a>}</span>
+<span id="cb24-8"><a href="半導體永續報告書分析.html#cb24-8" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="半導體永續報告書分析.html#cb24-9" tabindex="-1"></a>ESG_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(                   <span class="co">#合併資料</span></span>
+<span id="cb24-10"><a href="半導體永續報告書分析.html#cb24-10" tabindex="-1"></a>  <span class="fu">create_ESG_df</span>(TSMC_ESG, <span class="st">&quot;TSMC&quot;</span>),</span>
+<span id="cb24-11"><a href="半導體永續報告書分析.html#cb24-11" tabindex="-1"></a>  <span class="fu">create_ESG_df</span>(Mediatek_ESG, <span class="st">&quot;Mediatek&quot;</span>),</span>
+<span id="cb24-12"><a href="半導體永續報告書分析.html#cb24-12" tabindex="-1"></a>  <span class="fu">create_ESG_df</span>(ASE_ESG, <span class="st">&quot;ASE&quot;</span>)</span>
+<span id="cb24-13"><a href="半導體永續報告書分析.html#cb24-13" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="設定停止詞和自訂義辭典" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> 設定停止詞和自訂義辭典<a href="半導體永續報告書分析.html#設定停止詞和自訂義辭典" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>永續自定義字典</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="半導體永續報告書分析.html#cb25-1" tabindex="-1"></a>sustainability_words <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;/Users/sharon728/Downloads/sustainability_dictionary.txt&quot;</span>)</span>
+<span id="cb25-2"><a href="半導體永續報告書分析.html#cb25-2" tabindex="-1"></a>sustainability_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Sustainability_Terms =</span> sustainability_words)</span>
+<span id="cb25-3"><a href="半導體永續報告書分析.html#cb25-3" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb25-4"><a href="半導體永續報告書分析.html#cb25-4" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(sustainability_df, <span class="dv">20</span>), <span class="at">col.names =</span> <span class="st">&quot;Sustainability Terms&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Sustainability Terms</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">台積公司</td>
+</tr>
+<tr class="even">
+<td align="left">台積電</td>
+</tr>
+<tr class="odd">
+<td align="left">台積</td>
+</tr>
+<tr class="even">
+<td align="left">文教</td>
+</tr>
+<tr class="odd">
+<td align="left">基金會</td>
+</tr>
+<tr class="even">
+<td align="left">永續</td>
+</tr>
+<tr class="odd">
+<td align="left">水</td>
+</tr>
+<tr class="even">
+<td align="left">水量</td>
+</tr>
+<tr class="odd">
+<td align="left">水用量</td>
+</tr>
+<tr class="even">
+<td align="left">水資源</td>
+</tr>
+<tr class="odd">
+<td align="left">水廠</td>
+</tr>
+<tr class="even">
+<td align="left">水管理</td>
+</tr>
+<tr class="odd">
+<td align="left">水循環</td>
+</tr>
+<tr class="even">
+<td align="left">水排放</td>
+</tr>
+<tr class="odd">
+<td align="left">水力</td>
+</tr>
+<tr class="even">
+<td align="left">水稻作</td>
+</tr>
+<tr class="odd">
+<td align="left">水率</td>
+</tr>
+<tr class="even">
+<td align="left">水工程</td>
+</tr>
+<tr class="odd">
+<td align="left">再生水</td>
+</tr>
+<tr class="even">
+<td align="left">十二吋</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="半導體永續報告書分析.html#cb26-1" tabindex="-1"></a>cc <span class="ot">&lt;-</span> <span class="fu">worker</span>(<span class="at">byline =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb26-2"><a href="半導體永續報告書分析.html#cb26-2" tabindex="-1"></a>      <span class="at">stop_word =</span> <span class="st">&quot;/Users/sharon728/Documents/師大管研/text mining/BookOfTan/data/stopmac.txt&quot;</span>,</span>
+<span id="cb26-3"><a href="半導體永續報告書分析.html#cb26-3" tabindex="-1"></a>      <span class="at">user =</span> <span class="st">&quot;/Users/sharon728/Downloads/sustainability_dictionary.txt&quot;</span>)</span></code></pre></div>
+</div>
+<div id="斷詞" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> 斷詞<a href="半導體永續報告書分析.html#斷詞" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="半導體永續報告書分析.html#cb27-1" tabindex="-1"></a>ESG_words <span class="ot">&lt;-</span> ESG_df <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="半導體永續報告書分析.html#cb27-2" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, </span>
+<span id="cb27-3"><a href="半導體永續報告書分析.html#cb27-3" tabindex="-1"></a>                content, </span>
+<span id="cb27-4"><a href="半導體永續報告書分析.html#cb27-4" tabindex="-1"></a>                <span class="at">token =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb27-5"><a href="半導體永續報告書分析.html#cb27-5" tabindex="-1"></a>                  <span class="fu">segment</span>(<span class="fu">as.character</span>(x), cc)</span>
+<span id="cb27-6"><a href="半導體永續報告書分析.html#cb27-6" tabindex="-1"></a>                })</span>
+<span id="cb27-7"><a href="半導體永續報告書分析.html#cb27-7" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="半導體永續報告書分析.html#cb27-8" tabindex="-1"></a>ESG_words <span class="ot">&lt;-</span> ESG_words <span class="sc">%&gt;%</span></span>
+<span id="cb27-9"><a href="半導體永續報告書分析.html#cb27-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(word, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">d&quot;</span>))</span>
+<span id="cb27-10"><a href="半導體永續報告書分析.html#cb27-10" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="半導體永續報告書分析.html#cb27-11" tabindex="-1"></a>ESG_words <span class="ot">&lt;-</span> ESG_words <span class="sc">%&gt;%</span></span>
+<span id="cb27-12"><a href="半導體永續報告書分析.html#cb27-12" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_length</span>(word) <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span>   <span class="co"># 保留長度大於1的詞語</span></span>
+<span id="cb27-13"><a href="半導體永續報告書分析.html#cb27-13" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(word, <span class="st">&quot;^[a-zA-Z]$&quot;</span>))  <span class="co"># 排除單一字母詞</span></span></code></pre></div>
+</div>
+<div id="計算-tf-idf-1" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> 計算 tf-idf<a href="半導體永續報告書分析.html#計算-tf-idf-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="半導體永續報告書分析.html#cb28-1" tabindex="-1"></a>ESG_tfidf <span class="ot">&lt;-</span> ESG_words <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="半導體永續報告書分析.html#cb28-2" tabindex="-1"></a>  <span class="fu">count</span>(company, word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="半導體永續報告書分析.html#cb28-3" tabindex="-1"></a>  <span class="fu">bind_tf_idf</span>(word, company, n)</span>
+<span id="cb28-4"><a href="半導體永續報告書分析.html#cb28-4" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="半導體永續報告書分析.html#cb28-5" tabindex="-1"></a>ESG_tfidf <span class="ot">=</span> ESG_tfidf<span class="sc">|&gt;</span></span>
+<span id="cb28-6"><a href="半導體永續報告書分析.html#cb28-6" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(tf_idf)) <span class="co">#以tf_idf順序排列</span></span>
+<span id="cb28-7"><a href="半導體永續報告書分析.html#cb28-7" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="半導體永續報告書分析.html#cb28-8" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(ESG_tfidf, <span class="dv">30</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">company</th>
+<th align="left">word</th>
+<th align="right">n</th>
+<th align="right">tf</th>
+<th align="right">idf</th>
+<th align="right">tf_idf</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Mediatek</td>
+<td align="left">天璣</td>
+<td align="right">49</td>
+<td align="right">0.0016766</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0018419</td>
+</tr>
+<tr class="even">
+<td align="left">ASE</td>
+<td align="left">高雄廠</td>
+<td align="right">61</td>
+<td align="right">0.0013458</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0014785</td>
+</tr>
+<tr class="odd">
+<td align="left">TSMC</td>
+<td align="left">奈米</td>
+<td align="right">67</td>
+<td align="right">0.0012615</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0013859</td>
+</tr>
+<tr class="even">
+<td align="left">TSMC</td>
+<td align="left">人才</td>
+<td align="right">177</td>
+<td align="right">0.0033326</td>
+<td align="right">0.4054651</td>
+<td align="right">0.0013512</td>
+</tr>
+<tr class="odd">
+<td align="left">TSMC</td>
+<td align="left">new</td>
+<td align="right">65</td>
+<td align="right">0.0012238</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0013445</td>
+</tr>
+<tr class="even">
+<td align="left">ASE</td>
+<td align="left">矽品</td>
+<td align="right">55</td>
+<td align="right">0.0012134</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0013331</td>
+</tr>
+<tr class="odd">
+<td align="left">Mediatek</td>
+<td align="left">家鄉</td>
+<td align="right">35</td>
+<td align="right">0.0011976</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0013157</td>
+</tr>
+<tr class="even">
+<td align="left">Mediatek</td>
+<td align="left">wi</td>
+<td align="right">32</td>
+<td align="right">0.0010949</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0012029</td>
+</tr>
+<tr class="odd">
+<td align="left">ASE</td>
+<td align="left">環電</td>
+<td align="right">46</td>
+<td align="right">0.0010148</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0011149</td>
+</tr>
+<tr class="even">
+<td align="left">TSMC</td>
+<td align="left">采鈺</td>
+<td align="right">51</td>
+<td align="right">0.0009602</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0010549</td>
+</tr>
+<tr class="odd">
+<td align="left">Mediatek</td>
+<td align="left">旗艦</td>
+<td align="right">27</td>
+<td align="right">0.0009238</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0010149</td>
+</tr>
+<tr class="even">
+<td align="left">Mediatek</td>
+<td align="left">新臺幣</td>
+<td align="right">26</td>
+<td align="right">0.0008896</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0009773</td>
+</tr>
+<tr class="odd">
+<td align="left">TSMC</td>
+<td align="left">立方公尺</td>
+<td align="right">45</td>
+<td align="right">0.0008473</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0009308</td>
+</tr>
+<tr class="even">
+<td align="left">Mediatek</td>
+<td align="left">平臺</td>
+<td align="right">67</td>
+<td align="right">0.0022925</td>
+<td align="right">0.4054651</td>
+<td align="right">0.0009295</td>
+</tr>
+<tr class="odd">
+<td align="left">ASE</td>
+<td align="left">人才</td>
+<td align="right">102</td>
+<td align="right">0.0022503</td>
+<td align="right">0.4054651</td>
+<td align="right">0.0009124</td>
+</tr>
+<tr class="even">
+<td align="left">TSMC</td>
+<td align="left">光罩</td>
+<td align="right">41</td>
+<td align="right">0.0007720</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0008481</td>
+</tr>
+<tr class="odd">
+<td align="left">ASE</td>
+<td align="left">aseglobal</td>
+<td align="right">34</td>
+<td align="right">0.0007501</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0008241</td>
+</tr>
+<tr class="even">
+<td align="left">ASE</td>
+<td align="left">ch</td>
+<td align="right">33</td>
+<td align="right">0.0007280</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0007998</td>
+</tr>
+<tr class="odd">
+<td align="left">Mediatek</td>
+<td align="left">品牌價值</td>
+<td align="right">20</td>
+<td align="right">0.0006843</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0007518</td>
+</tr>
+<tr class="even">
+<td align="left">ASE</td>
+<td align="left">行業協會</td>
+<td align="right">30</td>
+<td align="right">0.0006619</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0007271</td>
+</tr>
+<tr class="odd">
+<td align="left">TSMC</td>
+<td align="left">化學品</td>
+<td align="right">93</td>
+<td align="right">0.0017510</td>
+<td align="right">0.4054651</td>
+<td align="right">0.0007100</td>
+</tr>
+<tr class="even">
+<td align="left">Mediatek</td>
+<td align="left">衛星</td>
+<td align="right">51</td>
+<td align="right">0.0017450</td>
+<td align="right">0.4054651</td>
+<td align="right">0.0007075</td>
+</tr>
+<tr class="odd">
+<td align="left">TSMC</td>
+<td align="left">十二吋</td>
+<td align="right">33</td>
+<td align="right">0.0006213</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0006826</td>
+</tr>
+<tr class="even">
+<td align="left">ASE</td>
+<td align="left">中壢</td>
+<td align="right">25</td>
+<td align="right">0.0005515</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0006059</td>
+</tr>
+<tr class="odd">
+<td align="left">Mediatek</td>
+<td align="left">鄉鎮</td>
+<td align="right">16</td>
+<td align="right">0.0005475</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0006014</td>
+</tr>
+<tr class="even">
+<td align="left">Mediatek</td>
+<td align="left">落地</td>
+<td align="right">41</td>
+<td align="right">0.0014029</td>
+<td align="right">0.4054651</td>
+<td align="right">0.0005688</td>
+</tr>
+<tr class="odd">
+<td align="left">Mediatek</td>
+<td align="left">girls</td>
+<td align="right">15</td>
+<td align="right">0.0005132</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0005639</td>
+</tr>
+<tr class="even">
+<td align="left">Mediatek</td>
+<td align="left">gntn</td>
+<td align="right">15</td>
+<td align="right">0.0005132</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0005639</td>
+</tr>
+<tr class="odd">
+<td align="left">Mediatek</td>
+<td align="left">機房</td>
+<td align="right">15</td>
+<td align="right">0.0005132</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0005639</td>
+</tr>
+<tr class="even">
+<td align="left">Mediatek</td>
+<td align="left">產品線</td>
+<td align="right">15</td>
+<td align="right">0.0005132</td>
+<td align="right">1.0986123</td>
+<td align="right">0.0005639</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="繪製長條圖" class="section level3 hasAnchor" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> 繪製長條圖<a href="半導體永續報告書分析.html#繪製長條圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="半導體永續報告書分析.html#cb29-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb29-2"><a href="半導體永續報告書分析.html#cb29-2" tabindex="-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb29-3"><a href="半導體永續報告書分析.html#cb29-3" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="半導體永續報告書分析.html#cb29-4" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb29-5"><a href="半導體永續報告書分析.html#cb29-5" tabindex="-1"></a>top_words <span class="ot">&lt;-</span> <span class="fu">head</span>(ESG_tfidf, <span class="dv">25</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="半導體永續報告書分析.html#cb30-1" tabindex="-1"></a><span class="fu">ggplot</span>(top_words, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(word, tf_idf), <span class="at">y =</span> tf_idf, <span class="at">fill =</span> company)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="半導體永續報告書分析.html#cb30-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="半導體永續報告書分析.html#cb30-3" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># 翻轉座標軸</span></span>
+<span id="cb30-4"><a href="半導體永續報告書分析.html#cb30-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Top 20 TF-IDF Words&quot;</span>, <span class="at">x =</span> <span class="st">&quot;詞彙&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TF-IDF 分數&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="半導體永續報告書分析.html#cb30-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="半導體永續報告書分析.html#cb31-1" tabindex="-1"></a>plot_tfidf <span class="ot">&lt;-</span> <span class="cf">function</span>(ESG_tfidf, company_name, color) {</span>
+<span id="cb31-2"><a href="半導體永續報告書分析.html#cb31-2" tabindex="-1"></a>  top_words <span class="ot">&lt;-</span> ESG_tfidf <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="半導體永續報告書分析.html#cb31-3" tabindex="-1"></a>    <span class="fu">filter</span>(company <span class="sc">==</span> company_name) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="半導體永續報告書分析.html#cb31-4" tabindex="-1"></a>    <span class="fu">top_n</span>(<span class="dv">20</span>, tf_idf)  <span class="co"># 選取 TF-IDF 前 10 個詞</span></span>
+<span id="cb31-5"><a href="半導體永續報告書分析.html#cb31-5" tabindex="-1"></a>  </span>
+<span id="cb31-6"><a href="半導體永續報告書分析.html#cb31-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(top_words, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(word, tf_idf), <span class="at">y =</span> tf_idf)) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="半導體永續報告書分析.html#cb31-7" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> color) <span class="sc">+</span></span>
+<span id="cb31-8"><a href="半導體永續報告書分析.html#cb31-8" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># 翻轉座標軸</span></span>
+<span id="cb31-9"><a href="半導體永續報告書分析.html#cb31-9" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Top 20 TF-IDF Words for&quot;</span>, company_name), <span class="at">x =</span> <span class="st">&quot;詞彙&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TF-IDF 分數&quot;</span>) <span class="sc">+</span></span>
+<span id="cb31-10"><a href="半導體永續報告書分析.html#cb31-10" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb31-11"><a href="半導體永續報告書分析.html#cb31-11" tabindex="-1"></a>}</span>
+<span id="cb31-12"><a href="半導體永續報告書分析.html#cb31-12" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="半導體永續報告書分析.html#cb31-13" tabindex="-1"></a><span class="co"># 分別繪製 TSMC、Mediatek 和 ASE 的圖</span></span>
+<span id="cb31-14"><a href="半導體永續報告書分析.html#cb31-14" tabindex="-1"></a><span class="fu">plot_tfidf</span>(ESG_tfidf, <span class="st">&quot;TSMC&quot;</span>, <span class="st">&quot;skyblue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="半導體永續報告書分析.html#cb32-1" tabindex="-1"></a><span class="fu">plot_tfidf</span>(ESG_tfidf, <span class="st">&quot;Mediatek&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="半導體永續報告書分析.html#cb33-1" tabindex="-1"></a><span class="fu">plot_tfidf</span>(ESG_tfidf, <span class="st">&quot;ASE&quot;</span>, <span class="st">&quot;lightcoral&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-3.png" width="672" /></p>
+</div>
+</div>
+<div id="正面情緒分析" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> 正面情緒分析<a href="半導體永續報告書分析.html#正面情緒分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="半導體永續報告書分析.html#cb34-1" tabindex="-1"></a>ntuPosEmo<span class="ot">=</span><span class="fu">read.table</span>(<span class="st">&quot;/Users/sharon728/Documents/師大管研/text mining/BookOfTan/data/ntu-pos-mac.txt&quot;</span>, <span class="at">header =</span> T,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\r</span><span class="st">&quot;</span>,<span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">stringsAsFactors =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="半導體永續報告書分析.html#cb35-1" tabindex="-1"></a>EMO<span class="ot">=</span>ntuPosEmo</span>
+<span id="cb35-2"><a href="半導體永續報告書分析.html#cb35-2" tabindex="-1"></a>ESG_EMO <span class="ot">=</span>ESG_words <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="半導體永續報告書分析.html#cb35-3" tabindex="-1"></a>  <span class="fu">inner_join</span>(EMO) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="半導體永續報告書分析.html#cb35-4" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb35-5"><a href="半導體永續報告書分析.html#cb35-5" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="半導體永續報告書分析.html#cb35-6" tabindex="-1"></a><span class="cf">if</span>(<span class="cn">FALSE</span>){</span>
+<span id="cb35-7"><a href="半導體永續報告書分析.html#cb35-7" tabindex="-1"></a>  pe<span class="ot">=</span><span class="fu">inner_join</span>(t,EMO)  </span>
+<span id="cb35-8"><a href="半導體永續報告書分析.html#cb35-8" tabindex="-1"></a>  pe<span class="ot">=</span><span class="fu">count</span>(pe,word,<span class="at">sort=</span><span class="cn">TRUE</span>)  </span>
+<span id="cb35-9"><a href="半導體永續報告書分析.html#cb35-9" tabindex="-1"></a>  </span>
+<span id="cb35-10"><a href="半導體永續報告書分析.html#cb35-10" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="半導體永續報告書分析.html#cb36-1" tabindex="-1"></a>ESG_EMO <span class="ot">&lt;-</span> ESG_words <span class="sc">%&gt;%</span></span>
+<span id="cb36-2"><a href="半導體永續報告書分析.html#cb36-2" tabindex="-1"></a>  <span class="fu">inner_join</span>(EMO, <span class="at">by =</span> <span class="st">&quot;word&quot;</span>) <span class="sc">%&gt;%</span>  <span class="co"># 進行情緒詞的過濾</span></span>
+<span id="cb36-3"><a href="半導體永續報告書分析.html#cb36-3" tabindex="-1"></a>  <span class="fu">count</span>(company, word, <span class="at">sort =</span> <span class="cn">TRUE</span>)  <span class="co"># 依據公司和詞彙計數</span></span>
+<span id="cb36-4"><a href="半導體永續報告書分析.html#cb36-4" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="半導體永續報告書分析.html#cb36-5" tabindex="-1"></a>top_ESG_EMO <span class="ot">&lt;-</span> ESG_EMO <span class="sc">%&gt;%</span></span>
+<span id="cb36-6"><a href="半導體永續報告書分析.html#cb36-6" tabindex="-1"></a>  <span class="fu">group_by</span>(company) <span class="sc">%&gt;%</span></span>
+<span id="cb36-7"><a href="半導體永續報告書分析.html#cb36-7" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">20</span>, n) <span class="sc">%&gt;%</span></span>
+<span id="cb36-8"><a href="半導體永續報告書分析.html#cb36-8" tabindex="-1"></a>  <span class="fu">ungroup</span>()  <span class="co"># 解除分組</span></span>
+<span id="cb36-9"><a href="半導體永續報告書分析.html#cb36-9" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="半導體永續報告書分析.html#cb36-10" tabindex="-1"></a><span class="co"># 繪製每家公司前 20 個情緒詞的長條圖</span></span>
+<span id="cb36-11"><a href="半導體永續報告書分析.html#cb36-11" tabindex="-1"></a><span class="fu">ggplot</span>(top_ESG_EMO, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(word, n), <span class="at">y =</span> n, <span class="at">fill =</span> company)) <span class="sc">+</span></span>
+<span id="cb36-12"><a href="半導體永續報告書分析.html#cb36-12" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb36-13"><a href="半導體永續報告書分析.html#cb36-13" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> company, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span>  <span class="co"># 每家公司一張圖</span></span>
+<span id="cb36-14"><a href="半導體永續報告書分析.html#cb36-14" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># 翻轉座標軸</span></span>
+<span id="cb36-15"><a href="半導體永續報告書分析.html#cb36-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;正面情感字數&quot;</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">&quot;Top 20 Emotional Words per Company&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-16"><a href="半導體永續報告書分析.html#cb36-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb36-17"><a href="半導體永續報告書分析.html#cb36-17" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Kaiti TC&quot;</span>, <span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="分析永續報告書用字相似度" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> 分析永續報告書用字相似度<a href="半導體永續報告書分析.html#分析永續報告書用字相似度" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="半導體永續報告書分析.html#cb37-1" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code></pre></div>
+<div id="計算tf-idf每一個字分別出現在這三家永續報告書的次數" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> 計算tf-idf(每一個字分別出現在這三家永續報告書的次數)<a href="半導體永續報告書分析.html#計算tf-idf每一個字分別出現在這三家永續報告書的次數" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="半導體永續報告書分析.html#cb38-1" tabindex="-1"></a>ESG_tfidf_2 <span class="ot">&lt;-</span> ESG_words <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="半導體永續報告書分析.html#cb38-2" tabindex="-1"></a>  <span class="fu">count</span>(company, word) <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="半導體永續報告書分析.html#cb38-3" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> company, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
+<span id="cb38-4"><a href="半導體永續報告書分析.html#cb38-4" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(ESG_tfidf_2,<span class="dv">20</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">word</th>
+<th align="right">ASE</th>
+<th align="right">Mediatek</th>
+<th align="right">TSMC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">accountability</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">act</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">actcheck</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">action</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">affairs</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">affectedandhigh</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">ag</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">agree</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">agri</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">agv</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">ai</td>
+<td align="right">106</td>
+<td align="right">139</td>
+<td align="right">43</td>
+</tr>
+<tr class="even">
+<td align="left">ainosinc</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">alist</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">all</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">amr</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">an</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">and</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">annualawards</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">annualobjectivedeployment</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">anstockiilimited</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="查看相關係數" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> 查看相關係數<a href="半導體永續報告書分析.html#查看相關係數" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="半導體永續報告書分析.html#cb39-1" tabindex="-1"></a>cor_test_TSMC_Mediatek <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(ESG_tfidf_2<span class="sc">$</span>TSMC, ESG_tfidf_2<span class="sc">$</span>Mediatek)</span>
+<span id="cb39-2"><a href="半導體永續報告書分析.html#cb39-2" tabindex="-1"></a>cor_test_TSMC_ASE <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(ESG_tfidf_2<span class="sc">$</span>TSMC, ESG_tfidf_2<span class="sc">$</span>ASE)</span>
+<span id="cb39-3"><a href="半導體永續報告書分析.html#cb39-3" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="半導體永續報告書分析.html#cb39-4" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="半導體永續報告書分析.html#cb39-5" tabindex="-1"></a><span class="co"># 提取相關性檢驗的結果數據</span></span>
+<span id="cb39-6"><a href="半導體永續報告書分析.html#cb39-6" tabindex="-1"></a>cor_test_results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb39-7"><a href="半導體永續報告書分析.html#cb39-7" tabindex="-1"></a>  <span class="at">Metric =</span> <span class="fu">c</span>(<span class="st">&quot;t-value&quot;</span>, <span class="st">&quot;df&quot;</span>, <span class="st">&quot;p-value&quot;</span>, <span class="st">&quot;95% Confidence Interval&quot;</span>, <span class="st">&quot;Correlation&quot;</span>),</span>
+<span id="cb39-8"><a href="半導體永續報告書分析.html#cb39-8" tabindex="-1"></a>  <span class="st">`</span><span class="at">TSMC vs Mediatek</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb39-9"><a href="半導體永續報告書分析.html#cb39-9" tabindex="-1"></a>    <span class="fu">round</span>(cor_test_TSMC_Mediatek<span class="sc">$</span>statistic, <span class="dv">2</span>),  <span class="co"># t-value</span></span>
+<span id="cb39-10"><a href="半導體永續報告書分析.html#cb39-10" tabindex="-1"></a>    cor_test_TSMC_Mediatek<span class="sc">$</span>parameter,             <span class="co"># df</span></span>
+<span id="cb39-11"><a href="半導體永續報告書分析.html#cb39-11" tabindex="-1"></a>    <span class="fu">format.pval</span>(cor_test_TSMC_Mediatek<span class="sc">$</span>p.value),  <span class="co"># p-value</span></span>
+<span id="cb39-12"><a href="半導體永續報告書分析.html#cb39-12" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">&quot;[&quot;</span>, <span class="fu">round</span>(cor_test_TSMC_Mediatek<span class="sc">$</span>conf.int[<span class="dv">1</span>], <span class="dv">7</span>), <span class="st">&quot;, &quot;</span>, <span class="fu">round</span>(cor_test_TSMC_Mediatek<span class="sc">$</span>conf.int[<span class="dv">2</span>], <span class="dv">7</span>), <span class="st">&quot;]&quot;</span>),  <span class="co"># 95% CI</span></span>
+<span id="cb39-13"><a href="半導體永續報告書分析.html#cb39-13" tabindex="-1"></a>    <span class="fu">round</span>(cor_test_TSMC_Mediatek<span class="sc">$</span>estimate, <span class="dv">7</span>)     <span class="co"># correlation</span></span>
+<span id="cb39-14"><a href="半導體永續報告書分析.html#cb39-14" tabindex="-1"></a>  ),</span>
+<span id="cb39-15"><a href="半導體永續報告書分析.html#cb39-15" tabindex="-1"></a>  <span class="st">`</span><span class="at">TSMC vs ASE</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb39-16"><a href="半導體永續報告書分析.html#cb39-16" tabindex="-1"></a>    <span class="fu">round</span>(cor_test_TSMC_ASE<span class="sc">$</span>statistic, <span class="dv">2</span>),  <span class="co"># t-value</span></span>
+<span id="cb39-17"><a href="半導體永續報告書分析.html#cb39-17" tabindex="-1"></a>    cor_test_TSMC_ASE<span class="sc">$</span>parameter,             <span class="co"># df</span></span>
+<span id="cb39-18"><a href="半導體永續報告書分析.html#cb39-18" tabindex="-1"></a>    <span class="fu">format.pval</span>(cor_test_TSMC_ASE<span class="sc">$</span>p.value),  <span class="co"># p-value</span></span>
+<span id="cb39-19"><a href="半導體永續報告書分析.html#cb39-19" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">&quot;[&quot;</span>, <span class="fu">round</span>(cor_test_TSMC_ASE<span class="sc">$</span>conf.int[<span class="dv">1</span>], <span class="dv">7</span>), <span class="st">&quot;, &quot;</span>, <span class="fu">round</span>(cor_test_TSMC_ASE<span class="sc">$</span>conf.int[<span class="dv">2</span>], <span class="dv">7</span>), <span class="st">&quot;]&quot;</span>),  <span class="co"># 95% CI</span></span>
+<span id="cb39-20"><a href="半導體永續報告書分析.html#cb39-20" tabindex="-1"></a>    <span class="fu">round</span>(cor_test_TSMC_ASE<span class="sc">$</span>estimate, <span class="dv">7</span>)     <span class="co"># correlation</span></span>
+<span id="cb39-21"><a href="半導體永續報告書分析.html#cb39-21" tabindex="-1"></a>  )</span>
+<span id="cb39-22"><a href="半導體永續報告書分析.html#cb39-22" tabindex="-1"></a>)</span>
+<span id="cb39-23"><a href="半導體永續報告書分析.html#cb39-23" tabindex="-1"></a></span>
+<span id="cb39-24"><a href="半導體永續報告書分析.html#cb39-24" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb39-25"><a href="半導體永續報告書分析.html#cb39-25" tabindex="-1"></a><span class="fu">kable</span>(cor_test_results, <span class="at">caption =</span> <span class="st">&quot;Correlation Test Results: TSMC vs Mediatek and TSMC vs ASE&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-26">Table 3.2: </span>Correlation Test Results: TSMC vs Mediatek and TSMC vs ASE</caption>
+<colgroup>
+<col width="34%" />
+<col width="32%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Metric</th>
+<th align="left">TSMC.vs.Mediatek</th>
+<th align="left">TSMC.vs.ASE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">t-value</td>
+<td align="left">159.26</td>
+<td align="left">200.87</td>
+</tr>
+<tr class="even">
+<td align="left">df</td>
+<td align="left">13517</td>
+<td align="left">13517</td>
+</tr>
+<tr class="odd">
+<td align="left">p-value</td>
+<td align="left">&lt; 2.22e-16</td>
+<td align="left">&lt; 2.22e-16</td>
+</tr>
+<tr class="even">
+<td align="left">95% Confidence Interval</td>
+<td align="left">[0.8017459, 0.8134686]</td>
+<td align="left">[0.8611891, 0.8696512]</td>
+</tr>
+<tr class="odd">
+<td align="left">Correlation</td>
+<td align="left">0.8076871</td>
+<td align="left">0.8654819</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="分析詞頻差異" class="section level3 hasAnchor" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> 分析詞頻差異<a href="半導體永續報告書分析.html#分析詞頻差異" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="半導體永續報告書分析.html#cb40-1" tabindex="-1"></a><span class="co"># 從 TSMC 的角度來分析詞頻差異，正的差異值代表詞在 TSMC 中使用頻率更高</span></span>
+<span id="cb40-2"><a href="半導體永續報告書分析.html#cb40-2" tabindex="-1"></a>ESG_diff_T <span class="ot">&lt;-</span> ESG_tfidf_2 <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="半導體永續報告書分析.html#cb40-3" tabindex="-1"></a>  <span class="fu">select</span>(word, TSMC, Mediatek) <span class="sc">%&gt;%</span></span>
+<span id="cb40-4"><a href="半導體永續報告書分析.html#cb40-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p1 =</span> TSMC <span class="sc">/</span> <span class="fu">sum</span>(TSMC),</span>
+<span id="cb40-5"><a href="半導體永續報告書分析.html#cb40-5" tabindex="-1"></a>         <span class="at">p2 =</span> Mediatek <span class="sc">/</span> <span class="fu">sum</span>(Mediatek),</span>
+<span id="cb40-6"><a href="半導體永續報告書分析.html#cb40-6" tabindex="-1"></a>         <span class="at">diff =</span> p1 <span class="sc">-</span> p2) <span class="sc">%&gt;%</span></span>
+<span id="cb40-7"><a href="半導體永續報告書分析.html#cb40-7" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(diff))</span>
+<span id="cb40-8"><a href="半導體永續報告書分析.html#cb40-8" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="半導體永續報告書分析.html#cb40-9" tabindex="-1"></a><span class="co"># 從 Mediatek 的角度來分析詞頻差異，正的差異值代表詞在 Mediatek 中使用頻率更高</span></span>
+<span id="cb40-10"><a href="半導體永續報告書分析.html#cb40-10" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="半導體永續報告書分析.html#cb40-11" tabindex="-1"></a>ESG_diff_M <span class="ot">&lt;-</span> ESG_tfidf_2 <span class="sc">%&gt;%</span></span>
+<span id="cb40-12"><a href="半導體永續報告書分析.html#cb40-12" tabindex="-1"></a>  <span class="fu">select</span>(word, Mediatek, TSMC) <span class="sc">%&gt;%</span></span>
+<span id="cb40-13"><a href="半導體永續報告書分析.html#cb40-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p1 =</span> Mediatek <span class="sc">/</span> <span class="fu">sum</span>(Mediatek),</span>
+<span id="cb40-14"><a href="半導體永續報告書分析.html#cb40-14" tabindex="-1"></a>         <span class="at">p2 =</span> TSMC <span class="sc">/</span> <span class="fu">sum</span>(TSMC),</span>
+<span id="cb40-15"><a href="半導體永續報告書分析.html#cb40-15" tabindex="-1"></a>         <span class="at">diff =</span> p1 <span class="sc">-</span> p2) <span class="sc">%&gt;%</span></span>
+<span id="cb40-16"><a href="半導體永續報告書分析.html#cb40-16" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(diff))</span></code></pre></div>
+<p>查看差異最大的詞</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="半導體永續報告書分析.html#cb41-1" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(ESG_diff_T,<span class="dv">10</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">word</th>
+<th align="right">TSMC</th>
+<th align="right">Mediatek</th>
+<th align="right">p1</th>
+<th align="right">p2</th>
+<th align="right">diff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">供應商</td>
+<td align="right">553</td>
+<td align="right">148</td>
+<td align="right">0.0104120</td>
+<td align="right">0.0050640</td>
+<td align="right">0.0053480</td>
+</tr>
+<tr class="even">
+<td align="left">廠區</td>
+<td align="right">255</td>
+<td align="right">1</td>
+<td align="right">0.0048012</td>
+<td align="right">0.0000342</td>
+<td align="right">0.0047670</td>
+</tr>
+<tr class="odd">
+<td align="left">製程</td>
+<td align="right">240</td>
+<td align="right">6</td>
+<td align="right">0.0045188</td>
+<td align="right">0.0002053</td>
+<td align="right">0.0043135</td>
+</tr>
+<tr class="even">
+<td align="left">晶圓</td>
+<td align="right">213</td>
+<td align="right">4</td>
+<td align="right">0.0040104</td>
+<td align="right">0.0001369</td>
+<td align="right">0.0038735</td>
+</tr>
+<tr class="odd">
+<td align="left">人才</td>
+<td align="right">177</td>
+<td align="right">0</td>
+<td align="right">0.0033326</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0033326</td>
+</tr>
+<tr class="even">
+<td align="left">品質</td>
+<td align="right">198</td>
+<td align="right">13</td>
+<td align="right">0.0037280</td>
+<td align="right">0.0004448</td>
+<td align="right">0.0032832</td>
+</tr>
+<tr class="odd">
+<td align="left">設備</td>
+<td align="right">170</td>
+<td align="right">25</td>
+<td align="right">0.0032008</td>
+<td align="right">0.0008554</td>
+<td align="right">0.0023454</td>
+</tr>
+<tr class="even">
+<td align="left">改善</td>
+<td align="right">194</td>
+<td align="right">41</td>
+<td align="right">0.0036527</td>
+<td align="right">0.0014029</td>
+<td align="right">0.0022498</td>
+</tr>
+<tr class="odd">
+<td align="left">台灣</td>
+<td align="right">158</td>
+<td align="right">22</td>
+<td align="right">0.0029748</td>
+<td align="right">0.0007528</td>
+<td align="right">0.0022221</td>
+</tr>
+<tr class="even">
+<td align="left">作業</td>
+<td align="right">140</td>
+<td align="right">15</td>
+<td align="right">0.0026359</td>
+<td align="right">0.0005132</td>
+<td align="right">0.0021227</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="半導體永續報告書分析.html#cb42-1" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(ESG_diff_M,<span class="dv">10</span>))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">word</th>
+<th align="right">Mediatek</th>
+<th align="right">TSMC</th>
+<th align="right">p1</th>
+<th align="right">p2</th>
+<th align="right">diff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">科技</td>
+<td align="right">191</td>
+<td align="right">48</td>
+<td align="right">0.0065353</td>
+<td align="right">0.0009038</td>
+<td align="right">0.0056315</td>
+</tr>
+<tr class="even">
+<td align="left">ai</td>
+<td align="right">139</td>
+<td align="right">43</td>
+<td align="right">0.0047560</td>
+<td align="right">0.0008096</td>
+<td align="right">0.0039464</td>
+</tr>
+<tr class="odd">
+<td align="left">全球</td>
+<td align="right">241</td>
+<td align="right">241</td>
+<td align="right">0.0082461</td>
+<td align="right">0.0045376</td>
+<td align="right">0.0037085</td>
+</tr>
+<tr class="even">
+<td align="left">公司</td>
+<td align="right">250</td>
+<td align="right">262</td>
+<td align="right">0.0085540</td>
+<td align="right">0.0049330</td>
+<td align="right">0.0036211</td>
+</tr>
+<tr class="odd">
+<td align="left">員工</td>
+<td align="right">338</td>
+<td align="right">461</td>
+<td align="right">0.0115650</td>
+<td align="right">0.0086798</td>
+<td align="right">0.0028853</td>
+</tr>
+<tr class="even">
+<td align="left">溝通</td>
+<td align="right">116</td>
+<td align="right">80</td>
+<td align="right">0.0039691</td>
+<td align="right">0.0015063</td>
+<td align="right">0.0024628</td>
+</tr>
+<tr class="odd">
+<td align="left">企業</td>
+<td align="right">147</td>
+<td align="right">140</td>
+<td align="right">0.0050298</td>
+<td align="right">0.0026359</td>
+<td align="right">0.0023938</td>
+</tr>
+<tr class="even">
+<td align="left">創新</td>
+<td align="right">180</td>
+<td align="right">200</td>
+<td align="right">0.0061589</td>
+<td align="right">0.0037656</td>
+<td align="right">0.0023933</td>
+</tr>
+<tr class="odd">
+<td align="left">平臺</td>
+<td align="right">67</td>
+<td align="right">0</td>
+<td align="right">0.0022925</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0022925</td>
+</tr>
+<tr class="even">
+<td align="left">通訊</td>
+<td align="right">65</td>
+<td align="right">8</td>
+<td align="right">0.0022240</td>
+<td align="right">0.0001506</td>
+<td align="right">0.0020734</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="半導體永續報告書分析.html#cb43-1" tabindex="-1"></a><span class="fu">ggplot</span>(ESG_diff_M <span class="sc">%&gt;%</span> <span class="fu">top_n</span>(<span class="dv">15</span>, <span class="fu">abs</span>(diff)), <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(word, diff), <span class="at">y =</span> diff, <span class="at">fill =</span> diff <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="半導體永續報告書分析.html#cb43-2" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb43-3"><a href="半導體永續報告書分析.html#cb43-3" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb43-4"><a href="半導體永續報告書分析.html#cb43-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mediatek vs TSMC 用詞比例差異&quot;</span>, <span class="at">x =</span> <span class="st">&quot;詞彙&quot;</span>, <span class="at">y =</span> <span class="st">&quot;比例差異 (p1 - p2)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="半導體永續報告書分析.html#cb43-5" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;TRUE&quot;</span> <span class="ot">=</span> <span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;FALSE&quot;</span> <span class="ot">=</span> <span class="st">&quot;lightcoral&quot;</span>),</span>
+<span id="cb43-6"><a href="半導體永續報告書分析.html#cb43-6" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;TSMC 常用&quot;</span>, <span class="st">&quot;Mediatek 常用&quot;</span>)) <span class="sc">+</span>  <span class="co"># 修改圖例標籤</span></span>
+<span id="cb43-7"><a href="半導體永續報告書分析.html#cb43-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb43-8"><a href="半導體永續報告書分析.html#cb43-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Kaiti TC&quot;</span>, <span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>計算「永續」在三本報告書中分別出現幾次</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="半導體永續報告書分析.html#cb44-1" tabindex="-1"></a>ESG_tfidf_2 <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="半導體永續報告書分析.html#cb44-2" tabindex="-1"></a>  <span class="fu">filter</span>(word <span class="sc">==</span> <span class="st">&quot;永續&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   word    ASE Mediatek  TSMC
+##   &lt;chr&gt; &lt;int&gt;    &lt;int&gt; &lt;int&gt;
+## 1 永續    507      134   301</code></pre>
+</div>
+</div>
+<div id="lda主題模型" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> LDA主題模型<a href="半導體永續報告書分析.html#lda主題模型" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="前置處理" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> 前置處理<a href="半導體永續報告書分析.html#前置處理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>導入套件包</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="半導體永續報告書分析.html#cb46-1" tabindex="-1"></a><span class="fu">library</span>(text2vec)</span>
+<span id="cb46-2"><a href="半導體永續報告書分析.html#cb46-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb46-3"><a href="半導體永續報告書分析.html#cb46-3" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb46-4"><a href="半導體永續報告書分析.html#cb46-4" tabindex="-1"></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb46-5"><a href="半導體永續報告書分析.html#cb46-5" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div>
+<p>資料分組與整理
+以永續報告書一頁之內容作為一單位的文字檔案</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="半導體永續報告書分析.html#cb47-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb47-2"><a href="半導體永續報告書分析.html#cb47-2" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="半導體永續報告書分析.html#cb47-3" tabindex="-1"></a>ESG_words_grouped <span class="ot">&lt;-</span> ESG_words <span class="sc">%&gt;%</span></span>
+<span id="cb47-4"><a href="半導體永續報告書分析.html#cb47-4" tabindex="-1"></a>  <span class="fu">group_by</span>(company, page) <span class="sc">%&gt;%</span></span>
+<span id="cb47-5"><a href="半導體永續報告書分析.html#cb47-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">content =</span> <span class="fu">paste</span>(word, <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb47-6"><a href="半導體永續報告書分析.html#cb47-6" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="半導體永續報告書分析.html#cb47-7" tabindex="-1"></a><span class="co"># 顯示前 10 行的表格</span></span>
+<span id="cb47-8"><a href="半導體永續報告書分析.html#cb47-8" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(ESG_words_grouped, <span class="dv">3</span>))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="0%" />
+<col width="0%" />
+<col width="98%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">company</th>
+<th align="right">page</th>
+<th align="left">content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ASE</td>
+<td align="right">1</td>
+<td align="left">股票代碼 nyse 投資 控股 永續報告書</td>
+</tr>
+<tr class="even">
+<td align="left">ASE</td>
+<td align="right">2</td>
+<td align="left">低碳 使命 循環 再生 投資 控股 股份 有限公司 所屬 子公司 簡稱 全球 規模 半導體 封裝 測試 製造 服務公司 專注 本業 研發 實力 並以 低碳 使命 循環 再生 社會 共融 價值 共創 四大 面向 企業 永續發展 策略 我們 持續 依循 智慧 製造 永續發展 雙軸 轉型 整合 工業 各項 先進 技術 人工智慧 artificialintelligence ai 營運 活動 全球 廠區 自然 風險 評估 透過 邁向 永續 tnfd leap 方法 辨識 公司 自然 依賴 衝擊 風險 機會 舉辦 社會 創新 競賽 新創 團隊 結盟 創建 合作 模式 秉持 核心理念 致力 提升 職場 防護 有效性 創建 半導體 封測 產業 第一份 未來 測機台 白皮書 攜手 各界 夥伴 守護 大自然 持續 響應 淨零 因應 產業 趨勢 社會 脈動 深耕 永續 價值 文化 落實 企業 社會責任 推動 正面 影響力 本次 報告書 封面 擁抱 綠能 守護 地球 未來 傳達 我們 信念 環境 永續 全球 企業 目標 身為 半導體 封裝 測試 服務 領導 廠商 投入 綠電 低碳 能源 轉型 智慧 管理 打造 韌性 綠色 循環 地球 永續 努力 社會 共融 價值 共創</td>
+</tr>
+<tr class="odd">
+<td align="left">ASE</td>
+<td align="right">3</td>
+<td align="left">目錄 編輯 原則 公司簡介 研發 創新 供應鏈 概況 董事長 理念 願景 永續 製造 供應鏈管理 框架 財務績效 產品 服務 供應鏈 責任 礦物 承諾 組織 架構 氣候 領導力 社會影響力 永續 策略 水資源 環保 公益 聯合國 永續發展目標 廢棄物 產學 教育 永續 價值 評估 空污 防制 社區 營造 分析 綠色 廠房 對外 倡議 利害關係人 溝通 生物多樣性 環境保護 支出 投資 附錄 環境 數據 附錄 社會 數據 附錄 供應鏈 數據 附錄 關鍵 供應商 清單 外部 查證 聲明 gri 準則 內容 索引 sasb 準則 董事會 運作 人才 吸引 留任 永續 揭露 指標 經濟 績效 稅務 治理 人才 培育 發展 tcfd 指標 對照表 商業道德 職業 健康 營運 據點 風險管理 人權 管理 法規 資安 管理</td>
+</tr>
+</tbody>
+</table>
+<p>計算文檔長度與基本統計</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="半導體永續報告書分析.html#cb48-1" tabindex="-1"></a>doc_lengths <span class="ot">&lt;-</span> <span class="fu">nchar</span>(ESG_words_grouped<span class="sc">$</span>content)  <span class="co"># 每篇文檔的字數</span></span>
+<span id="cb48-2"><a href="半導體永續報告書分析.html#cb48-2" tabindex="-1"></a><span class="fu">summary</span>(doc_lengths)  <span class="co"># 檢查分佈</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     5.0   594.2   880.0   899.8  1161.8  2718.0</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="半導體永續報告書分析.html#cb50-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Number of documents:&quot;</span>, <span class="fu">nrow</span>(ESG_words_grouped), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Number of documents: 472</code></pre>
+<p>Token 化與詞彙創建</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="半導體永續報告書分析.html#cb52-1" tabindex="-1"></a>it <span class="ot">&lt;-</span> <span class="fu">itoken</span>(ESG_words_grouped<span class="sc">$</span>content, <span class="at">progressbar =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb52-2"><a href="半導體永續報告書分析.html#cb52-2" tabindex="-1"></a>vocab <span class="ot">=</span> <span class="fu">create_vocabulary</span>(it)</span></code></pre></div>
+<p>過濾詞彙
+過濾掉不符合條件的詞彙，保留：</p>
+<ul>
+<li><p>term_count_min = 10：至少出現 10 次的詞。</p></li>
+<li><p>doc_proportion_max = 0.5：出現在 50% 以上文檔的詞會被移除（過於常見）。</p></li>
+<li><p>doc_proportion_min = 0.001：出現在至少 0.1% 文檔的詞（過於稀有的詞會被移除）。</p></li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="半導體永續報告書分析.html#cb53-1" tabindex="-1"></a>pruned_vocab <span class="ot">&lt;-</span> <span class="fu">prune_vocabulary</span>(vocab,<span class="at">term_count_min =</span> <span class="dv">10</span>, <span class="co">#</span></span>
+<span id="cb53-2"><a href="半導體永續報告書分析.html#cb53-2" tabindex="-1"></a>                                 <span class="at">doc_proportion_max =</span> <span class="fl">0.5</span>,</span>
+<span id="cb53-3"><a href="半導體永續報告書分析.html#cb53-3" tabindex="-1"></a>                                 <span class="at">doc_proportion_min =</span> <span class="fl">0.001</span>)</span></code></pre></div>
+<p>建立文件-詞矩陣（DTM）
+根據過濾後的詞彙表，向量化，用於將文檔轉換為稀疏矩陣。
+將文本轉換為文件-詞矩陣（DTM），矩陣中的每個值代表詞在某文檔中的出現次數。</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="半導體永續報告書分析.html#cb54-1" tabindex="-1"></a>vectorizer <span class="ot">=</span> <span class="fu">vocab_vectorizer</span>(pruned_vocab)</span>
+<span id="cb54-2"><a href="半導體永續報告書分析.html#cb54-2" tabindex="-1"></a>dtm <span class="ot">=</span> <span class="fu">create_dtm</span>(it, vectorizer)</span></code></pre></div>
+</div>
+<div id="lda主題建模" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> LDA主題建模<a href="半導體永續報告書分析.html#lda主題建模" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>LDA主題建模</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="半導體永續報告書分析.html#cb55-1" tabindex="-1"></a>topics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>)  <span class="co"># 定義要測試的主題數量</span></span>
+<span id="cb55-2"><a href="半導體永續報告書分析.html#cb55-2" tabindex="-1"></a><span class="fu">library</span>(topicmodels)</span>
+<span id="cb55-3"><a href="半導體永續報告書分析.html#cb55-3" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="半導體永續報告書分析.html#cb55-4" tabindex="-1"></a>ldas <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb55-5"><a href="半導體永續報告書分析.html#cb55-5" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> topics) {</span>
+<span id="cb55-6"><a href="半導體永續報告書分析.html#cb55-6" tabindex="-1"></a>  start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb55-7"><a href="半導體永續報告書分析.html#cb55-7" tabindex="-1"></a>  ldas[[<span class="fu">as.character</span>(k)]] <span class="ot">&lt;-</span> <span class="fu">LDA</span>(dtm, <span class="at">k =</span> k, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">seed =</span> <span class="dv">2024</span>))</span>
+<span id="cb55-8"><a href="半導體永續報告書分析.html#cb55-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(k, <span class="st">&quot; topics use time: &quot;</span>, <span class="fu">Sys.time</span>() <span class="sc">-</span> start_time, <span class="st">&quot; seconds&quot;</span>))</span>
+<span id="cb55-9"><a href="半導體永續報告書分析.html#cb55-9" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;2 topics use time: 1.00162601470947 seconds&quot;
+## [1] &quot;3 topics use time: 1.33878207206726 seconds&quot;
+## [1] &quot;5 topics use time: 3.94492292404175 seconds&quot;
+## [1] &quot;7 topics use time: 4.7369658946991 seconds&quot;
+## [1] &quot;10 topics use time: 9.76090979576111 seconds&quot;
+## [1] &quot;12 topics use time: 11.5822298526764 seconds&quot;
+## [1] &quot;15 topics use time: 15.2933080196381 seconds&quot;
+## [1] &quot;20 topics use time: 19.0641670227051 seconds&quot;</code></pre>
+<p>計算每個 LDA 模型的混淆值（Perplexity）
+note:混淆值（Perplexity）是一個常用於自然語言處理和主題建模的指標，用來衡量模型對測試數據的擬合能力。它是一個基於語言模型的機率測量，數值越低代表模型對數據的解釋能力越強。</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="半導體永續報告書分析.html#cb57-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb57-2"><a href="半導體永續報告書分析.html#cb57-2" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb57-3"><a href="半導體永續報告書分析.html#cb57-3" tabindex="-1"></a><span class="fu">map_dbl</span>(ldas,perplexity) <span class="co">#計算混淆值</span></span></code></pre></div>
+<pre><code>##        2        3        5        7       10       12       15       20 
+## 777.4079 680.5514 588.3992 535.6348 488.0874 461.7313 431.2790 394.1406</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="半導體永續報告書分析.html#cb59-1" tabindex="-1"></a><span class="co">#繪製混淆值曲線</span></span>
+<span id="cb59-2"><a href="半導體永續報告書分析.html#cb59-2" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">k=</span>topics,<span class="at">perplexity=</span><span class="fu">map_dbl</span>(ldas,perplexity)) <span class="sc">|&gt;</span></span>
+<span id="cb59-3"><a href="半導體永續報告書分析.html#cb59-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(k,perplexity)) <span class="sc">+</span></span>
+<span id="cb59-4"><a href="半導體永續報告書分析.html#cb59-4" tabindex="-1"></a>          <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb59-5"><a href="半導體永續報告書分析.html#cb59-5" tabindex="-1"></a>          <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb59-6"><a href="半導體永續報告書分析.html#cb59-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of topics&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb59-7"><a href="半導體永續報告書分析.html#cb59-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Perplexity&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>Structural Topic Modeling (STM) 方法來進行主題建模
+指定主題數量，即將文本數據分為 5 個主題。</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="半導體永續報告書分析.html#cb60-1" tabindex="-1"></a><span class="fu">library</span>(stm)</span></code></pre></div>
+<pre><code>## stm v1.3.7 successfully loaded. See ?stm for help. 
+##  Papers, resources, and other materials at structuraltopicmodel.com</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="半導體永續報告書分析.html#cb62-1" tabindex="-1"></a>m <span class="ot">=</span> <span class="fu">stm</span>(dtm,<span class="at">K =</span> <span class="dv">5</span>,<span class="at">max.em.its =</span> <span class="dv">10</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="半導體永續報告書分析.html#cb63-1" tabindex="-1"></a><span class="fu">labelTopics</span>(m)</span></code></pre></div>
+<pre><code>## Topic 1 Top Words:
+##       Highest Prob: 員工, 工作, 健康, 人數, 學習, 主管, 職場 
+##       FREX: 人數, 離職, 員工, 職場, 女性, 健康, 育嬰 
+##       Lift: 留停, 復職, 永續報告書, 育嬰, 生育, 幼兒園, 退休金 
+##       Score: 永續報告書, 員工, 育嬰, 離職, 退休金, 復職, 學習 
+## Topic 2 Top Words:
+##       Highest Prob: 社會, 營運, 我們, 衝擊, 價值, 創新, 半導體 
+##       FREX: 投資, 營業, 專利, 秘密, 正向, 循環, 生態 
+##       Lift: 投資, 獲准, 貨幣化, tons, 空氣污染, 百萬美元, 活性碳 
+##       Score: 投資, 專利, 秘密, 營業, 廢棄物, 衝擊, 循環 
+## Topic 3 Top Words:
+##       Highest Prob: 技術, 創新, 合作, ai, 半導體, 科技, 客戶 
+##       FREX: 教師, 學生, 大學, 通訊, ai, 科技, 晶片 
+##       Lift: oip, 造課, 電子設計, 十四, 臺灣大學, 處理器, finfet 
+##       Score: 十四, 學生, 教師, 天璣, 學子, 通訊, 國立 
+## Topic 4 Top Words:
+##       Highest Prob: 風險, 相關, 委員會, 人權, 資安, 風險管理, 董事會 
+##       FREX: 董事會, 資安, 人權, 公司治理, 委員會, 風險管理, 董事 
+##       Lift: 財務績效, 併購, 成分股, 風險意識, 情資, sc, 行業協會 
+##       Score: 財務績效, 資安, 董事會, 人權, 董事, 風險管理, 公司治理 
+## Topic 5 Top Words:
+##       Highest Prob: 供應商, 風險, 廠區, 改善, 目標, 系統, 產品 
+##       FREX: 化學品, 公噸, 原物料, 傷害, 水量, 電力, 新建 
+##       Lift: 缺水, 夾傷, 乾旱, 碰撞, 跌倒, pfass, 日數 
+##       Score: 缺水, 供應商, 傷害, 風險, 再生能源, 水量, 稽核</code></pre>
+</div>
+<div id="為主題命名" class="section level3 hasAnchor" number="3.6.3">
+<h3><span class="header-section-number">3.6.3</span> 為主題命名<a href="半導體永續報告書分析.html#為主題命名" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="36%" />
+<col width="63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">主題</th>
+<th align="left">最高機率詞</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">主題1：員工福祉與職場環境</td>
+<td align="left">員工, 工作, 健康, 人數, 學習, 主管, 職場</td>
+</tr>
+<tr class="even">
+<td align="left">主題2：社會責任與營運創新</td>
+<td align="left">社會, 營運, 我們, 衝擊, 價值, 創新, 半導體</td>
+</tr>
+<tr class="odd">
+<td align="left">主題3：技術創新與教育合作</td>
+<td align="left">技術, 創新, 合作, ai, 半導體, 科技, 客戶</td>
+</tr>
+<tr class="even">
+<td align="left">主題4：風險管理與公司治理</td>
+<td align="left">風險, 相關, 委員會, 人權, 資安, 風險管理, 董事會</td>
+</tr>
+<tr class="odd">
+<td align="left">主題5：供應鏈管理與環境風險</td>
+<td align="left">供應商, 風險, 廠區, 改善, 目標, 系統, 產品</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="主題與公司對應關係" class="section level3 hasAnchor" number="3.6.4">
+<h3><span class="header-section-number">3.6.4</span> 主題與公司對應關係<a href="半導體永續報告書分析.html#主題與公司對應關係" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="半導體永續報告書分析.html#cb65-1" tabindex="-1"></a>doc_topics <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(m<span class="sc">$</span>theta)  <span class="co"># 每行代表一單位文檔，每列是主題的機率</span></span>
+<span id="cb65-2"><a href="半導體永續報告書分析.html#cb65-2" tabindex="-1"></a><span class="fu">colnames</span>(doc_topics) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Topic_&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(doc_topics))  <span class="co"># 添加主題標籤</span></span>
+<span id="cb65-3"><a href="半導體永續報告書分析.html#cb65-3" tabindex="-1"></a>doc_topics<span class="sc">$</span>company <span class="ot">&lt;-</span> ESG_words_grouped<span class="sc">$</span>company  <span class="co"># 添加公司標籤</span></span>
+<span id="cb65-4"><a href="半導體永續報告書分析.html#cb65-4" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="半導體永續報告書分析.html#cb65-5" tabindex="-1"></a>company_topics <span class="ot">&lt;-</span> doc_topics <span class="sc">%&gt;%</span></span>
+<span id="cb65-6"><a href="半導體永續報告書分析.html#cb65-6" tabindex="-1"></a>  <span class="fu">group_by</span>(company) <span class="sc">%&gt;%</span></span>
+<span id="cb65-7"><a href="半導體永續報告書分析.html#cb65-7" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">&quot;Topic_&quot;</span>), mean))  <span class="co"># 計算各主題的平均機率</span></span>
+<span id="cb65-8"><a href="半導體永續報告書分析.html#cb65-8" tabindex="-1"></a></span>
+<span id="cb65-9"><a href="半導體永續報告書分析.html#cb65-9" tabindex="-1"></a><span class="co"># 查看結果</span></span>
+<span id="cb65-10"><a href="半導體永續報告書分析.html#cb65-10" tabindex="-1"></a>company_topics</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 6
+##   company  Topic_1 Topic_2 Topic_3 Topic_4 Topic_5
+##   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 ASE        0.130  0.251    0.118   0.281   0.220
+## 2 Mediatek   0.204  0.0543   0.387   0.224   0.130
+## 3 TSMC       0.167  0.112    0.265   0.126   0.330</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="半導體永續報告書分析.html#cb67-1" tabindex="-1"></a>company_topics <span class="sc">%&gt;%</span></span>
+<span id="cb67-2"><a href="半導體永續報告書分析.html#cb67-2" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">&quot;TSMC&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb67-3"><a href="半導體永續報告書分析.html#cb67-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;Topic_&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;Topic&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Probability&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb67-4"><a href="半導體永續報告書分析.html#cb67-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Probability)) <span class="sc">%&gt;%</span>  <span class="co"># 按 Probability 降冪排列</span></span>
+<span id="cb67-5"><a href="半導體永續報告書分析.html#cb67-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Topic =</span> <span class="fu">factor</span>(Topic, <span class="at">levels =</span> <span class="fu">unique</span>(Topic))) <span class="sc">%&gt;%</span> </span>
+<span id="cb67-6"><a href="半導體永續報告書分析.html#cb67-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Topic, <span class="at">y =</span> Probability, <span class="at">fill =</span> Topic)) <span class="sc">+</span></span>
+<span id="cb67-7"><a href="半導體永續報告書分析.html#cb67-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-8"><a href="半導體永續報告書分析.html#cb67-8" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Topics&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb67-9"><a href="半導體永續報告書分析.html#cb67-9" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-10"><a href="半導體永續報告書分析.html#cb67-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;TSMC&#39;s Topic Distribution&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-11"><a href="半導體永續報告書分析.html#cb67-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb67-12"><a href="半導體永續報告書分析.html#cb67-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="半導體永續報告書分析.html#cb68-1" tabindex="-1"></a>company_topics <span class="sc">%&gt;%</span></span>
+<span id="cb68-2"><a href="半導體永續報告書分析.html#cb68-2" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">&quot;Mediatek&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb68-3"><a href="半導體永續報告書分析.html#cb68-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;Topic_&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;Topic&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Probability&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb68-4"><a href="半導體永續報告書分析.html#cb68-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Probability)) <span class="sc">%&gt;%</span>  <span class="co"># 按 Probability 降冪排列</span></span>
+<span id="cb68-5"><a href="半導體永續報告書分析.html#cb68-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Topic =</span> <span class="fu">factor</span>(Topic, <span class="at">levels =</span> <span class="fu">unique</span>(Topic))) <span class="sc">%&gt;%</span>  </span>
+<span id="cb68-6"><a href="半導體永續報告書分析.html#cb68-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Topic, <span class="at">y =</span> Probability, <span class="at">fill =</span> Topic)) <span class="sc">+</span></span>
+<span id="cb68-7"><a href="半導體永續報告書分析.html#cb68-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb68-8"><a href="半導體永續報告書分析.html#cb68-8" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Topics&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb68-9"><a href="半導體永續報告書分析.html#cb68-9" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability&quot;</span>) <span class="sc">+</span></span>
+<span id="cb68-10"><a href="半導體永續報告書分析.html#cb68-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Mediatek&#39;s Topic Distribution&quot;</span>) <span class="sc">+</span></span>
+<span id="cb68-11"><a href="半導體永續報告書分析.html#cb68-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb68-12"><a href="半導體永續報告書分析.html#cb68-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-2.png" width="672" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="半導體永續報告書分析.html#cb69-1" tabindex="-1"></a>company_topics <span class="sc">%&gt;%</span></span>
+<span id="cb69-2"><a href="半導體永續報告書分析.html#cb69-2" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">&quot;ASE&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-3"><a href="半導體永續報告書分析.html#cb69-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;Topic_&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;Topic&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Probability&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb69-4"><a href="半導體永續報告書分析.html#cb69-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Probability)) <span class="sc">%&gt;%</span>  <span class="co"># 按 Probability 降冪排列</span></span>
+<span id="cb69-5"><a href="半導體永續報告書分析.html#cb69-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Topic =</span> <span class="fu">factor</span>(Topic, <span class="at">levels =</span> <span class="fu">unique</span>(Topic))) <span class="sc">%&gt;%</span>  </span>
+<span id="cb69-6"><a href="半導體永續報告書分析.html#cb69-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Topic, <span class="at">y =</span> Probability, <span class="at">fill =</span> Topic)) <span class="sc">+</span></span>
+<span id="cb69-7"><a href="半導體永續報告書分析.html#cb69-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-8"><a href="半導體永續報告書分析.html#cb69-8" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Topics&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb69-9"><a href="半導體永續報告書分析.html#cb69-9" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-10"><a href="半導體永續報告書分析.html#cb69-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;ASE&#39;s Topic Distribution&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-11"><a href="半導體永續報告書分析.html#cb69-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb69-12"><a href="半導體永續報告書分析.html#cb69-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-3.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="資料分析超商購物車消費者資料分析-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-ESG-report.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

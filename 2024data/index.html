@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>呂珣瑄 數據分析作品集</title>
+  <meta name="description" content="呂珣瑄 數據分析作品集" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="呂珣瑄 數據分析作品集" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="呂珣瑄 數據分析作品集" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="呂珣瑄 數據分析作品集" />
+  
+  <meta name="twitter:description" content="呂珣瑄 數據分析作品集" />
+  
+
+<meta name="author" content="呂珣瑄" />
+
+
+<meta name="date" content="2024-11-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="資料分析超商購物車消費者資料分析-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 數據分析專案與學習歷程</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#資料分析超商購物車消費者資料分析"><i class="fa fa-check"></i><b>1.1</b> 資料分析：超商購物車消費者資料分析</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#文字探勘半導體永續報告書分析"><i class="fa fa-check"></i><b>1.2</b> 文字探勘：半導體永續報告書分析</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html"><i class="fa fa-check"></i><b>2</b> 資料分析：超商購物車消費者資料分析</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#資料敘述"><i class="fa fa-check"></i><b>2.1</b> 資料敘述</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#故事背景"><i class="fa fa-check"></i><b>2.1.1</b> 故事背景</a></li>
+<li class="chapter" data-level="2.1.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#資料概要"><i class="fa fa-check"></i><b>2.1.2</b> 資料概要</a></li>
+<li class="chapter" data-level="2.1.3" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#資料前處理與轉換"><i class="fa fa-check"></i><b>2.1.3</b> 資料前處理與轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#探索性資料分析"><i class="fa fa-check"></i><b>2.2</b> 探索性資料分析</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#銷售趨勢分析"><i class="fa fa-check"></i><b>2.2.1</b> 銷售趨勢分析</a></li>
+<li class="chapter" data-level="2.2.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#顧客行為分析"><i class="fa fa-check"></i><b>2.2.2</b> 顧客行為分析</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#視覺化消費者活動接受情況"><i class="fa fa-check"></i><b>2.3</b> 視覺化消費者活動接受情況</a></li>
+<li class="chapter" data-level="2.4" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#二元變數之probitlogit-glm"><i class="fa fa-check"></i><b>2.4</b> 二元變數之Probit/Logit GLM</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model1-考量消費金額的logit-glm"><i class="fa fa-check"></i><b>2.4.1</b> Model1 考量「消費金額」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.2" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model2-考量消費者型態的logit-glm"><i class="fa fa-check"></i><b>2.4.2</b> Model2 考量「消費者型態」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.3" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model3-考量消費者前期活動參與的logit-glm"><i class="fa fa-check"></i><b>2.4.3</b> Model3 考量「消費者前期活動參與」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.4" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#model-4-考量所有變數的logit-glm"><i class="fa fa-check"></i><b>2.4.4</b> Model 4 考量「所有變數」的Logit GLM</a></li>
+<li class="chapter" data-level="2.4.5" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#每個模型的roc曲線"><i class="fa fa-check"></i><b>2.4.5</b> 每個模型的ROC曲線</a></li>
+<li class="chapter" data-level="2.4.6" data-path="資料分析超商購物車消費者資料分析-1.html"><a href="資料分析超商購物車消費者資料分析-1.html#總結影響因素"><i class="fa fa-check"></i><b>2.4.6</b> 總結影響因素</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html"><i class="fa fa-check"></i><b>3</b> 半導體永續報告書分析</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#年台灣ic產業主要廠商排名"><i class="fa fa-check"></i><b>3.1</b> 2022年台灣IC產業主要廠商排名</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#xpath-爬取網站資料"><i class="fa fa-check"></i><b>3.1.1</b> Xpath 爬取網站資料</a></li>
+<li class="chapter" data-level="3.1.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#網站文字清理"><i class="fa fa-check"></i><b>3.1.2</b> 網站文字清理</a></li>
+<li class="chapter" data-level="3.1.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#年台灣ic產業主要廠商排名-1"><i class="fa fa-check"></i><b>3.1.3</b> 2022年台灣IC產業主要廠商排名</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#半導體永續報告書導入與清理"><i class="fa fa-check"></i><b>3.2</b> 半導體永續報告書導入與清理</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#台積電永續報告書"><i class="fa fa-check"></i><b>3.2.1</b> 台積電永續報告書</a></li>
+<li class="chapter" data-level="3.2.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#聯發科永續報告書"><i class="fa fa-check"></i><b>3.2.2</b> 聯發科永續報告書</a></li>
+<li class="chapter" data-level="3.2.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#日月光控股永續報告書"><i class="fa fa-check"></i><b>3.2.3</b> 日月光控股永續報告書</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#計算-tf-idf"><i class="fa fa-check"></i><b>3.3</b> 計算 tf-idf</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#將資料合併"><i class="fa fa-check"></i><b>3.3.1</b> 將資料合併</a></li>
+<li class="chapter" data-level="3.3.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#設定停止詞和自訂義辭典"><i class="fa fa-check"></i><b>3.3.2</b> 設定停止詞和自訂義辭典</a></li>
+<li class="chapter" data-level="3.3.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#斷詞"><i class="fa fa-check"></i><b>3.3.3</b> 斷詞</a></li>
+<li class="chapter" data-level="3.3.4" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#計算-tf-idf-1"><i class="fa fa-check"></i><b>3.3.4</b> 計算 tf-idf</a></li>
+<li class="chapter" data-level="3.3.5" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#繪製長條圖"><i class="fa fa-check"></i><b>3.3.5</b> 繪製長條圖</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#正面情緒分析"><i class="fa fa-check"></i><b>3.4</b> 正面情緒分析</a></li>
+<li class="chapter" data-level="3.5" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#分析永續報告書用字相似度"><i class="fa fa-check"></i><b>3.5</b> 分析永續報告書用字相似度</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#計算tf-idf每一個字分別出現在這三家永續報告書的次數"><i class="fa fa-check"></i><b>3.5.1</b> 計算tf-idf(每一個字分別出現在這三家永續報告書的次數)</a></li>
+<li class="chapter" data-level="3.5.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#查看相關係數"><i class="fa fa-check"></i><b>3.5.2</b> 查看相關係數</a></li>
+<li class="chapter" data-level="3.5.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#分析詞頻差異"><i class="fa fa-check"></i><b>3.5.3</b> 分析詞頻差異</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#lda主題模型"><i class="fa fa-check"></i><b>3.6</b> LDA主題模型</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#前置處理"><i class="fa fa-check"></i><b>3.6.1</b> 前置處理</a></li>
+<li class="chapter" data-level="3.6.2" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#lda主題建模"><i class="fa fa-check"></i><b>3.6.2</b> LDA主題建模</a></li>
+<li class="chapter" data-level="3.6.3" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#為主題命名"><i class="fa fa-check"></i><b>3.6.3</b> 為主題命名</a></li>
+<li class="chapter" data-level="3.6.4" data-path="半導體永續報告書分析.html"><a href="半導體永續報告書分析.html#主題與公司對應關係"><i class="fa fa-check"></i><b>3.6.4</b> 主題與公司對應關係</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">呂珣瑄 數據分析作品集</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">呂珣瑄 數據分析作品集</h1>
+<p class="author"><em>呂珣瑄</em></p>
+<p class="date"><em>2024-11-25</em></p>
+</div>
+<div id="數據分析專案與學習歷程" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> 數據分析專案與學習歷程<a href="index.html#數據分析專案與學習歷程" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Hi~我是珣瑄，謝謝您來到我的網站，這裡記載著在過去一年中資料分析專案執行及學習歷程。在碩一下學期時修讀資料科學及決策分析，完成超商購物車消費者資料分析；在碩二上學期的文字探勘課程中正在發展永續報告書分析專案。</p>
+<p>在這過程中訓練：</p>
+<ul>
+<li><p>硬實力：R語言程式設計、預測模型設計、探索性資料分析、資料視覺化</p></li>
+<li><p>軟實力：從數據中找出洞察的思辨能力</p></li>
+</ul>
+<div id="資料分析超商購物車消費者資料分析" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> 資料分析：超商購物車消費者資料分析<a href="index.html#資料分析超商購物車消費者資料分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>探索性資料分析：視覺化消費者資料，了解銷售趨勢分析（每日銷售概況、購買時間分佈、顧客忠誠度）以及顧客以及顧客行為分析（銷售量最佳之商品）。</p></li>
+<li><p>廣義線性迴歸模型 GLM model：建立GLM預測模型，發現消費額、收入、促銷活動接受情況以及網上購買次數對模型影響較大。而年齡和子女數量對預測的影響並不顯著。</p></li>
+</ul>
+</div>
+<div id="文字探勘半導體永續報告書分析" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> 文字探勘：半導體永續報告書分析<a href="index.html#文字探勘半導體永續報告書分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>網站爬蟲：使用Xpath自目標網站爬取關鍵資料</p></li>
+<li><p>文字資料清理：使用正則表示法清除永續報告書中的雜訊文字、空白、重複性文字。</p></li>
+<li><p>文字情緒分析：斷詞並且導入停止詞，導入台大情緒字典計算永續報告書之正面及負面字。</p></li>
+<li><p>TF-IDF分析：了解半導體公司永續報告書相較於其他公司之著重發展之處。</p></li>
+<li><p>LDA主題分析：了解半導體產用永續發展面向。</p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="資料分析超商購物車消費者資料分析-1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

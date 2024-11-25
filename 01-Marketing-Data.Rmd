@@ -1,0 +1,977 @@
+# 資料分析：超商購物車消費者資料分析
+
+資料取自於Kaggle，資料名稱為Marketing Campaign
+https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign
+
+## 資料敘述
+
+### 故事背景
+
+（一）背景
+
+一家大型超市同時運營線上和線下銷售通路。為了提升客戶參與度和忠誠度，超市定期推出各種優惠活動。然而，並不是所有客戶都會接受這些優惠。因此，超市希望通過分析過去行銷活動的數據，了解哪些因素影響客戶接受優惠，從而提高未來行銷活動的精準度和效果。
+
+（二）目標
+
+利用過去的行銷活動數據，預測哪些客戶在最後一次活動中接受了優惠，並識別影響這一決策的關鍵因素。
+
+（三）問題
+
+為什麼有些客戶在最後一次活動中接受了優惠，而有些客戶沒有？
+
+（四）重要性
+
+1. 提升行銷精準度：通過分析客戶行為，超市可以針對更有可能接受優惠的客戶進行精準行銷，提高活動的成功率。
+2. 資源有效分配：將行銷資源集中在高潛力客戶上，降低行銷成本，提高資源利用效率。
+3. 客戶滿意度：通過提供更符合客戶需求的優惠，提升客戶滿意度和忠誠度。
+4. 銷售提升：增加優惠接受率，提高銷售額和客戶購買頻次。
+
+（五）分析方法
+
+使用Logit GLM分析過去的行銷活動數據，確定影響客戶接受優惠的關鍵因素，如收入水平、購買習慣、教育程度等。這些信息將幫助超市設計更有針對性的行銷活動，從而提高優惠接受率和整體行銷效果。
+
+（六）預期結果
+
+識別出高價值客戶群體：了解哪些客戶更有可能接受優惠。
+優化行銷策略：根據分析結果，調整和優化未來的行銷活動策略。
+提高優惠接受率：增加優惠接受率，從而提高銷售和客戶忠誠度。
+
+### 資料概要
+
+首先將資料導入R studio
+```{r message=FALSE, warning=FALSE}
+library(readxl)
+marketing_campaign<- read_excel("~/Desktop/data science/marketing campaign data/marketing_campaign_111.xlsx")
+```
+
+$資料欄位說明$
+
+如表\@ref(tab:table-1)所示總共有2240筆資料，總共有29個變數欄位，有3個類別變數和26個數值變數，Income存在缺失值。
+
+
+```{r table-1,echo=FALSE,message=FALSE, warning=FALSE}
+library(knitr)
+data_table <- data.frame(
+              Variable = c("AcceptedCmp1", "AcceptedCmp2", "AcceptedCmp3", "AcceptedCmp4", "AcceptedCmp5", "Response", "Complain", "DtCustomer", "Education", "Marital", "Kidhome", "Teenhome", "Income", "MntFishProducts", "MntMeatProducts", "MntFruits", "MntSweetProducts", "MntWines", "MntGoldProds", "NumDealsPurchases", "NumCatalogPurchases", "NumStorePurchases", "NumWebPurchases", "NumWebVisitsMonth", "Recency"),
+              Description = c("如果客戶在第一次活動中接受了優惠，則為1，否則為0", "如果客戶在第二次活動中接受了優惠，則為1，否則為0", "如果客戶在第三次活動中接受了優惠，則為1，否則為0", "如果客戶在第四次活動中接受了優惠，則為1，否則為0", "如果客戶在第五次活動中接受了優惠，則為1，否則為0", "如果客戶在最後一次活動中接受了優惠，則為1，否則為0", "如果客戶在過去兩年內有投訴，則為1", "客戶加入公司的日期", "客戶的教育程度", "客戶的婚姻狀況", "客戶家庭中小孩的數量", "客戶家庭中青少年的數量", "客戶家庭的年收入", "過去兩年內在魚類產品上的花費", "過去兩年內在肉類產品上的花費", "過去兩年內在水果產品上的花費", "過去兩年內在甜品產品上的花費", "過去兩年內在葡萄酒產品上的花費", "過去兩年內在黃金產品上的花費", "使用折扣進行的購買次數", "使用目錄進行的購買次數", "直接在商店進行的購買次數", "透過公司網站進行的購買次數", "過去一個月內訪問公司網站的次數", "自上次購買以來的天數")
+)
+
+knitr::kable(data_table, "html", col.names = c("字段名稱", "描述"), caption = "資料欄位說明")
+```
+
+呈現資料集的前十項
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+marketing_campaign %>%
+  head(10) %>%
+  kable("html") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "500px")
+```
+
+### 資料前處理與轉換
+簡化類別變數或是轉換成數值
+
+1. 計算年齡
+2. 計算教育年份
+3. 單身或非單身
+4. 家中小孩數量
+5. 在店家的總支出
+
+```{r message=FALSE, warning=FALSE}
+customer_data <- marketing_campaign %>%
+  transmute(
+    ID = ID,
+    Age = 2024 - Year_Birth,  # 從2024年減去出生年份以計算年齡
+    Education_Years = case_when(
+      Education == "Basic" ~ 12,
+      Education == "Graduation" ~ 16,
+      Education == "Master" ~ 18,
+      Education == "2n Cycle" ~ 18,
+      Education == "PhD" ~ 21,
+      TRUE ~ NA_real_  # 如果有不符合以上條件的Education值，將賦予NA
+    ),
+    Marital_Status= case_when(
+    Marital_Status %in% c("Alone", "Single", "Divorced", "Widow", "Absurd", "YOLO") ~ "Alone",
+    Marital_Status %in% c("Married", "Together") ~ "Couple",
+    TRUE ~ NA_character_  # 如果有不符合以上條件的Marital_Status值，將賦予NA
+    ),
+    Income = Income,
+    Number_of_child = Kidhome + Teenhome,
+    Spending = MntFishProducts+MntMeatProducts+MntFruits+MntSweetProducts+MntWines+MntGoldProds,
+    AcceptedCmp1=AcceptedCmp1,
+    AcceptedCmp2=AcceptedCmp2,
+    AcceptedCmp3=AcceptedCmp3,
+    AcceptedCmp4=AcceptedCmp4,
+    AcceptedCmp5=AcceptedCmp5,
+    Response=Response,
+    NumStorePurchases=NumStorePurchases,
+    NumWebPurchases=NumWebPurchases,
+    NumWebVisitsMonth=NumWebVisitsMonth
+  )
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+customer_data %>%
+  head(10) %>%
+  kable("html") %>%
+  kable_styling() %>%
+  scroll_box(width = "100%", height = "500px")
+```
+
+## 探索性資料分析
+
+### 銷售趨勢分析
+
+**（一）每日訂單數量概況**
+
+建立 “daily_orders” data frame整理每日訂單數量概況
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyverse)
+library(tibble)
+aisles <- read_csv("~/Desktop/data science/Instacart Market Basket Analysis/aisles.csv")
+departments <- read_csv("~/Desktop/data science/Instacart Market Basket Analysis/departments.csv")
+order_products_prior <- read_csv("~/Desktop/data science/Instacart Market Basket Analysis/order_products__prior.csv")
+order_products_train <- read_csv("~/Desktop/data science/Instacart Market Basket Analysis/order_products__train.csv")
+orders <- read_csv("~/Desktop/data science/Instacart Market Basket Analysis/orders.csv")
+products <- read_csv("~/Desktop/data science/Instacart Market Basket Analysis/products.csv")
+complete_df <- read_csv("~/Desktop/data science/Instacart Market Basket Analysis/complete.csv")
+```
+
+```{r}
+daily_orders <- orders %>%
+  group_by(order_dow) %>%
+  summarise(order_count = n())
+```
+
+以表格呈現
+```{r echo=FALSE}
+kable(daily_orders)
+```
+
+以直方圖呈現
+```{r fig.cap="一週訂單數量分佈"}
+ggplot(daily_orders, aes(x = factor(order_dow), y = order_count)) +
+  geom_col(fill = "light blue", color = "black") + 
+  labs(x = "Day of Week", y = "Number of Orders", title = "Orders by Day of Week") +
+  theme_minimal() + 
+  scale_x_discrete(labels = c("Sat","Sun", "Mon", "Tue", "Wed", "Thu", "Fri")) 
+```
+
+從上述表格和圖片可以得知訂單量在一星期中的分佈情況，其中星期六、日最多，星期三最少。可知消費者偏好在週末的時候採購日用品，平日忙碌相較之下沒時間採購。而超市中食品類食物具有時效性，了解消費者採購的時間分佈可以更好的管理庫存，或是能夠在週三時多推出促銷活動增加消費者購物誘因。
+
+
+**(二）單日購買時間分佈**
+
+利用分布圖不分日期看訂單集中在哪一個時間
+使用ggplot2繪製一天中各小時訂單量的分布圖，發現訂單集中在上午10:00到下午16:00的區間段，而中午12:00訂單相對較少
+```{r fig.cap="單日購買時間分佈圖"}
+hourly_orders <- orders %>%
+  group_by(order_hour_of_day) %>%
+  summarise(order_count = n())
+ggplot(hourly_orders, aes(x = order_hour_of_day, y = order_count)) +
+  geom_line(group=1, color = "black") + 
+  geom_point(color="light blue") + 
+  labs(x = "Hour of Day", y = "Number of Orders", title = "Distribution of Orders Throughout the Day") +
+  theme_minimal()
+```
+  
+近一步分析不同日間訂單每小時購買情況
+依照不同日期，按小時分組，計算每小时的訂單數量
+使用氣泡圖繪製，視覺化看出購買時間分佈
+可以發現在禮拜六訂單集中在下午時段，禮拜日則上午時段較多，平日則無明顯差異。
+```{r message=FALSE, warning=FALSE, fig.cap="單日購買時間分佈氣泡圖"}
+hourly_orders_by_dow <- orders %>%
+  group_by(order_dow, order_hour_of_day) %>%
+  summarise(order_count = n())
+hourly_orders_by_dow <- hourly_orders_by_dow %>%
+  mutate(order_dow = factor(order_dow, levels = c(6, 5, 4, 3, 2, 1, 0)))
+ggplot(hourly_orders_by_dow, aes(x = order_hour_of_day, y = order_dow, size = order_count)) +
+  geom_point(aes(color = order_count), alpha = 0.6) + 
+  scale_size_continuous(range = c(1, 12)) + 
+  scale_color_gradient(low = "red", high = "green") + 
+  labs(x = "Hour of Day", y = "Day of Week", title = "Order Distribution by Hour and Day of Week") +
+  theme_minimal() + 
+  theme(axis.text.y = element_text(angle = 45)) 
+```
+
+
+**(三）顧客購買週期**
+
+分析顧客間隔多久再下訂單購買商品
+過濾掉days_since_prior_order中的缺失值，排除首次購買的顧客
+將dataframe命名為 orders_df_filtered
+```{r}
+orders_df_filtered <- orders[!is.na(orders$days_since_prior_order), ]
+```
+以ggplot畫直方圖，視覺化趨勢。
+發現其中購買頻以7天為最高，多數顧客以一週作為購買週期
+而發現30天的訂單量多，推測資料將30天以上的資料都歸納在30天。
+因此，超市可以一週為單位，在網站或是 App 提醒顧客再回來購買商品。
+```{r  fig.cap="顧客購買週期"}
+ggplot(orders_df_filtered, aes(x = days_since_prior_order)) +
+  geom_histogram(binwidth = 1, fill = "light blue", color = "black") + 
+  labs(x = "Days Since Prior Order", y = "Frequency", title = "Distribution of Days Since Prior Order") +
+  theme_minimal() 
+```
+
+**（四）顧客忠誠度**
+
+根據顧客購買週期進一步看顧客的忠誠度
+依照購買週期頻率將顧客分群成高忠誠、中忠誠、低忠誠
+
+  7天以內：高忠誠
+  
+  7-20天內：中忠誠
+  
+  21-29天以上：低忠誠
+  
+  30天（以上）:零星顧客
+
+首先計算每個顧客的平均回購週期
+```{r}
+average_repurchase <- orders %>%
+  group_by(user_id) %>%
+  summarise(average_days_between_orders = mean(days_since_prior_order, na.rm = TRUE))
+```
+
+根據平均回購週期將顧客分類
+```{r}
+customer_loyalty <- average_repurchase %>%
+  mutate(loyalty_category = case_when(
+    average_days_between_orders <= 7 ~ "High Loyalty",
+    average_days_between_orders > 7 & average_days_between_orders <= 20 ~ "Medium Loyalty",
+    average_days_between_orders > 20 & average_days_between_orders <= 29 ~ "Low Loyalty",
+    average_days_between_orders > 29 ~ "Occasional Customer",
+    TRUE ~ "Other" # 为安全起见，包含一个其它类别
+  ))
+```
+
+統計各個忠誠度的顧客總數及百分比
+```{r}
+loyalty_counts <- customer_loyalty %>%
+  group_by(loyalty_category) %>%
+  summarise(count = n())
+total_customers <- sum(loyalty_counts$count)
+loyalty_counts <- loyalty_counts %>%
+  mutate(percentage = count / total_customers)
+kable(loyalty_counts)
+```
+
+利用ggplot繪製圓餅圖
+發現顧客以中忠誠度為大宗，占了61％，而高忠誠度的客戶只有約12％，超市能夠思考如何再提升顧客的購買週期
+```{r fig.cap="顧客忠誠度圓餅圖"}
+ggplot(loyalty_counts, aes(x = "", y = count, fill = loyalty_category)) +
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar("y", start = 0) + 
+  geom_text(aes(label = scales::percent(percentage)), position = position_stack(vjust = 0.5)) +
+  theme_void() +
+  labs(title = "Customer Loyalty Categories") +
+  theme(legend.title = element_blank()) +
+  scale_fill_brewer(palette = "Pastel1")
+```
+
+### 顧客行為分析
+
+**(一）購買頻率最高的前10名商品**
+
+找出超市中購買次數頻率最高的品項
+```{r}
+top10_products <- complete_df %>%
+  group_by(product_name) %>%         # 按商品名稱分組
+  summarise(count = n()) %>%         # 計算每個商品的購買次數
+  arrange(desc(count)) %>%           # 按購買次數降序排列
+  top_n(10, count)                   # 選擇前10名
+kable(top10_products)
+```
+發現第一名是香蕉，而第二名也是香蕉（有機香蕉）
+其他品項熱門品項也大多是有機水果，推測超市深耕於有機水果的市場
+也能夠進一步推出綜合水果禮盒等商品刺激銷量
+
+
+分析購買頻率最高的商品及其所屬部門，多是屬於produce部門
+```{r}
+top_product_in_department <- complete_df %>%
+  group_by(product_name, department) %>%  # 按商品名稱和部門分組
+  summarise(count = n(), .groups = 'drop') %>%  # 計算每個商品的購買次數，移除分組
+  arrange(desc(count)) %>%  # 按購買次數降序排列
+  top_n(10, count)  # 選擇購買次數最多的商品
+kable(top_product_in_department)
+```
+
+**(二) 重複購買率最高的前十名商品**
+
+緊接者好奇熱門品項的重複購買率是否也是最高的？
+計算每個產品的訂單總數和重複購買訂單數
+先彙整出產品忠誠度data frame
+```{r}
+product_loyalty <- complete_df %>%
+  group_by(product_id, product_name,department) %>%
+  summarise(
+    total_orders = n(), 
+    reordered_count = sum(reordered),
+    .groups = 'drop' #去除分組
+  )
+```
+
+計算重複購買率（重複購買訂單數/訂單總數）
+```{r}
+product_loyalty <- product_loyalty %>%
+  mutate(reorder_rate = reordered_count / total_orders)
+```
+列出重複購買率最高的十樣商品
+找到一些比較小眾，雖然訂單量不多，但是重複購買意願很高的商品，超市可以進一步廣告這些商品，增加顧客流量
+```{r}
+top_reorder_rate_products <- product_loyalty %>%
+  arrange(desc(reorder_rate)) %>%
+  top_n(10, reorder_rate) 
+kable(top_reorder_rate_products)  
+```  
+
+## 視覺化消費者活動接受情況
+
+在資料集中有六個欄位表示消費者接受行銷活動的情況，行銷活動共有六次，第一次到第五次行銷活動，以及最後一次活動，以長條比例圖呈現。
+
+```{r fig.cap="接受優惠活動長條堆積圖"}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+
+summary_stats <- customer_data %>%
+  select(AcceptedCmp1, AcceptedCmp2, AcceptedCmp3, AcceptedCmp4, AcceptedCmp5, Response) %>%
+  summarise(
+    AcceptedCmp1_Accepted = sum(AcceptedCmp1 == 1),
+    AcceptedCmp1_Rejected = sum(AcceptedCmp1 == 0),
+    AcceptedCmp2_Accepted = sum(AcceptedCmp2 == 1),
+    AcceptedCmp2_Rejected = sum(AcceptedCmp2 == 0),
+    AcceptedCmp3_Accepted = sum(AcceptedCmp3 == 1),
+    AcceptedCmp3_Rejected = sum(AcceptedCmp3 == 0),
+    AcceptedCmp4_Accepted = sum(AcceptedCmp4 == 1),
+    AcceptedCmp4_Rejected = sum(AcceptedCmp4 == 0),
+    AcceptedCmp5_Accepted = sum(AcceptedCmp5 == 1),
+    AcceptedCmp5_Rejected = sum(AcceptedCmp5 == 0),
+    Response_Accepted = sum(Response == 1),
+    Response_Rejected = sum(Response == 0)
+  )
+
+summary_long <- summary_stats %>%
+  pivot_longer(cols = everything(), names_to = c("Campaign", "Response"), names_sep = "_") %>%
+  group_by(Campaign) %>%
+  mutate(Proportion = value / sum(value) * 100) #將數據框轉換為長格式
+
+ggplot(summary_long, aes(x = Campaign, y = Proportion, fill = Response)) +
+  geom_bar(stat = "identity", position = "fill", width = 0.7) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+  labs(title = "Proportion of Acceptance and Rejection for Each Campaign",
+       x = "Campaign",
+       y = "Proportion (%)",
+       fill = "Response") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) #繪製堆積長條比例圖
+```
+
+從圖\@ref(fig:labelGLM1)來看，可以發現接受第二次活動的比例是最少的，僅有4.46%，而接受最後一次活動的比例最高，達33.88％。因此接下來的二元變數GLM模型將以「最後一次活動」作為分析數值。
+
+
+## 二元變數之Probit/Logit GLM
+
+### Model1 考量「消費金額」的Logit GLM
+
+目標識別消費金額與客戶是否接受最後一次優惠活動之間的關聯，幫助超市了解哪些客戶更可能對促銷活動作出積極回應，從而針對這些高價值客戶設計更吸引人的促銷策略。使用Logit GLM 來預測客戶是否會接受優惠活動，以消費金額作為主要的解釋變數，分析消費金額對接受促銷的概率的影響程度，探索其他可能影響促銷接受率的因素。
+
+（一）模型建立
+
+```{r message=FALSE, warning=FALSE}
+options(scipen = 999)
+customer_data <- na.omit(customer_data)
+result1 = glm(as.factor(Response) ~ Spending,
+              family="binomial",
+              data=customer_data)
+summary(result1)
+```
+
+以表格方式美化呈現結果，如表\@ref(tab:table-2)
+```{r table-2,echo=FALSE,message=FALSE, warning=FALSE}
+GLM_result1<-papeR::prettify(summary(result1), digits = 4,confint = FALSE)
+rownames(GLM_result1)<-c("截距","消費金額")
+kable(GLM_result1, caption = "GLM Model 1 迴歸結果")
+```
+
+1. 方程式
+```{r echo=FALSE}
+coefficients1 <- summary(result1)$coefficients
+equation1 <- paste("logit(P) =", round(as.numeric(coefficients1[1, 1]), 4))
+for (i in 2:nrow(coefficients1)) {
+  term <- ifelse(as.numeric(coefficients1[i, 1]) >= 0, "+", "-")
+  equation1 <- paste(equation1, term, round(abs(as.numeric(coefficients1[i, 1])), 4), "*", rownames(coefficients1)[i])
+}
+cat(equation1, "\n")
+```
+
+
+2. 係數與統計顯著性
+
+(1) (Intercept): 截距項是-1.881，表示當Spending為0時，客戶接受優惠的對數概率（在邏輯迴歸中對應於事件發生的對數機率與事件不發生的對數機率之比）。截距項為負數，說明在沒有消費的情況下，客戶接受優惠的概率較低。
+(2) Spending: 斜率為 0.001816，表示消費越多，客戶接受優惠的可能性越大。其p-value很顯著，為正相關。
+
+（二）McFadden's Pseudo-R²
+
+McFadden's Pseudo-R²計算，值範圍從0到1，值越接近1表示模型的解釋能力越強。
+
+McFadden's Pseudo-R²=0.1796，模型解釋了約 17.96% 的變異性
+
+```{r message=FALSE, warning=FALSE}
+McFadden.R2=1 - (result1$deviance/ result1$null.deviance)
+McFadden.R2
+```
+
+（三）估計個體機率，設定臨界機率
+
+利用 predict(model, type) 函數得到模型估計的ℙ(Y=1|X1,⋯,Xp)
+
+type = "response"：得到每一個個體的機率。
+
+將預測的概率轉換為二元預測（1或0），如果概率大於或等於0.5，則預測結果為1（即接受優惠），否則為0（不接受優惠）。
+
+```{r message=FALSE, warning=FALSE}
+Prob=predict(result1,type = "response") 
+Response.predicted=ifelse(Prob>=0.5,1,0)
+```
+
+
+（四）⽤Confusion Matrix總結分類情況
+
+透過混淆矩陣解釋模型預測結果與實際數據之間的比較
+
+1. Precision=TP/TP+FN (真正的 Positive 有多少被分類正確)
+
+2. Sensitivity (recall)=TP/TP+FN (被分類成 Positive 有多少是真正的 Positive)
+
+3. Specificity=TN/TN+FP (被分類成 Negative 有多少是真正的 Negative)
+
+```{r results = 'hide'}
+Actual=as.integer(as.factor(customer_data$Response))-1
+TABEL=table(Pred=as.factor(Response.predicted),Actual=Actual)
+as.matrix(caret::confusionMatrix(TABEL,positive="1"),"classes")
+conf_matrix = caret::confusionMatrix(table(Pred=as.factor(Response.predicted),Actual=Actual),positive="1")
+```
+```{r}
+conf_matrix
+```
+
+```{r}
+TN1 <- TABEL[1, 1]  # True Negatives
+FN1 <- TABEL[1, 2]  # False Negatives
+FP1 <- TABEL[2, 1]  # False Positives
+TP1 <- TABEL[2, 2]  # True Positives
+
+sensitivity1 <- conf_matrix$byClass["Sensitivity"]
+specificity1 <- conf_matrix$byClass["Specificity"]
+precision1 <- conf_matrix$byClass["Pos Pred Value"]
+neg_pred_value1 <- conf_matrix$byClass["Neg Pred Value"]
+accuracy1 <- conf_matrix$overall["Accuracy"]
+kappa1 <- conf_matrix$overall["Kappa"]
+
+```
+
+混淆矩陣數據解釋
+
+1. 實際與預測結果
+
+● True Negatives (TN): `r TN1`（預測為負例，實際為負例）
+
+● False Negatives (FN): `r FN1`（預測為負例，實際為正例）
+
+● False Positives (FP): `r FP1`（預測為正例，實際為負例）
+
+● True Positives (TP): `r TP1`（預測為正例，實際為正例）
+
+2. 預測力
+
+● Sensitivity (召回率)：`r sensitivity1`，模型對正例的辨識力中等。
+
+● Specificity (特異度)：`r specificity1`，表明模型對負例的辨識力非常高。
+
+● Precision (精確率)：`r precision1`，當模型預測為正例時，有71.05%的機率實際為正例。
+
+● Neg Pred Value (負預測值)：`r neg_pred_value1`，當模型預測為負例時，有的78.58%機率實際為負例。
+
+● Accuracy (準確度)：`r accuracy1`，表明模型整體正確預測了約76.67%的案例。
+
+● Kappa (卡帕統計量)：`r kappa1`，表示診斷試驗的可重復性中等。
+
+
+以「消費金額」考量的Logit GLM在預測消費者是否會接受最後一個優惠活動時具有以下特點：
+
+(1) 中等的正例辨識能力：模型在辨識接受優惠的消費者方面有中等的靈敏度（召回率為53.05%）。
+(2) 高的負例辨識能力：模型在辨識不接受優惠的消費者方面表現非常好（特異度為88.85%）。
+(3) 合理的預測精度：當模型預測消費者會接受優惠時，約71.05%的預測是正確的（精確率）。
+(4) 高的負預測值：當模型預測消費者不會接受優惠時，約78.58%的預測是正確的（負預測值）。
+(5) 整體準確度高：模型整體上能正確預測約76.67%的案例（準確度）。
+(6) 中等的診斷試驗可重複性：卡帕統計量為0.4464，表示模型的分類效果比隨機猜測要好，但仍有改進空間。
+
+
+
+### Model2 考量「消費者型態」的Logit GLM
+
+（一）模型建立
+
+```{r message=FALSE, warning=FALSE}
+customer_data <- na.omit(customer_data)
+result2 = glm(as.factor(Response) ~ Age + Education_Years + Income + Number_of_child,
+              family="binomial",
+              data=customer_data)
+summary(result2)
+```
+
+表\@ref(tab:table-3)，以表格呈現係數
+```{r table-3,echo=FALSE,message=FALSE, warning=FALSE}
+GLM_result2<-papeR::prettify(summary(result2), digits = 4,confint = FALSE)
+rownames(GLM_result2)<-c("截距","年紀","教育年份","收入","小孩數")
+kable(GLM_result2, caption = "GLM Model 2 迴歸結果")
+```
+
+1. 方程式
+```{r echo=FALSE}
+coefficients2 <- summary(result2)$coefficients
+
+equation2 <- paste("logit(P) =", round(as.numeric(coefficients2[1, 1]), 4))
+for (i in 2:nrow(coefficients2)) {
+  term <- ifelse(as.numeric(coefficients2[i, 1]) >= 0, "+", "-")
+  equation2 <- paste(equation2, term, round(abs(as.numeric(coefficients2[i, 1])), 4), "*", rownames(coefficients2)[i])
+}
+cat(equation2, "\n")
+```
+
+
+2. 係數解釋
+
+(1) Age: 年齡增加，客戶接受優惠的機率減少，但這個變數的 p-value 為 0.2，大於 0.05，統計上不顯著。
+(2) Education_Years: 教育年限增加，客戶接受優惠的機率增加，且 p-value 非常顯著。
+(3) Income: 收入增加，客戶接受優惠的機率增加，且 p-value 為 非常顯著。
+(4) Number_of_child: 子女數量增加，客戶接受優惠的機率減少，且 p-value 非常顯著。
+
+（二）模型解釋力
+
+使用 McFadden's Pseudo-R² 評估模型解釋力，模型解釋了約 9.02% 的變異，比之前的模型差，解釋力相對較低。
+
+```{r}
+McFadden.R2 = 1 - (result2$deviance / result2$null.deviance)
+McFadden.R2
+```
+
+（三）預測力/混淆矩陣
+
+```{r message=FALSE, warning=FALSE}
+library(caret)
+
+Prob2 <- predict(result2, type = "response") 
+Response.predicted2 <- ifelse(Prob2 >= 0.5, 1, 0)
+
+Actual <- as.integer(as.factor(customer_data$Response)) - 1
+TABEL2 <- table(Pred = as.factor(Response.predicted2), Actual = Actual)
+
+conf_matrix2 <- confusionMatrix(TABEL2, positive = "1")
+print(conf_matrix2)
+```
+
+混淆矩陣數據解釋
+
+```{r} 
+# 動態文字生成
+TN2 <- TABEL2[1, 1]  # True Negatives
+FN2 <- TABEL2[1, 2]  # False Negatives
+FP2 <- TABEL2[2, 1]  # False Positives
+TP2 <- TABEL2[2, 2]  # True Positives
+
+sensitivity2 <- conf_matrix2$byClass["Sensitivity"]
+specificity2 <- conf_matrix2$byClass["Specificity"]
+precision2 <- conf_matrix2$byClass["Pos Pred Value"]
+neg_pred_value2 <- conf_matrix2$byClass["Neg Pred Value"]
+accuracy2 <- conf_matrix2$overall["Accuracy"]
+kappa2 <- conf_matrix2$overall["Kappa"]
+
+```
+
+1. 混淆矩陣結果
+
+● True Negatives (TN): `r TN2`（預測為負例，實際為負例）
+
+● False Negatives (FN): `r FN2`（預測為負例，實際為正例）
+
+● False Positives (FP): `r FP2`（預測為正例，實際為負例）
+
+● True Positives (TP): `r TP2`（預測為正例，實際為正例）
+
+2. 預測力
+
+● Sensitivity (召回率)：`r sensitivity2`
+
+● Specificity (特異度)：`r specificity2`
+
+● Precision (精確率)：`r precision2`
+
+● Neg Pred Value (負預測值)：`r neg_pred_value2`
+
+● Accuracy (準確度)：`r accuracy2`
+
+● Kappa (卡帕統計量)：`r kappa2`
+
+3. 主要問題
+
+整體而言，考量「消費者型態」的GLM 並無優於考量「消費金額」的GLM 模型。
+Model2的準確性72.92，且Kappa 低於0.4，診斷試驗的可重複性差，因此以消費者型態觀察是否接受最後一次優惠為指標並非一個好的選擇。
+
+           
+### Model3 考量「消費者前期活動參與」的Logit GLM
+
+（一）模型建立
+
+```{r}
+result3 = glm(as.factor(Response) ~AcceptedCmp1 + AcceptedCmp2 + AcceptedCmp3 + AcceptedCmp4 + AcceptedCmp5,
+              family="binomial",
+              data=customer_data)
+summary(result3)
+```
+
+表\@ref(tab:table-4)，以表格呈現係數
+
+```{r table-4,echo=FALSE,message=FALSE, warning=FALSE}
+GLM_result3<-papeR::prettify(summary(result3), digits = 4,confint = FALSE)
+rownames(GLM_result3)<-c("截距","活動1","活動2","活動3","活動4","活動5")
+kable(GLM_result3, caption = "GLM Model 3 迴歸結果")
+```
+
+1. 方程式
+```{r echo=FALSE}
+coefficients3 <- summary(result3)$coefficients
+equation3 <- paste("logit(P) =", round(as.numeric(coefficients3[1, 1]), 4))
+for (i in 2:nrow(coefficients3)) {
+  term <- ifelse(as.numeric(coefficients3[i, 1]) >= 0, "+", "-")
+  equation3 <- paste(equation3, term, round(abs(as.numeric(coefficients3[i, 1])), 4), "*", rownames(coefficients3)[i])
+}
+cat(equation3, "\n")
+```
+
+(1) AcceptedCmp1: 客戶接受促銷活動1，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000002，非常顯著。
+(2) AcceptedCmp2: 客戶接受促銷活動2，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.0334，顯著。
+(3) AcceptedCmp3: 客戶接受促銷活動3，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000002，非常顯著。
+(4) AcceptedCmp4: 客戶接受促銷活動4，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.000000282，非常顯著。
+(5) AcceptedCmp5: 客戶接受促銷活動5，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000002，非常顯著。
+
+（二）模型解釋力
+
+使用 McFadden's Pseudo-R² 評估模型解釋力，模型解釋了約 20.96% 的變異，優於Model 1 和Model
+
+解釋力相對較高。
+```{r}
+McFadden.R2_3 = 1 - (result3$deviance / result3$null.deviance)
+McFadden.R2_3
+```
+
+（三）混淆矩陣
+```{r}
+library(caret)
+
+Prob3 <- predict(result3, type = "response") 
+Response.predicted3 <- ifelse(Prob3 >= 0.5, 1, 0)
+
+Actual <- as.integer(as.factor(customer_data$Response)) - 1
+TABEL3 <- table(Pred = as.factor(Response.predicted3), Actual = Actual)
+
+conf_matrix3 <- confusionMatrix(TABEL3, positive = "1")
+print(conf_matrix3)
+```
+
+
+混淆矩陣數據解釋
+
+```{r} 
+# 動態文字生成
+TN3 <- TABEL3[1, 1]  # True Negatives
+FN3 <- TABEL3[1, 2]  # False Negatives
+FP3 <- TABEL3[2, 1]  # False Positives
+TP3 <- TABEL3[2, 2]  # True Positives
+
+sensitivity3 <- conf_matrix3$byClass["Sensitivity"]
+specificity3 <- conf_matrix3$byClass["Specificity"]
+precision3 <- conf_matrix3$byClass["Pos Pred Value"]
+neg_pred_value3 <- conf_matrix3$byClass["Neg Pred Value"]
+accuracy3 <- conf_matrix3$overall["Accuracy"]
+kappa3 <- conf_matrix3$overall["Kappa"]
+
+```
+
+1. 混淆矩陣結果
+
+● True Negatives (TN): `r TN3`（預測為負例，實際為負例）
+
+● False Negatives (FN): `r FN3`（預測為負例，實際為正例）
+
+● False Positives (FP): `r FP3`（預測為正例，實際為負例）
+
+● True Positives (TP): `r TP3`（預測為正例，實際為正例）
+
+2. 預測力
+
+● Sensitivity (召回率)：`r sensitivity3`
+
+● Specificity (特異度)：`r specificity3`
+
+● Precision (精確率)：`r precision3`
+
+● Neg Pred Value (負預測值)：`r neg_pred_value3`
+
+● Accuracy (準確度)：`r accuracy3`
+
+● Kappa (卡帕統計量)：`r kappa3`
+
+Model3 在大多數指標上（特別是準確率、Kappa、特異度和精確率）表現最好，而 Model1 的靈敏度最高，並且在平衡準確率上表現略優。Model2 的表現相對較差，特別是在 Kappa、靈敏度和精確率上明顯落後於其他兩個模型。
+
+
+
+### Model 4 考量「所有變數」的Logit GLM
+
+（一）模型建立
+
+```{r}
+result4 = glm(as.factor(Response) ~ Spending+Age + Education_Years + Income + Number_of_child+AcceptedCmp1 + AcceptedCmp2 + AcceptedCmp3 + AcceptedCmp4 + AcceptedCmp5+NumStorePurchases+NumWebPurchases,
+              family="binomial",
+              data=customer_data)
+summary(result4)
+```
+表\@ref(tab:table-5)，以表格呈現係數
+
+```{r table-5,echo=FALSE,message=FALSE, warning=FALSE}
+GLM_result4<-papeR::prettify(summary(result4), digits = 4,confint = FALSE)
+rownames(GLM_result4)<-c("截距","消費支出","年紀","教育年份","收入","小孩數","活動1","活動2","活動3","活動4","活動5","實體店面","網站")
+kable(GLM_result4, caption = "GLM Model 4 迴歸結果")
+```
+
+1. 方程式
+```{r echo=FALSE}
+coefficients4 <- summary(result4)$coefficients
+equation4 <- paste("logit(P) =", round(as.numeric(coefficients4[1, 1]), 4))
+for (i in 2:nrow(coefficients4)) {
+  term <- ifelse(as.numeric(coefficients4[i, 1]) >= 0, "+", "-")
+  equation4 <- paste(equation4, term, round(abs(as.numeric(coefficients4[i, 1])), 4), "*", rownames(coefficients4)[i])
+}
+cat(equation4, "\n")
+```
+
+2. 係數解釋
+
+(1) Spending: 消費額增加，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000002，非常顯著。
+(2) Age: 年齡增加，客戶接受優惠的機率減少，但這個變數的 p-value 為 0.419034，大於 0.05，統計上不顯著。
+(3) Education_Years: 教育年限增加，客戶接受優惠的機率增加，但這個變數的 p-value 為 0.088892，接近顯著水準 (p < 0.1)。
+(4) Income: 收入增加，客戶接受優惠的機率減少，且這個變數的 p-value 為 0.000471，非常顯著。
+(5) Number_of_child: 子女數量增加，客戶接受優惠的機率增加，但這個變數的 p-value 為 0.530517，大於 0.05，統計上不顯著。
+(6) AcceptedCmp1: 客戶接受促銷活動1，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000000000147，非常顯著。
+(7) AcceptedCmp2: 客戶接受促銷活動2，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.008200，非常顯著。
+(8) AcceptedCmp3: 客戶接受促銷活動3，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000004167894，非常顯著。
+(9) AcceptedCmp4: 客戶接受促銷活動4，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.015759，顯著。
+(10) AcceptedCmp5: 客戶接受促銷活動5，客戶接受優惠的機率增加，且這個變數的 p-value 小於 0.0000000011577284，非常顯著。
+(11) NumStorePurchases: 實體店購買次數增加，客戶接受優惠的機率減少，但這個變數的 p-value 為 0.095073，接近顯著水準 (p < 0.1)。
+(12) NumWebPurchases: 網上購買次數增加，客戶接受優惠的機率增加，且這個變數的 p-value 為 0.016974，顯著。
+
+多數變數對於預測客戶接受優惠的機率具有顯著影響。特別是消費額、收入、促銷活動接受情況以及網上購買次數對模型影響較大。而年齡和子女數量對預測的影響並不顯著。
+
+（二）模型解釋力
+
+使用 McFadden's Pseudo-R² 評估模型解釋力，模型解釋了約 27.68% 的變異，優於Model 1 、Model 2和 Model3 ，解釋力相對較高。
+```{r}
+McFadden.R2_4 = 1 - (result4$deviance / result4$null.deviance)
+McFadden.R2_4
+```
+
+（三）混淆矩陣
+
+```{r}
+library(caret)
+
+Prob4 <- predict(result4, type = "response") 
+Response.predicted4 <- ifelse(Prob4 >= 0.5, 1, 0)
+
+Actual <- as.integer(as.factor(customer_data$Response)) - 1
+TABEL4 <- table(Pred = as.factor(Response.predicted4), Actual = Actual)
+
+conf_matrix4 <- confusionMatrix(TABEL4, positive = "1")
+print(conf_matrix4)
+```
+
+
+混淆矩陣數據解釋
+
+```{r} 
+# 動態文字生成
+TN4 <- TABEL4[1, 1]  # True Negatives
+FN4 <- TABEL4[1, 2]  # False Negatives
+FP4 <- TABEL4[2, 1]  # False Positives
+TP4 <- TABEL4[2, 2]  # True Positives
+
+sensitivity4 <- conf_matrix4$byClass["Sensitivity"]
+specificity4 <- conf_matrix4$byClass["Specificity"]
+precision4 <- conf_matrix4$byClass["Pos Pred Value"]
+neg_pred_value4 <- conf_matrix4$byClass["Neg Pred Value"]
+accuracy4 <- conf_matrix4$overall["Accuracy"]
+kappa4 <- conf_matrix4$overall["Kappa"]
+
+```
+
+1. 混淆矩陣結果
+
+● True Negatives (TN): `r TN4`（預測為負例，實際為負例）
+
+● False Negatives (FN): `r FN4`（預測為負例，實際為正例）
+
+● False Positives (FP): `r FP4`（預測為正例，實際為負例）
+
+● True Positives (TP): `r TP4`（預測為正例，實際為正例）
+
+2. 預測力
+
+● Sensitivity (召回率)：`r sensitivity4`
+
+● Specificity (特異度)：`r specificity4`
+
+● Precision (精確率)：`r precision4`
+
+● Neg Pred Value (負預測值)：`r neg_pred_value4`
+
+● Accuracy (準確度)：`r accuracy4`
+
+● Kappa (卡帕統計量)：`r kappa4`
+
+
+Model 4 考量所有變數後，在分類效果中明顯優於前面三個模型，是在識別負樣本方面有很高的準確性。然而，模型在識別正樣本方面的性能相對較低，推測是因為原始資料中，接受優惠的消費者佔全體消費者的少數。但總體來說，模型的預測結果具有可靠性， Kappa : 0.5076，且顯著優於隨機猜測。
+
+### 每個模型的ROC曲線
+
+ROC（Receiver Operating Characteristic）曲線，評估分類模型效能，表示分類模型在不同閾值設定下的表現。通過描繪真陽性率（True Positive Rate, TPR）對假陽性率（False Positive Rate, FPR）的關係來顯示混淆矩陣的辨識能力。
+
+AUC（Area Under the Curve）：曲線下面積，衡量模型的整體效能。AUC值範圍是0到1，AUC值越接近1，模型性能越好。
+
+$Model1$
+```{r fig.cap="Model 1 ROC"}
+library("plotROC")
+library(ggplot2)
+predict.table1 <- data.frame(true_label = customer_data$Response, predict_prob = Prob)
+# 繪製ROC曲線
+basic.plot1 <- ggplot(predict.table1, aes(d = true_label, m = predict_prob)) +
+  geom_roc(n.cuts = 3, labelsize = 3, labelround = 2)
+# AUC值
+basic.plot1 + style_roc() +
+  annotate("text", x = .75, y = .25, size = 5,
+           label = paste("AUC =", round(calc_auc(basic.plot1)$AUC, 3))) 
+```
+
+$Model2$
+```{r fig.cap="Model 2 ROC"}
+predict.table2 <- data.frame(true_label = customer_data$Response, predict_prob = Prob2)
+# 繪製ROC曲線
+basic.plot2 <- ggplot(predict.table2, aes(d = true_label, m = predict_prob)) +
+  geom_roc(n.cuts = 3, labelsize = 3, labelround = 2)
+# AUC值
+basic.plot2 + style_roc() +
+  annotate("text", x = .75, y = .25, size = 5,
+           label = paste("AUC =", round(calc_auc(basic.plot2)$AUC, 3)))  
+```
+
+$Model3$ 
+```{r  fig.cap="Model 3 ROC"}
+predict.table3 <- data.frame(true_label = customer_data$Response, predict_prob = Prob3)
+# 繪製ROC曲線
+basic.plot3 <- ggplot(predict.table3, aes(d = true_label, m = predict_prob)) +
+  geom_roc(n.cuts = 3, labelsize = 3, labelround = 2)
+# AUC值
+basic.plot3 + style_roc() +
+  annotate("text", x = .75, y = .25, size = 5,
+           label = paste("AUC =", round(calc_auc(basic.plot3)$AUC, 3)))     
+```
+
+$Model4$
+
+```{r  fig.cap="Model 4 ROC"}
+predict.table4 <- data.frame(true_label = customer_data$Response, predict_prob = Prob4)
+# 繪製ROC曲線
+basic.plot4 <- ggplot(predict.table4, aes(d = true_label, m = predict_prob)) +
+  geom_roc(n.cuts = 3, labelsize = 3, labelround = 2)
+# AUC值
+basic.plot4 + style_roc() +
+  annotate("text", x = .75, y = .25, size = 5,
+           label = paste("AUC =", round(calc_auc(basic.plot4)$AUC, 3)))
+```
+
+
+### 總結影響因素
+
+由於Model4的解釋力最佳，以Model4作為總結說明。GLM模型中，有一些變量對消費者是否接受最後一次優惠活動有正面影響，而另一些則有負面影響或不顯著的影響。
+
+視覺化「邏輯迴歸」的結果，每個變數對於接受最後一次優惠活動 odds 的影響程度
+
+```{r  fig.cap="視覺化Model 4的結果"}
+library(dplyr)
+library(ggplot2)
+
+# 提取模型係數
+summary.table <- data.frame(var_name = names(coefficients(result4)),
+                            coefficient = coefficients(result4))
+# 篩選出需要的變量（去除截距項）
+summary.table <- summary.table %>%
+  filter(var_name != "(Intercept)")
+# 按照係數大小排序
+summary.table <- summary.table[sort(summary.table$coefficient, index.return = T)$ix, ]
+# 設定正確的變量類型
+summary.table$var_name <- factor(summary.table$var_name,
+                                 levels = summary.table$var_name)
+# 繪製條形圖
+ggplot(data = summary.table,
+       aes(x = var_name, y = coefficient)) +
+  geom_bar(aes(fill = var_name),
+           position = "dodge",
+           stat = "identity",
+           show.legend = FALSE) +
+  theme_bw(base_size = 14) +
+  labs(title = "Focus on Previous Marketing Activty",
+       x = "Accept Last Marketing Activty", y = "Explanatory Variable") +
+  coord_flip()
+```
+
+$1. 主要影響因素$
+
+過去的行銷活動（AcceptedCmp1, AcceptedCmp5, AcceptedCmp3, AcceptedCmp2, AcceptedCmp4）：過去接受行銷活動的次數對顧客是否接受最後一次行銷活動有顯著的正面影響。表示之前參與過行銷活動的顧客更有可能接受新的行銷活動。特別是 AcceptedCmp1 和 AcceptedCmp5 的影響最大，表示這些行銷活動的效果最好。
+
+$2. 網上購買次數（NumWebPurchases）$
+
+網上購買次數對接受優惠活動有一定的正面影響。這表示經常在網上購買的顧客更傾向於接受新的行銷活動。
+
+$3. 教育年數（Education_Years）和孩子數量（Number_of_child）$
+
+這兩個變量對顧客接受行銷活動有正面影響，但影響較小。
+
+$3. 負面影響因素；商店購買次數（NumStorePurchases）$
+
+雖然影響較小，但說明經常在實體店購買的顧客可能不太容易接受新的行銷活動。
+
+$4. 不顯著的因素：花費（Spending）、年齡（Age）和收入（Income）$
+
+對顧客接受行銷活動的影響不顯著，表示這些變量並不是決定顧客行為的重要因素。
+
+$5. 行銷策略$
+
+(1) 重點關注過去接受行銷活動的顧客：將主要精力放在那些過去曾經參與過行銷活動的顧客，因為他們更有可能再次接受新的活動。
+
+(2) 加強線上行銷：針對經常進行網上購買的顧客，提供專屬的線上優惠和促銷活動，激勵他們參與。
+
+(3) 針對特定顧客群體：對於具有較高教育年數或有孩子的家庭，可以設計特別的行銷活動，雖然影響較小但也能帶來一定的增益。
+
+(4) 調整實體店策略：對於經常在實體店購買的顧客，可能需要不同的行銷策略，例如更多的店內體驗活動或實體店專屬優惠，以提高他們的參與度。超市需要進一步強化線上和線下的整合：
+
+- 統一會員數據：建立統一的會員系統，將線上和線下的購物行為整合到同一個平台，讓會員可以在任何渠道獲得相同的優惠和點數。
+- 線上線下通用：發行可以在線上和線下都能使用的折扣券，提升消費者的使用率。
+- 增強便利性：提供線上預訂、實體店取貨的選項，讓顧客可以在線上方便地選購商品，然後到最近的實體店取貨。
+

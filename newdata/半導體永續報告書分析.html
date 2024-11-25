@@ -993,7 +993,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb30-3"><a href="半導體永續報告書分析.html#cb30-3" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># 翻轉座標軸</span></span>
 <span id="cb30-4"><a href="半導體永續報告書分析.html#cb30-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Top 20 TF-IDF Words&quot;</span>, <span class="at">x =</span> <span class="st">&quot;詞彙&quot;</span>, <span class="at">y =</span> <span class="st">&quot;TF-IDF 分數&quot;</span>) <span class="sc">+</span></span>
 <span id="cb30-5"><a href="半導體永續報告書分析.html#cb30-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="/datascience/newdata/main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="半導體永續報告書分析.html#cb31-1" tabindex="-1"></a>plot_tfidf <span class="ot">&lt;-</span> <span class="cf">function</span>(ESG_tfidf, company_name, color) {</span>
 <span id="cb31-2"><a href="半導體永續報告書分析.html#cb31-2" tabindex="-1"></a>  top_words <span class="ot">&lt;-</span> ESG_tfidf <span class="sc">%&gt;%</span></span>
 <span id="cb31-3"><a href="半導體永續報告書分析.html#cb31-3" tabindex="-1"></a>    <span class="fu">filter</span>(company <span class="sc">==</span> company_name) <span class="sc">%&gt;%</span></span>
@@ -1008,11 +1008,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb31-12"><a href="半導體永續報告書分析.html#cb31-12" tabindex="-1"></a></span>
 <span id="cb31-13"><a href="半導體永續報告書分析.html#cb31-13" tabindex="-1"></a><span class="co"># 分別繪製 TSMC、Mediatek 和 ASE 的圖</span></span>
 <span id="cb31-14"><a href="半導體永續報告書分析.html#cb31-14" tabindex="-1"></a><span class="fu">plot_tfidf</span>(ESG_tfidf, <span class="st">&quot;TSMC&quot;</span>, <span class="st">&quot;skyblue&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="/datascience/newdata/main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="半導體永續報告書分析.html#cb32-1" tabindex="-1"></a><span class="fu">plot_tfidf</span>(ESG_tfidf, <span class="st">&quot;Mediatek&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+<p><img src="/datascience/newdata/main_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="半導體永續報告書分析.html#cb33-1" tabindex="-1"></a><span class="fu">plot_tfidf</span>(ESG_tfidf, <span class="st">&quot;ASE&quot;</span>, <span class="st">&quot;lightcoral&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-3.png" width="672" /></p>
+<p><img src="/datascience/newdata/main_files/figure-html/unnamed-chunk-21-3.png" width="672" /></p>
 </div>
 </div>
 <div id="正面情緒分析" class="section level2 hasAnchor" number="3.4">
@@ -1045,7 +1045,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb36-15"><a href="半導體永續報告書分析.html#cb36-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;正面情感字數&quot;</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">&quot;Top 20 Emotional Words per Company&quot;</span>) <span class="sc">+</span></span>
 <span id="cb36-16"><a href="半導體永續報告書分析.html#cb36-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb36-17"><a href="半導體永續報告書分析.html#cb36-17" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Kaiti TC&quot;</span>, <span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="/datascience/newdata/main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="分析永續報告書用字相似度" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> 分析永續報告書用字相似度<a href="半導體永續報告書分析.html#分析永續報告書用字相似度" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1597,7 +1597,7 @@ note:混淆值（Perplexity）是一個常用於自然語言處理和主題建�
 <span id="cb59-5"><a href="半導體永續報告書分析.html#cb59-5" tabindex="-1"></a>          <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb59-6"><a href="半導體永續報告書分析.html#cb59-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Number of topics&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb59-7"><a href="半導體永續報告書分析.html#cb59-7" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Perplexity&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="/datascience/newdata/main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <p>Structural Topic Modeling (STM) 方法來進行主題建模
 指定主題數量，即將文本數據分為 5 個主題。</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="半導體永續報告書分析.html#cb60-1" tabindex="-1"></a><span class="fu">library</span>(stm)</span></code></pre></div>
@@ -1698,7 +1698,7 @@ note:混淆值（Perplexity）是一個常用於自然語言處理和主題建�
 <span id="cb67-10"><a href="半導體永續報告書分析.html#cb67-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;TSMC&#39;s Topic Distribution&quot;</span>) <span class="sc">+</span></span>
 <span id="cb67-11"><a href="半導體永續報告書分析.html#cb67-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb67-12"><a href="半導體永續報告書分析.html#cb67-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="/datascience/newdata/main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="半導體永續報告書分析.html#cb68-1" tabindex="-1"></a>company_topics <span class="sc">%&gt;%</span></span>
 <span id="cb68-2"><a href="半導體永續報告書分析.html#cb68-2" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">&quot;Mediatek&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb68-3"><a href="半導體永續報告書分析.html#cb68-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;Topic_&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;Topic&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Probability&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -1711,7 +1711,7 @@ note:混淆值（Perplexity）是一個常用於自然語言處理和主題建�
 <span id="cb68-10"><a href="半導體永續報告書分析.html#cb68-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Mediatek&#39;s Topic Distribution&quot;</span>) <span class="sc">+</span></span>
 <span id="cb68-11"><a href="半導體永續報告書分析.html#cb68-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb68-12"><a href="半導體永續報告書分析.html#cb68-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-44-2.png" width="672" /></p>
+<p><img src="/datascience/newdata/main_files/figure-html/unnamed-chunk-44-2.png" width="672" /></p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="半導體永續報告書分析.html#cb69-1" tabindex="-1"></a>company_topics <span class="sc">%&gt;%</span></span>
 <span id="cb69-2"><a href="半導體永續報告書分析.html#cb69-2" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">&quot;ASE&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb69-3"><a href="半導體永續報告書分析.html#cb69-3" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">&quot;Topic_&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;Topic&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Probability&quot;</span>) <span class="sc">%&gt;%</span></span>
